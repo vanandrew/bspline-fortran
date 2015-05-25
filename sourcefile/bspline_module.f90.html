@@ -172,6 +172,9 @@
 <span class="c">!#        Vol. 5 (1979), p. 173-182.</span>
 <span class="c">!# 4. D.E. Amos, &quot;Computation with Splines and B-Splines&quot;,</span>
 <span class="c">!#        SAND78-1968, Sandia Laboratories, March, 1979.</span>
+<span class="c">!# 5. C. de Boor, &quot;Package for Calculating with B-Splines&quot;,</span>
+<span class="c">!#        SIAM Journal on Numerical Analysis, Volume 14, No. 3,</span>
+<span class="c">!#        June 1977, p. 441-472.</span>
 
     <span class="k">module </span><span class="n">bspline_module</span>
 
@@ -1706,194 +1709,171 @@
 <span class="k">    end subroutine </span><span class="n">dbtpcf</span>
 <span class="c">!*****************************************************************************************</span>
 
-<span class="c">!***begin prologue  dbintk</span>
-<span class="c">!***date written   800901   (yymmdd)</span>
-<span class="c">!***revision date  820801   (yymmdd)</span>
-<span class="c">!***revision history  (yymmdd)</span>
-<span class="c">!   000330  modified array declarations.  (jec)</span>
+<span class="c">!*****************************************************************************************</span>
 <span class="c">!</span>
-<span class="c">!***category no.  e1a</span>
-<span class="c">!***keywords  b-spline,data fitting,real(wp),interpolation,</span>
-<span class="c">!             spline</span>
-<span class="c">!***author  amos, d. e., (snla)</span>
-<span class="c">!***purpose  produces the b-spline coefficients, bcoef, of the</span>
-<span class="c">!            b-spline of order k with knots t(i), i=1,...,n+k, which</span>
-<span class="c">!            takes on the value y(i) at x(i), i=1,...,n.</span>
-<span class="c">!***description</span>
-<span class="c">!</span>
-<span class="c">!     written by carl de boor and modified by d. e. amos</span>
-<span class="c">!</span>
-<span class="c">!     references</span>
-<span class="c">!</span>
-<span class="c">!         a practical guide to splines by c. de boor, applied</span>
-<span class="c">!         mathematics series 27, springer, 1979.</span>
-<span class="c">!</span>
-<span class="c">!     abstract    **** a real(wp) routine ****</span>
-<span class="c">!</span>
-<span class="c">!         dbintk is the splint routine of the reference.</span>
-<span class="c">!</span>
-<span class="c">!         dbintk produces the b-spline coefficients, bcoef, of the</span>
-<span class="c">!         b-spline of order k with knots t(i), i=1,...,n+k, which</span>
-<span class="c">!         takes on the value y(i) at x(i), i=1,...,n.  the spline or</span>
-<span class="c">!         any of its derivatives can be evaluated by calls to dbvalu.</span>
-<span class="c">!</span>
-<span class="c">!         the i-th equation of the linear system a*bcoef = b for the</span>
-<span class="c">!         coefficients of the interpolant enforces interpolation at</span>
-<span class="c">!         x(i), i=1,...,n.  hence, b(i) = y(i), for all i, and a is</span>
-<span class="c">!         a band matrix with 2k-1 bands if a is invertible.  the matrix</span>
-<span class="c">!         a is generated row by row and stored, diagonal by diagonal,</span>
-<span class="c">!         in the rows of q, with the main diagonal going into row k.</span>
-<span class="c">!         the banded system is then solved by a call to dbnfac (which</span>
-<span class="c">!         constructs the triangular factorization for a and stores it</span>
-<span class="c">!         again in q), followed by a call to dbnslv (which then</span>
-<span class="c">!         obtains the solution bcoef by substitution).  dbnfac does no</span>
-<span class="c">!         pivoting, since the total positivity of the matrix a makes</span>
-<span class="c">!         this unnecessary.  the linear system to be solved is</span>
-<span class="c">!         (theoretically) invertible if and only if</span>
-<span class="c">!                 t(i) &lt; x(i) &lt; t(i+k),        for all i.</span>
-<span class="c">!         equality is permitted on the left for i=1 and on the right</span>
-<span class="c">!         for i=n when k knots are used at x(1) or x(n).  otherwise,</span>
-<span class="c">!         violation of this condition is certain to lead to an error.</span>
-<span class="c">!</span>
-<span class="c">!         dbintk calls dbspvn, dbnfac, dbnslv, xerror</span>
-<span class="c">!</span>
-<span class="c">!     description of arguments</span>
-<span class="c">!</span>
-<span class="c">!         input       x,y,t are real(wp)</span>
-<span class="c">!           x       - vector of length n containing data point abscissa</span>
-<span class="c">!                     in strictly increasing order.</span>
-<span class="c">!           y       - corresponding vector of length n containing data</span>
-<span class="c">!                     point ordinates.</span>
-<span class="c">!           t       - knot vector of length n+k</span>
-<span class="c">!                     since t(1),..,t(k) &lt;= x(1) and t(n+1),..,t(n+k)</span>
-<span class="c">!                     &gt;= x(n), this leaves only n-k knots (not nec-</span>
-<span class="c">!                     essarily x(i) values) interior to (x(1),x(n))</span>
-<span class="c">!           n       - number of data points, n &gt;= k</span>
-<span class="c">!           k       - order of the spline, k &gt;= 1</span>
-<span class="c">!</span>
-<span class="c">!         output      bcoef,q,work are real(wp)</span>
-<span class="c">!           bcoef   - a vector of length n containing the b-spline</span>
-<span class="c">!                     coefficients</span>
-<span class="c">!           q       - a work vector of length (2*k-1)*n, containing</span>
-<span class="c">!                     the triangular factorization of the coefficient</span>
-<span class="c">!                     matrix of the linear system being solved.  the</span>
-<span class="c">!                     coefficients for the interpolant of an</span>
-<span class="c">!                     additional data set (x(i),yy(i)), i=1,...,n</span>
-<span class="c">!                     with the same abscissa can be obtained by loading</span>
-<span class="c">!                     yy into bcoef and then executing</span>
-<span class="c">!                         call dbnslv(q,2k-1,n,k-1,k-1,bcoef)</span>
-<span class="c">!           work    - work vector of length 2*k</span>
-<span class="c">!</span>
-<span class="c">!     error conditions</span>
-<span class="c">!         improper input is a fatal error</span>
-<span class="c">!         singular system of equations is a fatal error</span>
-<span class="c">!</span>
-<span class="c">!***references  c. de boor, *a practical guide to splines*, applied</span>
-<span class="c">!                 mathematics series 27, springer, 1979.</span>
-<span class="c">!               d.e. amos, *computation with splines and b-splines*,</span>
-<span class="c">!                 sand78-1968,sandia laboratories,march,1979.</span>
+<span class="c">!# dbintk produces the b-spline coefficients, bcoef, of the</span>
+<span class="c">!# b-spline of order k with knots t(i), i=1,...,n+k, which</span>
+<span class="c">!# takes on the value y(i) at x(i), i=1,...,n.  the spline or</span>
+<span class="c">!# any of its derivatives can be evaluated by calls to dbvalu.</span>
+<span class="c">!# </span>
+<span class="c">!# the i-th equation of the linear system a*bcoef = b for the</span>
+<span class="c">!# coefficients of the interpolant enforces interpolation at</span>
+<span class="c">!# x(i), i=1,...,n.  hence, b(i) = y(i), for all i, and a is</span>
+<span class="c">!# a band matrix with 2k-1 bands if a is invertible.  the matrix</span>
+<span class="c">!# a is generated row by row and stored, diagonal by diagonal,</span>
+<span class="c">!# in the rows of q, with the main diagonal going into row k.</span>
+<span class="c">!# the banded system is then solved by a call to dbnfac (which</span>
+<span class="c">!# constructs the triangular factorization for a and stores it</span>
+<span class="c">!# again in q), followed by a call to dbnslv (which then</span>
+<span class="c">!# obtains the solution bcoef by substitution).  dbnfac does no</span>
+<span class="c">!# pivoting, since the total positivity of the matrix a makes</span>
+<span class="c">!# this unnecessary.  the linear system to be solved is</span>
+<span class="c">!# (theoretically) invertible if and only if</span>
+<span class="c">!#         t(i) &lt; x(i) &lt; t(i+k),        for all i.</span>
+<span class="c">!# equality is permitted on the left for i=1 and on the right</span>
+<span class="c">!# for i=n when k knots are used at x(1) or x(n).  otherwise,</span>
+<span class="c">!# violation of this condition is certain to lead to an error.</span>
+<span class="c">!# </span>
+<span class="c">!# Error conditions</span>
+<span class="c">!#---------</span>
+<span class="c">!# improper input is a fatal error</span>
+<span class="c">!# singular system of equations is a fatal error</span>
+<span class="c">!#</span>
+<span class="c">!# History</span>
+<span class="c">!#---------</span>
+<span class="c">!# * splint written by carl de boor [5]</span>
+<span class="c">!# * dbintk author: amos, d. e., (snla) : date written 800901</span>
+<span class="c">!# * revision date 820801</span>
+<span class="c">!# * 000330 modified array declarations. (jec)</span>
+<span class="c">!# * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
 
-      <span class="k">subroutine </span><span class="n">dbintk</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
+    <span class="k">subroutine </span><span class="n">dbintk</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
 
-      <span class="kt">integer </span><span class="n">iflag</span><span class="p">,</span> <span class="n">iwork</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ilp1mx</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">kpkm2</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span><span class="n">lenq</span><span class="p">,</span> <span class="n">np1</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">bcoef</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">q</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">t</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">xi</span><span class="p">,</span> <span class="n">work</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="c">!     dimension q(2*k-1,n), t(n+k)</span>
+    <span class="k">implicit none</span>
 
-      <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">100</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">105</span>
-      <span class="n">jj</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">jj</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">n</span>      <span class="c">!!number of data points, n &gt;= k</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>      <span class="c">!!vector of length n containing data point abscissa</span>
+                                                <span class="c">!! in strictly increasing order.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">y</span>      <span class="c">!!corresponding vector of length n containing data</span>
+                                                <span class="c">!! point ordinates.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">t</span>      <span class="c">!!knot vector of length n+k</span>
+                                                <span class="c">!! since t(1),..,t(k) &lt;= x(1) and t(n+1),..,t(n+k)</span>
+                                                <span class="c">!! &gt;= x(n), this leaves only n-k knots (not</span>
+                                                <span class="c">!! necessarily x(i) values) interior to (x(1),x(n))</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">k</span>      <span class="c">!!order of the spline, k &gt;= 1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!!a vector of length n containing the b-spline coefficients</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">q</span>      <span class="c">!!a work vector of length (2*k-1)*n, containing</span>
+                                                <span class="c">!! the triangular factorization of the coefficient</span>
+                                                <span class="c">!! matrix of the linear system being solved.  the</span>
+                                                <span class="c">!! coefficients for the interpolant of an</span>
+                                                <span class="c">!! additional data set (x(i),yy(i)), i=1,...,n</span>
+                                                <span class="c">!! with the same abscissa can be obtained by loading</span>
+                                                <span class="c">!! yy into bcoef and then executing</span>
+                                                <span class="c">!! call dbnslv(q,2k-1,n,k-1,k-1,bcoef)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span>   <span class="c">!!work vector of length 2*k</span>
+
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iflag</span><span class="p">,</span> <span class="n">iwork</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ilp1mx</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">kpkm2</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span><span class="n">lenq</span><span class="p">,</span> <span class="n">np1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xi</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  k does not satisfy k&gt;=1&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
+
+<span class="k">    if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  n does not satisfy n&gt;=k&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
+
+<span class="k">    </span><span class="n">jj</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">jj</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">        do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jj</span>
-          <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
-        <span class="k">end do</span>
-<span class="k">      end if</span>
-<span class="k">      </span><span class="n">np1</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
-      <span class="n">km1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span>
-      <span class="n">kpkm2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">km1</span>
-      <span class="n">left</span> <span class="o">=</span> <span class="n">k</span>
-      <span class="c">! zero out all entries of q</span>
-      <span class="n">lenq</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">km1</span><span class="p">)</span>
-      <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">lenq</span>
-        <span class="n">q</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.0</span><span class="n">d0</span>
-      <span class="k">end do</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">                call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  x(i) does not satisfy x(i)&lt;x(i+1) for some i&#39;</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">return</span>
+<span class="k">            end if</span>
+<span class="k">        end do</span>
+<span class="k">    end if</span>
 
-      <span class="c">!  ***   loop over i to construct the  n  interpolation equations</span>
-      <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+<span class="k">    </span><span class="n">np1</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">km1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">kpkm2</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">km1</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">k</span>
+    <span class="c">! zero out all entries of q</span>
+    <span class="n">lenq</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">km1</span><span class="p">)</span>
+    <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">lenq</span>
+        <span class="n">q</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="k">end do</span>
+
+    <span class="c">! loop over i to construct the n interpolation equations</span>
+    <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+
         <span class="n">xi</span> <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
         <span class="n">ilp1mx</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="p">,</span><span class="n">np1</span><span class="p">)</span>
-<span class="c">!        *** find  left  in the closed interval (i,i+k-1) such that</span>
-<span class="c">!                t(left) &lt;= x(i) &lt; t(left+1)</span>
-<span class="c">!        matrix is singular if this is not possible</span>
+        <span class="c">! *** find  left  in the closed interval (i,i+k-1) such that</span>
+        <span class="c">!         t(left) &lt;= x(i) &lt; t(left+1)</span>
+        <span class="c">! matrix is singular if this is not possible</span>
         <span class="n">left</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">xi</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">left</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
-   <span class="mi">20</span>   <span class="k">if</span> <span class="p">(</span><span class="n">xi</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">30</span>
-        <span class="n">left</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">&lt;</span><span class="n">ilp1mx</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">20</span>
-        <span class="n">left</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">xi</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
-<span class="c">!        *** the i-th equation enforces interpolation at xi, hence</span>
-<span class="c">!        a(i,j) = b(j,k,t)(xi), all j. only the  k  entries with  j =</span>
-<span class="c">!        left-k+1,...,left actually might be nonzero. these  k  numbers</span>
-<span class="c">!        are returned, in  bcoef (used for temp.storage here), by the</span>
-<span class="c">!        following</span>
-   <span class="mi">30</span>   <span class="k">call </span><span class="n">dbspvn</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">bcoef</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">iwork</span><span class="p">)</span>
-<span class="c">!        we therefore want  bcoef(j) = b(left-k+j)(xi) to go into</span>
-<span class="c">!        a(i,left-k+j), i.e., into  q(i-(left+j)+2*k,(left+j)-k) since</span>
-<span class="c">!        a(i+j,j)  is to go into  q(i+k,j), all i,j,  if we consider  q</span>
-<span class="c">!        as a two-dim. array , with  2*k-1  rows (see comments in</span>
-<span class="c">!        dbnfac). in the present program, we treat  q  as an equivalent</span>
-<span class="c">!        one-dimensional array (because of fortran restrictions on</span>
-<span class="c">!        dimension statements) . we therefore want  bcoef(j) to go into</span>
-<span class="c">!        entry</span>
-<span class="c">!            i -(left+j) + 2*k + ((left+j) - k-1)*(2*k-1)</span>
-<span class="c">!                   =  i-left+1 + (left -k)*(2*k-1) + (2*k-2)*j</span>
-<span class="c">!        of  q .</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">xi</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">left</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  some abscissa was not in the support of the&#39;</span><span class="o">//</span><span class="p">&amp;</span>
+                         <span class="s1">&#39; corresponding basis function and the system is singular.&#39;</span><span class="p">,</span><span class="mi">109</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span>
+<span class="k">        end if</span>
+<span class="k">        do</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">xi</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">30</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">left</span><span class="o">&gt;=</span><span class="n">ilp1mx</span><span class="p">)</span> <span class="k">exit</span>
+<span class="k">        end do</span>
+<span class="k">        </span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">xi</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  some abscissa was not in the support of the&#39;</span><span class="o">//</span><span class="p">&amp;</span>
+                         <span class="s1">&#39; corresponding basis function and the system is singular.&#39;</span><span class="p">,</span><span class="mi">109</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">return</span>
+<span class="k">        end if</span>
+
+        <span class="c">! *** the i-th equation enforces interpolation at xi, hence</span>
+        <span class="c">! a(i,j) = b(j,k,t)(xi), all j. only the  k  entries with  j =</span>
+        <span class="c">! left-k+1,...,left actually might be nonzero. these  k  numbers</span>
+        <span class="c">! are returned, in  bcoef (used for temp.storage here), by the</span>
+        <span class="c">! following</span>
+ <span class="mi">30</span>     <span class="k">call </span><span class="n">dbspvn</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xi</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">bcoef</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">iwork</span><span class="p">)</span>
+
+        <span class="c">! we therefore want  bcoef(j) = b(left-k+j)(xi) to go into</span>
+        <span class="c">! a(i,left-k+j), i.e., into  q(i-(left+j)+2*k,(left+j)-k) since</span>
+        <span class="c">! a(i+j,j)  is to go into  q(i+k,j), all i,j,  if we consider  q</span>
+        <span class="c">! as a two-dim. array , with  2*k-1  rows (see comments in</span>
+        <span class="c">! dbnfac). in the present program, we treat  q  as an equivalent</span>
+        <span class="c">! one-dimensional array (because of fortran restrictions on</span>
+        <span class="c">! dimension statements) . we therefore want  bcoef(j) to go into</span>
+        <span class="c">! entry</span>
+        <span class="c">!     i -(left+j) + 2*k + ((left+j) - k-1)*(2*k-1)</span>
+        <span class="c">!            = i-left+1 + (left -k)*(2*k-1) + (2*k-2)*j</span>
+        <span class="c">! of q.</span>
         <span class="n">jj</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">left</span><span class="o">-</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">km1</span><span class="p">)</span>
         <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span>
-          <span class="n">jj</span> <span class="o">=</span> <span class="n">jj</span> <span class="o">+</span> <span class="n">kpkm2</span>
-          <span class="n">q</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="n">bcoef</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">jj</span> <span class="o">=</span> <span class="n">jj</span> <span class="o">+</span> <span class="n">kpkm2</span>
+            <span class="n">q</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="n">bcoef</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
         <span class="k">end do</span>
-<span class="k">      end do</span>
 
-      <span class="c">!***obtain factorization of  a  , stored again in  q.</span>
-      <span class="k">call </span><span class="n">dbnfac</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">km1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">iflag</span><span class="p">)</span>
+<span class="k">    end do</span>
 
-      <span class="c">!go to (60, 90), iflag   !JW removed obsolescent Computed GOTO</span>
-      <span class="k">select case</span> <span class="p">(</span><span class="n">iflag</span><span class="p">)</span>
-      <span class="k">case</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="k">goto </span><span class="mi">60</span>  <span class="c">!success</span>
-      <span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="k">goto </span><span class="mi">90</span>  <span class="c">!failure</span>
-      <span class="k">end select</span>
+    <span class="c">! obtain factorization of a, stored again in q.</span>
+    <span class="k">call </span><span class="n">dbnfac</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">km1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">iflag</span><span class="p">)</span>
 
-<span class="c">!     *** solve  a*bcoef = y  by backsubstitution</span>
-   <span class="mi">60</span> <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
-        <span class="n">bcoef</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-      <span class="k">end do</span>
-<span class="k">      call </span><span class="n">dbnslv</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">km1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">bcoef</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">   </span><span class="mi">80</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  some abscissa was not in the support of the&#39;</span><span class="o">//</span><span class="p">&amp;</span>
-                   <span class="s1">&#39; corresponding basis function and the system is singular.&#39;</span><span class="p">,</span><span class="mi">109</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">   </span><span class="mi">90</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  the system of solver detects a singular system&#39;</span><span class="o">//</span><span class="p">&amp;</span>
-                   <span class="s1">&#39; although the theoretical conditions for a solution were satisfied.&#39;</span><span class="p">,</span><span class="mi">123</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span> <span class="c">!success</span>
+        <span class="c">! *** solve  a*bcoef = y  by backsubstitution</span>
+        <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+            <span class="n">bcoef</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">y</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">end do</span>
+<span class="k">        call </span><span class="n">dbnslv</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="n">km1</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">km1</span><span class="p">,</span> <span class="n">bcoef</span><span class="p">)</span>
+    <span class="k">else</span>  <span class="c">!failure</span>
+        <span class="k">call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  the system of solver detects a singular system&#39;</span><span class="o">//</span><span class="p">&amp;</span>
+                     <span class="s1">&#39; although the theoretical conditions for a solution were satisfied.&#39;</span><span class="p">,</span><span class="mi">123</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">end if</span>
 
-<span class="k">  </span><span class="mi">100</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  k does not satisfy k&gt;=1&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
+<span class="k">    end subroutine </span><span class="n">dbintk</span>
+<span class="c">!*****************************************************************************************</span>
 
-<span class="k">  </span><span class="mi">105</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  n does not satisfy n&gt;=k&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-
-<span class="k">  </span><span class="mi">110</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbintk,  x(i) does not satisfy x(i)&lt;x(i+1) for some i&#39;</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-
-<span class="k">      end subroutine </span><span class="n">dbintk</span>
-
-      <span class="k">subroutine </span><span class="n">dbnfac</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 <span class="c">!***begin prologue  dbnfac</span>
 <span class="c">!***refer to  dbint4,dbintk</span>
 <span class="c">!</span>
@@ -1957,12 +1937,13 @@
 <span class="c">!     the routine should not be used for an arbitrary banded matrix.</span>
 <span class="c">!***routines called  (none)</span>
 <span class="c">!***end prologue  dbnfac</span>
-<span class="c">!</span>
+
+      <span class="k">subroutine </span><span class="n">dbnfac</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+
       <span class="kt">integer </span><span class="n">iflag</span><span class="p">,</span> <span class="n">nbandl</span><span class="p">,</span> <span class="n">nbandu</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">nroww</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ipk</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">k</span><span class="p">,&amp;</span>
        <span class="n">kmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">midmk</span><span class="p">,</span> <span class="n">nrowm1</span>
       <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">w</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span> <span class="n">factor</span><span class="p">,</span> <span class="n">pivot</span>
-<span class="c">!</span>
-<span class="c">!***first executable statement  dbnfac</span>
+
       <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
 <span class="c">!                         w(middle,.) contains the main diagonal of  a .</span>
@@ -1976,58 +1957,56 @@
 
 <span class="k">   </span><span class="mi">10</span> <span class="k">if</span> <span class="p">(</span><span class="n">nbandl</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">30</span>
 <span class="c">!                a is upper triangular. check that diagonal is nonzero .</span>
-      <span class="k">do </span><span class="mi">20</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0</span><span class="n">d0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
-   <span class="mi">20</span> <span class="k">continue</span>
+      <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
+      <span class="k">end do</span>
 <span class="k">      </span><span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
    <span class="mi">30</span> <span class="k">if</span> <span class="p">(</span><span class="n">nbandu</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">60</span>
 <span class="c">!              a is lower triangular. check that diagonal is nonzero and</span>
 <span class="c">!                 divide each column by its diagonal .</span>
-      <span class="k">do </span><span class="mi">50</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+      <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
         <span class="n">pivot</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0</span><span class="n">d0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
         <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">do </span><span class="mi">40</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
           <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">pivot</span>
-   <span class="mi">40</span>   <span class="k">continue</span>
-<span class="k">   </span><span class="mi">50</span> <span class="k">continue</span>
+        <span class="k">end do</span>
+<span class="k">      end do</span>
 <span class="k">      return</span>
 <span class="c">!</span>
 <span class="c">!        a  is not just a triangular matrix. construct lu factorization</span>
-   <span class="mi">60</span> <span class="k">do </span><span class="mi">100</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+   <span class="mi">60</span> <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
 <span class="c">!                                  w(middle,i)  is pivot for i-th step .</span>
         <span class="n">pivot</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0</span><span class="n">d0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
 <span class="c">!                 jmax  is the number of (nonzero) entries in column  i</span>
 <span class="c">!                     below the diagonal .</span>
         <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
 <span class="c">!              divide each entry in column  i  below diagonal by pivot .</span>
-        <span class="k">do </span><span class="mi">70</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
           <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">pivot</span>
-   <span class="mi">70</span>   <span class="k">continue</span>
+        <span class="k">end do</span>
 <span class="c">!                 kmax  is the number of (nonzero) entries in row  i  to</span>
 <span class="c">!                     the right of the diagonal .</span>
         <span class="n">kmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandu</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
 <span class="c">!                  subtract  a(i,i+k)*(i-th column) from (i+k)-th column</span>
 <span class="c">!                  (below row  i ) .</span>
-        <span class="k">do </span><span class="mi">90</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmax</span>
+        <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmax</span>
           <span class="n">ipk</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">k</span>
           <span class="n">midmk</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="n">k</span>
           <span class="n">factor</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span>
-          <span class="k">do </span><span class="mi">80</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+          <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
             <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span> <span class="o">-</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">factor</span>
-   <span class="mi">80</span>     <span class="k">continue</span>
-<span class="k">   </span><span class="mi">90</span>   <span class="k">continue</span>
-<span class="k">  </span><span class="mi">100</span> <span class="k">continue</span>
+          <span class="k">end do</span>
+<span class="k">        end do</span>
+<span class="k">      end do</span>
 <span class="c">!                                       check the last diagonal entry .</span>
-  <span class="mi">110</span> <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">nrow</span><span class="p">)</span><span class="o">/=</span><span class="mf">0.0</span><span class="n">d0</span><span class="p">)</span> <span class="k">return</span>
+  <span class="mi">110</span> <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">nrow</span><span class="p">)</span><span class="o">/=</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">  </span><span class="mi">120</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
-      <span class="k">return</span>
-<span class="k">      end subroutine </span><span class="n">dbnfac</span>
+
+      <span class="k">end subroutine </span><span class="n">dbnfac</span>
       
-      <span class="k">subroutine </span><span class="n">dbnslv</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-<span class="c">!***begin prologue  dbnslv</span>
-<span class="c">!***refer to  dbint4,dbintk</span>
+<span class="c">!*****************************************************************************************</span>
 <span class="c">!</span>
 <span class="c">!  dbnslv is the banslv routine from</span>
 <span class="c">!        * a practical guide to splines *  by c. de boor</span>
@@ -2052,251 +2031,205 @@
 <span class="c">!  l(u*x) = b  is solved for  y = u*x, and  y  stored in  b . then the</span>
 <span class="c">!  upper triangular system  u*x = y  is solved for  x  . the calcul-</span>
 <span class="c">!  ations are so arranged that the innermost loops stay within columns.</span>
-<span class="c">!***routines called  (none)</span>
-<span class="c">!***end prologue  dbnslv</span>
-<span class="c">!</span>
-      <span class="kt">integer </span><span class="n">nbandl</span><span class="p">,</span> <span class="n">nbandu</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">nroww</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">nrowm1</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">w</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">nrow</span><span class="p">)</span>
-<span class="c">!***first executable statement  dbnslv</span>
-      <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">nrow</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
-      <span class="n">nrowm1</span> <span class="o">=</span> <span class="n">nrow</span> <span class="o">-</span> <span class="mi">1</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">nbandl</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">30</span>
-<span class="c">!                                 forward pass</span>
-<span class="c">!            for i=1,2,...,nrow-1, subtract  right side(i)*(i-th column</span>
-<span class="c">!            of  l )  from right side  (below i-th row) .</span>
-      <span class="k">do </span><span class="mi">20</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
-        <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">do </span><span class="mi">10</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
-          <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-   <span class="mi">10</span>   <span class="k">continue</span>
-<span class="k">   </span><span class="mi">20</span> <span class="k">continue</span>
-<span class="c">!                                 backward pass</span>
-<span class="c">!            for i=nrow,nrow-1,...,1, divide right side(i) by i-th diag-</span>
-<span class="c">!            onal entry of  u, then subtract  right side(i)*(i-th column</span>
-<span class="c">!            of  u)  from right side  (above i-th row).</span>
-   <span class="mi">30</span> <span class="k">if</span> <span class="p">(</span><span class="n">nbandu</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">50</span>
-<span class="c">!                                a  is lower triangular .</span>
-      <span class="k">do </span><span class="mi">40</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrow</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-   <span class="mi">40</span> <span class="k">continue</span>
-<span class="k">      return</span>
-<span class="k">   </span><span class="mi">50</span> <span class="n">i</span> <span class="o">=</span> <span class="n">nrow</span>
-   <span class="mi">60</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandu</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-      <span class="k">do </span><span class="mi">70</span> <span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
-        <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-   <span class="mi">70</span> <span class="k">continue</span>
-<span class="k">      </span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">60</span>
-   <span class="mi">80</span> <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">      end subroutine </span><span class="n">dbnslv</span>
 
-      <span class="k">subroutine </span><span class="n">dbspvn</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">jhigh</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="nb">index</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">vnikx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iwork</span><span class="p">)</span>
-<span class="c">!***begin prologue  dbspvn</span>
-<span class="c">!***date written   800901   (yymmdd)</span>
-<span class="c">!***revision date  820801   (yymmdd)</span>
-<span class="c">!***revision history  (yymmdd)</span>
-<span class="c">!   000330  modified array declarations.  (jec)</span>
-<span class="c">!</span>
-<span class="c">!***category no.  e3,k6</span>
-<span class="c">!***keywords  b-spline,data fitting,real(wp),interpolation,</span>
-<span class="c">!             spline</span>
-<span class="c">!***author  amos, d. e., (snla)</span>
-<span class="c">!***purpose  calculates the value of all (possibly) nonzero basis</span>
-<span class="c">!            functions at x.</span>
-<span class="c">!***description</span>
-<span class="c">!</span>
-<span class="c">!     written by carl de boor and modified by d. e. amos</span>
-<span class="c">!</span>
-<span class="c">!     reference</span>
-<span class="c">!         siam j. numerical analysis, 14, no. 3, june, 1977, pp.441-472.</span>
-<span class="c">!</span>
-<span class="c">!     abstract    **** a real(wp) routine ****</span>
-<span class="c">!         dbspvn is the bsplvn routine of the reference.</span>
-<span class="c">!</span>
-<span class="c">!         dbspvn calculates the value of all (possibly) nonzero basis</span>
-<span class="c">!         functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)</span>
-<span class="c">!         &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on</span>
-<span class="c">!         the first call when index=1.  ileft is such that t(ileft) &lt;=</span>
-<span class="c">!         x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)</span>
-<span class="c">!         produces the proper ileft.  dbspvn calculates using the basic</span>
-<span class="c">!         algorithm needed in dbspvd.  if only basis functions are</span>
-<span class="c">!         desired, setting jhigh=k and index=1 can be faster than</span>
-<span class="c">!         calling dbspvd, but extra coding is required for derivatives</span>
-<span class="c">!         (index=2) and dbspvd is set up for this purpose.</span>
-<span class="c">!</span>
-<span class="c">!         left limiting values are set up as described in dbspvd.</span>
-<span class="c">!</span>
-<span class="c">!     description of arguments</span>
-<span class="c">!</span>
-<span class="c">!         input      t,x are real(wp)</span>
-<span class="c">!          t       - knot vector of length n+k, where</span>
-<span class="c">!                    n = number of b-spline basis functions</span>
-<span class="c">!                    n = sum of knot multiplicities-k</span>
-<span class="c">!          jhigh   - order of b-spline, 1 &lt;= jhigh &lt;= k</span>
-<span class="c">!          k       - highest possible order</span>
-<span class="c">!          index   - index = 1 gives basis functions of order jhigh</span>
-<span class="c">!                          = 2 denotes previous entry with work, iwork</span>
-<span class="c">!                              values saved for subsequent calls to</span>
-<span class="c">!                              dbspvn.</span>
-<span class="c">!          x       - argument of basis functions,</span>
-<span class="c">!                    t(k) &lt;= x &lt;= t(n+1)</span>
-<span class="c">!          ileft   - largest integer such that</span>
-<span class="c">!                    t(ileft) &lt;= x &lt;  t(ileft+1)</span>
-<span class="c">!</span>
-<span class="c">!         output     vnikx, work are real(wp)</span>
-<span class="c">!          vnikx   - vector of length k for spline values.</span>
-<span class="c">!          work    - a work vector of length 2*k</span>
-<span class="c">!          iwork   - a work parameter.  both work and iwork contain</span>
-<span class="c">!                    information necessary to continue for index = 2.</span>
-<span class="c">!                    when index = 1 exclusively, these are scratch</span>
-<span class="c">!                    variables and can be used for other purposes.</span>
-<span class="c">!</span>
-<span class="c">!     error conditions</span>
-<span class="c">!         improper input is a fatal error.</span>
-<span class="c">!***references  c. de boor, *package for calculating with b-splines*,</span>
-<span class="c">!                 siam journal on numerical analysis, volume 14, no. 3,</span>
-<span class="c">!                 june 1977, pp. 441-472.</span>
-<span class="c">!***routines called  xerror</span>
-<span class="c">!***end prologue  dbspvn</span>
-<span class="c">!</span>
-<span class="c">!</span>
-      <span class="kt">integer </span><span class="n">ileft</span><span class="p">,</span> <span class="n">imjp1</span><span class="p">,</span> <span class="nb">index</span><span class="p">,</span> <span class="n">ipj</span><span class="p">,</span> <span class="n">iwork</span><span class="p">,</span> <span class="n">jhigh</span><span class="p">,</span> <span class="n">jp1</span><span class="p">,</span> <span class="n">jp1ml</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">l</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">t</span><span class="p">,</span> <span class="n">vm</span><span class="p">,</span> <span class="n">vmprev</span><span class="p">,</span> <span class="n">vnikx</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span> <span class="n">x</span>
-<span class="c">!     dimension t(ileft+jhigh)</span>
-      <span class="k">dimension </span><span class="n">t</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">vnikx</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="n">work</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="c">!     content of j, deltam, deltap is expected unchanged between calls.</span>
-<span class="c">!     work(i) = deltap(i), work(k+i) = deltam(i), i = 1,k</span>
-<span class="c">!***first executable statement  dbspvn</span>
+    <span class="k">subroutine </span><span class="n">dbnslv</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 
-      <span class="k">if</span><span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">90</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">jhigh</span><span class="o">&gt;</span><span class="n">k</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">jhigh</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">100</span>
-      <span class="k">if</span><span class="p">(</span><span class="nb">index</span><span class="o">&lt;</span><span class="mi">1</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">index</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">105</span>
-      <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+    <span class="kt">integer </span><span class="n">nbandl</span><span class="p">,</span> <span class="n">nbandu</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">nroww</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">nrowm1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">w</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">nrow</span><span class="p">)</span>
 
-      <span class="c">!go to (10, 20), index    !JW removed obsolescent Computed GOTO</span>
-      <span class="k">select case</span> <span class="p">(</span><span class="nb">index</span><span class="p">)</span>
-      <span class="k">case</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="k">goto </span><span class="mi">10</span>
-      <span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="k">goto </span><span class="mi">20</span>
-      <span class="k">end select</span>
+    <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">nrow</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
 
-<span class="k">   </span><span class="mi">10</span> <span class="n">iwork</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="n">vnikx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&gt;=</span><span class="n">jhigh</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">40</span>
-<span class="c">!</span>
-   <span class="mi">20</span> <span class="n">ipj</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">+</span> <span class="n">iwork</span>
-      <span class="n">work</span><span class="p">(</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">ipj</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
-      <span class="n">imjp1</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">-</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
-      <span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="n">imjp1</span><span class="p">)</span>
-      <span class="n">vmprev</span> <span class="o">=</span> <span class="mf">0.0</span><span class="n">d0</span>
-      <span class="n">jp1</span> <span class="o">=</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
-      <span class="k">do </span><span class="mi">30</span> <span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">iwork</span>
-        <span class="n">jp1ml</span> <span class="o">=</span> <span class="n">jp1</span> <span class="o">-</span> <span class="n">l</span>
-        <span class="n">vm</span> <span class="o">=</span> <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">))</span>
-        <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">+</span> <span class="n">vmprev</span>
-        <span class="n">vmprev</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">)</span>
-   <span class="mi">30</span> <span class="k">continue</span>
-<span class="k">      </span><span class="n">vnikx</span><span class="p">(</span><span class="n">jp1</span><span class="p">)</span> <span class="o">=</span> <span class="n">vmprev</span>
-      <span class="n">iwork</span> <span class="o">=</span> <span class="n">jp1</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&lt;</span><span class="n">jhigh</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">20</span>
-<span class="c">!</span>
-   <span class="mi">40</span> <span class="k">return</span>
-<span class="c">!</span>
-<span class="c">!</span>
-   <span class="mi">90</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  k does not satisfy k&gt;=1&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">  </span><span class="mi">100</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  jhigh does not satisfy 1&lt;=jhigh&lt;=k&#39;</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">  </span><span class="mi">105</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  index is not 1 or 2&#39;</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">  </span><span class="mi">110</span> <span class="k">continue</span>
-<span class="k">      call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">      end subroutine </span><span class="n">dbspvn</span>
-      
+<span class="k">        </span><span class="n">nrowm1</span> <span class="o">=</span> <span class="n">nrow</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">nbandl</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+
+            <span class="c">! forward pass</span>
+            <span class="c">! for i=1,2,...,nrow-1, subtract right side(i)*(i-th column of l) </span>
+            <span class="c">!                       from right side (below i-th row).</span>
+            <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+                <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+                    <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">end do</span>
+<span class="k">            end do</span>
+
+<span class="k">        end if</span>
+
+        <span class="c">! backward pass</span>
+        <span class="c">! for i=nrow,nrow-1,...,1, divide right side(i) by i-th diagonal</span>
+        <span class="c">!                          entry of u, then subtract right side(i)*(i-th column</span>
+        <span class="c">!                          of u) from right side (above i-th row).</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">nbandu</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+            <span class="c">! a is lower triangular.</span>
+            <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrow</span>
+                <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">end do</span>
+<span class="k">            return</span>
+<span class="k">        end if</span>
+
+<span class="k">        </span><span class="n">i</span> <span class="o">=</span> <span class="n">nrow</span>
+        <span class="k">do</span>
+<span class="k">            </span><span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandu</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+                <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">end do</span>
+<span class="k">            </span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="k">exit</span>
+<span class="k">        end do</span>
+
+<span class="k">    end if</span>
+
+<span class="k">    </span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">end subroutine </span><span class="n">dbnslv</span>
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!***begin prologue  dbvalu</span>
-<span class="c">!***date written   800901   (yymmdd)</span>
-<span class="c">!***revision date  820801   (yymmdd)</span>
-<span class="c">!***revision history  (yymmdd)</span>
-<span class="c">!   000330  modified array declarations.  (jec)</span>
-<span class="c">!</span>
-<span class="c">!***category no.  e3,k6</span>
-<span class="c">!***keywords  b-spline,data fitting,real(wp),interpolation,</span>
-<span class="c">!             spline</span>
-<span class="c">!***author  amos, d. e., (snla)</span>
-<span class="c">!***purpose  evaluates the b-representation of a b-spline at x for the</span>
-<span class="c">!            function value or any of its derivatives.</span>
-<span class="c">!***description</span>
-<span class="c">!</span>
-<span class="c">!     written by carl de boor and modified by d. e. amos</span>
-<span class="c">!</span>
-<span class="c">!     reference</span>
-<span class="c">!         siam j. numerical analysis, 14, no. 3, june, 1977, pp.441-472.</span>
-<span class="c">!</span>
-<span class="c">!     abstract   **** a real(wp) routine ****</span>
-<span class="c">!         dbvalu is the bvalue function of the reference.</span>
-<span class="c">!</span>
-<span class="c">!         dbvalu evaluates the b-representation (t,a,n,k) of a b-spline</span>
-<span class="c">!         at x for the function value on ideriv=0 or any of its</span>
-<span class="c">!         derivatives on ideriv=1,2,...,k-1.  right limiting values</span>
-<span class="c">!         (right derivatives) are returned except at the right end</span>
-<span class="c">!         point x=t(n+1) where left limiting values are computed.  the</span>
-<span class="c">!         spline is defined on t(k) &lt;= x &lt;= t(n+1).  dbvalu returns</span>
-<span class="c">!         a fatal error message when x is outside of this interval.</span>
-<span class="c">!</span>
-<span class="c">!         to compute left derivatives or left limiting values at a</span>
-<span class="c">!         knot t(i), replace n by i-1 and set x=t(i), i=k+1,n+1.</span>
-<span class="c">!</span>
-<span class="c">!         dbvalu calls dintrv</span>
-<span class="c">!</span>
-<span class="c">!     description of arguments</span>
-<span class="c">!</span>
-<span class="c">!         input      t,a,x are real(wp)</span>
-<span class="c">!          t       - knot vector of length n+k</span>
-<span class="c">!          a       - b-spline coefficient vector of length n</span>
-<span class="c">!          n       - number of b-spline coefficients</span>
-<span class="c">!                    n = sum of knot multiplicities-k</span>
-<span class="c">!          k       - order of the b-spline, k &gt;= 1</span>
-<span class="c">!          ideriv  - order of the derivative, 0 &lt;= ideriv &lt;= k-1</span>
-<span class="c">!                    ideriv = 0 returns the b-spline value</span>
-<span class="c">!          x       - argument, t(k) &lt;= x &lt;= t(n+1)</span>
-<span class="c">!          inbv    - an initialization parameter which must be set</span>
-<span class="c">!                    to 1 the first time dbvalu is called.</span>
-<span class="c">!</span>
-<span class="c">!         output     work,dbvalu are real(wp)</span>
-<span class="c">!          inbv    - inbv contains information for efficient process-</span>
-<span class="c">!                    ing after the initial call and inbv must not</span>
-<span class="c">!                    be changed by the user.  distinct splines require</span>
-<span class="c">!                    distinct inbv parameters.</span>
-<span class="c">!          work    - work vector of length 3*k.</span>
-<span class="c">!          dbvalu  - value of the ideriv-th derivative at x</span>
-<span class="c">!</span>
-<span class="c">!     error conditions</span>
-<span class="c">!         an improper input is a fatal error</span>
-<span class="c">!***references  c. de boor, *package for calculating with b-splines*,</span>
-<span class="c">!                 siam journal on numerical analysis, volume 14, no. 3,</span>
-<span class="c">!                 june 1977, pp. 441-472.</span>
-<span class="c">!***routines called  dintrv,xerror</span>
-<span class="c">!***end prologue  dbvalu</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ideriv</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">inbv</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
+<span class="c">!*****************************************************************************************</span>
+<span class="c">!</span>
+<span class="c">!# Calculates the value of all (possibly) nonzero basis</span>
+<span class="c">!# functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)</span>
+<span class="c">!# &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on</span>
+<span class="c">!# the first call when index=1.  ileft is such that t(ileft) &lt;=</span>
+<span class="c">!# x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)</span>
+<span class="c">!# produces the proper ileft.  dbspvn calculates using the basic</span>
+<span class="c">!# algorithm needed in dbspvd.  if only basis functions are</span>
+<span class="c">!# desired, setting jhigh=k and index=1 can be faster than</span>
+<span class="c">!# calling dbspvd, but extra coding is required for derivatives</span>
+<span class="c">!# (index=2) and dbspvd is set up for this purpose.</span>
+<span class="c">!# </span>
+<span class="c">!# left limiting values are set up as described in dbspvd.</span>
+<span class="c">!#</span>
+<span class="c">!# Error Conditions</span>
+<span class="c">!#---------</span>
+<span class="c">!# improper input is a fatal error.</span>
+<span class="c">!#</span>
+<span class="c">!# History</span>
+<span class="c">!#---------</span>
+<span class="c">!# * bsplvn written by carl de boor [5]</span>
+<span class="c">!# * dbspvn author: amos, d. e., (snla) : date written 800901</span>
+<span class="c">!# * revision date 820801</span>
+<span class="c">!# * 000330 modified array declarations.  (jec)</span>
+<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+
+    <span class="k">subroutine </span><span class="n">dbspvn</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">jhigh</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="nb">index</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">vnikx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iwork</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
-<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">n</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">k</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">ideriv</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">x</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">inbv</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:)</span>            <span class="kd">::</span> <span class="n">work</span>
+<span class="k">    </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">t</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>     <span class="c">!!knot vector of length n+k, where</span>
+                                     <span class="c">!! n = number of b-spline basis functions</span>
+                                     <span class="c">!! n = sum of knot multiplicities-k</span>
+                                     <span class="c">!!    dimension t(ileft+jhigh)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">jhigh</span>    <span class="c">!!order of b-spline, 1 &lt;= jhigh &lt;= k</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">k</span>        <span class="c">!!highest possible order</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>   <span class="kd">::</span> <span class="nb">index</span>    <span class="c">!!index = 1 gives basis functions of order jhigh</span>
+                                     <span class="c">!!      = 2 denotes previous entry with work, iwork</span>
+                                     <span class="c">!!          values saved for subsequent calls to</span>
+                                     <span class="c">!!          dbspvn.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">x</span>        <span class="c">!!argument of basis functions, t(k) &lt;= x &lt;= t(n+1)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">ileft</span>    <span class="c">!!largest integer such that t(ileft) &lt;= x &lt; t(ileft+1)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vnikx</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="c">!!vector of length k for spline values.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>  <span class="c">!!a work vector of length 2*k</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">iwork</span>    <span class="c">!!a work parameter.  both work and iwork contain</span>
+                                     <span class="c">!! information necessary to continue for index = 2.</span>
+                                     <span class="c">!! when index = 1 exclusively, these are scratch</span>
+                                     <span class="c">!! variables and can be used for other purposes.</span>
+
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">imjp1</span><span class="p">,</span> <span class="n">ipj</span><span class="p">,</span> <span class="n">jp1</span><span class="p">,</span> <span class="n">jp1ml</span><span class="p">,</span> <span class="n">l</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vm</span><span class="p">,</span> <span class="n">vmprev</span>
+
+    <span class="c">! content of j, deltam, deltap is expected unchanged between calls.</span>
+    <span class="c">! work(i) = deltap(i), </span>
+    <span class="c">! work(k+i) = deltam(i), i = 1,k</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  k does not satisfy k&gt;=1&#39;</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span> <span class="p">(</span><span class="n">jhigh</span><span class="o">&gt;</span><span class="n">k</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">jhigh</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  jhigh does not satisfy 1&lt;=jhigh&lt;=k&#39;</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span> <span class="p">(</span><span class="nb">index</span><span class="o">&lt;</span><span class="mi">1</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">index</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  index is not 1 or 2&#39;</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
+<span class="k">    if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">        call </span><span class="n">xerror</span><span class="p">(</span> <span class="s1">&#39; dbspvn,  x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)&#39;</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
+
+<span class="k">    if</span> <span class="p">(</span><span class="nb">index</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">iwork</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">vnikx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&gt;=</span><span class="n">jhigh</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    end if</span>
+
+<span class="k">    do</span>
+<span class="k">        </span><span class="n">ipj</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">+</span> <span class="n">iwork</span>
+        <span class="n">work</span><span class="p">(</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">ipj</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
+        <span class="n">imjp1</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">-</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="n">imjp1</span><span class="p">)</span>
+        <span class="n">vmprev</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+        <span class="n">jp1</span> <span class="o">=</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">do </span><span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">iwork</span>
+            <span class="n">jp1ml</span> <span class="o">=</span> <span class="n">jp1</span> <span class="o">-</span> <span class="n">l</span>
+            <span class="n">vm</span> <span class="o">=</span> <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">))</span>
+            <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">+</span> <span class="n">vmprev</span>
+            <span class="n">vmprev</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">)</span>
+        <span class="k">end do</span>
+<span class="k">        </span><span class="n">vnikx</span><span class="p">(</span><span class="n">jp1</span><span class="p">)</span> <span class="o">=</span> <span class="n">vmprev</span>
+        <span class="n">iwork</span> <span class="o">=</span> <span class="n">jp1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&gt;=</span><span class="n">jhigh</span><span class="p">)</span> <span class="k">exit</span>
+<span class="k">    end do</span>
+
+<span class="k">    end subroutine </span><span class="n">dbspvn</span>
+<span class="c">!*****************************************************************************************</span>
+      
+<span class="c">!*****************************************************************************************</span>
+<span class="c">!</span>
+<span class="c">!# Evaluates the b-representation (t,a,n,k) of a b-spline</span>
+<span class="c">!# at x for the function value on ideriv=0 or any of its</span>
+<span class="c">!# derivatives on ideriv=1,2,...,k-1.  right limiting values</span>
+<span class="c">!# (right derivatives) are returned except at the right end</span>
+<span class="c">!# point x=t(n+1) where left limiting values are computed.  the</span>
+<span class="c">!# spline is defined on t(k) &lt;= x &lt;= t(n+1).  dbvalu returns</span>
+<span class="c">!# a fatal error message when x is outside of this interval.</span>
+<span class="c">!# </span>
+<span class="c">!# to compute left derivatives or left limiting values at a</span>
+<span class="c">!# knot t(i), replace n by i-1 and set x=t(i), i=k+1,n+1.</span>
+<span class="c">!#</span>
+<span class="c">!# Error Conditions</span>
+<span class="c">!#---------</span>
+<span class="c">!# improper input is a fatal error.</span>
+<span class="c">!#</span>
+<span class="c">!# History</span>
+<span class="c">!#---------</span>
+<span class="c">!# * bvalue written by carl de boor [5]</span>
+<span class="c">!# * dbvalu author: amos, d. e., (snla) : date written 800901</span>
+<span class="c">!# * revision date 820801</span>
+<span class="c">!# * 000330 modified array declarations.  (jec)</span>
+<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ideriv</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">inbv</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>  <span class="c">!!value of the ideriv-th derivative at x</span>
+
+    <span class="k">implicit none</span>
+
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">n</span>       <span class="c">!!number of b-spline coefficients.</span>
+                                                <span class="c">!!  (sum of knot multiplicities-k)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>       <span class="c">!!knot vector of length n+k</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>       <span class="c">!!b-spline coefficient vector of length n </span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">k</span>       <span class="c">!!order of the b-spline, k &gt;= 1</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">ideriv</span>  <span class="c">!!order of the derivative, 0 &lt;= ideriv &lt;= k-1.</span>
+                                                <span class="c">!!  ideriv = 0 returns the b-spline value</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">x</span>       <span class="c">!!argument, t(k) &lt;= x &lt;= t(n+1)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">inbv</span>    <span class="c">!!an initialization parameter which must be set</span>
+                                                <span class="c">!!  to 1 the first time dbvalu is called.</span>
+                                                <span class="c">!!  inbv contains information for efficient process-</span>
+                                                <span class="c">!!  ing after the initial call and inbv must not</span>
+                                                <span class="c">!!  be changed by the user.  distinct splines require</span>
+                                                <span class="c">!!  distinct inbv parameters.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:)</span>            <span class="kd">::</span> <span class="n">work</span>    <span class="c">!!work vector of length 3*k</span>
 
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span><span class="n">iderp1</span><span class="p">,</span><span class="n">ihi</span><span class="p">,</span><span class="n">ihmkmj</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">imk</span><span class="p">,</span><span class="n">imkpj</span><span class="p">,</span><span class="n">ipj</span><span class="p">,&amp;</span>
                <span class="n">ip1</span><span class="p">,</span><span class="n">ip1mj</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">jj</span><span class="p">,</span><span class="n">j1</span><span class="p">,</span><span class="n">j2</span><span class="p">,</span><span class="n">kmider</span><span class="p">,</span><span class="n">kmj</span><span class="p">,</span><span class="n">km1</span><span class="p">,</span><span class="n">kpk</span><span class="p">,</span><span class="n">mflag</span>
@@ -2391,8 +2324,8 @@
             <span class="n">kmj</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">j</span>
             <span class="n">ilo</span> <span class="o">=</span> <span class="n">kmj</span>
             <span class="k">do </span><span class="n">jj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmj</span>
-                <span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)&amp;</span>
-                <span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span>
+                <span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span><span class="o">*</span><span class="p">&amp;</span>
+                            <span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span>
                 <span class="n">ilo</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">-</span> <span class="mi">1</span>
             <span class="k">end do</span>
 <span class="k">        end do</span>
@@ -2403,7 +2336,7 @@
     <span class="k">end function </span><span class="n">dbvalu</span>
 <span class="c">!*****************************************************************************************</span>
       
-      <span class="k">subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
+<span class="c">!*****************************************************************************************</span>
 <span class="c">!***begin prologue  dintrv</span>
 <span class="c">!***date written   800901   (yymmdd)</span>
 <span class="c">!***revision date  820801   (yymmdd)</span>
@@ -2461,21 +2394,23 @@
 <span class="c">!***routines called  (none)</span>
 <span class="c">!***end prologue  dintrv</span>
 <span class="c">!</span>
-<span class="c">!</span>
+
+      <span class="k">subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
+
       <span class="kt">integer </span><span class="n">ihi</span><span class="p">,</span> <span class="n">ileft</span><span class="p">,</span> <span class="n">ilo</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">lxt</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,</span> <span class="n">middle</span>
       <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">x</span><span class="p">,</span> <span class="n">xt</span>
       <span class="k">dimension </span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span>
-<span class="c">!***first executable statement  dintrv</span>
+
       <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">ihi</span><span class="o">&lt;</span><span class="n">lxt</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">lxt</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">90</span>
       <span class="n">ilo</span> <span class="o">=</span> <span class="n">lxt</span> <span class="o">-</span> <span class="mi">1</span>
       <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
-<span class="c">!</span>
+
    <span class="mi">10</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">40</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">100</span>
-<span class="c">!</span>
+
 <span class="c">! *** now x &lt; xt(ihi) . find lower bound</span>
       <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
    <span class="mi">20</span> <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span>
@@ -2484,9 +2419,11 @@
       <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
       <span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">20</span>
+
    <span class="mi">30</span> <span class="n">ilo</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">90</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+
 <span class="c">! *** now x &gt;= xt(ilo) . find upper bound</span>
    <span class="mi">40</span> <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
    <span class="mi">50</span> <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span>
@@ -2495,9 +2432,10 @@
       <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
       <span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">50</span>
+
    <span class="mi">60</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
       <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
-<span class="c">!</span>
+
 <span class="c">! *** now xt(ilo) &lt;= x &lt; xt(ihi) . narrow the interval</span>
    <span class="mi">70</span> <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">ilo</span><span class="o">+</span><span class="n">ihi</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">middle</span><span class="o">==</span><span class="n">ilo</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">100</span>
@@ -2505,32 +2443,38 @@
       <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">middle</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
       <span class="n">ilo</span> <span class="o">=</span> <span class="n">middle</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+
    <span class="mi">80</span> <span class="n">ihi</span> <span class="o">=</span> <span class="n">middle</span>
       <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+
 <span class="c">! *** set output and return</span>
    <span class="mi">90</span> <span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
       <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="k">return</span>
+
 <span class="k">  </span><span class="mi">100</span> <span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
       <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
       <span class="k">return</span>
+
 <span class="k">  </span><span class="mi">110</span> <span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
-      <span class="k">return</span>
-<span class="k">      end subroutine </span><span class="n">dintrv</span>      
+
+      <span class="k">end subroutine </span><span class="n">dintrv</span>      
+<span class="c">!*****************************************************************************************</span>
     
 <span class="c">!*****************************************************************************************</span>
+<span class="c">!# Just a replacement for the CMLIB XERROR routine.</span>
 
     <span class="k">subroutine </span><span class="n">xerror</span><span class="p">(</span><span class="n">messg</span><span class="p">,</span><span class="n">nmessg</span><span class="p">,</span><span class="n">nerr</span><span class="p">,</span><span class="n">level</span><span class="p">)</span>
 
-<span class="c">!! Just a replacement for the CMLIB XERROR routine.</span>
+    <span class="k">use </span><span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">error_unit</span>
 
     <span class="k">implicit none</span>
 
 <span class="k">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">messg</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">nmessg</span><span class="p">,</span><span class="n">nerr</span><span class="p">,</span><span class="n">level</span>
     
-    <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="nb">trim</span><span class="p">(</span><span class="n">messg</span><span class="p">)</span>
+    <span class="k">write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="nb">trim</span><span class="p">(</span><span class="n">messg</span><span class="p">)</span>
 
     <span class="k">end subroutine </span><span class="n">xerror</span>
 <span class="c">!*****************************************************************************************</span>
