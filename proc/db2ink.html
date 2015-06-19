@@ -50,7 +50,7 @@
           <ul class="nav navbar-nav">
 				
                 
-            <li><a href="../files/bspline_module.f90.html">Source File</a></li>
+            <li><a href="../sourcefile/bspline_module.f90.html">Source File</a></li>
 				
 				
             <li><a href="../lists/modules.html">Modules</a></li>
@@ -137,6 +137,15 @@
   
   
   
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/db2ink.html#src">db2ink</a>
+    </div>
+  </div>
   
   <hr>
   
@@ -382,40 +391,40 @@ public  subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
     
     <h3>Description</h3>
     <p>Determines the parameters of a function that interpolates
- the two-dimensional gridded data
- $$ [x(i),y(j),\mathrm{fcn}(i,j)] ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$
- The interpolating function and its derivatives may
- subsequently be evaluated by the function <strong>db2val</strong>.</p>
+  the two-dimensional gridded data
+  $$ [x(i),y(j),\mathrm{fcn}(i,j)] ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$
+  The interpolating function and its derivatives may
+  subsequently be evaluated by the function <a href="../proc/db2val.html">db2val</a>.</p>
 <p>The interpolating function is a piecewise polynomial function
- represented as a tensor product of one-dimensional b-splines. the
- form of this function is</p>
+  represented as a tensor product of one-dimensional b-splines. the
+  form of this function is</p>
 <p>$$ s(x,y) = \sum_{i=1}^{n_x} \sum_{j=1}^{n_y} a_{ij} u_i(x) v_j(y) $$</p>
 <p>where the functions \(u_i\) and \(v_j\) are one-dimensional b-spline
- basis functions. the coefficients \( a_{ij} \) are chosen so that</p>
+  basis functions. the coefficients \( a_{ij} \) are chosen so that</p>
 <p>$$ s(x(i),y(j)) = \mathrm{fcn}(i,j) ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$</p>
 <p>Note that for each fixed value of y, \( s(x,y) \) is a piecewise
- polynomial function of x alone, and for each fixed value of x \( s(x,y) \)
- is a piecewise polynomial function of y alone. in one dimension
- a piecewise polynomial may be created by partitioning a given
- interval into subintervals and defining a distinct polynomial piece
- on each one. the points where adjacent subintervals meet are called
- knots. each of the functions \(u_i\) and \(v_j\) above is a piecewise
- polynomial.</p>
+  polynomial function of x alone, and for each fixed value of x, \( s(x,y) \)
+  is a piecewise polynomial function of y alone. in one dimension
+  a piecewise polynomial may be created by partitioning a given
+  interval into subintervals and defining a distinct polynomial piece
+  on each one. the points where adjacent subintervals meet are called
+  knots. each of the functions \(u_i\) and \(v_j\) above is a piecewise
+  polynomial.</p>
 <p>Users of db2ink choose the order (degree+1) of the polynomial
- pieces used to define the piecewise polynomial in each of the x and
- y directions (kx and ky). users also may define their own knot
- sequence in x and y separately (tx and ty). if iflag=0, however,
- db2ink will choose sequences of knots that result in a piecewise
- polynomial interpolant with kx-2 continuous partial derivatives in
- x and ky-2 continuous partial derivatives in y. (kx knots are taken
- near each endpoint in the x direction, not-a-knot end conditions
- are used, and the remaining knots are placed at data points if kx
- is even or at midpoints between data points if kx is odd. the y
- direction is treated similarly.)</p>
+  pieces used to define the piecewise polynomial in each of the x and
+  y directions (kx and ky). users also may define their own knot
+  sequence in x and y separately (tx and ty). if iflag=0, however,
+  db2ink will choose sequences of knots that result in a piecewise
+  polynomial interpolant with kx-2 continuous partial derivatives in
+  x and ky-2 continuous partial derivatives in y. (kx knots are taken
+  near each endpoint in the x direction, not-a-knot end conditions
+  are used, and the remaining knots are placed at data points if kx
+  is even or at midpoints between data points if kx is odd. the y
+  direction is treated similarly.)</p>
 <p>After a call to db2ink, all information necessary to define the
- interpolating function are contained in the parameters nx, ny, kx,
- ky, tx, ty, and bcoef. These quantities should not be altered until
- after the last call of the evaluation routine <strong>db2val</strong>.</p>
+  interpolating function are contained in the parameters nx, ny, kx,
+  ky, tx, ty, and bcoef. These quantities should not be altered until
+  after the last call of the evaluation routine <a href="../proc/db2val.html">db2val</a>.</p>
 <h2>History</h2>
 <ul>
 <li>Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</li>
@@ -495,6 +504,82 @@ public  subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
     
 
 
+    
+    
+    
+    <section>
+    <h2><a class="anchor" name="src"></a>Source Code</h2>
+    <div class="highlight"><pre>    <span class="k">subroutine </span><span class="n">db2ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+
+    <span class="k">implicit none</span>
+
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">nx</span>     <span class="c">!! Number of x abcissae</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">ny</span>     <span class="c">!! Number of y abcissae  </span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">kx</span>     <span class="c">!! The order of spline pieces in x (&gt;= 2, &lt; nx). (order = polynomial degree + 1)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">ky</span>     <span class="c">!! The order of spline pieces in y (&gt;= 2, &lt; ny). (order = polynomial degree + 1)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! Array of x abcissae. Must be strictly increasing.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">y</span>      <span class="c">!! Array of y abcissae. Must be strictly increasing.   </span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">fcn</span>    <span class="c">!! Array of function values to interpolate. fcn(i,j) should</span>
+                                                      <span class="c">!!    contain the function value at the point (x(i),y(j))</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The knots in the x direction for the spline interpolant.</span>
+                                                      <span class="c">!!    If iflag=0 these are chosen by db2ink.</span>
+                                                      <span class="c">!!    If iflag=1 these are specified by the user.</span>
+                                                      <span class="c">!!    Must be non-decreasing.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ty</span>     <span class="c">!! The knots in the y direction for the spline interpolant.</span>
+                                                      <span class="c">!!    If iflag=0 these are chosen by db2ink.</span>
+                                                      <span class="c">!!    If iflag=1 these are specified by the user.</span>
+                                                      <span class="c">!!    Must be non-decreasing.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! Array of coefficients of the b-spline interpolant.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! **on input:**  0 = knot sequence chosen by db2ink.</span>
+                                                      <span class="c">!!                1 = knot sequence chosen by user.</span>
+                                                      <span class="c">!! **on output:** 1 = successful execution.</span>
+                                                      <span class="c">!!                2 = iflag out of range.</span>
+                                                      <span class="c">!!                3 = nx out of range.</span>
+                                                      <span class="c">!!                4 = kx out of range.</span>
+                                                      <span class="c">!!                5 = x not strictly increasing.</span>
+                                                      <span class="c">!!                6 = tx not non-decreasing.</span>
+                                                      <span class="c">!!                7 = ny out of range.</span>
+                                                      <span class="c">!!                8 = ky out of range.</span>
+                                                      <span class="c">!!                9 = y not strictly increasing.</span>
+                                                      <span class="c">!!               10 = ty not non-decreasing.</span>
+
+
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kx</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="o">*</span><span class="n">ky</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="kd">::</span> <span class="n">work</span>
+    <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
+  
+    <span class="c">!check validity of inputs</span>
+    
+    <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span><span class="s1">&#39;db2ink&#39;</span><span class="p">,&amp;</span>
+                        <span class="n">iflag</span><span class="p">,&amp;</span>
+                        <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,&amp;</span>
+                        <span class="n">kx</span><span class="o">=</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="o">=</span><span class="n">ky</span><span class="p">,&amp;</span>
+                        <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,&amp;</span>
+                        <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="n">ty</span><span class="p">,&amp;</span>
+                        <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
+                        
+    <span class="k">if</span> <span class="p">(</span><span class="n">status_ok</span><span class="p">)</span> <span class="k">then</span>
+
+        <span class="c">!choose knots</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            call </span><span class="n">dbknot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">tx</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">dbknot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">ty</span><span class="p">)</span>
+        <span class="k">end if</span>
+
+        <span class="c">!construct b-spline coefficients</span>
+
+        <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span> <span class="n">work</span><span class="p">)</span>
+        <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
+
+        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="k">end if</span>
+
+<span class="k">    end subroutine </span><span class="n">db2ink</span>
+</pre></div>
+
+    </section>
     
     
     </div>

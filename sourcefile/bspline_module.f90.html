@@ -50,7 +50,7 @@
           <ul class="nav navbar-nav">
 				
                 
-            <li><a href="../files/bspline_module.f90.html">Source File</a></li>
+            <li><a href="../sourcefile/bspline_module.f90.html">Source File</a></li>
 				
 				
             <li><a href="../lists/modules.html">Modules</a></li>
@@ -116,7 +116,7 @@
     <div class="panel-heading text-left"><h3 class="panel-title">Modules</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../sourcefile/bspline_module.f90.html#mod-bspline_module">bspline_module</a>
+      <a class="list-group-item" href="../module/bspline_module.html">bspline_module</a>
       
     </div>
   </div>
@@ -128,6 +128,15 @@
   
   
   
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+    <div class="list-group">
+      <a class="list-group-item" href="../sourcefile/bspline_module.f90.html#src">bspline_module.f90</a>
+    </div>
+  </div>
   
   <hr>
   
@@ -145,36 +154,40 @@
     <div class="col-lg-9" id='text'>
     
     
-    <div class="highlight"><pre><span class="c">!# author: Jacob Williams</span>
-<span class="c">!# license: BSD</span>
-<span class="c">!#</span>
-<span class="c">!# Description</span>
-<span class="c">!#---------</span>
-<span class="c">!# Multidimensional (2D-6D) B-Spline interpolation of data on a regular grid.</span>
-<span class="c">!#</span>
-<span class="c">!# Notes</span>
-<span class="c">!#---------</span>
-<span class="c">!# This module is based on the bspline and spline routines from [1].</span>
-<span class="c">!# The original Fortran 77 routines were converted to free-form source.</span>
-<span class="c">!# Some of them are relatively unchanged from the originals, but some have</span>
-<span class="c">!# been extensively refactored.  In addition, new routines for </span>
-<span class="c">!# 4d, 5d, and 6d interpolation were also created.</span>
-<span class="c">!#</span>
-<span class="c">!# References</span>
-<span class="c">!#---------</span>
-<span class="c">!# 1. DBSPLIN and DTENSBS from the</span>
-<span class="c">!#    [NIST Core Math Library](http://www.nist.gov/itl/math/mcsd-software.cfm).</span>
-<span class="c">!#    Original code is public domain.</span>
-<span class="c">!# 2. Carl de Boor, &quot;A Practical Guide to Splines&quot;,</span>
-<span class="c">!#        Springer-Verlag, New York, 1978.</span>
-<span class="c">!# 3. Carl de Boor, &quot;Efficient Computer Manipulation of Tensor</span>
-<span class="c">!#        Products&quot;, ACM Transactions on Mathematical Software,</span>
-<span class="c">!#        Vol. 5 (1979), p. 173-182.</span>
-<span class="c">!# 4. D.E. Amos, &quot;Computation with Splines and B-Splines&quot;,</span>
-<span class="c">!#        SAND78-1968, Sandia Laboratories, March, 1979.</span>
-<span class="c">!# 5. C. de Boor, &quot;Package for Calculating with B-Splines&quot;,</span>
-<span class="c">!#        SIAM Journal on Numerical Analysis, Volume 14, No. 3,</span>
-<span class="c">!#        June 1977, p. 441-472.</span>
+    <section>
+    <h2><a class="anchor" name="src"></a>Source Code</h2>
+    <div class="highlight"><pre><span class="c">!&gt; author: Jacob Williams</span>
+<span class="c">!  license: BSD</span>
+<span class="c">! </span>
+<span class="c">! Description</span>
+<span class="c">!---------</span>
+<span class="c">!  Multidimensional (2D-6D) B-Spline interpolation of data on a regular grid.</span>
+<span class="c">! </span>
+<span class="c">! Notes</span>
+<span class="c">!---------</span>
+<span class="c">!  This module is based on the bspline and spline routines from [1].</span>
+<span class="c">!  The original Fortran 77 routines were converted to free-form source.</span>
+<span class="c">!  Some of them are relatively unchanged from the originals, but some have</span>
+<span class="c">!  been extensively refactored. In addition, new routines for </span>
+<span class="c">!  4d, 5d, and 6d interpolation were also created (these are simply </span>
+<span class="c">!  extensions of the same algorithm into higher dimensions).</span>
+<span class="c">! </span>
+<span class="c">! References</span>
+<span class="c">!---------</span>
+<span class="c">!  1. DBSPLIN and DTENSBS from the</span>
+<span class="c">!     [NIST Core Math Library](http://www.nist.gov/itl/math/mcsd-software.cfm).</span>
+<span class="c">!     Original code is public domain.</span>
+<span class="c">!  2. Carl de Boor, &quot;A Practical Guide to Splines&quot;,</span>
+<span class="c">!     Springer-Verlag, New York, 1978.</span>
+<span class="c">!  3. Carl de Boor, [Efficient Computer Manipulation of Tensor</span>
+<span class="c">!     Products](http://dl.acm.org/citation.cfm?id=355831), </span>
+<span class="c">!     ACM Transactions on Mathematical Software,</span>
+<span class="c">!     Vol. 5 (1979), p. 173-182.</span>
+<span class="c">!  4. D.E. Amos, &quot;Computation with Splines and B-Splines&quot;,</span>
+<span class="c">!     SAND78-1968, Sandia Laboratories, March, 1979.</span>
+<span class="c">!  5. Carl de Boor, </span>
+<span class="c">!     [Package for calculating with B-splines](http://epubs.siam.org/doi/abs/10.1137/0714026),</span>
+<span class="c">!     SIAM Journal on Numerical Analysis 14, 3 (June 1977), p. 441-472.</span>
 
     <span class="k">module </span><span class="n">bspline_module</span>
 
@@ -198,54 +211,54 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Determines the parameters of a function that interpolates</span>
-<span class="c">!# the two-dimensional gridded data</span>
-<span class="c">!# $$ [x(i),y(j),\mathrm{fcn}(i,j)] ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$</span>
-<span class="c">!# The interpolating function and its derivatives may</span>
-<span class="c">!# subsequently be evaluated by the function **db2val**.</span>
-<span class="c">!#</span>
-<span class="c">!# The interpolating function is a piecewise polynomial function</span>
-<span class="c">!# represented as a tensor product of one-dimensional b-splines. the</span>
-<span class="c">!# form of this function is</span>
-<span class="c">!#</span>
-<span class="c">!# $$ s(x,y) = \sum_{i=1}^{n_x} \sum_{j=1}^{n_y} a_{ij} u_i(x) v_j(y) $$</span>
-<span class="c">!#</span>
-<span class="c">!# where the functions \(u_i\) and \(v_j\) are one-dimensional b-spline</span>
-<span class="c">!# basis functions. the coefficients \( a_{ij} \) are chosen so that</span>
-<span class="c">!#</span>
-<span class="c">!# $$ s(x(i),y(j)) = \mathrm{fcn}(i,j) ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$</span>
-<span class="c">!#</span>
-<span class="c">!# Note that for each fixed value of y, \( s(x,y) \) is a piecewise</span>
-<span class="c">!# polynomial function of x alone, and for each fixed value of x \( s(x,y) \)</span>
-<span class="c">!# is a piecewise polynomial function of y alone. in one dimension</span>
-<span class="c">!# a piecewise polynomial may be created by partitioning a given</span>
-<span class="c">!# interval into subintervals and defining a distinct polynomial piece</span>
-<span class="c">!# on each one. the points where adjacent subintervals meet are called</span>
-<span class="c">!# knots. each of the functions \(u_i\) and \(v_j\) above is a piecewise</span>
-<span class="c">!# polynomial.</span>
-<span class="c">!#</span>
-<span class="c">!# Users of db2ink choose the order (degree+1) of the polynomial</span>
-<span class="c">!# pieces used to define the piecewise polynomial in each of the x and</span>
-<span class="c">!# y directions (kx and ky). users also may define their own knot</span>
-<span class="c">!# sequence in x and y separately (tx and ty). if iflag=0, however,</span>
-<span class="c">!# db2ink will choose sequences of knots that result in a piecewise</span>
-<span class="c">!# polynomial interpolant with kx-2 continuous partial derivatives in</span>
-<span class="c">!# x and ky-2 continuous partial derivatives in y. (kx knots are taken</span>
-<span class="c">!# near each endpoint in the x direction, not-a-knot end conditions</span>
-<span class="c">!# are used, and the remaining knots are placed at data points if kx</span>
-<span class="c">!# is even or at midpoints between data points if kx is odd. the y</span>
-<span class="c">!# direction is treated similarly.)</span>
-<span class="c">!#</span>
-<span class="c">!# After a call to db2ink, all information necessary to define the</span>
-<span class="c">!# interpolating function are contained in the parameters nx, ny, kx,</span>
-<span class="c">!# ky, tx, ty, and bcoef. These quantities should not be altered until</span>
-<span class="c">!# after the last call of the evaluation routine **db2val**.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
-<span class="c">!# * JEC : 000330 modified array declarations.</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+<span class="c">!&gt; Determines the parameters of a function that interpolates</span>
+<span class="c">!  the two-dimensional gridded data</span>
+<span class="c">!  $$ [x(i),y(j),\mathrm{fcn}(i,j)] ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$</span>
+<span class="c">!  The interpolating function and its derivatives may</span>
+<span class="c">!  subsequently be evaluated by the function [[db2val]].</span>
+<span class="c">! </span>
+<span class="c">!  The interpolating function is a piecewise polynomial function</span>
+<span class="c">!  represented as a tensor product of one-dimensional b-splines. the</span>
+<span class="c">!  form of this function is</span>
+<span class="c">! </span>
+<span class="c">!  $$ s(x,y) = \sum_{i=1}^{n_x} \sum_{j=1}^{n_y} a_{ij} u_i(x) v_j(y) $$</span>
+<span class="c">! </span>
+<span class="c">!  where the functions \(u_i\) and \(v_j\) are one-dimensional b-spline</span>
+<span class="c">!  basis functions. the coefficients \( a_{ij} \) are chosen so that</span>
+<span class="c">! </span>
+<span class="c">!  $$ s(x(i),y(j)) = \mathrm{fcn}(i,j) ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$</span>
+<span class="c">! </span>
+<span class="c">!  Note that for each fixed value of y, \( s(x,y) \) is a piecewise</span>
+<span class="c">!  polynomial function of x alone, and for each fixed value of x, \( s(x,y) \)</span>
+<span class="c">!  is a piecewise polynomial function of y alone. in one dimension</span>
+<span class="c">!  a piecewise polynomial may be created by partitioning a given</span>
+<span class="c">!  interval into subintervals and defining a distinct polynomial piece</span>
+<span class="c">!  on each one. the points where adjacent subintervals meet are called</span>
+<span class="c">!  knots. each of the functions \(u_i\) and \(v_j\) above is a piecewise</span>
+<span class="c">!  polynomial.</span>
+<span class="c">! </span>
+<span class="c">!  Users of db2ink choose the order (degree+1) of the polynomial</span>
+<span class="c">!  pieces used to define the piecewise polynomial in each of the x and</span>
+<span class="c">!  y directions (kx and ky). users also may define their own knot</span>
+<span class="c">!  sequence in x and y separately (tx and ty). if iflag=0, however,</span>
+<span class="c">!  db2ink will choose sequences of knots that result in a piecewise</span>
+<span class="c">!  polynomial interpolant with kx-2 continuous partial derivatives in</span>
+<span class="c">!  x and ky-2 continuous partial derivatives in y. (kx knots are taken</span>
+<span class="c">!  near each endpoint in the x direction, not-a-knot end conditions</span>
+<span class="c">!  are used, and the remaining knots are placed at data points if kx</span>
+<span class="c">!  is even or at midpoints between data points if kx is odd. the y</span>
+<span class="c">!  direction is treated similarly.)</span>
+<span class="c">! </span>
+<span class="c">!  After a call to db2ink, all information necessary to define the</span>
+<span class="c">!  interpolating function are contained in the parameters nx, ny, kx,</span>
+<span class="c">!  ky, tx, ty, and bcoef. These quantities should not be altered until</span>
+<span class="c">!  after the last call of the evaluation routine [[db2val]].</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
+<span class="c">!  * JEC : 000330 modified array declarations.</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
 
     <span class="k">subroutine </span><span class="n">db2ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
@@ -318,40 +331,40 @@
 <span class="c">!*****************************************************************************************</span>
      
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Evaluates the tensor product piecewise polynomial</span>
-<span class="c">!# interpolant constructed by the routine **db2ink** or one of its</span>
-<span class="c">!# derivatives at the point (xval,yval). </span>
-<span class="c">!#</span>
-<span class="c">!# To evaluate the interpolant</span>
-<span class="c">!# itself, set idx=idy=0, to evaluate the first partial with respect</span>
-<span class="c">!# to x, set idx=1,idy=0, and so on.</span>
-<span class="c">!#</span>
-<span class="c">!# db2val returns 0.0 if (xval,yval) is out of range. that is, if</span>
-<span class="c">!#```fortran</span>
-<span class="c">!#   xval &lt; tx(1) .or. xval &gt; tx(nx+kx) .or. </span>
-<span class="c">!#   yval &lt; ty(1) .or. yval &gt; ty(ny+ky)</span>
-<span class="c">!#```</span>
-<span class="c">!# if the knots tx and ty were chosen by db2ink, then this is equivalent to:</span>
-<span class="c">!#```fortran</span>
-<span class="c">!#   xval &lt; x(1) .or. xval &gt; x(nx)+epsx .or. </span>
-<span class="c">!#   yval &lt; y(1) .or. yval &gt; y(ny)+epsy</span>
-<span class="c">!#```</span>
-<span class="c">!# where</span>
-<span class="c">!#```fortran </span>
-<span class="c">!#   epsx = 0.1*(x(nx)-x(nx-1))</span>
-<span class="c">!#   epsy = 0.1*(y(ny)-y(ny-1)) </span>
-<span class="c">!#```</span>
-<span class="c">!#</span>
-<span class="c">!# The input quantities tx, ty, nx, ny, kx, ky, and bcoef should be</span>
-<span class="c">!# unchanged since the last call of db2ink.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
-<span class="c">!# * JEC : 000330 modified array declarations.</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+<span class="c">!&gt; Evaluates the tensor product piecewise polynomial</span>
+<span class="c">!  interpolant constructed by the routine [[db2ink]] or one of its</span>
+<span class="c">!  derivatives at the point (xval,yval). </span>
+<span class="c">!</span>
+<span class="c">!  To evaluate the interpolant</span>
+<span class="c">!  itself, set idx=idy=0, to evaluate the first partial with respect</span>
+<span class="c">!  to x, set idx=1,idy=0, and so on.</span>
+<span class="c">!</span>
+<span class="c">!  db2val returns 0.0 if (xval,yval) is out of range. that is, if</span>
+<span class="c">!```fortran</span>
+<span class="c">!   xval &lt; tx(1) .or. xval &gt; tx(nx+kx) .or. </span>
+<span class="c">!   yval &lt; ty(1) .or. yval &gt; ty(ny+ky)</span>
+<span class="c">!```</span>
+<span class="c">!  if the knots tx and ty were chosen by [[db2ink]], then this is equivalent to:</span>
+<span class="c">!```fortran</span>
+<span class="c">!   xval &lt; x(1) .or. xval &gt; x(nx)+epsx .or. </span>
+<span class="c">!   yval &lt; y(1) .or. yval &gt; y(ny)+epsy</span>
+<span class="c">!```</span>
+<span class="c">!  where</span>
+<span class="c">!```fortran </span>
+<span class="c">!   epsx = 0.1*(x(nx)-x(nx-1))</span>
+<span class="c">!   epsy = 0.1*(y(ny)-y(ny-1)) </span>
+<span class="c">!```</span>
+<span class="c">!</span>
+<span class="c">!  The input quantities tx, ty, nx, ny, kx, ky, and bcoef should be</span>
+<span class="c">!  unchanged since the last call of [[db2ink]].</span>
+<span class="c">!</span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
+<span class="c">!  * JEC : 000330 modified array declarations.</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">db2val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">bcoef</span><span class="p">)</span>
+    <span class="k">subroutine </span><span class="n">db2val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -366,6 +379,8 @@
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>    <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db2ink)</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ty</span>    <span class="c">!! sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to db2ink)</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span> <span class="c">!! the b-spline coefficients computed by db2ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">f</span>     <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">iflag</span> <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
 
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbv</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,</span> <span class="n">kcol</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
@@ -374,14 +389,16 @@
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloy</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
     
-    <span class="n">db2val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span> <span class="k">return</span>
 <span class="k">    if</span> <span class="p">(</span><span class="n">yval</span><span class="o">&lt;</span><span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span><span class="o">&gt;</span><span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">))</span> <span class="k">return</span>
-
+<span class="k">    </span>
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">lefty</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    </span>
-<span class="k">    </span><span class="n">inbv</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">inbv</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="n">kcol</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span>
     <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ky</span>
@@ -390,65 +407,65 @@
     <span class="k">end do</span>
 <span class="k">    </span>
 <span class="k">    </span><span class="n">kcol</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">db2val</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcol</span><span class="p">:),</span><span class="n">temp</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbv</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcol</span><span class="p">:),</span><span class="n">temp</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbv</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
          
-    <span class="k">end function </span><span class="n">db2val</span>
+    <span class="k">end subroutine </span><span class="n">db2val</span>
 <span class="c">!*****************************************************************************************</span>
       
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Determines the parameters of a function that interpolates</span>
-<span class="c">!# the three-dimensional gridded data </span>
-<span class="c">!# $$ [x(i),y(j),z(k),\mathrm{fcn}(i,j,k)] ~\mathrm{for}~ </span>
-<span class="c">!#    i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z $$</span>
-<span class="c">!# The interpolating function and</span>
-<span class="c">!# its derivatives may subsequently be evaluated by the function</span>
-<span class="c">!# **db3val**.</span>
-<span class="c">!#</span>
-<span class="c">!# The interpolating function is a piecewise polynomial function</span>
-<span class="c">!# represented as a tensor product of one-dimensional b-splines. the</span>
-<span class="c">!# form of this function is</span>
-<span class="c">!# $$ s(x,y,z) = \sum_{i=1}^{n_x} \sum_{j=1}^{n_y} \sum_{k=1}^{n_z} </span>
-<span class="c">!#               a_{ijk} u_i(x) v_j(y) w_k(z) $$</span>
-<span class="c">!#</span>
-<span class="c">!# where the functions \(u_i\), \(v_j\), and \(w_k\) are one-dimensional b-</span>
-<span class="c">!# spline basis functions. the coefficients \(a_{ijk}\) are chosen so that:</span>
-<span class="c">!#</span>
-<span class="c">!# $$ s(x(i),y(j),z(k)) = \mathrm{fcn}(i,j,k) </span>
-<span class="c">!#    ~\mathrm{for}~ i=1,..,n_x , j=1,..,n_y , k=1,..,n_z $$</span>
-<span class="c">!#</span>
-<span class="c">!# Note that for fixed values of y and z s(x,y,z) is a piecewise</span>
-<span class="c">!# polynomial function of x alone, for fixed values of x and z s(x,y,z) </span>
-<span class="c">!# is a piecewise polynomial function of y alone, and for fixed</span>
-<span class="c">!# values of x and y s(x,y,z) is a function of z alone. in one</span>
-<span class="c">!# dimension a piecewise polynomial may be created by partitioning a</span>
-<span class="c">!# given interval into subintervals and defining a distinct polynomial</span>
-<span class="c">!# piece on each one. the points where adjacent subintervals meet are</span>
-<span class="c">!# called knots. each of the functions \(u_i\), \(v_j\), and \(w_k\) above is a</span>
-<span class="c">!# piecewise polynomial.</span>
-<span class="c">!#</span>
-<span class="c">!# Users of db3ink choose the order (degree+1) of the polynomial</span>
-<span class="c">!# pieces used to define the piecewise polynomial in each of the x, y,</span>
-<span class="c">!# and z directions (kx, ky, and kz). users also may define their own</span>
-<span class="c">!# knot sequence in x, y, and z separately (tx, ty, and tz). if iflag=</span>
-<span class="c">!# 0, however, db3ink will choose sequences of knots that result in a</span>
-<span class="c">!# piecewise polynomial interpolant with kx-2 continuous partial</span>
-<span class="c">!# derivatives in x, ky-2 continuous partial derivatives in y, and kz-</span>
-<span class="c">!# 2 continuous partial derivatives in z. (kx knots are taken near</span>
-<span class="c">!# each endpoint in x, not-a-knot end conditions are used, and the</span>
-<span class="c">!# remaining knots are placed at data points if kx is even or at</span>
-<span class="c">!# midpoints between data points if kx is odd. the y and z directions</span>
-<span class="c">!# are treated similarly.)</span>
-<span class="c">!#</span>
-<span class="c">!# After a call to db3ink, all information necessary to define the</span>
-<span class="c">!# interpolating function are contained in the parameters nx, ny, nz,</span>
-<span class="c">!# kx, ky, kz, tx, ty, tz, and bcoef. these quantities should not be</span>
-<span class="c">!# altered until after the last call of the evaluation routine db3val.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
-<span class="c">!# * JEC : 000330 modified array declarations.</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+<span class="c">!&gt; Determines the parameters of a function that interpolates</span>
+<span class="c">!  the three-dimensional gridded data </span>
+<span class="c">!  $$ [x(i),y(j),z(k),\mathrm{fcn}(i,j,k)] ~\mathrm{for}~ </span>
+<span class="c">!     i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z $$</span>
+<span class="c">!  The interpolating function and</span>
+<span class="c">!  its derivatives may subsequently be evaluated by the function</span>
+<span class="c">!  [[db3val]].</span>
+<span class="c">! </span>
+<span class="c">!  The interpolating function is a piecewise polynomial function</span>
+<span class="c">!  represented as a tensor product of one-dimensional b-splines. the</span>
+<span class="c">!  form of this function is</span>
+<span class="c">!  $$ s(x,y,z) = \sum_{i=1}^{n_x} \sum_{j=1}^{n_y} \sum_{k=1}^{n_z} </span>
+<span class="c">!                a_{ijk} u_i(x) v_j(y) w_k(z) $$</span>
+<span class="c">! </span>
+<span class="c">!  where the functions \(u_i\), \(v_j\), and \(w_k\) are one-dimensional b-</span>
+<span class="c">!  spline basis functions. the coefficients \(a_{ijk}\) are chosen so that:</span>
+<span class="c">! </span>
+<span class="c">!  $$ s(x(i),y(j),z(k)) = \mathrm{fcn}(i,j,k) </span>
+<span class="c">!     ~\mathrm{for}~ i=1,..,n_x , j=1,..,n_y , k=1,..,n_z $$</span>
+<span class="c">! </span>
+<span class="c">!  Note that for fixed values of y and z s(x,y,z) is a piecewise</span>
+<span class="c">!  polynomial function of x alone, for fixed values of x and z s(x,y,z) </span>
+<span class="c">!  is a piecewise polynomial function of y alone, and for fixed</span>
+<span class="c">!  values of x and y s(x,y,z) is a function of z alone. in one</span>
+<span class="c">!  dimension a piecewise polynomial may be created by partitioning a</span>
+<span class="c">!  given interval into subintervals and defining a distinct polynomial</span>
+<span class="c">!  piece on each one. the points where adjacent subintervals meet are</span>
+<span class="c">!  called knots. each of the functions \(u_i\), \(v_j\), and \(w_k\) above is a</span>
+<span class="c">!  piecewise polynomial.</span>
+<span class="c">! </span>
+<span class="c">!  Users of db3ink choose the order (degree+1) of the polynomial</span>
+<span class="c">!  pieces used to define the piecewise polynomial in each of the x, y,</span>
+<span class="c">!  and z directions (kx, ky, and kz). users also may define their own</span>
+<span class="c">!  knot sequence in x, y, and z separately (tx, ty, and tz). if iflag=</span>
+<span class="c">!  0, however, db3ink will choose sequences of knots that result in a</span>
+<span class="c">!  piecewise polynomial interpolant with kx-2 continuous partial</span>
+<span class="c">!  derivatives in x, ky-2 continuous partial derivatives in y, and kz-</span>
+<span class="c">!  2 continuous partial derivatives in z. (kx knots are taken near</span>
+<span class="c">!  each endpoint in x, not-a-knot end conditions are used, and the</span>
+<span class="c">!  remaining knots are placed at data points if kx is even or at</span>
+<span class="c">!  midpoints between data points if kx is odd. the y and z directions</span>
+<span class="c">!  are treated similarly.)</span>
+<span class="c">! </span>
+<span class="c">!  After a call to db3ink, all information necessary to define the</span>
+<span class="c">!  interpolating function are contained in the parameters nx, ny, nz,</span>
+<span class="c">!  kx, ky, kz, tx, ty, tz, and bcoef. these quantities should not be</span>
+<span class="c">!  altered until after the last call of the evaluation routine [[db3val]].</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
+<span class="c">!  * JEC : 000330 modified array declarations.</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
 
     <span class="k">subroutine </span><span class="n">db3ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
@@ -536,46 +553,46 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Evaluates the tensor product piecewise polynomial</span>
-<span class="c">!# interpolant constructed by the routine **db3ink** or one of its</span>
-<span class="c">!# derivatives at the point (xval,yval,zval). </span>
-<span class="c">!#</span>
-<span class="c">!# To evaluate the</span>
-<span class="c">!# interpolant itself, set idx=idy=idz=0, to evaluate the first</span>
-<span class="c">!# partial with respect to x, set idx=1,idy=idz=0, and so on.</span>
-<span class="c">!#</span>
-<span class="c">!# db3val returns 0.0 if (xval,yval,zval) is out of range. that is,</span>
-<span class="c">!#```fortran</span>
-<span class="c">!# xval&lt;tx(1) .or. xval&gt;tx(nx+kx) .or.</span>
-<span class="c">!# yval&lt;ty(1) .or. yval&gt;ty(ny+ky) .or.</span>
-<span class="c">!# zval&lt;tz(1) .or. zval&gt;tz(nz+kz)</span>
-<span class="c">!#```</span>
-<span class="c">!# if the knots tx, ty, and tz were chosen by db3ink, then this is</span>
-<span class="c">!# equivalent to</span>
-<span class="c">!#```fortran</span>
-<span class="c">!# xval&lt;x(1) .or. xval&gt;x(nx)+epsx .or.</span>
-<span class="c">!# yval&lt;y(1) .or. yval&gt;y(ny)+epsy .or.</span>
-<span class="c">!# zval&lt;z(1) .or. zval&gt;z(nz)+epsz</span>
-<span class="c">!#```</span>
-<span class="c">!# where</span>
-<span class="c">!#```fortran</span>
-<span class="c">!# epsx = 0.1*(x(nx)-x(nx-1)) </span>
-<span class="c">!# epsy = 0.1*(y(ny)-y(ny-1))</span>
-<span class="c">!# epsz = 0.1*(z(nz)-z(nz-1))</span>
-<span class="c">!#```</span>
-<span class="c">!#</span>
-<span class="c">!# The input quantities tx, ty, tz, nx, ny, nz, kx, ky, kz, and bcoef</span>
-<span class="c">!# should remain unchanged since the last call of db3ink.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
-<span class="c">!# * JEC : 000330 modified array declarations.</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+<span class="c">!&gt; Evaluates the tensor product piecewise polynomial</span>
+<span class="c">!  interpolant constructed by the routine [[db3ink]] or one of its</span>
+<span class="c">!  derivatives at the point (xval,yval,zval). </span>
+<span class="c">! </span>
+<span class="c">!  To evaluate the</span>
+<span class="c">!  interpolant itself, set idx=idy=idz=0, to evaluate the first</span>
+<span class="c">!  partial with respect to x, set idx=1,idy=idz=0, and so on.</span>
+<span class="c">!</span>
+<span class="c">!  db3val returns 0.0 if (xval,yval,zval) is out of range. that is,</span>
+<span class="c">!```fortran</span>
+<span class="c">! xval&lt;tx(1) .or. xval&gt;tx(nx+kx) .or.</span>
+<span class="c">! yval&lt;ty(1) .or. yval&gt;ty(ny+ky) .or.</span>
+<span class="c">! zval&lt;tz(1) .or. zval&gt;tz(nz+kz)</span>
+<span class="c">!```</span>
+<span class="c">!  if the knots tx, ty, and tz were chosen by [[db3ink]], then this is</span>
+<span class="c">!  equivalent to</span>
+<span class="c">!```fortran</span>
+<span class="c">! xval&lt;x(1) .or. xval&gt;x(nx)+epsx .or.</span>
+<span class="c">! yval&lt;y(1) .or. yval&gt;y(ny)+epsy .or.</span>
+<span class="c">! zval&lt;z(1) .or. zval&gt;z(nz)+epsz</span>
+<span class="c">!```</span>
+<span class="c">!  where</span>
+<span class="c">!```fortran</span>
+<span class="c">! epsx = 0.1*(x(nx)-x(nx-1)) </span>
+<span class="c">! epsy = 0.1*(y(ny)-y(ny-1))</span>
+<span class="c">! epsz = 0.1*(z(nz)-z(nz-1))</span>
+<span class="c">!```</span>
+<span class="c">!</span>
+<span class="c">!  The input quantities tx, ty, tz, nx, ny, nz, kx, ky, kz, and bcoef</span>
+<span class="c">!  should remain unchanged since the last call of [[db3ink]].</span>
+<span class="c">!</span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
+<span class="c">!  * JEC : 000330 modified array declarations.</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">db3val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,&amp;</span>
+    <span class="k">subroutine </span><span class="n">db3val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,&amp;</span>
                                      <span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,&amp;</span>
-                                     <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">bcoef</span><span class="p">)</span>
+                                     <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -595,6 +612,8 @@
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">ty</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to db3ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">tz</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to db3ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! the b-spline coefficients computed by db3ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">f</span>      <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">temp2</span>
@@ -607,7 +626,8 @@
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloz</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
     
-    <span class="n">db3val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span> <span class="k">return</span>
 <span class="k">    if</span> <span class="p">(</span><span class="n">yval</span><span class="o">&lt;</span><span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span><span class="o">&gt;</span><span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">))</span> <span class="k">return</span>
@@ -616,7 +636,8 @@
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">lefty</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">iloz</span><span class="p">,</span><span class="n">leftz</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 
-<span class="k">    </span><span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv2</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="n">kcolz</span> <span class="o">=</span> <span class="n">leftz</span> <span class="o">-</span> <span class="n">kz</span>
@@ -635,25 +656,25 @@
     <span class="k">end do</span>
 
 <span class="k">    </span><span class="n">kcolz</span> <span class="o">=</span> <span class="n">leftz</span> <span class="o">-</span> <span class="n">kz</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">db3val</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbv2</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbv2</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
 
-    <span class="k">end function </span><span class="n">db3val</span>
+    <span class="k">end subroutine </span><span class="n">db3val</span>
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Determines the parameters of a function that interpolates</span>
-<span class="c">!# the four-dimensional gridded data</span>
-<span class="c">!# $$ [x(i),y(j),z(k),q(l),\mathrm{fcn}(i,j,k,l)] ~\mathrm{for}~ </span>
-<span class="c">!#    i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z, </span>
-<span class="c">!#    ~\mathrm{and}~ l=1,..,n_q $$</span>
-<span class="c">!# The interpolating function and its derivatives may </span>
-<span class="c">!# subsequently be evaluated by the function **db4val**.</span>
-<span class="c">!# </span>
-<span class="c">!# See db3ink header for more details.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : Created this routine.</span>
+<span class="c">!&gt; Determines the parameters of a function that interpolates</span>
+<span class="c">!  the four-dimensional gridded data</span>
+<span class="c">!  $$ [x(i),y(j),z(k),q(l),\mathrm{fcn}(i,j,k,l)] ~\mathrm{for}~ </span>
+<span class="c">!     i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z, </span>
+<span class="c">!     ~\mathrm{and}~ l=1,..,n_q $$</span>
+<span class="c">!  The interpolating function and its derivatives may </span>
+<span class="c">!  subsequently be evaluated by the function [[db4val]].</span>
+<span class="c">!  </span>
+<span class="c">!  See [[db3ink]] header for more details.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db4ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">nq</span><span class="p">,&amp;</span>
                         <span class="n">fcn</span><span class="p">,&amp;</span>
@@ -752,26 +773,26 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Evaluates the tensor product piecewise polynomial</span>
-<span class="c">!# interpolant constructed by the routine **db4ink** or one of its</span>
-<span class="c">!# derivatives at the point (xval,yval,zval,qval). </span>
-<span class="c">!#</span>
-<span class="c">!# To evaluate the</span>
-<span class="c">!# interpolant itself, set idx=idy=idz=idq=0, to evaluate the first</span>
-<span class="c">!# partial with respect to x, set idx=1,idy=idz=idq=0, and so on.</span>
-<span class="c">!#</span>
-<span class="c">!# See db3val header for more information.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : Created this routine.</span>
+<span class="c">!&gt; Evaluates the tensor product piecewise polynomial</span>
+<span class="c">!  interpolant constructed by the routine [[db4ink]] or one of its</span>
+<span class="c">!  derivatives at the point (xval,yval,zval,qval). </span>
+<span class="c">! </span>
+<span class="c">!  To evaluate the</span>
+<span class="c">!  interpolant itself, set idx=idy=idz=idq=0, to evaluate the first</span>
+<span class="c">!  partial with respect to x, set idx=1,idy=idz=idq=0, and so on.</span>
+<span class="c">! </span>
+<span class="c">!  See [[db3val]] header for more information.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">db4val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,&amp;</span>
+    <span class="k">subroutine </span><span class="n">db4val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,&amp;</span>
                                 <span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">idq</span><span class="p">,&amp;</span>
                                 <span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="n">tq</span><span class="p">,&amp;</span>
                                 <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,&amp;</span>
                                 <span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,&amp;</span>
-                                <span class="n">bcoef</span><span class="p">)</span>
+                                <span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -796,6 +817,8 @@
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">tz</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to db4ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">tq</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to db4ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! the b-spline coefficients computed by db4ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                       <span class="kd">::</span> <span class="n">f</span>      <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                        <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
     
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">temp2</span>
@@ -809,7 +832,8 @@
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloq</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
     
-    <span class="n">db4val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span>
 <span class="k">    if</span> <span class="p">(</span><span class="n">yval</span><span class="o">&lt;</span><span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span><span class="o">&gt;</span><span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span>
@@ -820,7 +844,8 @@
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">iloz</span><span class="p">,</span><span class="n">leftz</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tq</span><span class="p">,</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">iloq</span><span class="p">,</span><span class="n">leftq</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 
-<span class="k">    </span><span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv2</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv3</span> <span class="o">=</span> <span class="mi">1</span>
 
@@ -856,23 +881,23 @@
 
     <span class="c">! q</span>
     <span class="n">kcolq</span> <span class="o">=</span> <span class="n">leftq</span> <span class="o">-</span> <span class="n">kq</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">db4val</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tq</span><span class="p">(</span><span class="n">kcolq</span><span class="p">:),</span><span class="n">temp3</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">idq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">inbv3</span><span class="p">,</span><span class="n">work</span><span class="p">)</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tq</span><span class="p">(</span><span class="n">kcolq</span><span class="p">:),</span><span class="n">temp3</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">idq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">inbv3</span><span class="p">,</span><span class="n">work</span><span class="p">)</span> 
 
-    <span class="k">end function </span><span class="n">db4val</span>
+    <span class="k">end subroutine </span><span class="n">db4val</span>
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Determines the parameters of a function that interpolates</span>
-<span class="c">!# the five-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),fcn(i,j,k,l,m)) for</span>
-<span class="c">!# i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, and m=1,..,nr. </span>
-<span class="c">!# The interpolating function and its derivatives may subsequently be evaluated </span>
-<span class="c">!# by the function **db5val**.</span>
-<span class="c">!#</span>
-<span class="c">!# See db3ink header for more details.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : Created this routine.</span>
+<span class="c">!&gt; Determines the parameters of a function that interpolates</span>
+<span class="c">!  the five-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),fcn(i,j,k,l,m)) for</span>
+<span class="c">!  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, and m=1,..,nr. </span>
+<span class="c">!  The interpolating function and its derivatives may subsequently be evaluated </span>
+<span class="c">!  by the function [[db5val]].</span>
+<span class="c">! </span>
+<span class="c">!  See [[db3ink]] header for more details.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db5ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">nr</span><span class="p">,&amp;</span>
                         <span class="n">fcn</span><span class="p">,&amp;</span>
@@ -987,26 +1012,26 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Evaluates the tensor product piecewise polynomial</span>
-<span class="c">!# interpolant constructed by the routine **db5ink** or one of its</span>
-<span class="c">!# derivatives at the point (xval,yval,zval,qval,rval).</span>
-<span class="c">!#</span>
-<span class="c">!# To evaluate the</span>
-<span class="c">!# interpolant itself, set idx=idy=idz=idq=idr=0, to evaluate the first</span>
-<span class="c">!# partial with respect to x, set idx=1,idy=idz=idq=idr=0, and so on.</span>
-<span class="c">!# </span>
-<span class="c">!# See db3val header for more information.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : Created this routine.</span>
+<span class="c">!&gt; Evaluates the tensor product piecewise polynomial</span>
+<span class="c">!  interpolant constructed by the routine [[db5ink]] or one of its</span>
+<span class="c">!  derivatives at the point (xval,yval,zval,qval,rval).</span>
+<span class="c">! </span>
+<span class="c">!  To evaluate the</span>
+<span class="c">!  interpolant itself, set idx=idy=idz=idq=idr=0, to evaluate the first</span>
+<span class="c">!  partial with respect to x, set idx=1,idy=idz=idq=idr=0, and so on.</span>
+<span class="c">!  </span>
+<span class="c">!  See [[db3val]] header for more information.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">db5val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">rval</span><span class="p">,&amp;</span>
+    <span class="k">subroutine </span><span class="n">db5val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">rval</span><span class="p">,&amp;</span>
                                 <span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">idq</span><span class="p">,</span><span class="n">idr</span><span class="p">,&amp;</span>
                                 <span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="n">tq</span><span class="p">,</span><span class="n">tr</span><span class="p">,&amp;</span>
                                 <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,&amp;</span>
                                 <span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,&amp;</span>
-                                <span class="n">bcoef</span><span class="p">)</span>
+                                <span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -1036,6 +1061,8 @@
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">tq</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to db5ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">tr</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to db5ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! the b-spline coefficients computed by db5ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                          <span class="kd">::</span> <span class="n">f</span>      <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                           <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
     
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">temp2</span>
@@ -1052,7 +1079,8 @@
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">ilor</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
     
-    <span class="n">db5val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
         
     <span class="k">if</span> <span class="p">(</span> <span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span>
 <span class="k">    if</span> <span class="p">(</span> <span class="n">yval</span><span class="o">&lt;</span><span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span><span class="o">&gt;</span><span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span>
@@ -1065,7 +1093,8 @@
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tq</span><span class="p">,</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">iloq</span><span class="p">,</span><span class="n">leftq</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">ilor</span><span class="p">,</span><span class="n">leftr</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">        </span>
-<span class="k">    </span><span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv2</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv3</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv4</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1116,23 +1145,23 @@
     
     <span class="c">! r</span>
     <span class="n">kcolr</span> <span class="o">=</span> <span class="n">leftr</span> <span class="o">-</span> <span class="n">kr</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">db5val</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="n">kcolr</span><span class="p">:),</span><span class="n">temp4</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">idr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">inbv4</span><span class="p">,</span><span class="n">work</span><span class="p">)</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="n">kcolr</span><span class="p">:),</span><span class="n">temp4</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">idr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">inbv4</span><span class="p">,</span><span class="n">work</span><span class="p">)</span> 
     
-    <span class="k">end function </span><span class="n">db5val</span>
+    <span class="k">end subroutine </span><span class="n">db5val</span>
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Determines the parameters of a function that interpolates</span>
-<span class="c">!# the six-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),s(n),fcn(i,j,k,l,m,n)) for</span>
-<span class="c">!# i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, m=1,..,nr, n=1,..,ns. </span>
-<span class="c">!# the interpolating function and its derivatives may subsequently be evaluated </span>
-<span class="c">!# by the function **db6val**.</span>
-<span class="c">!# </span>
-<span class="c">!# See db3ink header for more details.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : Created this routine.</span>
+<span class="c">!&gt; Determines the parameters of a function that interpolates</span>
+<span class="c">!  the six-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),s(n),fcn(i,j,k,l,m,n)) for</span>
+<span class="c">!  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, m=1,..,nr, n=1,..,ns. </span>
+<span class="c">!  the interpolating function and its derivatives may subsequently be evaluated </span>
+<span class="c">!  by the function [[db6val]].</span>
+<span class="c">!  </span>
+<span class="c">!  See [[db3ink]] header for more details.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db6ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">ns</span><span class="p">,&amp;</span>
                         <span class="n">fcn</span><span class="p">,&amp;</span>
@@ -1253,26 +1282,26 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Evaluates the tensor product piecewise polynomial</span>
-<span class="c">!# interpolant constructed by the routine **db6ink** or one of its</span>
-<span class="c">!# derivatives at the point (xval,yval,zval,qval,rval,sval).</span>
-<span class="c">!#</span>
-<span class="c">!# To evaluate the</span>
-<span class="c">!# interpolant itself, set idx=idy=idz=idq=idr=ids=0, to evaluate the first</span>
-<span class="c">!# partial with respect to x, set idx=1,idy=idz=idq=idr=ids=0, and so on.</span>
-<span class="c">!# </span>
-<span class="c">!# See db3val header for more information.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : Created this routine.</span>
+<span class="c">!&gt; Evaluates the tensor product piecewise polynomial</span>
+<span class="c">!  interpolant constructed by the routine [[db6ink]] or one of its</span>
+<span class="c">!  derivatives at the point (xval,yval,zval,qval,rval,sval).</span>
+<span class="c">! </span>
+<span class="c">!  To evaluate the</span>
+<span class="c">!  interpolant itself, set idx=idy=idz=idq=idr=ids=0, to evaluate the first</span>
+<span class="c">!  partial with respect to x, set idx=1,idy=idz=idq=idr=ids=0, and so on.</span>
+<span class="c">!  </span>
+<span class="c">!  See [[db3val]] header for more information.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">db6val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">sval</span><span class="p">,&amp;</span>
+    <span class="k">subroutine </span><span class="n">db6val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">sval</span><span class="p">,&amp;</span>
                                 <span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">idq</span><span class="p">,</span><span class="n">idr</span><span class="p">,</span><span class="n">ids</span><span class="p">,&amp;</span>
                                 <span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="n">tq</span><span class="p">,</span><span class="n">tr</span><span class="p">,</span><span class="n">ts</span><span class="p">,&amp;</span>
                                 <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">ns</span><span class="p">,&amp;</span>
                                 <span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="p">,&amp;</span>
-                                <span class="n">bcoef</span><span class="p">)</span>
+                                <span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -1307,7 +1336,9 @@
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tr</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to db6ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ns</span><span class="o">+</span><span class="n">ks</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">ts</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the s direction. (same as in last call to db6ink) </span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">ns</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! the b-spline coefficients computed by db6ink.</span>
-    
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">f</span>      <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
+   
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">temp2</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">temp3</span>
@@ -1328,7 +1359,8 @@
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">ilos</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
     
-    <span class="n">db6val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span>
 <span class="k">    if</span> <span class="p">(</span><span class="n">yval</span><span class="o">&lt;</span><span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span><span class="o">&gt;</span><span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span>
@@ -1343,7 +1375,8 @@
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">ilor</span><span class="p">,</span><span class="n">leftr</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span><span class="n">ns</span><span class="o">+</span><span class="n">ks</span><span class="p">,</span><span class="n">sval</span><span class="p">,</span><span class="n">ilos</span><span class="p">,</span><span class="n">lefts</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 
-<span class="k">    </span><span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv2</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv3</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">inbv4</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1411,26 +1444,26 @@
         
     <span class="c">! s</span>
     <span class="n">kcols</span> <span class="o">=</span> <span class="n">lefts</span> <span class="o">-</span> <span class="n">ks</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">db6val</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">kcols</span><span class="p">:),</span><span class="n">temp5</span><span class="p">,</span><span class="n">ks</span><span class="p">,</span><span class="n">ks</span><span class="p">,</span><span class="n">ids</span><span class="p">,</span><span class="n">sval</span><span class="p">,</span><span class="n">inbv5</span><span class="p">,</span><span class="n">work</span><span class="p">)</span> 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ts</span><span class="p">(</span><span class="n">kcols</span><span class="p">:),</span><span class="n">temp5</span><span class="p">,</span><span class="n">ks</span><span class="p">,</span><span class="n">ks</span><span class="p">,</span><span class="n">ids</span><span class="p">,</span><span class="n">sval</span><span class="p">,</span><span class="n">inbv5</span><span class="p">,</span><span class="n">work</span><span class="p">)</span> 
 
-    <span class="k">end function </span><span class="n">db6val</span>
+    <span class="k">end subroutine </span><span class="n">db6val</span>
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Check the validity of the inputs to the &quot;ink&quot; routines.</span>
-<span class="c">!# Prints warning message if there is an error, </span>
-<span class="c">!#    and also sets iflag and status_ok.</span>
-<span class="c">!#</span>
-<span class="c">!# Supports up to 6D: x,y,z,q,r,s</span>
-<span class="c">!#</span>
-<span class="c">!# Notes</span>
-<span class="c">!#---------</span>
-<span class="c">!# The code is new, but the logic is based on the original</span>
-<span class="c">!#    logic in the CMLIB routines db2ink and db3ink.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : Created this routine.</span>
+<span class="c">!&gt; Check the validity of the inputs to the &quot;ink&quot; routines.</span>
+<span class="c">!  Prints warning message if there is an error, </span>
+<span class="c">!  and also sets iflag and status_ok.</span>
+<span class="c">! </span>
+<span class="c">!  Supports up to 6D: x,y,z,q,r,s</span>
+<span class="c">! </span>
+<span class="c">! Notes</span>
+<span class="c">!---------</span>
+<span class="c">!  The code is new, but the logic is based on the original</span>
+<span class="c">!  logic in the CMLIB routines db2ink and db3ink.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">check_inputs</span><span class="p">(</span><span class="n">routine</span><span class="p">,&amp;</span>
                             <span class="n">iflag</span><span class="p">,&amp;</span>
@@ -1597,13 +1630,17 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# dbknot chooses a knot sequence for interpolation of order k at the</span>
-<span class="c">!# data points x(i), i=1,..,n.  the n+k knots are placed in the array</span>
-<span class="c">!# t.  k knots are placed at each endpoint and not-a-knot end</span>
-<span class="c">!# conditions are used.  the remaining knots are placed at data points</span>
-<span class="c">!# if n is even and between data points if n is odd.  the rightmost</span>
-<span class="c">!# knot is shifted slightly to the right to insure proper interpolation</span>
-<span class="c">!# at x(n) (see page 350 of the reference).</span>
+<span class="c">!&gt; dbknot chooses a knot sequence for interpolation of order k at the</span>
+<span class="c">!  data points x(i), i=1,..,n.  the n+k knots are placed in the array</span>
+<span class="c">!  t.  k knots are placed at each endpoint and not-a-knot end</span>
+<span class="c">!  conditions are used.  the remaining knots are placed at data points</span>
+<span class="c">!  if n is even and between data points if n is odd.  the rightmost</span>
+<span class="c">!  knot is shifted slightly to the right to insure proper interpolation</span>
+<span class="c">!  at x(n) (see page 350 of the reference).</span>
+<span class="c">!</span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Refactored this routine.</span>
 
     <span class="k">subroutine </span><span class="n">dbknot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
 
@@ -1657,13 +1694,17 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# dbtpcf computes b-spline interpolation coefficients for nf sets</span>
-<span class="c">!# of data stored in the columns of the array fcn. the b-spline</span>
-<span class="c">!# coefficients are stored in the rows of bcoef however.</span>
-<span class="c">!# each interpolation is based on the n abcissa stored in the</span>
-<span class="c">!# array x, and the n+k knots stored in the array t. the order</span>
-<span class="c">!# of each interpolation is k. the work array must be of length</span>
-<span class="c">!# at least 2*k*(n+1).</span>
+<span class="c">!&gt; dbtpcf computes b-spline interpolation coefficients for nf sets</span>
+<span class="c">!  of data stored in the columns of the array fcn. the b-spline</span>
+<span class="c">!  coefficients are stored in the rows of bcoef however.</span>
+<span class="c">!  each interpolation is based on the n abcissa stored in the</span>
+<span class="c">!  array x, and the n+k knots stored in the array t. the order</span>
+<span class="c">!  of each interpolation is k. the work array must be of length</span>
+<span class="c">!  at least 2*k*(n+1).</span>
+<span class="c">!</span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : Refactored this routine.</span>
 
     <span class="k">subroutine </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">ldf</span><span class="p">,</span><span class="n">nf</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
 
@@ -1709,43 +1750,42 @@
 <span class="k">    end subroutine </span><span class="n">dbtpcf</span>
 <span class="c">!*****************************************************************************************</span>
 
-<span class="c">!*****************************************************************************************</span>
-<span class="c">!</span>
-<span class="c">!# dbintk produces the b-spline coefficients, bcoef, of the</span>
-<span class="c">!# b-spline of order k with knots t(i), i=1,...,n+k, which</span>
-<span class="c">!# takes on the value y(i) at x(i), i=1,...,n.  the spline or</span>
-<span class="c">!# any of its derivatives can be evaluated by calls to dbvalu.</span>
-<span class="c">!# </span>
-<span class="c">!# the i-th equation of the linear system a*bcoef = b for the</span>
-<span class="c">!# coefficients of the interpolant enforces interpolation at</span>
-<span class="c">!# x(i), i=1,...,n.  hence, b(i) = y(i), for all i, and a is</span>
-<span class="c">!# a band matrix with 2k-1 bands if a is invertible.  the matrix</span>
-<span class="c">!# a is generated row by row and stored, diagonal by diagonal,</span>
-<span class="c">!# in the rows of q, with the main diagonal going into row k.</span>
-<span class="c">!# the banded system is then solved by a call to dbnfac (which</span>
-<span class="c">!# constructs the triangular factorization for a and stores it</span>
-<span class="c">!# again in q), followed by a call to dbnslv (which then</span>
-<span class="c">!# obtains the solution bcoef by substitution).  dbnfac does no</span>
-<span class="c">!# pivoting, since the total positivity of the matrix a makes</span>
-<span class="c">!# this unnecessary.  the linear system to be solved is</span>
-<span class="c">!# (theoretically) invertible if and only if</span>
-<span class="c">!#         t(i) &lt; x(i) &lt; t(i+k),        for all i.</span>
-<span class="c">!# equality is permitted on the left for i=1 and on the right</span>
-<span class="c">!# for i=n when k knots are used at x(1) or x(n).  otherwise,</span>
-<span class="c">!# violation of this condition is certain to lead to an error.</span>
-<span class="c">!# </span>
-<span class="c">!# Error conditions</span>
-<span class="c">!#---------</span>
-<span class="c">!# improper input is a fatal error</span>
-<span class="c">!# singular system of equations is a fatal error</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * splint written by carl de boor [5]</span>
-<span class="c">!# * dbintk author: amos, d. e., (snla) : date written 800901</span>
-<span class="c">!# * revision date 820801</span>
-<span class="c">!# * 000330 modified array declarations. (jec)</span>
-<span class="c">!# * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
+<span class="c">!***************************************************************************************** </span>
+<span class="c">!&gt; dbintk produces the b-spline coefficients, bcoef, of the</span>
+<span class="c">!  b-spline of order k with knots t(i), i=1,...,n+k, which</span>
+<span class="c">!  takes on the value y(i) at x(i), i=1,...,n.  the spline or</span>
+<span class="c">!  any of its derivatives can be evaluated by calls to [[dbvalu]].</span>
+<span class="c">!  </span>
+<span class="c">!  the i-th equation of the linear system a*bcoef = b for the</span>
+<span class="c">!  coefficients of the interpolant enforces interpolation at</span>
+<span class="c">!  x(i), i=1,...,n.  hence, b(i) = y(i), for all i, and a is</span>
+<span class="c">!  a band matrix with 2k-1 bands if a is invertible.  the matrix</span>
+<span class="c">!  a is generated row by row and stored, diagonal by diagonal,</span>
+<span class="c">!  in the rows of q, with the main diagonal going into row k.</span>
+<span class="c">!  the banded system is then solved by a call to dbnfac (which</span>
+<span class="c">!  constructs the triangular factorization for a and stores it</span>
+<span class="c">!  again in q), followed by a call to dbnslv (which then</span>
+<span class="c">!  obtains the solution bcoef by substitution).  dbnfac does no</span>
+<span class="c">!  pivoting, since the total positivity of the matrix a makes</span>
+<span class="c">!  this unnecessary.  the linear system to be solved is</span>
+<span class="c">!  (theoretically) invertible if and only if</span>
+<span class="c">!          t(i) &lt; x(i) &lt; t(i+k),        for all i.</span>
+<span class="c">!  equality is permitted on the left for i=1 and on the right</span>
+<span class="c">!  for i=n when k knots are used at x(1) or x(n).  otherwise,</span>
+<span class="c">!  violation of this condition is certain to lead to an error.</span>
+<span class="c">!  </span>
+<span class="c">! Error conditions</span>
+<span class="c">!---------</span>
+<span class="c">!  * improper input is a fatal error</span>
+<span class="c">!  * singular system of equations is a fatal error</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * splint written by carl de boor [5]</span>
+<span class="c">!  * dbintk author: amos, d. e., (snla) : date written 800901</span>
+<span class="c">!  * revision date 820801</span>
+<span class="c">!  * 000330 modified array declarations. (jec)</span>
+<span class="c">!  * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
 
     <span class="k">subroutine </span><span class="n">dbintk</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
 
@@ -1874,20 +1914,23 @@
 <span class="k">    end subroutine </span><span class="n">dbintk</span>
 <span class="c">!*****************************************************************************************</span>
 
-<span class="c">!***begin prologue  dbnfac</span>
-<span class="c">!***refer to  dbint4,dbintk</span>
+<span class="c">!*****************************************************************************************</span>
+<span class="c">!&gt; Returns in w the LU-factorization (without pivoting) of the banded</span>
+<span class="c">!  matrix a of order nrow with (nbandl + 1 + nbandu) bands or diagonals </span>
+<span class="c">!  in the work array w .</span>
 <span class="c">!</span>
-<span class="c">!  dbnfac is the banfac routine from</span>
-<span class="c">!        * a practical guide to splines *  by c. de boor</span>
+<span class="c">!  gauss elimination without pivoting is used. the routine is</span>
+<span class="c">!  intended for use with matrices a which do not require row inter-</span>
+<span class="c">!  changes during factorization, especially for the totally</span>
+<span class="c">!  positive matrices which occur in spline calculations.</span>
+<span class="c">!  the routine should not be used for an arbitrary banded matrix.</span>
 <span class="c">!</span>
-<span class="c">!  dbnfac is a real(wp) routine</span>
+<span class="c">! Work array</span>
+<span class="c">!---------</span>
 <span class="c">!</span>
-<span class="c">!  returns in  w  the lu-factorization (without pivoting) of the banded</span>
-<span class="c">!  matrix  a  of order  nrow  with  (nbandl + 1 + nbandu) bands or diag-</span>
-<span class="c">!  onals in the work array  w .</span>
+<span class="c">! **Input**</span>
 <span class="c">!</span>
-<span class="c">! *****  i n p u t  ****** w is real(wp)</span>
-<span class="c">!  w.....work array of size  (nroww,nrow)  containing the interesting</span>
+<span class="c">!        w array of size (nroww,nrow) contains the interesting</span>
 <span class="c">!        part of a banded matrix  a , with the diagonals or bands of  a</span>
 <span class="c">!        stored in the rows of  w , while columns of  a  correspond to</span>
 <span class="c">!        columns of  w . this is the storage mode used in  linpack  and</span>
@@ -1908,41 +1951,40 @@
 <span class="c">!</span>
 <span class="c">!        all other entries of  w  not identified in this way with an en-</span>
 <span class="c">!        try of  a  are never referenced .</span>
-<span class="c">!  nroww.....row dimension of the work array  w .</span>
-<span class="c">!        must be  &gt;=  nbandl + 1 + nbandu  .</span>
-<span class="c">!  nbandl.....number of bands of  a  below the main diagonal</span>
-<span class="c">!  nbandu.....number of bands of  a  above the main diagonal .</span>
 <span class="c">!</span>
-<span class="c">! *****  o u t p u t  ****** w is real(wp)</span>
-<span class="c">!  iflag.....integer indicating success( = 1) or failure ( = 2) .</span>
-<span class="c">!     if  iflag = 1, then</span>
-<span class="c">!  w.....contains the lu-factorization of  a  into a unit lower triangu-</span>
+<span class="c">! **Output**</span>
+<span class="c">!</span>
+<span class="c">!  * if  iflag = 1, then</span>
+<span class="c">!        w contains the lu-factorization of  a  into a unit lower triangu-</span>
 <span class="c">!        lar matrix  l  and an upper triangular matrix  u (both banded)</span>
 <span class="c">!        and stored in customary fashion over the corresponding entries</span>
 <span class="c">!        of  a . this makes it possible to solve any particular linear</span>
 <span class="c">!        system  a*x = b  for  x  by a</span>
 <span class="c">!              call dbnslv ( w, nroww, nrow, nbandl, nbandu, b )</span>
 <span class="c">!        with the solution x  contained in  b  on return .</span>
-<span class="c">!     if  iflag = 2, then</span>
+<span class="c">!  * if  iflag = 2, then</span>
 <span class="c">!        one of  nrow-1, nbandl,nbandu failed to be nonnegative, or else</span>
 <span class="c">!        one of the potential pivots was found to be zero indicating</span>
 <span class="c">!        that  a  does not have an lu-factorization. this implies that</span>
 <span class="c">!        a  is singular in case it is totally positive .</span>
-<span class="c">!</span>
-<span class="c">! *****  m e t h o d  ******</span>
-<span class="c">!     gauss elimination  w i t h o u t  pivoting is used. the routine is</span>
-<span class="c">!  intended for use with matrices  a  which do not require row inter-</span>
-<span class="c">!  changes during factorization, especially for the  t o t a l l y</span>
-<span class="c">!  p o s i t i v e  matrices which occur in spline calculations.</span>
-<span class="c">!     the routine should not be used for an arbitrary banded matrix.</span>
-<span class="c">!***routines called  (none)</span>
-<span class="c">!***end prologue  dbnfac</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * banfac written by carl de boor [5]</span>
+<span class="c">!  * dbnfac from CMLIB [1]</span>
+<span class="c">!  * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
 
       <span class="k">subroutine </span><span class="n">dbnfac</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+      
+      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nroww</span>   <span class="c">!! row dimension of the work array w. must be &gt;= nbandl + 1 + nbandu.</span>
+      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nrow</span>    <span class="c">!! matrix order</span>
+      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandl</span>  <span class="c">!! number of bands of a below the main diagonal</span>
+      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandu</span>  <span class="c">!! number of bands of a above the main diagonal</span>
+      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! indicating success(=1) or failure (=2)</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>  <span class="c">!! work array. See header for details.</span>
 
-      <span class="kt">integer </span><span class="n">iflag</span><span class="p">,</span> <span class="n">nbandl</span><span class="p">,</span> <span class="n">nbandu</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">nroww</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ipk</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">k</span><span class="p">,&amp;</span>
-       <span class="n">kmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">midmk</span><span class="p">,</span> <span class="n">nrowm1</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">w</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span> <span class="n">factor</span><span class="p">,</span> <span class="n">pivot</span>
+      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">ipk</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">kmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">midmk</span><span class="p">,</span> <span class="n">nrowm1</span>
+      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">factor</span><span class="p">,</span> <span class="n">pivot</span>
 
       <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
@@ -2007,35 +2049,32 @@
       <span class="k">end subroutine </span><span class="n">dbnfac</span>
       
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!</span>
-<span class="c">!  dbnslv is the banslv routine from</span>
-<span class="c">!        * a practical guide to splines *  by c. de boor</span>
-<span class="c">!</span>
-<span class="c">!  dbnslv is a real(wp) routine</span>
-<span class="c">!</span>
-<span class="c">!  companion routine to  dbnfac . it returns the solution  x  of the</span>
-<span class="c">!  linear system  a*x = b  in place of  b , given the lu-factorization</span>
-<span class="c">!  for  a  in the work array  w from dbnfac.</span>
-<span class="c">!</span>
-<span class="c">! *****  i n p u t  ****** w,b are real(wp)</span>
-<span class="c">!  w, nroww,nrow,nbandl,nbandu.....describe the lu-factorization of a</span>
-<span class="c">!        banded matrix  a  of order  nrow  as constructed in  dbnfac .</span>
-<span class="c">!        for details, see  dbnfac .</span>
-<span class="c">!  b.....right side of the system to be solved .</span>
-<span class="c">!</span>
-<span class="c">! *****  o u t p u t  ****** b is real(wp)</span>
-<span class="c">!  b.....contains the solution  x , of order  nrow .</span>
-<span class="c">!</span>
-<span class="c">! *****  m e t h o d  ******</span>
-<span class="c">!     (with  a = l*u, as stored in  w,) the unit lower triangular system</span>
-<span class="c">!  l(u*x) = b  is solved for  y = u*x, and  y  stored in  b . then the</span>
-<span class="c">!  upper triangular system  u*x = y  is solved for  x  . the calcul-</span>
-<span class="c">!  ations are so arranged that the innermost loops stay within columns.</span>
+<span class="c">!&gt; Companion routine to [[dbnfac]]. it returns the solution x of the</span>
+<span class="c">!  linear system a*x = b in place of b, given the lu-factorization</span>
+<span class="c">!  for a in the work array w from dbnfac.</span>
+<span class="c">! </span>
+<span class="c">!  (with \( a = l*u \), as stored in w), the unit lower triangular system</span>
+<span class="c">!  \( l(u*x) = b \) is solved for \( y = u*x \), and y stored in b. then the</span>
+<span class="c">!  upper triangular system \(u*x = y \) is solved for x. the calculations </span>
+<span class="c">!  are so arranged that the innermost loops stay within columns.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * banslv written by carl de boor [5]</span>
+<span class="c">!  * dbnslv from SLATEC library [1]</span>
+<span class="c">!  * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
 
     <span class="k">subroutine </span><span class="n">dbnslv</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+    
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nroww</span>   <span class="c">!! describes the lu-factorization of a banded matrix a of order nrow as constructed in [[dbnfac]].</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nrow</span>    <span class="c">!! describes the lu-factorization of a banded matrix a of order nrow as constructed in [[dbnfac]].</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandl</span>  <span class="c">!! describes the lu-factorization of a banded matrix a of order nrow as constructed in [[dbnfac]].</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandu</span>  <span class="c">!! describes the lu-factorization of a banded matrix a of order nrow as constructed in [[dbnfac]].</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>    <span class="c">!! describes the lu-factorization of a banded matrix a of order nrow as constructed in [[dbnfac]].</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">b</span>  <span class="c">!! **in**: right side of the system to be solved</span>
+                                                 <span class="c">!! **out**: the solution x, of order nrow</span>
 
-    <span class="kt">integer </span><span class="n">nbandl</span><span class="p">,</span> <span class="n">nbandu</span><span class="p">,</span> <span class="n">nrow</span><span class="p">,</span> <span class="n">nroww</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">nrowm1</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">w</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="n">nrow</span><span class="p">)</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">nrowm1</span>
 
     <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">nrow</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
@@ -2086,31 +2125,30 @@
 <span class="c">!*****************************************************************************************</span>
 
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!</span>
-<span class="c">!# Calculates the value of all (possibly) nonzero basis</span>
-<span class="c">!# functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)</span>
-<span class="c">!# &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on</span>
-<span class="c">!# the first call when index=1.  ileft is such that t(ileft) &lt;=</span>
-<span class="c">!# x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)</span>
-<span class="c">!# produces the proper ileft.  dbspvn calculates using the basic</span>
-<span class="c">!# algorithm needed in dbspvd.  if only basis functions are</span>
-<span class="c">!# desired, setting jhigh=k and index=1 can be faster than</span>
-<span class="c">!# calling dbspvd, but extra coding is required for derivatives</span>
-<span class="c">!# (index=2) and dbspvd is set up for this purpose.</span>
-<span class="c">!# </span>
-<span class="c">!# left limiting values are set up as described in dbspvd.</span>
-<span class="c">!#</span>
-<span class="c">!# Error Conditions</span>
-<span class="c">!#---------</span>
-<span class="c">!# improper input is a fatal error.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * bsplvn written by carl de boor [5]</span>
-<span class="c">!# * dbspvn author: amos, d. e., (snla) : date written 800901</span>
-<span class="c">!# * revision date 820801</span>
-<span class="c">!# * 000330 modified array declarations.  (jec)</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+<span class="c">!&gt; Calculates the value of all (possibly) nonzero basis</span>
+<span class="c">!  functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)</span>
+<span class="c">!  &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on</span>
+<span class="c">!  the first call when index=1.  ileft is such that t(ileft) &lt;=</span>
+<span class="c">!  x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)</span>
+<span class="c">!  produces the proper ileft.  dbspvn calculates using the basic</span>
+<span class="c">!  algorithm needed in dbspvd.  if only basis functions are</span>
+<span class="c">!  desired, setting jhigh=k and index=1 can be faster than</span>
+<span class="c">!  calling dbspvd, but extra coding is required for derivatives</span>
+<span class="c">!  (index=2) and dbspvd is set up for this purpose.</span>
+<span class="c">!  </span>
+<span class="c">!  left limiting values are set up as described in dbspvd.</span>
+<span class="c">! </span>
+<span class="c">! Error Conditions</span>
+<span class="c">!---------</span>
+<span class="c">!  * improper input is a fatal error.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * bsplvn written by carl de boor [5]</span>
+<span class="c">!  * dbspvn author: amos, d. e., (snla) : date written 800901</span>
+<span class="c">!  * revision date 820801</span>
+<span class="c">!  * 000330 modified array declarations.  (jec)</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
 
     <span class="k">subroutine </span><span class="n">dbspvn</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">jhigh</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="nb">index</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">vnikx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iwork</span><span class="p">)</span>
 
@@ -2187,29 +2225,28 @@
 <span class="c">!*****************************************************************************************</span>
       
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!</span>
-<span class="c">!# Evaluates the b-representation (t,a,n,k) of a b-spline</span>
-<span class="c">!# at x for the function value on ideriv=0 or any of its</span>
-<span class="c">!# derivatives on ideriv=1,2,...,k-1.  right limiting values</span>
-<span class="c">!# (right derivatives) are returned except at the right end</span>
-<span class="c">!# point x=t(n+1) where left limiting values are computed.  the</span>
-<span class="c">!# spline is defined on t(k) &lt;= x &lt;= t(n+1).  dbvalu returns</span>
-<span class="c">!# a fatal error message when x is outside of this interval.</span>
-<span class="c">!# </span>
-<span class="c">!# to compute left derivatives or left limiting values at a</span>
-<span class="c">!# knot t(i), replace n by i-1 and set x=t(i), i=k+1,n+1.</span>
-<span class="c">!#</span>
-<span class="c">!# Error Conditions</span>
-<span class="c">!#---------</span>
-<span class="c">!# improper input is a fatal error.</span>
-<span class="c">!#</span>
-<span class="c">!# History</span>
-<span class="c">!#---------</span>
-<span class="c">!# * bvalue written by carl de boor [5]</span>
-<span class="c">!# * dbvalu author: amos, d. e., (snla) : date written 800901</span>
-<span class="c">!# * revision date 820801</span>
-<span class="c">!# * 000330 modified array declarations.  (jec)</span>
-<span class="c">!# * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+<span class="c">!&gt; Evaluates the b-representation (t,a,n,k) of a b-spline</span>
+<span class="c">!  at x for the function value on ideriv=0 or any of its</span>
+<span class="c">!  derivatives on ideriv=1,2,...,k-1.  right limiting values</span>
+<span class="c">!  (right derivatives) are returned except at the right end</span>
+<span class="c">!  point x=t(n+1) where left limiting values are computed.  the</span>
+<span class="c">!  spline is defined on t(k) &lt;= x &lt;= t(n+1).  dbvalu returns</span>
+<span class="c">!  a fatal error message when x is outside of this interval.</span>
+<span class="c">!  </span>
+<span class="c">!  to compute left derivatives or left limiting values at a</span>
+<span class="c">!  knot t(i), replace n by i-1 and set x=t(i), i=k+1,n+1.</span>
+<span class="c">! </span>
+<span class="c">! Error Conditions</span>
+<span class="c">!---------</span>
+<span class="c">!  * improper input is a fatal error.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * bvalue written by carl de boor [5]</span>
+<span class="c">!  * dbvalu author: amos, d. e., (snla) : date written 800901</span>
+<span class="c">!  * revision date 820801</span>
+<span class="c">!  * 000330 modified array declarations.  (jec)</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ideriv</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">inbv</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>  <span class="c">!!value of the ideriv-th derivative at x</span>
 
@@ -2337,69 +2374,44 @@
 <span class="c">!*****************************************************************************************</span>
       
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!***begin prologue  dintrv</span>
-<span class="c">!***date written   800901   (yymmdd)</span>
-<span class="c">!***revision date  820801   (yymmdd)</span>
-<span class="c">!***category no.  e3,k6</span>
-<span class="c">!***keywords  b-spline,data fitting,real(wp),interpolation,</span>
-<span class="c">!             spline</span>
-<span class="c">!***author  amos, d. e., (snla)</span>
-<span class="c">!***purpose  computes the largest integer ileft in 1&lt;=ileft&lt;=lxt</span>
-<span class="c">!            such that xt(ileft)&lt;=x where xt(*) is a subdivision of</span>
-<span class="c">!            the x interval.</span>
-<span class="c">!***description</span>
+<span class="c">!&gt; Computes the largest integer ileft in 1 &lt;= ileft &lt;= lxt </span>
+<span class="c">!  such that xt(ileft) &lt;= x where xt(*) is a subdivision of</span>
+<span class="c">!  the x interval.  </span>
+<span class="c">!  precisely,</span>
 <span class="c">!</span>
-<span class="c">!     written by carl de boor and modified by d. e. amos</span>
+<span class="c">!```fortran</span>
+<span class="c">!         if            x &lt; xt(1)   then ileft=1,   mflag=-1</span>
+<span class="c">!         if   xt(i) &lt;= x &lt; xt(i+1) then ileft=i,   mflag=0</span>
+<span class="c">!         if xt(lxt) &lt;= x           then ileft=lxt, mflag=1</span>
+<span class="c">!```</span>
 <span class="c">!</span>
-<span class="c">!     reference</span>
-<span class="c">!         siam j.  numerical analysis, 14, no. 3, june 1977, pp.441-472.</span>
-<span class="c">!</span>
-<span class="c">!     abstract    **** a real(wp) routine ****</span>
-<span class="c">!         dintrv is the interv routine of the reference.</span>
-<span class="c">!</span>
-<span class="c">!         dintrv computes the largest integer ileft in 1 &lt;= ileft &lt;=</span>
-<span class="c">!         lxt such that xt(ileft) &lt;= x where xt(*) is a subdivision of</span>
-<span class="c">!         the x interval.  precisely,</span>
-<span class="c">!</span>
-<span class="c">!                      x &lt; xt(1)                1         -1</span>
-<span class="c">!         if  xt(i) &lt;= x &lt; xt(i+1)  then  ileft=i  , mflag=0</span>
-<span class="c">!           xt(lxt) &lt;= x                        lxt        1,</span>
-<span class="c">!</span>
-<span class="c">!         that is, when multiplicities are present in the break point</span>
-<span class="c">!         to the left of x, the largest index is taken for ileft.</span>
-<span class="c">!</span>
-<span class="c">!     description of arguments</span>
-<span class="c">!</span>
-<span class="c">!         input      xt,x are real(wp)</span>
-<span class="c">!          xt      - xt is a knot or break point vector of length lxt</span>
-<span class="c">!          lxt     - length of the xt vector</span>
-<span class="c">!          x       - argument</span>
-<span class="c">!          ilo     - an initialization parameter which must be set</span>
-<span class="c">!                    to 1 the first time the spline array xt is</span>
-<span class="c">!                    processed by dintrv.</span>
-<span class="c">!</span>
-<span class="c">!         output</span>
-<span class="c">!          ilo     - ilo contains information for efficient process-</span>
-<span class="c">!                    ing after the initial call and ilo must not be</span>
-<span class="c">!                    changed by the user.  distinct splines require</span>
-<span class="c">!                    distinct ilo parameters.</span>
-<span class="c">!          ileft   - largest integer satisfying xt(ileft) &lt;= x</span>
-<span class="c">!          mflag   - signals when x lies out of bounds</span>
-<span class="c">!</span>
-<span class="c">!     error conditions</span>
-<span class="c">!         none</span>
-<span class="c">!***references  c. de boor, *package for calculating with b-splines*,</span>
-<span class="c">!                 siam journal on numerical analysis, volume 14, no. 3,</span>
-<span class="c">!                 june 1977, pp. 441-472.</span>
-<span class="c">!***routines called  (none)</span>
-<span class="c">!***end prologue  dintrv</span>
-<span class="c">!</span>
+<span class="c">!  that is, when multiplicities are present in the break point</span>
+<span class="c">!  to the left of x, the largest index is taken for ileft.</span>
+<span class="c">! </span>
+<span class="c">! History</span>
+<span class="c">!---------</span>
+<span class="c">!  * interv written by carl de boor [5]</span>
+<span class="c">!  * dintrv author: amos, d. e., (snla) : date written 800901</span>
+<span class="c">!  * revision date 820801</span>
+<span class="c">!  * Jacob Williams, 2/24/2015 : updated to free-form Fortran.</span>
 
-      <span class="k">subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
-
-      <span class="kt">integer </span><span class="n">ihi</span><span class="p">,</span> <span class="n">ileft</span><span class="p">,</span> <span class="n">ilo</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">lxt</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,</span> <span class="n">middle</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">x</span><span class="p">,</span> <span class="n">xt</span>
-      <span class="k">dimension </span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span>
+    <span class="k">subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
+    
+    <span class="k">implicit none</span>
+<span class="k">    </span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">lxt</span>    <span class="c">!! length of the xt vector</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">lxt</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xt</span>     <span class="c">!! a knot or break point vector of length lxt</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! argument</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">ilo</span>    <span class="c">!! an initialization parameter which must be set</span>
+                                                 <span class="c">!! to 1 the first time the spline array xt is</span>
+                                                 <span class="c">!! processed by dintrv. ilo contains information for </span>
+                                                 <span class="c">!! efficient processing after the initial call and ilo</span>
+                                                 <span class="c">!! must not be changed by the user.  distinct splines </span>
+                                                 <span class="c">!! require distinct ilo parameters.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>  <span class="c">!! largest integer satisfying xt(ileft) &lt;= x</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">mflag</span>  <span class="c">!! signals when x lies out of bounds</span>
+    
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ihi</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">middle</span>
 
       <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="mi">1</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">ihi</span><span class="o">&lt;</span><span class="n">lxt</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
@@ -2459,11 +2471,11 @@
 <span class="k">  </span><span class="mi">110</span> <span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
       <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
 
-      <span class="k">end subroutine </span><span class="n">dintrv</span>      
+    <span class="k">end subroutine </span><span class="n">dintrv</span>      
 <span class="c">!*****************************************************************************************</span>
     
 <span class="c">!*****************************************************************************************</span>
-<span class="c">!# Just a replacement for the CMLIB XERROR routine.</span>
+<span class="c">!&gt; Just a replacement for the CMLIB XERROR routine.</span>
 
     <span class="k">subroutine </span><span class="n">xerror</span><span class="p">(</span><span class="n">messg</span><span class="p">,</span><span class="n">nmessg</span><span class="p">,</span><span class="n">nerr</span><span class="p">,</span><span class="n">level</span><span class="p">)</span>
 
@@ -2484,6 +2496,7 @@
 <span class="c">!*****************************************************************************************</span>
 </pre></div>
 
+    </section>
     </div>
   </div>
 
