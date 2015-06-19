@@ -159,12 +159,12 @@
     <div class="highlight"><pre><span class="c">!&gt; author: Jacob Williams</span>
 <span class="c">!  license: BSD</span>
 <span class="c">! </span>
-<span class="c">! Description</span>
-<span class="c">!---------</span>
+<span class="c">!# Description</span>
+<span class="c">!</span>
 <span class="c">!  Multidimensional (2D-6D) B-Spline interpolation of data on a regular grid.</span>
 <span class="c">! </span>
-<span class="c">! Notes</span>
-<span class="c">!---------</span>
+<span class="c">!# Notes</span>
+<span class="c">!</span>
 <span class="c">!  This module is based on the bspline and spline routines from [1].</span>
 <span class="c">!  The original Fortran 77 routines were converted to free-form source.</span>
 <span class="c">!  Some of them are relatively unchanged from the originals, but some have</span>
@@ -172,8 +172,8 @@
 <span class="c">!  4d, 5d, and 6d interpolation were also created (these are simply </span>
 <span class="c">!  extensions of the same algorithm into higher dimensions).</span>
 <span class="c">! </span>
-<span class="c">! References</span>
-<span class="c">!---------</span>
+<span class="c">!# References</span>
+<span class="c">!</span>
 <span class="c">!  1. DBSPLIN and DTENSBS from the</span>
 <span class="c">!     [NIST Core Math Library](http://www.nist.gov/itl/math/mcsd-software.cfm).</span>
 <span class="c">!     Original code is public domain.</span>
@@ -254,8 +254,8 @@
 <span class="c">!  ky, tx, ty, and bcoef. These quantities should not be altered until</span>
 <span class="c">!  after the last call of the evaluation routine [[db2val]].</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
 <span class="c">!  * JEC : 000330 modified array declarations.</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
@@ -358,8 +358,8 @@
 <span class="c">!  The input quantities tx, ty, nx, ny, kx, ky, and bcoef should be</span>
 <span class="c">!  unchanged since the last call of [[db2ink]].</span>
 <span class="c">!</span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
 <span class="c">!  * JEC : 000330 modified array declarations.</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
@@ -461,8 +461,8 @@
 <span class="c">!  kx, ky, kz, tx, ty, tz, and bcoef. these quantities should not be</span>
 <span class="c">!  altered until after the last call of the evaluation routine [[db3val]].</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
 <span class="c">!  * JEC : 000330 modified array declarations.</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
@@ -584,8 +584,8 @@
 <span class="c">!  The input quantities tx, ty, tz, nx, ny, nz, kx, ky, kz, and bcoef</span>
 <span class="c">!  should remain unchanged since the last call of [[db3ink]].</span>
 <span class="c">!</span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Boisvert, Ronald, NBS : 25 may 1982 : Author of original routine.</span>
 <span class="c">!  * JEC : 000330 modified array declarations.</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
@@ -672,8 +672,8 @@
 <span class="c">!  </span>
 <span class="c">!  See [[db3ink]] header for more details.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db4ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">nq</span><span class="p">,&amp;</span>
@@ -783,8 +783,8 @@
 <span class="c">! </span>
 <span class="c">!  See [[db3val]] header for more information.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db4val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,&amp;</span>
@@ -895,8 +895,8 @@
 <span class="c">! </span>
 <span class="c">!  See [[db3ink]] header for more details.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db5ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">nr</span><span class="p">,&amp;</span>
@@ -1022,8 +1022,8 @@
 <span class="c">!  </span>
 <span class="c">!  See [[db3val]] header for more information.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db5val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">rval</span><span class="p">,&amp;</span>
@@ -1159,8 +1159,8 @@
 <span class="c">!  </span>
 <span class="c">!  See [[db3ink]] header for more details.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db6ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">ns</span><span class="p">,&amp;</span>
@@ -1292,8 +1292,8 @@
 <span class="c">!  </span>
 <span class="c">!  See [[db3val]] header for more information.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">db6val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">sval</span><span class="p">,&amp;</span>
@@ -1456,13 +1456,13 @@
 <span class="c">! </span>
 <span class="c">!  Supports up to 6D: x,y,z,q,r,s</span>
 <span class="c">! </span>
-<span class="c">! Notes</span>
-<span class="c">!---------</span>
+<span class="c">!# Notes</span>
+<span class="c">!</span>
 <span class="c">!  The code is new, but the logic is based on the original</span>
 <span class="c">!  logic in the CMLIB routines db2ink and db3ink.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Created this routine.</span>
 
     <span class="k">subroutine </span><span class="n">check_inputs</span><span class="p">(</span><span class="n">routine</span><span class="p">,&amp;</span>
@@ -1638,8 +1638,8 @@
 <span class="c">!  knot is shifted slightly to the right to insure proper interpolation</span>
 <span class="c">!  at x(n) (see page 350 of the reference).</span>
 <span class="c">!</span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Refactored this routine.</span>
 
     <span class="k">subroutine </span><span class="n">dbknot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
@@ -1702,8 +1702,8 @@
 <span class="c">!  of each interpolation is k. the work array must be of length</span>
 <span class="c">!  at least 2*k*(n+1).</span>
 <span class="c">!</span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * Jacob Williams, 2/24/2015 : Refactored this routine.</span>
 
     <span class="k">subroutine </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">ldf</span><span class="p">,</span><span class="n">nf</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
@@ -1774,13 +1774,13 @@
 <span class="c">!  for i=n when k knots are used at x(1) or x(n).  otherwise,</span>
 <span class="c">!  violation of this condition is certain to lead to an error.</span>
 <span class="c">!  </span>
-<span class="c">! Error conditions</span>
-<span class="c">!---------</span>
-<span class="c">!  * improper input is a fatal error</span>
-<span class="c">!  * singular system of equations is a fatal error</span>
+<span class="c">!# Error conditions</span>
+<span class="c">!</span>
+<span class="c">!  * improper input</span>
+<span class="c">!  * singular system of equations</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * splint written by carl de boor [5]</span>
 <span class="c">!  * dbintk author: amos, d. e., (snla) : date written 800901</span>
 <span class="c">!  * revision date 820801</span>
@@ -1925,8 +1925,7 @@
 <span class="c">!  positive matrices which occur in spline calculations.</span>
 <span class="c">!  the routine should not be used for an arbitrary banded matrix.</span>
 <span class="c">!</span>
-<span class="c">! Work array</span>
-<span class="c">!---------</span>
+<span class="c">! # Work array</span>
 <span class="c">!</span>
 <span class="c">! **Input**</span>
 <span class="c">!</span>
@@ -1968,85 +1967,99 @@
 <span class="c">!        that  a  does not have an lu-factorization. this implies that</span>
 <span class="c">!        a  is singular in case it is totally positive .</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * banfac written by carl de boor [5]</span>
 <span class="c">!  * dbnfac from CMLIB [1]</span>
 <span class="c">!  * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
 
-      <span class="k">subroutine </span><span class="n">dbnfac</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-      
-      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nroww</span>   <span class="c">!! row dimension of the work array w. must be &gt;= nbandl + 1 + nbandu.</span>
-      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nrow</span>    <span class="c">!! matrix order</span>
-      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandl</span>  <span class="c">!! number of bands of a below the main diagonal</span>
-      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandu</span>  <span class="c">!! number of bands of a above the main diagonal</span>
-      <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! indicating success(=1) or failure (=2)</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>  <span class="c">!! work array. See header for details.</span>
+    <span class="k">subroutine </span><span class="n">dbnfac</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
-      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">ipk</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">kmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">midmk</span><span class="p">,</span> <span class="n">nrowm1</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">factor</span><span class="p">,</span> <span class="n">pivot</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nroww</span>   <span class="c">!! row dimension of the work array w. must be &gt;= nbandl + 1 + nbandu.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nrow</span>    <span class="c">!! matrix order</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandl</span>  <span class="c">!! number of bands of a below the main diagonal</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandu</span>  <span class="c">!! number of bands of a above the main diagonal</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! indicating success(=1) or failure (=2)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>  <span class="c">!! work array. See header for details.</span>
 
-      <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="c">!                         w(middle,.) contains the main diagonal of  a .</span>
-      <span class="n">nrowm1</span> <span class="o">=</span> <span class="n">nrow</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">ipk</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">kmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">midmk</span><span class="p">,</span> <span class="n">nrowm1</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">factor</span><span class="p">,</span> <span class="n">pivot</span>
 
-      <span class="c">!if (nrowm1) 120, 110, 10    !JW removed obsolescent arithmetic IF statement</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">nrowm1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span><span class="p">;</span>      <span class="k">goto </span><span class="mi">120</span>
-      <span class="n">elseif</span> <span class="p">(</span><span class="n">nrowm1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span><span class="p">;</span> <span class="k">goto </span><span class="mi">110</span>
-      <span class="k">else</span><span class="p">;</span>                      <span class="k">goto </span><span class="mi">10</span>
-      <span class="k">end if</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>   <span class="c">! w(middle,.) contains the main diagonal of a.</span>
+    <span class="n">nrowm1</span> <span class="o">=</span> <span class="n">nrow</span> <span class="o">-</span> <span class="mi">1</span>
 
-<span class="k">   </span><span class="mi">10</span> <span class="k">if</span> <span class="p">(</span><span class="n">nbandl</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">30</span>
-<span class="c">!                a is upper triangular. check that diagonal is nonzero .</span>
-      <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
-      <span class="k">end do</span>
-<span class="k">      </span><span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
-   <span class="mi">30</span> <span class="k">if</span> <span class="p">(</span><span class="n">nbandu</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">60</span>
-<span class="c">!              a is lower triangular. check that diagonal is nonzero and</span>
-<span class="c">!                 divide each column by its diagonal .</span>
-      <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
-        <span class="n">pivot</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
-        <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
-          <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">pivot</span>
-        <span class="k">end do</span>
-<span class="k">      end do</span>
-<span class="k">      return</span>
-<span class="c">!</span>
-<span class="c">!        a  is not just a triangular matrix. construct lu factorization</span>
-   <span class="mi">60</span> <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
-<span class="c">!                                  w(middle,i)  is pivot for i-th step .</span>
-        <span class="n">pivot</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">120</span>
-<span class="c">!                 jmax  is the number of (nonzero) entries in column  i</span>
-<span class="c">!                     below the diagonal .</span>
-        <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
-<span class="c">!              divide each entry in column  i  below diagonal by pivot .</span>
-        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
-          <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">pivot</span>
-        <span class="k">end do</span>
-<span class="c">!                 kmax  is the number of (nonzero) entries in row  i  to</span>
-<span class="c">!                     the right of the diagonal .</span>
-        <span class="n">kmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandu</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
-<span class="c">!                  subtract  a(i,i+k)*(i-th column) from (i+k)-th column</span>
-<span class="c">!                  (below row  i ) .</span>
-        <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmax</span>
-          <span class="n">ipk</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">k</span>
-          <span class="n">midmk</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="n">k</span>
-          <span class="n">factor</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span>
-          <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
-            <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span> <span class="o">-</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">factor</span>
-          <span class="k">end do</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">nrowm1</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">return</span>
+<span class="k">    </span><span class="n">elseif</span> <span class="p">(</span><span class="n">nrowm1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">nrow</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
+
+<span class="k">    if</span> <span class="p">(</span><span class="n">nbandl</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+        <span class="c">! a is upper triangular. check that diagonal is nonzero .</span>
+        <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="k">return</span>
+<span class="k">            end if</span>
 <span class="k">        end do</span>
-<span class="k">      end do</span>
-<span class="c">!                                       check the last diagonal entry .</span>
-  <span class="mi">110</span> <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">nrow</span><span class="p">)</span><span class="o">/=</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">  </span><span class="mi">120</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="k">        if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">nrow</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="k">return</span>
+<span class="k">    end if</span>
 
-      <span class="k">end subroutine </span><span class="n">dbnfac</span>
+<span class="k">    if</span> <span class="p">(</span><span class="n">nbandu</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+        <span class="c">! a is lower triangular. check that diagonal is nonzero and</span>
+        <span class="c">! divide each column by its diagonal.</span>
+        <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+            <span class="n">pivot</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">                </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+                <span class="k">return</span>
+<span class="k">            end if</span>
+<span class="k">            </span><span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+                <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">pivot</span>
+            <span class="k">end do</span>
+<span class="k">        end do</span>
+<span class="k">        return</span>
+<span class="k">    end if</span>
+
+    <span class="c">! a is not just a triangular matrix. construct lu factorization</span>
+    <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+        <span class="c">! w(middle,i)  is pivot for i-th step .</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pivot</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">            </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="k">return</span>
+<span class="k">        end if</span>
+        <span class="c">! jmax is the number of (nonzero) entries in column i</span>
+        <span class="c">! below the diagonal.</span>
+        <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+        <span class="c">! divide each entry in column i below diagonal by pivot.</span>
+        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+            <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">pivot</span>
+        <span class="k">end do</span>
+        <span class="c">! kmax is the number of (nonzero) entries in row i to</span>
+        <span class="c">! the right of the diagonal.</span>
+        <span class="n">kmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandu</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+        <span class="c">! subtract a(i,i+k)*(i-th column) from (i+k)-th column</span>
+        <span class="c">! (below row i).</span>
+        <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmax</span>
+            <span class="n">ipk</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">k</span>
+            <span class="n">midmk</span> <span class="o">=</span> <span class="n">middle</span> <span class="o">-</span> <span class="n">k</span>
+            <span class="n">factor</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span>
+            <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+                <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">midmk</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">ipk</span><span class="p">)</span> <span class="o">-</span> <span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">factor</span>
+            <span class="k">end do</span>
+<span class="k">        end do</span>
+<span class="k">    end do</span>
+
+    <span class="c">! check the last diagonal entry.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">nrow</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">end subroutine </span><span class="n">dbnfac</span>
       
 <span class="c">!*****************************************************************************************</span>
 <span class="c">!&gt; Companion routine to [[dbnfac]]. it returns the solution x of the</span>
@@ -2058,8 +2071,8 @@
 <span class="c">!  upper triangular system \(u*x = y \) is solved for x. the calculations </span>
 <span class="c">!  are so arranged that the innermost loops stay within columns.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * banslv written by carl de boor [5]</span>
 <span class="c">!  * dbnslv from SLATEC library [1]</span>
 <span class="c">!  * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
@@ -2138,12 +2151,12 @@
 <span class="c">!  </span>
 <span class="c">!  left limiting values are set up as described in dbspvd.</span>
 <span class="c">! </span>
-<span class="c">! Error Conditions</span>
-<span class="c">!---------</span>
-<span class="c">!  * improper input is a fatal error.</span>
+<span class="c">!#Error Conditions</span>
+<span class="c">!</span>
+<span class="c">!  * improper input</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * bsplvn written by carl de boor [5]</span>
 <span class="c">!  * dbspvn author: amos, d. e., (snla) : date written 800901</span>
 <span class="c">!  * revision date 820801</span>
@@ -2236,12 +2249,12 @@
 <span class="c">!  to compute left derivatives or left limiting values at a</span>
 <span class="c">!  knot t(i), replace n by i-1 and set x=t(i), i=k+1,n+1.</span>
 <span class="c">! </span>
-<span class="c">! Error Conditions</span>
-<span class="c">!---------</span>
-<span class="c">!  * improper input is a fatal error.</span>
+<span class="c">!#Error Conditions</span>
+<span class="c">!</span>
+<span class="c">!  * improper input</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * bvalue written by carl de boor [5]</span>
 <span class="c">!  * dbvalu author: amos, d. e., (snla) : date written 800901</span>
 <span class="c">!  * revision date 820801</span>
@@ -2291,8 +2304,8 @@
 
 <span class="k">    </span><span class="n">kmider</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">ideriv</span>
 
-    <span class="c">! *** find *i* in (k,n) such that t(i) &lt;= x &lt; t(i+1)</span>
-    <span class="c">!     (or, &lt;= t(i+1) if t(i) &lt; t(i+1) = t(n+1)).</span>
+    <span class="c">! find *i* in (k,n) such that t(i) &lt;= x &lt; t(i+1)</span>
+    <span class="c">! (or, &lt;= t(i+1) if t(i) &lt; t(i+1) = t(n+1)).</span>
 
     <span class="n">km1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span>
     <span class="k">call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">inbv</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mflag</span><span class="p">)</span>
@@ -2319,8 +2332,8 @@
 
 <span class="k">    end if</span>
 
-    <span class="c">! *** difference the coefficients *ideriv* times</span>
-    <span class="c">!     work(i) = aj(i), work(k+i) = dp(i), work(k+k+i) = dm(i), i=1.k</span>
+    <span class="c">! difference the coefficients *ideriv* times</span>
+    <span class="c">! work(i) = aj(i), work(k+i) = dp(i), work(k+k+i) = dm(i), i=1.k</span>
 
     <span class="n">imk</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span>
     <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span>
@@ -2340,8 +2353,8 @@
 <span class="k">        end do</span>
 <span class="k">    end if</span>
 
-    <span class="c">! *** compute value at *x* in (t(i),(t(i+1)) of ideriv-th derivative,</span>
-    <span class="c">!     given its relevant b-spline coeff. in aj(1),...,aj(k-ideriv).</span>
+    <span class="c">! compute value at *x* in (t(i),(t(i+1)) of ideriv-th derivative,</span>
+    <span class="c">! given its relevant b-spline coeff. in aj(1),...,aj(k-ideriv).</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">/=</span><span class="n">km1</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">        </span><span class="n">ip1</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
@@ -2388,8 +2401,8 @@
 <span class="c">!  that is, when multiplicities are present in the break point</span>
 <span class="c">!  to the left of x, the largest index is taken for ileft.</span>
 <span class="c">! </span>
-<span class="c">! History</span>
-<span class="c">!---------</span>
+<span class="c">!# History</span>
+<span class="c">!</span>
 <span class="c">!  * interv written by carl de boor [5]</span>
 <span class="c">!  * dintrv author: amos, d. e., (snla) : date written 800901</span>
 <span class="c">!  * revision date 820801</span>
