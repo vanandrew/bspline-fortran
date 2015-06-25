@@ -50,7 +50,7 @@
           <ul class="nav navbar-nav">
 				
                 
-            <li><a href="../sourcefile/bspline_module.f90.html">Source File</a></li>
+            <li><a href="../lists/files.html">Source Files</a></li>
 				
 				
             <li><a href="../lists/modules.html">Modules</a></li>
@@ -59,6 +59,10 @@
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
 				
           </ul>
         <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -92,14 +96,14 @@
      
     
     
-    <li><i class="fa fa-code"></i><a href="../src/bspline_module.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/bspline_sub_module.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/bspline_module.f90.html'>bspline_module.f90</a></li>
+     <li><a href='../sourcefile/bspline_sub_module.f90.html'>bspline_sub_module.f90</a></li>
   
-     <li><a href='../module/bspline_module.html'>bspline_module</a></li>
+     <li><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></li>
   
      <li class="active">db6ink</li>
   </ol>
@@ -172,6 +176,26 @@
       <a class="list-group-item" href="../proc/db6ink.html">db6ink</a>
       
       <a class="list-group-item" href="../proc/db6val.html">db6val</a>
+      
+      <a class="list-group-item" href="../proc/f2.html">f2</a>
+      
+      <a class="list-group-item" href="../proc/f2.html">f2</a>
+      
+      <a class="list-group-item" href="../proc/f3.html">f3</a>
+      
+      <a class="list-group-item" href="../proc/f3.html">f3</a>
+      
+      <a class="list-group-item" href="../proc/f4.html">f4</a>
+      
+      <a class="list-group-item" href="../proc/f4.html">f4</a>
+      
+      <a class="list-group-item" href="../proc/f5.html">f5</a>
+      
+      <a class="list-group-item" href="../proc/f5.html">f5</a>
+      
+      <a class="list-group-item" href="../proc/f6.html">f6</a>
+      
+      <a class="list-group-item" href="../proc/f6.html">f6</a>
       
     </div>
   </div>
@@ -647,6 +671,7 @@ public  subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky,
     
     <h3>Description</h3>
     <p>Determines the parameters of a function that interpolates
+ Determines the parameters of a function that interpolates
   the six-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),s(n),fcn(i,j,k,l,m,n)) for
   i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, m=1,..,nr, n=1,..,ns. 
   the interpolating function and its derivatives may subsequently be evaluated 
