@@ -191,9 +191,23 @@
     
     <span class="k">implicit none</span>
 <span class="k">    </span>
-<span class="k">    private</span>
-<span class="k">    </span>
-<span class="k">    type</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_2d</span>
+<span class="k">    private        </span>
+
+<span class="k">    type</span><span class="p">,</span><span class="k">public</span><span class="p">,</span><span class="k">abstract</span> <span class="kd">::</span> <span class="n">bspline_class</span>
+        <span class="c">!! base class for the b-spline types</span>
+    <span class="k">contains</span>
+<span class="k">        procedure</span><span class="p">(</span><span class="n">destroy_func</span><span class="p">),</span><span class="k">deferred</span> <span class="kd">::</span> <span class="n">destroy</span>  <span class="c">!! destructor</span>
+    <span class="k">end type </span><span class="n">bspline_class</span>
+
+    <span class="k">abstract interface</span>
+<span class="k">        subroutine </span><span class="n">destroy_func</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>  <span class="c">!! interface for bspline destructor routines</span>
+        <span class="k">import</span> <span class="kd">::</span> <span class="n">bspline_class</span>
+        <span class="k">implicit none</span>
+<span class="k">        class</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">me</span>
+        <span class="k">end subroutine </span><span class="n">destroy_func</span>
+    <span class="k">end interface</span>
+
+<span class="k">    type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_2d</span>
         <span class="c">!! Class for 2d b-spline interpolation.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>
@@ -209,7 +223,7 @@
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_2d</span>
     <span class="k">end type </span><span class="n">bspline_2d</span>
 
-    <span class="k">type</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_3d</span>
+    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_3d</span>
         <span class="c">!! Class for 3d b-spline interpolation.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>
@@ -228,7 +242,7 @@
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_3d</span>
     <span class="k">end type </span><span class="n">bspline_3d</span>
 
-    <span class="k">type</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_4d</span>
+    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_4d</span>
         <span class="c">!! Class for 4d b-spline interpolation.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>
@@ -251,7 +265,7 @@
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_4d</span>
     <span class="k">end type </span><span class="n">bspline_4d</span>
 
-    <span class="k">type</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_5d</span>
+    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_5d</span>
         <span class="c">!! Class for 5d b-spline interpolation.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>
@@ -276,7 +290,7 @@
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_5d</span>
     <span class="k">end type </span><span class="n">bspline_5d</span>
 
-    <span class="k">type</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_6d</span>
+    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_6d</span>
         <span class="c">!! Class for 6d b-spline interpolation.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>

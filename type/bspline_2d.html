@@ -82,7 +82,7 @@
   
   <div class="row">
     <h1>bspline_2d
-    <small>Derived Type</small>
+    <small>Derived Type, Extends(<a href='../type/bspline_class.html'>bspline_class</a>)</small>
     
     </h1>
 	 
@@ -166,6 +166,8 @@
       <a class="list-group-item" href="../type/bspline_5d.html">bspline_5d</a>
       
       <a class="list-group-item" href="../type/bspline_6d.html">bspline_6d</a>
+      
+      <a class="list-group-item" href="../type/bspline_class.html">bspline_class</a>
       
     </div>
   </div>
@@ -564,7 +566,7 @@ private  subroutine destroy_2d(me)
     
     <section>
     <h2><a class="anchor" name="src"></a>Source Code</h2>
-    <div class="highlight"><pre>    <span class="k">type</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_2d</span>
+    <div class="highlight"><pre>    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_2d</span>
         <span class="c">!! Class for 2d b-spline interpolation.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>
