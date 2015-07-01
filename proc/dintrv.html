@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="<p>BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid</p>">
+    
+    <meta name="author" content="Chris MacMackin" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>dintrv &ndash; bspline-fortran</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">bspline-fortran </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+                
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+				
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+          </ul>
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>dintrv
+    <small>Subroutine</small>
+    
+    </h1>
+	 
+<div class="row">
+<div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+    <li><i class="fa fa-code"></i><a href="../src/bspline_sub_module.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/bspline_sub_module.f90.html'>bspline_sub_module.f90</a></li>
+  
+     <li><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></li>
+  
+     <li class="active">dintrv</li>
+  </ol>
+  </div>
+</div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-3">
+    
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/dintrv.html#var-ihi">ihi</a>
+      
+      <a class="list-group-item" href="../proc/dintrv.html#var-istep">istep</a>
+      
+      <a class="list-group-item" href="../proc/dintrv.html#var-middle">middle</a>
+      
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/dintrv.html#src">dintrv</a>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading text-left"><h3 class="panel-title">All Procedures</h3></div>
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../proc/check_inputs.html">check_inputs</a>
+      
+      <a class="list-group-item" href="../proc/db2ink.html">db2ink</a>
+      
+      <a class="list-group-item" href="../proc/db2val.html">db2val</a>
+      
+      <a class="list-group-item" href="../proc/db3ink.html">db3ink</a>
+      
+      <a class="list-group-item" href="../proc/db3val.html">db3val</a>
+      
+      <a class="list-group-item" href="../proc/db4ink.html">db4ink</a>
+      
+      <a class="list-group-item" href="../proc/db4val.html">db4val</a>
+      
+      <a class="list-group-item" href="../proc/db5ink.html">db5ink</a>
+      
+      <a class="list-group-item" href="../proc/db5val.html">db5val</a>
+      
+      <a class="list-group-item" href="../proc/db6ink.html">db6ink</a>
+      
+      <a class="list-group-item" href="../proc/db6val.html">db6val</a>
+      
+      <a class="list-group-item" href="../proc/dbintk.html">dbintk</a>
+      
+      <a class="list-group-item" href="../proc/dbknot.html">dbknot</a>
+      
+      <a class="list-group-item" href="../proc/dbnfac.html">dbnfac</a>
+      
+      <a class="list-group-item" href="../proc/dbnslv.html">dbnslv</a>
+      
+      <a class="list-group-item" href="../proc/dbspvn.html">dbspvn</a>
+      
+      <a class="list-group-item" href="../proc/dbtpcf.html">dbtpcf</a>
+      
+      <a class="list-group-item" href="../proc/dbvalu.html">dbvalu</a>
+      
+      <a class="list-group-item" href="../proc/destroy_2d.html">destroy_2d</a>
+      
+      <a class="list-group-item" href="../proc/destroy_3d.html">destroy_3d</a>
+      
+      <a class="list-group-item" href="../proc/destroy_4d.html">destroy_4d</a>
+      
+      <a class="list-group-item" href="../proc/destroy_5d.html">destroy_5d</a>
+      
+      <a class="list-group-item" href="../proc/destroy_6d.html">destroy_6d</a>
+      
+      <a class="list-group-item" href="../proc/dintrv.html">dintrv</a>
+      
+      <a class="list-group-item" href="../proc/evaluate_2d.html">evaluate_2d</a>
+      
+      <a class="list-group-item" href="../proc/evaluate_3d.html">evaluate_3d</a>
+      
+      <a class="list-group-item" href="../proc/evaluate_4d.html">evaluate_4d</a>
+      
+      <a class="list-group-item" href="../proc/evaluate_5d.html">evaluate_5d</a>
+      
+      <a class="list-group-item" href="../proc/evaluate_6d.html">evaluate_6d</a>
+      
+      <a class="list-group-item" href="../proc/f2.html">f2</a>
+      
+      <a class="list-group-item" href="../proc/f2.html">f2</a>
+      
+      <a class="list-group-item" href="../proc/f3.html">f3</a>
+      
+      <a class="list-group-item" href="../proc/f3.html">f3</a>
+      
+      <a class="list-group-item" href="../proc/f4.html">f4</a>
+      
+      <a class="list-group-item" href="../proc/f4.html">f4</a>
+      
+      <a class="list-group-item" href="../proc/f5.html">f5</a>
+      
+      <a class="list-group-item" href="../proc/f5.html">f5</a>
+      
+      <a class="list-group-item" href="../proc/f6.html">f6</a>
+      
+      <a class="list-group-item" href="../proc/f6.html">f6</a>
+      
+      <a class="list-group-item" href="../proc/initialize_2d.html">initialize_2d</a>
+      
+      <a class="list-group-item" href="../proc/initialize_3d.html">initialize_3d</a>
+      
+      <a class="list-group-item" href="../proc/initialize_4d.html">initialize_4d</a>
+      
+      <a class="list-group-item" href="../proc/initialize_5d.html">initialize_5d</a>
+      
+      <a class="list-group-item" href="../proc/initialize_6d.html">initialize_6d</a>
+      
+      <a class="list-group-item" href="../proc/xerror.html">xerror</a>
+      
+    </div>
+  </div>
+  
+  
+    </div>
+    
+    <div class="col-lg-9" id='text'>
+    <h2>
+private  subroutine dintrv(xt, lxt, x, ilo, ileft, mflag)
+</h2>
+    
+  
+
+
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-xt"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(lxt)</td><td>::</td>
+  <td><strong>xt</strong></td><td><p>a knot or break point vector of length lxt</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-lxt"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lxt</strong></td><td><p>length of the xt vector</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td><p>argument</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ilo"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilo</strong></td><td><p>an initialization parameter which must be set
+ to 1 the first time the spline array xt is
+ processed by dintrv. ilo contains information for 
+ efficient processing after the initial call and ilo
+ must not be changed by the user.  distinct splines 
+ require distinct ilo parameters.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ileft"></a>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ileft</strong></td><td><p>largest integer satisfying xt(ileft) &lt;= x</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-mflag"></a>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mflag</strong></td><td><p>signals when x lies out of bounds</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    <h3>Description</h3>
+    <p>Computes the largest integer ileft in 1 &lt;= ileft &lt;= lxt 
+  such that xt(ileft) &lt;= x where xt(*) is a subdivision of
+  the x interval.<br>
+  precisely,</p>
+<div class="codehilite"><pre>         <span class="k">if            </span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">xt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>   <span class="k">then </span><span class="n">ileft</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>   <span class="n">mflag</span><span class="o">=-</span><span class="mi">1</span>
+         <span class="k">if   </span><span class="n">xt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">xt</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">then </span><span class="n">ileft</span><span class="o">=</span><span class="n">i</span><span class="p">,</span>   <span class="n">mflag</span><span class="o">=</span><span class="mi">0</span>
+         <span class="k">if </span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">x</span>           <span class="k">then </span><span class="n">ileft</span><span class="o">=</span><span class="n">lxt</span><span class="p">,</span> <span class="n">mflag</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+
+
+<p>that is, when multiplicities are present in the break point
+  to the left of x, the largest index is taken for ileft.</p>
+<h1>History</h1>
+<ul>
+<li>interv written by carl de boor [5]</li>
+<li>dintrv author: amos, d. e., (snla) : date written 800901</li>
+<li>revision date 820801</li>
+<li>Jacob Williams, 2/24/2015 : updated to free-form Fortran.</li>
+</ul>
+    
+    <br>
+    
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ihi"></a>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>ihi</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-istep"></a>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>istep</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-middle"></a>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>middle</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    <section>
+    <h2><a class="anchor" name="src"></a>Source Code</h2>
+    <div class="highlight"><pre>    <span class="k">subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
+    
+    <span class="k">implicit none</span>
+<span class="k">    </span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">lxt</span>    <span class="c">!! length of the xt vector</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">lxt</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xt</span>     <span class="c">!! a knot or break point vector of length lxt</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! argument</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">ilo</span>    <span class="c">!! an initialization parameter which must be set</span>
+                                                 <span class="c">!! to 1 the first time the spline array xt is</span>
+                                                 <span class="c">!! processed by dintrv. ilo contains information for </span>
+                                                 <span class="c">!! efficient processing after the initial call and ilo</span>
+                                                 <span class="c">!! must not be changed by the user.  distinct splines </span>
+                                                 <span class="c">!! require distinct ilo parameters.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>  <span class="c">!! largest integer satisfying xt(ileft) &lt;= x</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">mflag</span>  <span class="c">!! signals when x lies out of bounds</span>
+    
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ihi</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">middle</span>
+
+      <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">ihi</span><span class="o">&lt;</span><span class="n">lxt</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">10</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">lxt</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">90</span>
+      <span class="n">ilo</span> <span class="o">=</span> <span class="n">lxt</span> <span class="o">-</span> <span class="mi">1</span>
+      <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
+
+   <span class="mi">10</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">40</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">100</span>
+
+<span class="c">! *** now x &lt; xt(ihi) . find lower bound</span>
+      <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="mi">20</span> <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span>
+      <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span> <span class="o">-</span> <span class="n">istep</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">ilo</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">30</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+      <span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">20</span>
+
+   <span class="mi">30</span> <span class="n">ilo</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">90</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+
+<span class="c">! *** now x &gt;= xt(ilo) . find upper bound</span>
+   <span class="mi">40</span> <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
+   <span class="mi">50</span> <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span>
+      <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="n">istep</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">60</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+      <span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">50</span>
+
+   <span class="mi">60</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">110</span>
+      <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
+
+<span class="c">! *** now xt(ilo) &lt;= x &lt; xt(ihi) . narrow the interval</span>
+   <span class="mi">70</span> <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">ilo</span><span class="o">+</span><span class="n">ihi</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">middle</span><span class="o">==</span><span class="n">ilo</span><span class="p">)</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">100</span>
+<span class="c">!     note. it is assumed that middle = ilo in case ihi = ilo+1</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">middle</span><span class="p">))</span> <span class="n">go</span> <span class="n">to</span> <span class="mi">80</span>
+      <span class="n">ilo</span> <span class="o">=</span> <span class="n">middle</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+
+   <span class="mi">80</span> <span class="n">ihi</span> <span class="o">=</span> <span class="n">middle</span>
+      <span class="n">go</span> <span class="n">to</span> <span class="mi">70</span>
+
+<span class="c">! *** set output and return</span>
+   <span class="mi">90</span> <span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+      <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="k">return</span>
+
+<span class="k">  </span><span class="mi">100</span> <span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
+      <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
+      <span class="k">return</span>
+
+<span class="k">  </span><span class="mi">110</span> <span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
+
+    <span class="k">end subroutine </span><span class="n">dintrv</span>      
+</pre></div>
+
+    </section>
+    
+    
+    </div>
+  </div>
+
+    <hr>
+    <footer>
+        <div class="row">
+        <div class="col-md-6">&copy; 2015 bspline-fortran was written by Jacob Williams. </div>
+        <div class="col-md-6"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a>.</span></div>
+        </div>
+        <br>
+    </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

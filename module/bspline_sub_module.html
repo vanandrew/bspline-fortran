@@ -58,6 +58,8 @@
 				
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
@@ -91,7 +93,7 @@
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
      
-    <li><i class="fa fa-pencil"></i> [u'Jacob Williams', u'Jacob Williams']</li>
+    <li><i class="fa fa-pencil"></i> Jacob Williams</li>
      
      
      
@@ -120,11 +122,31 @@
   
   
   
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#var-wp">wp</a>
+      
+    </div>
+  </div>
   
   
   
   
   
+  
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Functions</h3></div>
+    <div class="list-group">
+      
+      <a class="list-group-item" href="="../module/bspline_sub_module.html#proc-dbvalu">dbvalu</a>
+      
+    </div>
+  </div>
   
   
   
@@ -151,6 +173,24 @@
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db6ink">db6ink</a>
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db6val">db6val</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-check_inputs">check_inputs</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbknot">dbknot</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbtpcf">dbtpcf</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbintk">dbintk</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbnfac">dbnfac</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbnslv">dbnslv</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbspvn">dbspvn</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dintrv">dintrv</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-xerror">xerror</a>
       
     </div>
   </div>
@@ -222,6 +262,38 @@
     <br>
 
     
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-wp"></a>integer,</td>
+  
+  <td>private,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>wp</strong></td><td> =</td><td>real64</td><td><p>Real precision</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
     
 
@@ -229,6 +301,193 @@
     
     
     
+     
+    <section>
+    <h2>Functions</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dbvalu"></a><h3>
+private  function <a href='../proc/dbvalu.html'>dbvalu</a>(t, a, n, k, ideriv, x, inbv, work)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-t"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>t</strong></td><td><p>knot vector of length n+k</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-a"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(n)</td><td>::</td>
+  <td><strong>a</strong></td><td><p>b-spline coefficient vector of length n </p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-n"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n</strong></td><td><p>number of b-spline coefficients.
+  (sum of knot multiplicities-k)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-k"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong></td><td><p>order of the b-spline, k &gt;= 1</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ideriv"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ideriv</strong></td><td><p>order of the derivative, 0 &lt;= ideriv &lt;= k-1.
+  ideriv = 0 returns the b-spline value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td><p>argument, t(k) &lt;= x &lt;= t(n+1)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-inbv"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbv</strong></td><td><p>an initialization parameter which must be set
+  to 1 the first time dbvalu is called.
+  inbv contains information for efficient process-
+  ing after the initial call and inbv must not
+  be changed by the user.  distinct splines require
+  distinct inbv parameters.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-work"></a>real(kind=wp),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>work</strong></td><td><p>work vector of length 3*k</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small><a class="anchor" name="var-dbvalu"></a>real(kind=wp)
+  </small></h4>
+  
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>Evaluates the b-representation (t,a,n,k) of a b-spline
+  at x for the function value on ideriv=0 or any of its
+  derivatives on ideriv=1,2,...,k-1.  right limiting values
+  (right derivatives) are returned except at the right end
+  point x=t(n+1) where left limiting values are computed.  the
+  spline is defined on t(k) &lt;= x &lt;= t(n+1).  dbvalu returns
+  a fatal error message when x is outside of this interval.</p>
+        
+
+  </div>
+  </div>
+
+    
+    </section>
+    <br>
     
 
 
@@ -452,7 +711,6 @@ public  subroutine <a href='../proc/db2ink.html'>db2ink</a>(x, nx, y, ny, fcn, k
 
 
        <p>Determines the parameters of a function that interpolates
- Determines the parameters of a function that interpolates
   the two-dimensional gridded data
   $$ [x(i),y(j),\mathrm{fcn}(i,j)] ~\mathrm{for}~ i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y $$
   The interpolating function and its derivatives may
@@ -691,7 +949,6 @@ public  subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy
 
 
        <p>Evaluates the tensor product piecewise polynomial
- Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db2ink.html">db2ink</a> or one of its
   derivatives at the point (xval,yval). </p>
         
@@ -983,7 +1240,6 @@ public  subroutine <a href='../proc/db3ink.html'>db3ink</a>(x, nx, y, ny, z, nz,
 
 
        <p>Determines the parameters of a function that interpolates
- Determines the parameters of a function that interpolates
   the three-dimensional gridded data 
   $$ [x(i),y(j),z(k),\mathrm{fcn}(i,j,k)] ~\mathrm{for}~ 
      i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z $$
@@ -1299,7 +1555,6 @@ public  subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, id
 
 
        <p>Evaluates the tensor product piecewise polynomial
- Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db3ink.html">db3ink</a> or one of its
   derivatives at the point (xval,yval,zval). </p>
         
@@ -1654,7 +1909,6 @@ public  subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z, nz,
 
 
        <p>Determines the parameters of a function that interpolates
- Determines the parameters of a function that interpolates
   the four-dimensional gridded data
   $$ [x(i),y(j),z(k),q(l),\mathrm{fcn}(i,j,k,l)] ~\mathrm{for}~ 
      i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z, 
@@ -2045,7 +2299,6 @@ public  subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qv
 
 
        <p>Evaluates the tensor product piecewise polynomial
- Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db4ink.html">db4ink</a> or one of its
   derivatives at the point (xval,yval,zval,qval). </p>
         
@@ -2463,7 +2716,6 @@ public  subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z, nz,
 
 
        <p>Determines the parameters of a function that interpolates
- Determines the parameters of a function that interpolates
   the five-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),fcn(i,j,k,l,m)) for
   i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, and m=1,..,nr. 
   The interpolating function and its derivatives may subsequently be evaluated 
@@ -2927,7 +3179,6 @@ public  subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qv
 
 
        <p>Evaluates the tensor product piecewise polynomial
- Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db5ink.html">db5ink</a> or one of its
   derivatives at the point (xval,yval,zval,qval,rval).</p>
         
@@ -3408,7 +3659,6 @@ public  subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z, nz,
 
 
        <p>Determines the parameters of a function that interpolates
- Determines the parameters of a function that interpolates
   the six-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),s(n),fcn(i,j,k,l,m,n)) for
   i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, m=1,..,nr, n=1,..,ns. 
   the interpolating function and its derivatives may subsequently be evaluated 
@@ -3947,9 +4197,1602 @@ public  subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qv
 
 
        <p>Evaluates the tensor product piecewise polynomial
- Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db6ink.html">db6ink</a> or one of its
   derivatives at the point (xval,yval,zval,qval,rval,sval).</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-check_inputs"></a><h3>
+private  subroutine <a href='../proc/check_inputs.html'>check_inputs</a>(routine, iflag, nx, ny, nz, nq, nr, ns, kx, ky, kz, kq, kr, ks, x, y, z, q, r, s, tx, ty, tz, tq, tr, ts, status_ok)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-routine"></a>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>routine</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-iflag"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nx"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ny"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ny</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nz"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>nz</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nq"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>nq</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nr"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>nr</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ns"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ns</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-kx"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ky"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ky</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-kz"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>kz</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-kq"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>kq</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-kr"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>kr</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ks"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ks</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-y"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>y</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-z"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>z</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-q"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>q</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-r"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>r</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-s"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>s</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-tx"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ty"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>ty</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-tz"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tz</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-tq"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tq</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-tr"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tr</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ts"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>ts</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-status_ok"></a>logical,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>status_ok</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>Check the validity of the inputs to the "ink" routines.
+  Prints warning message if there is an error, 
+  and also sets iflag and status_ok.</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dbknot"></a><h3>
+private  subroutine <a href='../proc/dbknot.html'>dbknot</a>(x, n, k, t)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(n)</td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-n"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-k"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-t"></a>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>t</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>dbknot chooses a knot sequence for interpolation of order k at the
+  data points x(i), i=1,..,n.  the n+k knots are placed in the array
+  t.  k knots are placed at each endpoint and not-a-knot end
+  conditions are used.  the remaining knots are placed at data points
+  if n is even and between data points if n is odd.  the rightmost
+  knot is shifted slightly to the right to insure proper interpolation
+  at x(n) (see page 350 of the reference).</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dbtpcf"></a><h3>
+private  subroutine <a href='../proc/dbtpcf.html'>dbtpcf</a>(x, n, fcn, ldf, nf, t, k, bcoef, work)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong>(n)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-n"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-fcn"></a>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fcn</strong>(ldf,nf)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ldf"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ldf</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nf"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nf</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-t"></a>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>t</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-k"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-bcoef"></a>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>bcoef</strong>(nf,n)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-work"></a>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>work</strong>(*)</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>dbtpcf computes b-spline interpolation coefficients for nf sets
+  of data stored in the columns of the array fcn. the b-spline
+  coefficients are stored in the rows of bcoef however.
+  each interpolation is based on the n abcissa stored in the
+  array x, and the n+k knots stored in the array t. the order
+  of each interpolation is k. the work array must be of length
+  at least 2<em>k</em>(n+1).</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dbintk"></a><h3>
+private  subroutine <a href='../proc/dbintk.html'>dbintk</a>(x, y, t, n, k, bcoef, q, work)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(n)</td><td>::</td>
+  <td><strong>x</strong></td><td><p>vector of length n containing data point abscissa
+ in strictly increasing order.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-y"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(n)</td><td>::</td>
+  <td><strong>y</strong></td><td><p>corresponding vector of length n containing data
+ point ordinates.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-t"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(*)</td><td>::</td>
+  <td><strong>t</strong></td><td><p>knot vector of length n+k
+ since t(1),..,t(k) &lt;= x(1) and t(n+1),..,t(n+k)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-n"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>n</strong></td><td><p>number of data points, n &gt;= k</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-k"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong></td><td><p>order of the spline, k &gt;= 1</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-bcoef"></a>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(n)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p>a vector of length n containing the b-spline coefficients</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-q"></a>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(*)</td><td>::</td>
+  <td><strong>q</strong></td><td><p>a work vector of length (2<em>k-1)</em>n, containing
+ the triangular factorization of the coefficient
+ matrix of the linear system being solved.  the
+ coefficients for the interpolant of an
+ additional data set (x(i),yy(i)), i=1,...,n
+ with the same abscissa can be obtained by loading
+ yy into bcoef and then executing
+ call dbnslv(q,2k-1,n,k-1,k-1,bcoef)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-work"></a>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(*)</td><td>::</td>
+  <td><strong>work</strong></td><td><p>work vector of length 2*k</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>dbintk produces the b-spline coefficients, bcoef, of the
+  b-spline of order k with knots t(i), i=1,...,n+k, which
+  takes on the value y(i) at x(i), i=1,...,n.  the spline or
+  any of its derivatives can be evaluated by calls to <a href="../proc/dbvalu.html">dbvalu</a>.</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dbnfac"></a><h3>
+private  subroutine <a href='../proc/dbnfac.html'>dbnfac</a>(w, nroww, nrow, nbandl, nbandu, iflag)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-w"></a>real(kind=wp),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(nroww,nrow)</td><td>::</td>
+  <td><strong>w</strong></td><td><p>work array. See header for details.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nroww"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nroww</strong></td><td><p>row dimension of the work array w. must be &gt;= nbandl + 1 + nbandu.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nrow"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nrow</strong></td><td><p>matrix order</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nbandl"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nbandl</strong></td><td><p>number of bands of a below the main diagonal</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nbandu"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nbandu</strong></td><td><p>number of bands of a above the main diagonal</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-iflag"></a>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>indicating success(=1) or failure (=2)</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>Returns in w the LU-factorization (without pivoting) of the banded
+  matrix a of order nrow with (nbandl + 1 + nbandu) bands or diagonals 
+  in the work array w .</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dbnslv"></a><h3>
+private  subroutine <a href='../proc/dbnslv.html'>dbnslv</a>(w, nroww, nrow, nbandl, nbandu, b)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-w"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(nroww,nrow)</td><td>::</td>
+  <td><strong>w</strong></td><td><p>describes the lu-factorization of a banded matrix a of order nrow as constructed in <a href="../proc/dbnfac.html">dbnfac</a>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nroww"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nroww</strong></td><td><p>describes the lu-factorization of a banded matrix a of order nrow as constructed in <a href="../proc/dbnfac.html">dbnfac</a>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nrow"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nrow</strong></td><td><p>describes the lu-factorization of a banded matrix a of order nrow as constructed in <a href="../proc/dbnfac.html">dbnfac</a>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nbandl"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nbandl</strong></td><td><p>describes the lu-factorization of a banded matrix a of order nrow as constructed in <a href="../proc/dbnfac.html">dbnfac</a>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nbandu"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nbandu</strong></td><td><p>describes the lu-factorization of a banded matrix a of order nrow as constructed in <a href="../proc/dbnfac.html">dbnfac</a>.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-b"></a>real(kind=wp),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(nrow)</td><td>::</td>
+  <td><strong>b</strong></td><td><p><strong>in</strong>: right side of the system to be solved
+ <strong>out</strong>: the solution x, of order nrow</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>Companion routine to <a href="../proc/dbnfac.html">dbnfac</a>. it returns the solution x of the
+  linear system a*x = b in place of b, given the lu-factorization
+  for a in the work array w from dbnfac.</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dbspvn"></a><h3>
+private  subroutine <a href='../proc/dbspvn.html'>dbspvn</a>(t, jhigh, k, index, x, ileft, vnikx, work, iwork)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-t"></a>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>t</strong>(*)</td><td><p>knot vector of length n+k, where
+ n = number of b-spline basis functions
+ n = sum of knot multiplicities-k
+    dimension t(ileft+jhigh)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-jhigh"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>jhigh</strong></td><td><p>order of b-spline, 1 &lt;= jhigh &lt;= k</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-k"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>k</strong></td><td><p>highest possible order</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-index"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>index</strong></td><td><p>index = 1 gives basis functions of order jhigh
+      = 2 denotes previous entry with work, iwork
+          values saved for subsequent calls to
+          dbspvn.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td><p>argument of basis functions, t(k) &lt;= x &lt;= t(n+1)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ileft"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ileft</strong></td><td><p>largest integer such that t(ileft) &lt;= x &lt; t(ileft+1)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-vnikx"></a>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>vnikx</strong>(k)</td><td><p>vector of length k for spline values.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-work"></a>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>work</strong>(*)</td><td><p>a work vector of length 2*k</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-iwork"></a>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iwork</strong></td><td><p>a work parameter.  both work and iwork contain
+ information necessary to continue for index = 2.
+ when index = 1 exclusively, these are scratch
+ variables and can be used for other purposes.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>Calculates the value of all (possibly) nonzero basis
+  functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)
+  &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on
+  the first call when index=1.  ileft is such that t(ileft) &lt;=
+  x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)
+  produces the proper ileft.  dbspvn calculates using the basic
+  algorithm needed in dbspvd.  if only basis functions are
+  desired, setting jhigh=k and index=1 can be faster than
+  calling dbspvd, but extra coding is required for derivatives
+  (index=2) and dbspvd is set up for this purpose.</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-dintrv"></a><h3>
+private  subroutine <a href='../proc/dintrv.html'>dintrv</a>(xt, lxt, x, ilo, ileft, mflag)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-xt"></a>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(lxt)</td><td>::</td>
+  <td><strong>xt</strong></td><td><p>a knot or break point vector of length lxt</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-lxt"></a>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>lxt</strong></td><td><p>length of the xt vector</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-x"></a>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td><p>argument</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ilo"></a>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilo</strong></td><td><p>an initialization parameter which must be set
+ to 1 the first time the spline array xt is
+ processed by dintrv. ilo contains information for 
+ efficient processing after the initial call and ilo
+ must not be changed by the user.  distinct splines 
+ require distinct ilo parameters.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ileft"></a>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ileft</strong></td><td><p>largest integer satisfying xt(ileft) &lt;= x</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-mflag"></a>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mflag</strong></td><td><p>signals when x lies out of bounds</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>Computes the largest integer ileft in 1 &lt;= ileft &lt;= lxt 
+  such that xt(ileft) &lt;= x where xt(*) is a subdivision of
+  the x interval.<br>
+  precisely,</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><a class="anchor" name="proc-xerror"></a><h3>
+private  subroutine <a href='../proc/xerror.html'>xerror</a>(messg, nmessg, nerr, level)
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-messg"></a>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>messg</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nmessg"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>nmessg</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nerr"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>nerr</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-level"></a>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>level</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+
+
+       <p>Just a replacement for the CMLIB XERROR routine.</p>
         
 
   </div>

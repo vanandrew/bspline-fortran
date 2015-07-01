@@ -58,6 +58,8 @@
 				
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
@@ -116,6 +118,34 @@
     <div class="col-lg-3">
     
   
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-nx">nx</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-ny">ny</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-nz">nz</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-kx">kx</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-ky">ky</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-kz">kz</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-bcoef">bcoef</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-tx">tx</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-ty">ty</a>
+      
+      <a class="list-group-item" href="../type/bspline_3d.html#var-tz">tz</a>
+      
+    </div>
+  </div>
   
   
   
@@ -179,6 +209,164 @@
     <p>Class for 3d b-spline interpolation.</p>
     <br>
     
+    <section>
+    <h2>Components</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nx"></a>integer,</td>
+  
+  <td>private</td>
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td> =</td><td>0</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ny"></a>integer,</td>
+  
+  <td>private</td>
+  <td></td><td>::</td>
+  <td><strong>ny</strong></td><td> =</td><td>0</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-nz"></a>integer,</td>
+  
+  <td>private</td>
+  <td></td><td>::</td>
+  <td><strong>nz</strong></td><td> =</td><td>0</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-kx"></a>integer,</td>
+  
+  <td>private</td>
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td> =</td><td>0</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ky"></a>integer,</td>
+  
+  <td>private</td>
+  <td></td><td>::</td>
+  <td><strong>ky</strong></td><td> =</td><td>0</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-kz"></a>integer,</td>
+  
+  <td>private</td>
+  <td></td><td>::</td>
+  <td><strong>kz</strong></td><td> =</td><td>0</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-bcoef"></a>real(kind=wp),</td>
+  
+  <td>private,</td>
+  <td>dimension(:,:,:), allocatable</td><td>::</td>
+  <td><strong>bcoef</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-tx"></a>real(kind=wp),</td>
+  
+  <td>private,</td>
+  <td>dimension(:), allocatable</td><td>::</td>
+  <td><strong>tx</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-ty"></a>real(kind=wp),</td>
+  
+  <td>private,</td>
+  <td>dimension(:), allocatable</td><td>::</td>
+  <td><strong>ty</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><a class="anchor" name="var-tz"></a>real(kind=wp),</td>
+  
+  <td>private,</td>
+  <td>dimension(:), allocatable</td><td>::</td>
+  <td><strong>tz</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
     
     
     
@@ -190,7 +378,7 @@
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-initialize"></a><h3>procedure, public :: <strong>initialize</strong>  => initialize_3d 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-initialize"></a><h3>procedure, public :: <strong>initialize</strong>  => <a href='../proc/initialize_3d.html'>initialize_3d</a> 
     
   <h3></div>
   
@@ -200,7 +388,7 @@
       
     
     <h3>
-private  subroutine initialize_3d(me, x, y, z, fcn, kx, ky, kz, iflag)
+private  subroutine <a href='../proc/initialize_3d.html'>initialize_3d</a>(me, x, y, z, fcn, kx, ky, kz, iflag)
 </h3>
     
     <h4>Arguments</h4>
@@ -362,8 +550,7 @@ private  subroutine initialize_3d(me, x, y, z, fcn, kx, ky, kz, iflag)
        
 
 
-       <p>Initialize a [[bspline_3d]] type.  This is a wrapper for [[db3ink]].
- Initialize a [[bspline_3d]] type.  This is a wrapper for [[db3ink]].</p>
+       <p>Initialize a <a href="../type/bspline_3d.html">bspline_3d</a> type.  This is a wrapper for <a href="../proc/db3ink.html">db3ink</a>.</p>
         
 
       </li>
@@ -374,7 +561,7 @@ private  subroutine initialize_3d(me, x, y, z, fcn, kx, ky, kz, iflag)
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-evaluate"></a><h3>procedure, public :: <strong>evaluate</strong>  => evaluate_3d 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-evaluate"></a><h3>procedure, public :: <strong>evaluate</strong>  => <a href='../proc/evaluate_3d.html'>evaluate_3d</a> 
     
   <h3></div>
   
@@ -384,7 +571,7 @@ private  subroutine initialize_3d(me, x, y, z, fcn, kx, ky, kz, iflag)
       
     
     <h3>
-private  subroutine evaluate_3d(me, xval, yval, zval, idx, idy, idz, f, iflag)
+private  subroutine <a href='../proc/evaluate_3d.html'>evaluate_3d</a>(me, xval, yval, zval, idx, idy, idz, f, iflag)
 </h3>
     
     <h4>Arguments</h4>
@@ -546,8 +733,7 @@ private  subroutine evaluate_3d(me, xval, yval, zval, idx, idy, idz, f, iflag)
        
 
 
-       <p>Evaluate a [[bspline_3d]] interpolate.  This is a wrapper for [[db3val]].
- Evaluate a [[bspline_3d]] interpolate.  This is a wrapper for [[db3val]].</p>
+       <p>Evaluate a <a href="../type/bspline_3d.html">bspline_3d</a> interpolate.  This is a wrapper for <a href="../proc/db3val.html">db3val</a>.</p>
         
 
       </li>
@@ -558,7 +744,7 @@ private  subroutine evaluate_3d(me, xval, yval, zval, idx, idy, idz, f, iflag)
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-destroy"></a><h3>procedure, public :: <strong>destroy</strong>  => destroy_3d 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-destroy"></a><h3>procedure, public :: <strong>destroy</strong>  => <a href='../proc/destroy_3d.html'>destroy_3d</a> 
     
   <h3></div>
   
@@ -568,7 +754,7 @@ private  subroutine evaluate_3d(me, xval, yval, zval, idx, idy, idz, f, iflag)
       
     
     <h3>
-private  subroutine destroy_3d(me)
+private  subroutine <a href='../proc/destroy_3d.html'>destroy_3d</a>(me)
 </h3>
     
     <h4>Arguments</h4>
@@ -610,8 +796,7 @@ private  subroutine destroy_3d(me)
        
 
 
-       <p>Destructor for [[bspline_3d]] type.
- Destructor for [[bspline_3d]] type.</p>
+       <p>Destructor for <a href="../type/bspline_3d.html">bspline_3d</a> type.</p>
         
 
       </li>
