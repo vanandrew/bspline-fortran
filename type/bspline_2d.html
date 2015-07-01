@@ -58,8 +58,6 @@
 				
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
-            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
@@ -118,28 +116,6 @@
     <div class="col-lg-3">
     
   
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/bspline_2d.html#var-nx">nx</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html#var-ny">ny</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html#var-kx">kx</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html#var-ky">ky</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html#var-bcoef">bcoef</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html#var-tx">tx</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html#var-ty">ty</a>
-      
-    </div>
-  </div>
   
   
   
@@ -203,122 +179,6 @@
     <p>Class for 2d b-spline interpolation.</p>
     <br>
     
-    <section>
-    <h2>Components</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-nx"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>nx</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-ny"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>ny</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-kx"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>kx</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-ky"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>ky</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-bcoef"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:,:), allocatable</td><td>::</td>
-  <td><strong>bcoef</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-tx"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>tx</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-ty"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>ty</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
-    
     
     
     
@@ -330,7 +190,7 @@
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-initialize"></a><h3>procedure, public :: <strong>initialize</strong>  => <a href='../proc/initialize_2d.html'>initialize_2d</a> 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-initialize"></a><h3>procedure, public :: <strong>initialize</strong>  => initialize_2d 
     
   <h3></div>
   
@@ -340,7 +200,7 @@
       
     
     <h3>
-private  subroutine <a href='../proc/initialize_2d.html'>initialize_2d</a>(me, x, y, fcn, kx, ky, iflag)
+private  subroutine initialize_2d(me, x, y, fcn, kx, ky, iflag)
 </h3>
     
     <h4>Arguments</h4>
@@ -472,7 +332,7 @@ private  subroutine <a href='../proc/initialize_2d.html'>initialize_2d</a>(me, x
        
 
 
-       <p>Initialize a <a href="../type/bspline_2d.html">bspline_2d</a> type.  This is a wrapper for <a href="../proc/db2ink.html">db2ink</a>.</p>
+       <p>Initialize a [[bspline_2d]] type.  This is a wrapper for [[db2ink]].</p>
         
 
       </li>
@@ -483,7 +343,7 @@ private  subroutine <a href='../proc/initialize_2d.html'>initialize_2d</a>(me, x
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-evaluate"></a><h3>procedure, public :: <strong>evaluate</strong>  => <a href='../proc/evaluate_2d.html'>evaluate_2d</a> 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-evaluate"></a><h3>procedure, public :: <strong>evaluate</strong>  => evaluate_2d 
     
   <h3></div>
   
@@ -493,7 +353,7 @@ private  subroutine <a href='../proc/initialize_2d.html'>initialize_2d</a>(me, x
       
     
     <h3>
-private  subroutine <a href='../proc/evaluate_2d.html'>evaluate_2d</a>(me, xval, yval, idx, idy, f, iflag)
+private  subroutine evaluate_2d(me, xval, yval, idx, idy, f, iflag)
 </h3>
     
     <h4>Arguments</h4>
@@ -625,7 +485,7 @@ private  subroutine <a href='../proc/evaluate_2d.html'>evaluate_2d</a>(me, xval,
        
 
 
-       <p>Evaluate a <a href="../type/bspline_2d.html">bspline_2d</a> interpolate.  This is a wrapper for <a href="../proc/db2val.html">db2val</a>.</p>
+       <p>Evaluate a [[bspline_2d]] interpolate.  This is a wrapper for [[db2val]].</p>
         
 
       </li>
@@ -636,7 +496,7 @@ private  subroutine <a href='../proc/evaluate_2d.html'>evaluate_2d</a>(me, xval,
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-destroy"></a><h3>procedure, public :: <strong>destroy</strong>  => <a href='../proc/destroy_2d.html'>destroy_2d</a> 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-destroy"></a><h3>procedure, public :: <strong>destroy</strong>  => destroy_2d 
     
   <h3></div>
   
@@ -646,7 +506,7 @@ private  subroutine <a href='../proc/evaluate_2d.html'>evaluate_2d</a>(me, xval,
       
     
     <h3>
-private  subroutine <a href='../proc/destroy_2d.html'>destroy_2d</a>(me)
+private  subroutine destroy_2d(me)
 </h3>
     
     <h4>Arguments</h4>
@@ -688,7 +548,7 @@ private  subroutine <a href='../proc/destroy_2d.html'>destroy_2d</a>(me)
        
 
 
-       <p>Destructor for <a href="../type/bspline_2d.html">bspline_2d</a> type.</p>
+       <p>Destructor for [[bspline_2d]] type.</p>
         
 
       </li>

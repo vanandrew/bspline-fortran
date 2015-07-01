@@ -60,8 +60,6 @@ All Procedures &ndash; bspline-fortran
 				
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
-            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
@@ -89,10 +87,6 @@ All Procedures &ndash; bspline-fortran
 			 <table class="table table-striped">
 			 <thead><tr><th>Procedure</th><th>Location</th><th>Procedure Type</th><th>Description</th></tr></thead>
 			 <tbody>
-			 
-			   <tr><td><a href='../proc/check_inputs.html'>check_inputs</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>Check the validity of the inputs to the "ink" routines.
-  Prints warning message if there is an error, 
-  and also sets iflag and status_ok.</p></td></tr>
 			 
 			   <tr><td><a href='../proc/db2ink.html'>db2ink</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>Determines the parameters of a function that interpolates
   the two-dimensional gridded data
@@ -148,110 +142,25 @@ All Procedures &ndash; bspline-fortran
   interpolant constructed by the routine <a href="../proc/db6ink.html">db6ink</a> or one of its
   derivatives at the point (xval,yval,zval,qval,rval,sval).</p></td></tr>
 			 
-			   <tr><td><a href='../proc/dbintk.html'>dbintk</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>dbintk produces the b-spline coefficients, bcoef, of the
-  b-spline of order k with knots t(i), i=1,...,n+k, which
-  takes on the value y(i) at x(i), i=1,...,n.  the spline or
-  any of its derivatives can be evaluated by calls to <a href="../proc/dbvalu.html">dbvalu</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/dbknot.html'>dbknot</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>dbknot chooses a knot sequence for interpolation of order k at the
-  data points x(i), i=1,..,n.  the n+k knots are placed in the array
-  t.  k knots are placed at each endpoint and not-a-knot end
-  conditions are used.  the remaining knots are placed at data points
-  if n is even and between data points if n is odd.  the rightmost
-  knot is shifted slightly to the right to insure proper interpolation
-  at x(n) (see page 350 of the reference).</p></td></tr>
-			 
-			   <tr><td><a href='../proc/dbnfac.html'>dbnfac</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>Returns in w the LU-factorization (without pivoting) of the banded
-  matrix a of order nrow with (nbandl + 1 + nbandu) bands or diagonals 
-  in the work array w .</p></td></tr>
-			 
-			   <tr><td><a href='../proc/dbnslv.html'>dbnslv</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>Companion routine to <a href="../proc/dbnfac.html">dbnfac</a>. it returns the solution x of the
-  linear system a*x = b in place of b, given the lu-factorization
-  for a in the work array w from dbnfac.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/dbspvn.html'>dbspvn</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>Calculates the value of all (possibly) nonzero basis
-  functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)
-  &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on
-  the first call when index=1.  ileft is such that t(ileft) &lt;=
-  x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)
-  produces the proper ileft.  dbspvn calculates using the basic
-  algorithm needed in dbspvd.  if only basis functions are
-  desired, setting jhigh=k and index=1 can be faster than
-  calling dbspvd, but extra coding is required for derivatives
-  (index=2) and dbspvd is set up for this purpose.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/dbtpcf.html'>dbtpcf</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>dbtpcf computes b-spline interpolation coefficients for nf sets
-  of data stored in the columns of the array fcn. the b-spline
-  coefficients are stored in the rows of bcoef however.
-  each interpolation is based on the n abcissa stored in the
-  array x, and the n+k knots stored in the array t. the order
-  of each interpolation is k. the work array must be of length
-  at least 2<em>k</em>(n+1).</p></td></tr>
-			 
-			   <tr><td><a href='../proc/dbvalu.html'>dbvalu</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Function</td><td><p>Evaluates the b-representation (t,a,n,k) of a b-spline
-  at x for the function value on ideriv=0 or any of its
-  derivatives on ideriv=1,2,...,k-1.  right limiting values
-  (right derivatives) are returned except at the right end
-  point x=t(n+1) where left limiting values are computed.  the
-  spline is defined on t(k) &lt;= x &lt;= t(n+1).  dbvalu returns
-  a fatal error message when x is outside of this interval.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/destroy_2d.html'>destroy_2d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Destructor for <a href="../type/bspline_2d.html">bspline_2d</a> type.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/destroy_3d.html'>destroy_3d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Destructor for <a href="../type/bspline_3d.html">bspline_3d</a> type.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/destroy_4d.html'>destroy_4d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Destructor for <a href="../type/bspline_4d.html">bspline_4d</a> type.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/destroy_5d.html'>destroy_5d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Destructor for <a href="../type/bspline_5d.html">bspline_5d</a> type.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/destroy_6d.html'>destroy_6d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Destructor for <a href="../type/bspline_6d.html">bspline_6d</a> type.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/dintrv.html'>dintrv</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>Computes the largest integer ileft in 1 &lt;= ileft &lt;= lxt 
-  such that xt(ileft) &lt;= x where xt(*) is a subdivision of
-  the x interval.<br>
-  precisely,</p></td></tr>
-			 
-			   <tr><td><a href='../proc/evaluate_2d.html'>evaluate_2d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Evaluate a <a href="../type/bspline_2d.html">bspline_2d</a> interpolate.  This is a wrapper for <a href="../proc/db2val.html">db2val</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/evaluate_3d.html'>evaluate_3d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Evaluate a <a href="../type/bspline_3d.html">bspline_3d</a> interpolate.  This is a wrapper for <a href="../proc/db3val.html">db3val</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/evaluate_4d.html'>evaluate_4d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Evaluate a <a href="../type/bspline_4d.html">bspline_4d</a> interpolate.  This is a wrapper for <a href="../proc/db4val.html">db4val</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/evaluate_5d.html'>evaluate_5d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Evaluate a <a href="../type/bspline_5d.html">bspline_5d</a> interpolate.  This is a wrapper for <a href="../proc/db5val.html">db5val</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/evaluate_6d.html'>evaluate_6d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Evaluate a <a href="../type/bspline_6d.html">bspline_6d</a> interpolate.  This is a wrapper for <a href="../proc/db6val.html">db6val</a>.</p></td></tr>
+			   <tr><td><a href='../proc/f2.html'>f2</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/f2.html'>f2</a></td><td><a href='../program/bspline_oo_test.html'>bspline_oo_test</a></td><td>Function</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/f2.html'>f2</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
+			   <tr><td><a href='../proc/f3.html'>f3</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/f3.html'>f3</a></td><td><a href='../program/bspline_oo_test.html'>bspline_oo_test</a></td><td>Function</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/f3.html'>f3</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
+			   <tr><td><a href='../proc/f4.html'>f4</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/f4.html'>f4</a></td><td><a href='../program/bspline_oo_test.html'>bspline_oo_test</a></td><td>Function</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/f4.html'>f4</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
+			   <tr><td><a href='../proc/f5.html'>f5</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
 			 
 			   <tr><td><a href='../proc/f5.html'>f5</a></td><td><a href='../program/bspline_oo_test.html'>bspline_oo_test</a></td><td>Function</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/f5.html'>f5</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
-			 
-			   <tr><td><a href='../proc/f6.html'>f6</a></td><td><a href='../program/bspline_oo_test.html'>bspline_oo_test</a></td><td>Function</td><td></td></tr>
-			 
 			   <tr><td><a href='../proc/f6.html'>f6</a></td><td><a href='../program/bspline_test.html'>bspline_test</a></td><td>Function</td><td></td></tr>
 			 
-			   <tr><td><a href='../proc/initialize_2d.html'>initialize_2d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Initialize a <a href="../type/bspline_2d.html">bspline_2d</a> type.  This is a wrapper for <a href="../proc/db2ink.html">db2ink</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/initialize_3d.html'>initialize_3d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Initialize a <a href="../type/bspline_3d.html">bspline_3d</a> type.  This is a wrapper for <a href="../proc/db3ink.html">db3ink</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/initialize_4d.html'>initialize_4d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Initialize a <a href="../type/bspline_4d.html">bspline_4d</a> type.  This is a wrapper for <a href="../proc/db4ink.html">db4ink</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/initialize_5d.html'>initialize_5d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Initialize a <a href="../type/bspline_5d.html">bspline_5d</a> type.  This is a wrapper for <a href="../proc/db5ink.html">db5ink</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/initialize_6d.html'>initialize_6d</a></td><td><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></td><td>Subroutine</td><td><p>Initialize a <a href="../type/bspline_6d.html">bspline_6d</a> type.  This is a wrapper for <a href="../proc/db6ink.html">db6ink</a>.</p></td></tr>
-			 
-			   <tr><td><a href='../proc/xerror.html'>xerror</a></td><td><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></td><td>Subroutine</td><td><p>Just a replacement for the CMLIB XERROR routine.</p></td></tr>
+			   <tr><td><a href='../proc/f6.html'>f6</a></td><td><a href='../program/bspline_oo_test.html'>bspline_oo_test</a></td><td>Function</td><td></td></tr>
 			 
 			 </tbody></table>
         </div>

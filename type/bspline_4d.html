@@ -58,8 +58,6 @@
 				
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
-				
-            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
@@ -118,42 +116,6 @@
     <div class="col-lg-3">
     
   
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-nx">nx</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-ny">ny</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-nz">nz</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-nq">nq</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-kx">kx</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-ky">ky</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-kz">kz</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-kq">kq</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-k">k</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-bcoef">bcoef</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-tx">tx</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-ty">ty</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-tz">tz</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html#var-tq">tq</a>
-      
-    </div>
-  </div>
   
   
   
@@ -217,220 +179,6 @@
     <p>Class for 4d b-spline interpolation.</p>
     <br>
     
-    <section>
-    <h2>Components</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-nx"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>nx</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-ny"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>ny</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-nz"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>nz</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-nq"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>nq</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-kx"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>kx</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-ky"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>ky</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-kz"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>kz</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-kq"></a>integer,</td>
-  
-  <td>private</td>
-  <td></td><td>::</td>
-  <td><strong>kq</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-k"></a>integer,</td>
-  
-  <td>private,</td>
-  <td>dimension(4)</td><td>::</td>
-  <td><strong>k</strong></td><td> =</td><td>0</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-bcoef"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:,:,:,:), allocatable</td><td>::</td>
-  <td><strong>bcoef</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-tx"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>tx</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-ty"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>ty</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-tz"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>tz</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><a class="anchor" name="var-tq"></a>real(kind=wp),</td>
-  
-  <td>private,</td>
-  <td>dimension(:), allocatable</td><td>::</td>
-  <td><strong>tq</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
-    
     
     
     
@@ -442,7 +190,7 @@
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-initialize"></a><h3>procedure, public :: <strong>initialize</strong>  => <a href='../proc/initialize_4d.html'>initialize_4d</a> 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-initialize"></a><h3>procedure, public :: <strong>initialize</strong>  => initialize_4d 
     
   <h3></div>
   
@@ -452,7 +200,7 @@
       
     
     <h3>
-private  subroutine <a href='../proc/initialize_4d.html'>initialize_4d</a>(me, x, y, z, q, fcn, kx, ky, kz, kq, iflag)
+private  subroutine initialize_4d(me, x, y, z, q, fcn, kx, ky, kz, kq, iflag)
 </h3>
     
     <h4>Arguments</h4>
@@ -644,7 +392,7 @@ private  subroutine <a href='../proc/initialize_4d.html'>initialize_4d</a>(me, x
        
 
 
-       <p>Initialize a <a href="../type/bspline_4d.html">bspline_4d</a> type.  This is a wrapper for <a href="../proc/db4ink.html">db4ink</a>.</p>
+       <p>Initialize a [[bspline_4d]] type.  This is a wrapper for [[db4ink]].</p>
         
 
       </li>
@@ -655,7 +403,7 @@ private  subroutine <a href='../proc/initialize_4d.html'>initialize_4d</a>(me, x
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-evaluate"></a><h3>procedure, public :: <strong>evaluate</strong>  => <a href='../proc/evaluate_4d.html'>evaluate_4d</a> 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-evaluate"></a><h3>procedure, public :: <strong>evaluate</strong>  => evaluate_4d 
     
   <h3></div>
   
@@ -665,7 +413,7 @@ private  subroutine <a href='../proc/initialize_4d.html'>initialize_4d</a>(me, x
       
     
     <h3>
-private  subroutine <a href='../proc/evaluate_4d.html'>evaluate_4d</a>(me, xval, yval, zval, qval, idx, idy, idz, idq, f, iflag)
+private  subroutine evaluate_4d(me, xval, yval, zval, qval, idx, idy, idz, idq, f, iflag)
 </h3>
     
     <h4>Arguments</h4>
@@ -857,7 +605,7 @@ private  subroutine <a href='../proc/evaluate_4d.html'>evaluate_4d</a>(me, xval,
        
 
 
-       <p>Evaluate a <a href="../type/bspline_4d.html">bspline_4d</a> interpolate.  This is a wrapper for <a href="../proc/db4val.html">db4val</a>.</p>
+       <p>Evaluate a [[bspline_4d]] interpolate.  This is a wrapper for [[db4val]].</p>
         
 
       </li>
@@ -868,7 +616,7 @@ private  subroutine <a href='../proc/evaluate_4d.html'>evaluate_4d</a>(me, xval,
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><a class="anchor" name="bp-destroy"></a><h3>procedure, public :: <strong>destroy</strong>  => <a href='../proc/destroy_4d.html'>destroy_4d</a> 
+  <div class="panel-heading codesum"><a class="anchor" name="bp-destroy"></a><h3>procedure, public :: <strong>destroy</strong>  => destroy_4d 
     
   <h3></div>
   
@@ -878,7 +626,7 @@ private  subroutine <a href='../proc/evaluate_4d.html'>evaluate_4d</a>(me, xval,
       
     
     <h3>
-private  subroutine <a href='../proc/destroy_4d.html'>destroy_4d</a>(me)
+private  subroutine destroy_4d(me)
 </h3>
     
     <h4>Arguments</h4>
@@ -920,7 +668,7 @@ private  subroutine <a href='../proc/destroy_4d.html'>destroy_4d</a>(me)
        
 
 
-       <p>Destructor for <a href="../type/bspline_4d.html">bspline_4d</a> type.</p>
+       <p>Destructor for [[bspline_4d]] type.</p>
         
 
       </li>
