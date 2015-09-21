@@ -10,7 +10,7 @@
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="../favicon.png">
 
-    <title>bspline_class &ndash; bspline-fortran </title>
+    <title>f6 &ndash; bspline-fortran</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -87,8 +87,8 @@
     
   
   <div class="row">
-    <h1>bspline_class
-    <small>Derived Type</small>
+    <h1>f6
+    <small>Function</small>
     
     </h1>
 	 
@@ -102,16 +102,16 @@
      
     
     
-    <li><i class="fa fa-code"></i><a href="../src/bspline_oo_module.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/test.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/bspline_oo_module.f90.html'>bspline_oo_module.f90</a></li>
+     <li><a href='../sourcefile/test.f90.html'>test.f90</a></li>
   
-     <li><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></li>
+     <li><a href='../program/bspline_test.html'>bspline_test</a></li>
   
-     <li class="active">bspline_class</li>
+     <li class="active">f6</li>
   </ol>
 </div>
 </div>
@@ -125,29 +125,29 @@
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title">Type-Bound Procedures</h3></div>
+    <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../type/bspline_class.html#boundprocedure-destroy">destroy</a>
+      <a class="list-group-item" href="../proc/f6%7E2.html#variable-piov2%7E10">piov2</a>
       
     </div>
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -155,27 +155,55 @@
   <div class="panel panel-primary">
     <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
     <div class="list-group">
-      <a class="list-group-item" href="../type/bspline_class.html#src">bspline_class</a>
+      <a class="list-group-item" href="../proc/f6%7E2.html#src">f6</a>
     </div>
   </div>
   
   <hr>
   
   <div class="panel panel-default">
-    <div class="panel-heading text-left"><h3 class="panel-title">All Derived Types</h3></div>
+    <div class="panel-heading text-left"><h3 class="panel-title">All Procedures</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../type/bspline_2d.html">bspline_2d</a>
+      <a class="list-group-item" href="../proc/db2ink.html">db2ink</a>
       
-      <a class="list-group-item" href="../type/bspline_3d.html">bspline_3d</a>
+      <a class="list-group-item" href="../proc/db2val.html">db2val</a>
       
-      <a class="list-group-item" href="../type/bspline_4d.html">bspline_4d</a>
+      <a class="list-group-item" href="../proc/db3ink.html">db3ink</a>
       
-      <a class="list-group-item" href="../type/bspline_5d.html">bspline_5d</a>
+      <a class="list-group-item" href="../proc/db3val.html">db3val</a>
       
-      <a class="list-group-item" href="../type/bspline_6d.html">bspline_6d</a>
+      <a class="list-group-item" href="../proc/db4ink.html">db4ink</a>
       
-      <a class="list-group-item" href="../type/bspline_class.html">bspline_class</a>
+      <a class="list-group-item" href="../proc/db4val.html">db4val</a>
+      
+      <a class="list-group-item" href="../proc/db5ink.html">db5ink</a>
+      
+      <a class="list-group-item" href="../proc/db5val.html">db5val</a>
+      
+      <a class="list-group-item" href="../proc/db6ink.html">db6ink</a>
+      
+      <a class="list-group-item" href="../proc/db6val.html">db6val</a>
+      
+      <a class="list-group-item" href="../proc/f2.html">f2</a>
+      
+      <a class="list-group-item" href="../proc/f2%7E2.html">f2</a>
+      
+      <a class="list-group-item" href="../proc/f3.html">f3</a>
+      
+      <a class="list-group-item" href="../proc/f3%7E2.html">f3</a>
+      
+      <a class="list-group-item" href="../proc/f4.html">f4</a>
+      
+      <a class="list-group-item" href="../proc/f4%7E2.html">f4</a>
+      
+      <a class="list-group-item" href="../proc/f5.html">f5</a>
+      
+      <a class="list-group-item" href="../proc/f5%7E2.html">f5</a>
+      
+      <a class="list-group-item" href="../proc/f6.html">f6</a>
+      
+      <a class="list-group-item" href="../proc/f6%7E2.html">f6</a>
       
     </div>
   </div>
@@ -184,88 +212,165 @@
     </div>
     
     <div class="col-lg-9" id='text'>
-    <h2>type, public, abstract :: bspline_class</h2>
+    <h2>
+function f6(x, y, z, q, r, s)
     
-    <p>base class for the b-spline types</p>
     
     
-    <h3>Inherited By</h3>
+</h2>
     
+  
+
+
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-x%7E15"></span>real(kind=wp)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-y%7E15"></span>real(kind=wp)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>y</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-z%7E12"></span>real(kind=wp)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>z</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-q%7E12"></span>real(kind=wp)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>q</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-r%7E8"></span>real(kind=wp)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-s%7E4"></span>real(kind=wp)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>s</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    
+    
+    
+    
+	 <h3>Return Value <small><span class="anchor" id="variable-f6%7E2"></span>real(kind=wp)
+  </small></h3>
+    
+    
+    
+    
+     
+     <h3>Called By</h3>
+     
                 <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
-<!-- Title: type~~bspline_class~~InheritedByGraph Pages: 1 -->
-<svg id="typebspline_classInheritedByGraph" width="184pt" height="210pt"
- viewBox="0.00 0.00 184.00 210.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="type~~bspline_class~~InheritedByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 206)">
-<title>type~~bspline_class~~InheritedByGraph</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-206 181,-206 181,5 -4,5"/>
-<!-- type~bspline_class -->
-<g id="node1" class="node"><title>type~bspline_class</title>
-<polygon fill="none" stroke="black" points="76,-114 3.55271e-14,-114 0,-88 76,-88 76,-114"/>
-<text text-anchor="middle" x="38" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50">bspline_class</text>
+<!-- Title: proc~~f6~2~~CalledByGraph Pages: 1 -->
+<svg id="procf62CalledByGraph" width="168pt" height="34pt"
+ viewBox="0.00 0.00 168.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~f6~2~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
+<title>proc~~f6~2~~CalledByGraph</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 165,-30 165,5 -4,5"/>
+<!-- proc~f6~2 -->
+<g id="node1" class="node"><title>proc~f6~2</title>
+<polygon fill="none" stroke="black" points="160,-26 106,-26 106,-1.24345e-14 160,-3.55271e-15 160,-26"/>
+<text text-anchor="middle" x="133" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">f6</text>
 </g>
-<!-- type~bspline_6d -->
-<g id="node2" class="node"><title>type~bspline_6d</title>
-<a xlink:href="../type/bspline_6d.html" xlink:title="bspline_6d">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="176,-202 112,-202 112,-176 176,-176 176,-202"/>
-<text text-anchor="middle" x="144" y="-186.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_6d</text>
+<!-- program~bspline_test -->
+<g id="node2" class="node"><title>program~bspline_test</title>
+<a xlink:href="../program/bspline_test.html" xlink:title="bspline_test">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="70,-26 3.55271e-14,-26 0,-1.24345e-14 70,-3.55271e-15 70,-26"/>
+<text text-anchor="middle" x="35" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_test</text>
 </a>
 </g>
-<!-- type~bspline_class&#45;&gt;type~bspline_6d -->
-<g id="edge2" class="edge"><title>type~bspline_class&#45;&gt;type~bspline_6d</title>
-<path fill="none" stroke="black" d="M51.7302,-114.198C66.2543,-127.928 90.0599,-149.785 112,-167 113.193,-167.936 114.424,-168.878 115.677,-169.817"/>
-<polygon fill="black" stroke="black" points="113.931,-172.873 124.088,-175.886 118.026,-167.196 113.931,-172.873"/>
-</g>
-<!-- type~bspline_3d -->
-<g id="node3" class="node"><title>type~bspline_3d</title>
-<a xlink:href="../type/bspline_3d.html" xlink:title="bspline_3d">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="176,-158 112,-158 112,-132 176,-132 176,-158"/>
-<text text-anchor="middle" x="144" y="-142.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_3d</text>
-</a>
-</g>
-<!-- type~bspline_class&#45;&gt;type~bspline_3d -->
-<g id="edge4" class="edge"><title>type~bspline_class&#45;&gt;type~bspline_3d</title>
-<path fill="none" stroke="black" d="M69.5165,-114.082C79.9951,-118.432 91.8223,-123.341 102.915,-127.946"/>
-<polygon fill="black" stroke="black" points="101.844,-131.291 112.422,-131.892 104.528,-124.826 101.844,-131.291"/>
-</g>
-<!-- type~bspline_5d -->
-<g id="node4" class="node"><title>type~bspline_5d</title>
-<a xlink:href="../type/bspline_5d.html" xlink:title="bspline_5d">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="176,-114 112,-114 112,-88 176,-88 176,-114"/>
-<text text-anchor="middle" x="144" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_5d</text>
-</a>
-</g>
-<!-- type~bspline_class&#45;&gt;type~bspline_5d -->
-<g id="edge6" class="edge"><title>type~bspline_class&#45;&gt;type~bspline_5d</title>
-<path fill="none" stroke="black" d="M76.2684,-101C84.5317,-101 93.314,-101 101.721,-101"/>
-<polygon fill="black" stroke="black" points="101.729,-104.5 111.729,-101 101.729,-97.5001 101.729,-104.5"/>
-</g>
-<!-- type~bspline_2d -->
-<g id="node5" class="node"><title>type~bspline_2d</title>
-<a xlink:href="../type/bspline_2d.html" xlink:title="bspline_2d">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="176,-70 112,-70 112,-44 176,-44 176,-70"/>
-<text text-anchor="middle" x="144" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_2d</text>
-</a>
-</g>
-<!-- type~bspline_class&#45;&gt;type~bspline_2d -->
-<g id="edge8" class="edge"><title>type~bspline_class&#45;&gt;type~bspline_2d</title>
-<path fill="none" stroke="black" d="M69.5165,-87.9177C79.9951,-83.5681 91.8223,-78.6587 102.915,-74.0541"/>
-<polygon fill="black" stroke="black" points="104.528,-77.1743 112.422,-70.1079 101.844,-70.7092 104.528,-77.1743"/>
-</g>
-<!-- type~bspline_4d -->
-<g id="node6" class="node"><title>type~bspline_4d</title>
-<a xlink:href="../type/bspline_4d.html" xlink:title="bspline_4d">
-<polygon fill="#5cb85c" stroke="#5cb85c" points="176,-26 112,-26 112,-1.24345e-14 176,-3.55271e-15 176,-26"/>
-<text text-anchor="middle" x="144" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_4d</text>
-</a>
-</g>
-<!-- type~bspline_class&#45;&gt;type~bspline_4d -->
-<g id="edge10" class="edge"><title>type~bspline_class&#45;&gt;type~bspline_4d</title>
-<path fill="none" stroke="black" d="M51.7302,-87.8023C66.2543,-74.0721 90.0599,-52.215 112,-35 113.193,-34.0636 114.424,-33.1219 115.677,-32.183"/>
-<polygon fill="black" stroke="black" points="118.026,-34.8035 124.088,-26.1143 113.931,-29.1267 118.026,-34.8035"/>
+<!-- program~bspline_test&#45;&gt;proc~f6~2 -->
+<g id="edge2" class="edge"><title>program~bspline_test&#45;&gt;proc~f6~2</title>
+<path fill="none" stroke="black" d="M70.1034,-13C78.3675,-13 87.2064,-13 95.5686,-13"/>
+<polygon fill="black" stroke="black" points="95.8266,-16.5001 105.827,-13 95.8266,-9.5001 95.8266,-16.5001"/>
 </g>
 </g>
 </svg>
@@ -360,52 +465,16 @@ implementation in a submodule of an interface in a parent module.</p>
                   </div>
                 </div>
                 
-    
-    
-    
-    
-    
-    
-    
      
+    <br>
+    
     <section>
-    <h2>Type-Bound Procedures</h2>
+    <h2>Variables</h2>
     
-	   
-<div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-destroy"></span><h3>procedure(destroy_func), public, deferred :: <strong>destroy</strong>  
-    
-  </h3></div>
-  
-  <div class="panel-body">
-    
-
-
-    <p>destructor</p>
-  </div>
-  
-  <ul class="list-group">
-    
-      <li class="list-group-item">
-      
-         
-            
-    
-    <h3>
-subroutine <a href='../interface/destroy_func.html'>destroy_func</a>(me)
-    
-    
-    
-<small>Prototype</small></h3>
-    
-    <h4>Arguments</h4>
-    
-      
-      
 <table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
 
 
 
@@ -417,53 +486,46 @@ subroutine <a href='../interface/destroy_func.html'>destroy_func</a>(me)
   
 <tr>
   
-  <td><span class="anchor" ></span>class(<a href='../type/bspline_class.html'>bspline_class</a>),</td>
-  <td>intent(out)</td>
-  <td></td>
+  <td><span class="anchor" id="variable-piov2%7E10"></span>real(kind=wp),</td>
   
+  <td>public</td>
   <td></td><td>::</td>
-  <td><strong>me</strong></td><td></td>
+  <td><strong>piov2</strong></td><td></td><td></td><td></td>
   
 </tr>
 
 </tbody>
 </table>
 
-      
-    
-    
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>interface for bspline destructor routines</p>
-        
-
-         
-      
-      </li>
-    
-  </ul>
-</div>
-
-    
     </section>
+    <br>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
     
     
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre>    <span class="k">type</span><span class="p">,</span><span class="k">public</span><span class="p">,</span><span class="k">abstract</span> <span class="kd">::</span> <span class="n">bspline_class</span>
-        <span class="c">!! base class for the b-spline types</span>
-    <span class="k">contains</span>
-<span class="k">        procedure</span><span class="p">(</span><span class="n">destroy_func</span><span class="p">),</span><span class="k">deferred</span> <span class="kd">::</span> <span class="n">destroy</span>  <span class="c">!! destructor</span>
-    <span class="k">end type </span><span class="n">bspline_class</span>
+    <div class="highlight"><pre>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">f6</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">piov2</span>
+        <span class="n">piov2</span> <span class="o">=</span> <span class="mf">2.0_wp</span><span class="o">*</span><span class="nb">atan</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">)</span>
+        <span class="n">f6</span> <span class="o">=</span> <span class="mf">0.5_wp</span><span class="o">*</span><span class="p">(</span> <span class="n">y</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">z</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">piov2</span><span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="n">q</span><span class="o">*</span><span class="n">r</span> <span class="o">+</span> <span class="mf">2.0_wp</span><span class="o">*</span><span class="n">s</span> <span class="p">)</span>
+        <span class="k">end function </span><span class="n">f6</span>
 </pre></div>
 
     </section>
+    <br>
     
     
     </div>
