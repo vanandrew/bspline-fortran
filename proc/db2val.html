@@ -143,9 +143,9 @@
       
       <a class="list-group-item" href="../proc/db2val.html#variable-work%7E2">work</a>
       
-      <a class="list-group-item" href="../proc/db2val.html#variable-iloy">iloy</a>
+      <a class="list-group-item" href="../proc/db2val.html#variable-inbvx%7E2">inbvx</a>
       
-      <a class="list-group-item" href="../proc/db2val.html#variable-inbvx">inbvx</a>
+      <a class="list-group-item" href="../proc/db2val.html#variable-iloy">iloy</a>
       
     </div>
   </div>
@@ -229,7 +229,7 @@
     
     <div class="col-lg-9" id='text'>
     <h2>
-public subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f, iflag)
+public subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f, iflag, inbvx_in, iloy_in)
     
     
     
@@ -443,6 +443,36 @@ public subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f,
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-inbvx_in"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iloy_in"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class</p></td>
   
 </tr>
 
@@ -730,11 +760,11 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-iloy"></span>integer,</td>
+  <td><span class="anchor" id="variable-inbvx%7E2"></span>integer,</td>
   
   <td>public,</td>
   <td>save</td><td>::</td>
-  <td><strong>iloy</strong></td><td> =</td><td>1</td><td></td>
+  <td><strong>inbvx</strong></td><td> =</td><td>1</td><td></td>
   
 </tr>
 
@@ -744,11 +774,11 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-inbvx"></span>integer,</td>
+  <td><span class="anchor" id="variable-iloy"></span>integer,</td>
   
   <td>public,</td>
   <td>save</td><td>::</td>
-  <td><strong>inbvx</strong></td><td> =</td><td>1</td><td></td>
+  <td><strong>iloy</strong></td><td> =</td><td>1</td><td></td>
   
 </tr>
 
@@ -775,30 +805,35 @@ implementation in a submodule of an interface in a parent module.</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre>    <span class="k">subroutine </span><span class="n">db2val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+    <div class="highlight"><pre>    <span class="k">subroutine </span><span class="n">db2val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">inbvx_in</span><span class="p">,</span><span class="n">iloy_in</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
-<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">idx</span>   <span class="c">!! x derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">idy</span>   <span class="c">!! y derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">nx</span>    <span class="c">!! the number of interpolation points in x. (same as in last call to db2ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">ny</span>    <span class="c">!! the number of interpolation points in y. (same as in last call to db2ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">kx</span>    <span class="c">!! order of polynomial pieces in x. (same as in last call to db2ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">ky</span>    <span class="c">!! order of polynomial pieces in y. (same as in last call to db2ink)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">xval</span>  <span class="c">!! x coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">yval</span>  <span class="c">!! y coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>    <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db2ink)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ty</span>    <span class="c">!! sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to db2ink)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span> <span class="c">!! the b-spline coefficients computed by db2ink.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">f</span>     <span class="c">!! interpolated value</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">iflag</span> <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">idx</span>      <span class="c">!! x derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">idy</span>      <span class="c">!! y derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">nx</span>       <span class="c">!! the number of interpolation points in x. (same as in last call to db2ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">ny</span>       <span class="c">!! the number of interpolation points in y. (same as in last call to db2ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">kx</span>       <span class="c">!! order of polynomial pieces in x. (same as in last call to db2ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">ky</span>       <span class="c">!! order of polynomial pieces in y. (same as in last call to db2ink)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">xval</span>     <span class="c">!! x coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">yval</span>     <span class="c">!! y coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db2ink)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ty</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to db2ink)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>    <span class="c">!! the b-spline coefficients computed by db2ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">f</span>        <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>          <span class="kd">::</span> <span class="n">inbvx_in</span> <span class="c">!! inbvx initialization parameter from class</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>          <span class="kd">::</span> <span class="n">iloy_in</span>  <span class="c">!! iloy initialization parameter from class</span>
 
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbv</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,</span> <span class="n">kcol</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">))</span> <span class="kd">::</span> <span class="n">work</span>
 
-    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloy</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloy</span>  <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">inbvx_in</span><span class="p">))</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="n">inbvx_in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iloy_in</span><span class="p">))</span>  <span class="n">iloy</span>  <span class="o">=</span> <span class="n">iloy_in</span>
     
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
     <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>

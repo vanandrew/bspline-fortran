@@ -185,6 +185,8 @@
       
       <a class="list-group-item" href="../proc/db6val.html#variable-s%7E2">s</a>
       
+      <a class="list-group-item" href="../proc/db6val.html#variable-inbvx%7E6">inbvx</a>
+      
       <a class="list-group-item" href="../proc/db6val.html#variable-iloy%7E5">iloy</a>
       
       <a class="list-group-item" href="../proc/db6val.html#variable-iloz%7E4">iloz</a>
@@ -194,8 +196,6 @@
       <a class="list-group-item" href="../proc/db6val.html#variable-ilor%7E2">ilor</a>
       
       <a class="list-group-item" href="../proc/db6val.html#variable-ilos">ilos</a>
-      
-      <a class="list-group-item" href="../proc/db6val.html#variable-inbvx%7E5">inbvx</a>
       
     </div>
   </div>
@@ -279,7 +279,7 @@
     
     <div class="col-lg-9" id='text'>
     <h2>
-public subroutine db6val(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq, idr, ids, tx, ty, tz, tq, tr, ts, nx, ny, nz, nq, nr, ns, kx, ky, kz, kq, kr, ks, bcoef, f, iflag)
+public subroutine db6val(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq, idr, ids, tx, ty, tz, tq, tr, ts, nx, ny, nz, nq, nr, ns, kx, ky, kz, kq, kr, ks, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in, iloq_in, ilor_in, ilos_in)
     
     
     
@@ -793,6 +793,96 @@ public subroutine db6val(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq,
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-inbvx_in%7E5"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iloy_in%7E5"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iloz_in%7E4"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iloq_in%7E3"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloq_in</strong></td><td><p>iloq initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ilor_in%7E2"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilor_in</strong></td><td><p>ilor initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-ilos_in"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilos_in</strong></td><td><p>ilos initialization parameter from class</p></td>
   
 </tr>
 
@@ -1353,6 +1443,20 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
+  <td><span class="anchor" id="variable-inbvx%7E6"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>save</td><td>::</td>
+  <td><strong>inbvx</strong></td><td> =</td><td>1</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-iloy%7E5"></span>integer,</td>
   
   <td>public,</td>
@@ -1417,20 +1521,6 @@ implementation in a submodule of an interface in a parent module.</p>
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-inbvx%7E5"></span>integer,</td>
-  
-  <td>public,</td>
-  <td>save</td><td>::</td>
-  <td><strong>inbvx</strong></td><td> =</td><td>1</td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -1459,43 +1549,50 @@ implementation in a submodule of an interface in a parent module.</p>
                                 <span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="n">tq</span><span class="p">,</span><span class="n">tr</span><span class="p">,</span><span class="n">ts</span><span class="p">,&amp;</span>
                                 <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">ns</span><span class="p">,&amp;</span>
                                 <span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="p">,&amp;</span>
-                                <span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+                                <span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">,&amp;</span>
+                                <span class="n">inbvx_in</span><span class="p">,</span><span class="n">iloy_in</span><span class="p">,</span><span class="n">iloz_in</span><span class="p">,</span><span class="n">iloq_in</span><span class="p">,</span><span class="n">ilor_in</span><span class="p">,</span><span class="n">ilos_in</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
-<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idx</span>    <span class="c">!! x derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idy</span>    <span class="c">!! y derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idz</span>    <span class="c">!! z derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idq</span>    <span class="c">!! q derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idr</span>    <span class="c">!! r derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ids</span>    <span class="c">!! s derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nx</span>     <span class="c">!! the number of interpolation points in x. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ny</span>     <span class="c">!! the number of interpolation points in y. (same as in last call to db6ink) </span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nz</span>     <span class="c">!! the number of interpolation points in z. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nq</span>     <span class="c">!! the number of interpolation points in q. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nr</span>     <span class="c">!! the number of interpolation points in r. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ns</span>     <span class="c">!! the number of interpolation points in s. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kx</span>     <span class="c">!! order of polynomial pieces in x. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ky</span>     <span class="c">!! order of polynomial pieces in y. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kz</span>     <span class="c">!! order of polynomial pieces in z. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kq</span>     <span class="c">!! order of polynomial pieces in q. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kr</span>     <span class="c">!! order of polynomial pieces in r. (same as in last call to db6ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ks</span>     <span class="c">!! order of polynomial pieces in s. (same as in last call to db6ink)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">xval</span>   <span class="c">!! x coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">yval</span>   <span class="c">!! y coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">zval</span>   <span class="c">!! z coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">qval</span>   <span class="c">!! q coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">rval</span>   <span class="c">!! r coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">sval</span>   <span class="c">!! s coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db6ink)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">ty</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to db6ink) </span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tz</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to db6ink) </span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tq</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to db6ink) </span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tr</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to db6ink) </span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ns</span><span class="o">+</span><span class="n">ks</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">ts</span>     <span class="c">!! sequence of knots defining the piecewise polynomial in the s direction. (same as in last call to db6ink) </span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">ns</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! the b-spline coefficients computed by db6ink.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">f</span>      <span class="c">!! interpolated value</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idx</span>      <span class="c">!! x derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idy</span>      <span class="c">!! y derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idz</span>      <span class="c">!! z derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idq</span>      <span class="c">!! q derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">idr</span>      <span class="c">!! r derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ids</span>      <span class="c">!! s derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nx</span>       <span class="c">!! the number of interpolation points in x. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ny</span>       <span class="c">!! the number of interpolation points in y. (same as in last call to db6ink) </span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nz</span>       <span class="c">!! the number of interpolation points in z. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nq</span>       <span class="c">!! the number of interpolation points in q. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">nr</span>       <span class="c">!! the number of interpolation points in r. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ns</span>       <span class="c">!! the number of interpolation points in s. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kx</span>       <span class="c">!! order of polynomial pieces in x. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ky</span>       <span class="c">!! order of polynomial pieces in y. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kz</span>       <span class="c">!! order of polynomial pieces in z. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kq</span>       <span class="c">!! order of polynomial pieces in q. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">kr</span>       <span class="c">!! order of polynomial pieces in r. (same as in last call to db6ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                               <span class="kd">::</span> <span class="n">ks</span>       <span class="c">!! order of polynomial pieces in s. (same as in last call to db6ink)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">xval</span>     <span class="c">!! x coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">yval</span>     <span class="c">!! y coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">zval</span>     <span class="c">!! z coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">qval</span>     <span class="c">!! q coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">rval</span>     <span class="c">!! r coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">sval</span>     <span class="c">!! s coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tx</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db6ink)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">ty</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to db6ink) </span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tz</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to db6ink) </span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tq</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to db6ink) </span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">tr</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to db6ink) </span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ns</span><span class="o">+</span><span class="n">ks</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">ts</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the s direction. (same as in last call to db6ink) </span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">ns</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>    <span class="c">!! the b-spline coefficients computed by db6ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">f</span>        <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                              <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                      <span class="kd">::</span> <span class="n">inbvx_in</span> <span class="c">!! inbvx initialization parameter from class</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                      <span class="kd">::</span> <span class="n">iloy_in</span>  <span class="c">!! iloy initialization parameter from class</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                      <span class="kd">::</span> <span class="n">iloz_in</span>  <span class="c">!! iloz initialization parameter from class</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                      <span class="kd">::</span> <span class="n">iloq_in</span>  <span class="c">!! iloq initialization parameter from class</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                      <span class="kd">::</span> <span class="n">ilor_in</span>  <span class="c">!! ilor initialization parameter from class</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                      <span class="kd">::</span> <span class="n">ilos_in</span>  <span class="c">!! ilos initialization parameter from class</span>
    
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">temp2</span>
@@ -1510,12 +1607,19 @@ implementation in a submodule of an interface in a parent module.</p>
                 <span class="n">kcoly</span><span class="p">,</span><span class="n">kcolz</span><span class="p">,</span><span class="n">kcolq</span><span class="p">,</span><span class="n">kcolr</span><span class="p">,</span><span class="n">kcols</span><span class="p">,&amp;</span>
                 <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">s</span>
 
+    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloy</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloz</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloq</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">ilor</span>  <span class="o">=</span> <span class="mi">1</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">ilos</span>  <span class="o">=</span> <span class="mi">1</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">inbvx_in</span><span class="p">))</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="n">inbvx_in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iloy_in</span><span class="p">))</span>  <span class="n">iloy</span>  <span class="o">=</span> <span class="n">iloy_in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iloz_in</span><span class="p">))</span>  <span class="n">iloz</span>  <span class="o">=</span> <span class="n">iloz_in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iloq_in</span><span class="p">))</span>  <span class="n">iloq</span>  <span class="o">=</span> <span class="n">iloq_in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">ilor_in</span><span class="p">))</span>  <span class="n">ilor</span>  <span class="o">=</span> <span class="n">ilor_in</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">ilos_in</span><span class="p">))</span>  <span class="n">ilos</span>  <span class="o">=</span> <span class="n">ilos_in</span>
     
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
     <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>

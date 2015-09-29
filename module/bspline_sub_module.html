@@ -774,7 +774,7 @@ public subroutine <a href='../proc/db2ink.html'>db2ink</a>(x, nx, y, ny, fcn, kx
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db2val"></span><h3>
-public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f, iflag)
+public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f, iflag, inbvx_in, iloy_in)
     
     
     
@@ -987,6 +987,36 @@ public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy,
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class</p></td>
   
 </tr>
 
@@ -1315,7 +1345,7 @@ public subroutine <a href='../proc/db3ink.html'>db3ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db3val"></span><h3>
-public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag)
+public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in)
     
     
     
@@ -1603,6 +1633,51 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class</p></td>
   
 </tr>
 
@@ -1994,7 +2069,7 @@ public subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db4val"></span><h3>
-public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty, tz, tq, nx, ny, nz, nq, kx, ky, kz, kq, bcoef, f, iflag)
+public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty, tz, tq, nx, ny, nz, nq, kx, ky, kz, kq, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in, iloq_in)
     
     
     
@@ -2357,6 +2432,66 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloq_in</strong></td><td><p>iloq initialization parameter from class</p></td>
   
 </tr>
 
@@ -2809,7 +2944,7 @@ public subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db5val"></span><h3>
-public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qval, rval, idx, idy, idz, idq, idr, tx, ty, tz, tq, tr, nx, ny, nz, nq, nr, kx, ky, kz, kq, kr, bcoef, f, iflag)
+public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qval, rval, idx, idy, idz, idq, idr, tx, ty, tz, tq, tr, nx, ny, nz, nq, nr, kx, ky, kz, kq, kr, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in, iloq_in, ilor_in)
     
     
     
@@ -3247,6 +3382,81 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloq_in</strong></td><td><p>iloq initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilor_in</strong></td><td><p>ilor initialization parameter from class</p></td>
   
 </tr>
 
@@ -3762,7 +3972,7 @@ public subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db6val"></span><h3>
-public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq, idr, ids, tx, ty, tz, tq, tr, ts, nx, ny, nz, nq, nr, ns, kx, ky, kz, kq, kr, ks, bcoef, f, iflag)
+public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq, idr, ids, tx, ty, tz, tq, tr, ts, nx, ny, nz, nq, nr, ns, kx, ky, kz, kq, kr, ks, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in, iloq_in, ilor_in, ilos_in)
     
     
     
@@ -4275,6 +4485,96 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloq_in</strong></td><td><p>iloq initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilor_in</strong></td><td><p>ilor initialization parameter from class</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilos_in</strong></td><td><p>ilos initialization parameter from class</p></td>
   
 </tr>
 
