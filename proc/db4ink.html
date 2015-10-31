@@ -129,11 +129,11 @@
     <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/db4ink.html#variable-temp%7E4">temp</a>
+      <a class="list-group-item" href="../proc/db4ink.html#variable-temp%7E5">temp</a>
       
-      <a class="list-group-item" href="../proc/db4ink.html#variable-work%7E5">work</a>
+      <a class="list-group-item" href="../proc/db4ink.html#variable-work%7E7">work</a>
       
-      <a class="list-group-item" href="../proc/db4ink.html#variable-status_ok%7E3">status_ok</a>
+      <a class="list-group-item" href="../proc/db4ink.html#variable-status_ok%7E4">status_ok</a>
       
     </div>
   </div>
@@ -169,6 +169,10 @@
     <div class="panel-heading text-left"><h3 class="panel-title">All Procedures</h3></div>
     <div class="list-group">
       
+      <a class="list-group-item" href="../proc/db1ink.html">db1ink</a>
+      
+      <a class="list-group-item" href="../proc/db1val.html">db1val</a>
+      
       <a class="list-group-item" href="../proc/db2ink.html">db2ink</a>
       
       <a class="list-group-item" href="../proc/db2val.html">db2val</a>
@@ -188,6 +192,10 @@
       <a class="list-group-item" href="../proc/db6ink.html">db6ink</a>
       
       <a class="list-group-item" href="../proc/db6val.html">db6val</a>
+      
+      <a class="list-group-item" href="../proc/f1.html">f1</a>
+      
+      <a class="list-group-item" href="../proc/f1%7E2.html">f1</a>
       
       <a class="list-group-item" href="../proc/f2.html">f2</a>
       
@@ -247,7 +255,7 @@ public subroutine db4ink(x, nx, y, ny, z, nz, q, nq, fcn, kx, ky, kz, kq, tx, ty
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-x%7E4"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -262,7 +270,7 @@ public subroutine db4ink(x, nx, y, ny, z, nz, q, nq, fcn, kx, ky, kz, kq, tx, ty
   
 <tr>
   
-  <td><span class="anchor" id="variable-nx%7E5"></span>integer,</td>
+  <td><span class="anchor" id="variable-nx%7E7"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -367,7 +375,7 @@ public subroutine db4ink(x, nx, y, ny, z, nz, q, nq, fcn, kx, ky, kz, kq, tx, ty
   
 <tr>
   
-  <td><span class="anchor" id="variable-fcn%7E3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-fcn%7E4"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -383,7 +391,7 @@ public subroutine db4ink(x, nx, y, ny, z, nz, q, nq, fcn, kx, ky, kz, kq, tx, ty
   
 <tr>
   
-  <td><span class="anchor" id="variable-kx%7E5"></span>integer,</td>
+  <td><span class="anchor" id="variable-kx%7E7"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -443,7 +451,7 @@ public subroutine db4ink(x, nx, y, ny, z, nz, q, nq, fcn, kx, ky, kz, kq, tx, ty
   
 <tr>
   
-  <td><span class="anchor" id="variable-tx%7E5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-tx%7E7"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td></td>
   
@@ -515,7 +523,7 @@ public subroutine db4ink(x, nx, y, ny, z, nz, q, nq, fcn, kx, ky, kz, kq, tx, ty
   
 <tr>
   
-  <td><span class="anchor" id="variable-bcoef%7E5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-bcoef%7E7"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -530,7 +538,7 @@ public subroutine db4ink(x, nx, y, ny, z, nz, q, nq, fcn, kx, ky, kz, kq, tx, ty
   
 <tr>
   
-  <td><span class="anchor" id="variable-iflag%7E5"></span>integer,</td>
+  <td><span class="anchor" id="variable-iflag%7E7"></span>integer,</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -720,7 +728,7 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-temp%7E4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-temp%7E5"></span>real(kind=wp),</td>
   
   <td>public,</td>
   <td>dimension(nx*ny*nz*nq)</td><td>::</td>
@@ -734,7 +742,7 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-work%7E5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-work%7E7"></span>real(kind=wp),</td>
   
   <td>public,</td>
   <td>dimension(max(2*kx*(nx+1),2*ky*(ny+1),2*kz*(nz+1),2*kq*(nq+1)))</td><td>::</td>
@@ -748,7 +756,7 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-status_ok%7E3"></span>logical,</td>
+  <td><span class="anchor" id="variable-status_ok%7E4"></span>logical,</td>
   
   <td>public</td>
   <td></td><td>::</td>

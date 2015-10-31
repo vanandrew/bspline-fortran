@@ -183,16 +183,15 @@
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span class="c">!*****************************************************************************************</span>
-<span class="c">!</span>
 <span class="c">!&gt; author: Jacob Williams</span>
 <span class="c">!  license: BSD</span>
 <span class="c">! </span>
 <span class="c">!# Description</span>
 <span class="c">!</span>
 <span class="c">!  Object-oriented style wrappers to [[bspline_sub_module]].</span>
-<span class="c">!  This module provides classes ([[bspline_2d]], [[bspline_3d]], </span>
-<span class="c">!  [[bspline_4d]], [[bspline_5d]], and [[bspline_6d]]) which can</span>
-<span class="c">!  be used instead of the main subroutine interface.</span>
+<span class="c">!  This module provides classes ([[bspline_1d]], [[bspline_2d]],</span>
+<span class="c">!  [[bspline_3d]], [[bspline_4d]], [[bspline_5d]], and [[bspline_6d]]) </span>
+<span class="c">!  which can be used instead of the main subroutine interface.</span>
 <span class="c">!</span>
 <span class="c">!# History</span>
 <span class="c">!</span>
@@ -222,7 +221,20 @@
         <span class="k">end subroutine </span><span class="n">destroy_func</span>
     <span class="k">end interface</span>
 
-<span class="k">    type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_2d</span>
+<span class="k">    type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_1d</span>
+        <span class="c">!! Class for 1d b-spline interpolation.</span>
+        <span class="k">private</span>
+<span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">kx</span>  <span class="o">=</span> <span class="mi">0</span>
+        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">bcoef</span>
+        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">tx</span>    
+        <span class="k">contains</span>
+<span class="k">        procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">initialize</span> <span class="o">=&gt;</span> <span class="n">initialize_1d</span>
+        <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">evaluate</span> <span class="o">=&gt;</span> <span class="n">evaluate_1d</span>
+        <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_1d</span>
+    <span class="k">end type </span><span class="n">bspline_1d</span>
+    
+    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_2d</span>
         <span class="c">!! Class for 2d b-spline interpolation.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>
@@ -350,7 +362,72 @@
 
     <span class="k">contains</span>
 <span class="c">!*****************************************************************************************</span>
+
+<span class="c">!*****************************************************************************************</span>
+<span class="c">!&gt; Destructor for [[bspline_1d]] type.</span>
+
+    <span class="k">subroutine </span><span class="n">destroy_1d</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
     
+    <span class="k">implicit none</span>
+<span class="k">    </span>
+<span class="k">    class</span><span class="p">(</span><span class="n">bspline_1d</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">me</span>
+    
+    <span class="k">end subroutine </span><span class="n">destroy_1d</span>
+<span class="c">!*****************************************************************************************</span>
+    
+<span class="c">!*****************************************************************************************</span>
+<span class="c">!&gt; Initialize a [[bspline_1d]] type.  This is a wrapper for [[db1ink]].</span>
+
+    <span class="k">subroutine </span><span class="n">initialize_1d</span><span class="p">(</span><span class="n">me</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+
+    <span class="k">implicit none</span>
+<span class="k">    </span>
+<span class="k">    class</span><span class="p">(</span><span class="n">bspline_1d</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">me</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">x</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">fcn</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">kx</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">iflag</span>
+    
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iknot</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>
+    
+    <span class="k">call </span><span class="n">me</span><span class="p">%</span><span class="n">destroy</span><span class="p">()</span>
+    
+    <span class="n">nx</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+    <span class="n">me</span><span class="p">%</span><span class="n">nx</span> <span class="o">=</span> <span class="n">nx</span>
+    <span class="n">me</span><span class="p">%</span><span class="n">kx</span> <span class="o">=</span> <span class="n">kx</span>
+    
+    <span class="k">allocate</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span>
+    <span class="k">allocate</span><span class="p">(</span><span class="n">me</span><span class="p">%</span><span class="n">bcoef</span><span class="p">(</span><span class="n">nx</span><span class="p">))</span>
+    
+    <span class="n">iknot</span> <span class="o">=</span> <span class="mi">0</span>         <span class="c">!knot sequence chosen by db2ink</span>
+    
+    <span class="k">call </span><span class="n">db1ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">me</span><span class="p">%</span><span class="n">tx</span><span class="p">,</span><span class="n">me</span><span class="p">%</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iknot</span><span class="p">)</span>
+    
+    <span class="n">iflag</span> <span class="o">=</span> <span class="n">iknot</span>     <span class="c">!status flag</span>
+    
+    <span class="k">end subroutine </span><span class="n">initialize_1d</span>
+<span class="c">!*****************************************************************************************</span>
+    
+<span class="c">!*****************************************************************************************</span>
+<span class="c">!&gt; Evaluate a [[bspline_1d]] interpolate.  This is a wrapper for [[db1val]].</span>
+
+    <span class="k">subroutine </span><span class="n">evaluate_1d</span><span class="p">(</span><span class="n">me</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+    
+    <span class="k">implicit none</span>
+<span class="k">    </span>
+<span class="k">    class</span><span class="p">(</span><span class="n">bspline_1d</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">me</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">xval</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">idx</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">f</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">iflag</span>
+    
+    <span class="k">call </span><span class="n">db1val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">me</span><span class="p">%</span><span class="n">tx</span><span class="p">,</span><span class="n">me</span><span class="p">%</span><span class="n">nx</span><span class="p">,</span><span class="n">me</span><span class="p">%</span><span class="n">kx</span><span class="p">,</span><span class="n">me</span><span class="p">%</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">me</span><span class="p">%</span><span class="n">inbvx</span><span class="p">)</span>
+    
+    <span class="k">end subroutine </span><span class="n">evaluate_1d</span>
+<span class="c">!*****************************************************************************************</span>
+
 <span class="c">!*****************************************************************************************</span>
 <span class="c">!&gt; Destructor for [[bspline_2d]] type.</span>
 

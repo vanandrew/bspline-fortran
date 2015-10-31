@@ -141,6 +141,10 @@
     <div class="panel-heading text-left"><h3 class="panel-title">Subroutines</h3></div>
     <div class="list-group">
       
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1ink">db1ink</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1val">db1val</a>
+      
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db2ink">db2ink</a>
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db2val">db2val</a>
@@ -325,14 +329,14 @@ implementation in a submodule of an interface in a parent module.</p>
                 
     
     <h1>Description</h1>
-<p>Multidimensional (2D-6D) B-Spline interpolation of data on a regular grid.
+<p>Multidimensional (1D-6D) B-Spline interpolation of data on a regular grid.
   Basic subroutine interface.</p>
 <h1>Notes</h1>
 <p>This module is based on the bspline and spline routines from [1].
   The original Fortran 77 routines were converted to free-form source.
   Some of them are relatively unchanged from the originals, but some have
   been extensively refactored. In addition, new routines for 
-  4d, 5d, and 6d interpolation were also created (these are simply 
+  1d, 4d, 5d, and 6d interpolation were also created (these are simply 
   extensions of the same algorithm into higher dimensions).</p>
 <h1>See also</h1>
 <ul>
@@ -551,6 +555,351 @@ implementation in a submodule of an interface in a parent module.</p>
     
     <section>
     <h2>Subroutines</h2>
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-db1ink"></span><h3>
+public subroutine <a href='../proc/db1ink.html'>db1ink</a>(x, nx, fcn, kx, tx, bcoef, iflag)
+    
+    
+    
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(nx)</td><td>::</td>
+  <td><strong>x</strong></td><td><p>Array of x abcissae. Must be strictly increasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td><p>Number of x abcissae</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(nx)</td><td>::</td>
+  <td><strong>fcn</strong></td><td><p>Array of function values to interpolate. fcn(i) should
+    contain the function value at the point x(i)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td><p>The order of spline pieces in x (&gt;= 2, &lt; nx). (order = polynomial degree + 1)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(nx+kx)</td><td>::</td>
+  <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
+    If iflag=0 these are chosen by db1ink.
+    If iflag=1 these are specified by the user.
+    Must be non-decreasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(nx)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p>Array of coefficients of the b-spline interpolant.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p><strong>on input:</strong>  0 = knot sequence chosen by db1ink.
+                1 = knot sequence chosen by user.
+ <strong>on output:</strong> 1 = successful execution.
+                2 = iflag out of range.
+                3 = nx out of range.
+                4 = kx out of range.
+                5 = x not strictly increasing.
+                6 = tx not non-decreasing.</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+       
+
+
+       
+       <p>Determines the parameters of a function that interpolates
+  the one-dimensional gridded data
+  $$ [x(i),\mathrm{fcn}(i)] ~\mathrm{for}~ i=1,..,n_x $$
+  The interpolating function and its derivatives may
+  subsequently be evaluated by the function <a href="../proc/db1val.html">db1val</a>.</p>
+        
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-db1val"></span><h3>
+public subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx_in)
+    
+    
+    
+</h3></div>
+  <div class="panel-body">
+       
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>xval</strong></td><td><p>x coordinate of evaluation point.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>idx</strong></td><td><p>x derivative of piecewise polynomial to evaluate.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(nx+kx)</td><td>::</td>
+  <td><strong>tx</strong></td><td><p>sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db1ink)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td><p>the number of interpolation points in x. (same as in last call to db1ink)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td><p>order of polynomial pieces in x. (same as in last call to db1ink)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(nx)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by db1ink.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>f</strong></td><td><p>interpolated value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+       
+
+
+       
+       <p>Evaluates the tensor product piecewise polynomial
+  interpolant constructed by the routine <a href="../proc/db1ink.html">db1ink</a> or one of its
+  derivatives at the point xval. </p>
+        
+
+  </div>
+  </div>
+
     
     
   <div class="panel panel-default">

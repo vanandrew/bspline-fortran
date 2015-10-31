@@ -10,7 +10,7 @@
     <meta name="author" content="Chris MacMackin" >
     <link rel="icon" href="../favicon.png">
 
-    <title>f2 &ndash; bspline-fortran</title>
+    <title>db1val &ndash; bspline-fortran</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -87,8 +87,8 @@
     
   
   <div class="row">
-    <h1>f2
-    <small>Function</small>
+    <h1>db1val
+    <small>Subroutine</small>
     
     </h1>
 	 
@@ -102,16 +102,16 @@
      
     
     
-    <li><i class="fa fa-code"></i><a href="../src/test.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/bspline_sub_module.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/test.f90.html'>test.f90</a></li>
+     <li><a href='../sourcefile/bspline_sub_module.f90.html'>bspline_sub_module.f90</a></li>
   
-     <li><a href='../program/bspline_test.html'>bspline_test</a></li>
+     <li><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></li>
   
-     <li class="active">f2</li>
+     <li class="active">db1val</li>
   </ol>
 </div>
 </div>
@@ -129,7 +129,9 @@
     <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/f2%7E2.html#variable-piov2%7E6">piov2</a>
+      <a class="list-group-item" href="../proc/db1val.html#variable-work%7E2">work</a>
+      
+      <a class="list-group-item" href="../proc/db1val.html#variable-inbvx%7E2">inbvx</a>
       
     </div>
   </div>
@@ -155,7 +157,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
     <div class="list-group">
-      <a class="list-group-item" href="../proc/f2%7E2.html#src">f2</a>
+      <a class="list-group-item" href="../proc/db1val.html#src">db1val</a>
     </div>
   </div>
   
@@ -223,7 +225,7 @@
     
     <div class="col-lg-9" id='text'>
     <h2>
-function f2(x, y)
+public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx_in)
     
     
     
@@ -251,12 +253,12 @@ function f2(x, y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E15"></span>real(kind=wp)</td>
-  <td></td>
+  <td><span class="anchor" id="variable-xval"></span>real(kind=wp),</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>x</strong></td><td></td>
+  <td><strong>xval</strong></td><td><p>x coordinate of evaluation point.</p></td>
   
 </tr>
 
@@ -266,12 +268,117 @@ function f2(x, y)
   
 <tr>
   
-  <td><span class="anchor" id="variable-y%7E12"></span>real(kind=wp)</td>
-  <td></td>
+  <td><span class="anchor" id="variable-idx"></span>integer,</td>
+  <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>y</strong></td><td></td>
+  <td><strong>idx</strong></td><td><p>x derivative of piecewise polynomial to evaluate.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-tx%7E2"></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(nx+kx)</td><td>::</td>
+  <td><strong>tx</strong></td><td><p>sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db1ink)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-nx%7E2"></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td><p>the number of interpolation points in x. (same as in last call to db1ink)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-kx%7E2"></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td><p>order of polynomial pieces in x. (same as in last call to db1ink)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-bcoef%7E2"></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(nx)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by db1ink.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-f"></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>f</strong></td><td><p>interpolated value</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iflag%7E2"></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>status flag: 0 : no errors, /=0 : error</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-inbvx_in"></span>integer,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class</p></td>
   
 </tr>
 
@@ -281,17 +388,33 @@ function f2(x, y)
     
     
     
-    
-    
-    
-    
-	 <h3>Return Value <small><span class="anchor" id="variable-f2%7E2"></span>real(kind=wp)
-  </small></h3>
-    
-    
-    
     <h3>Description</h3>
-    <p>2d test function</p>
+    <p>Evaluates the tensor product piecewise polynomial
+  interpolant constructed by the routine <a href="../proc/db1ink.html">db1ink</a> or one of its
+  derivatives at the point xval. </p>
+<p>To evaluate the interpolant itself, set idx=0, 
+  to evaluate the first partial with respect to x, set idx=1, and so on.</p>
+<p>db1val returns 0.0 if (xval,yval) is out of range. that is, if</p>
+<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> 
+</pre></div>
+
+
+<p>if the knots tx were chosen by <a href="../proc/db1ink.html">db1ink</a>, then this is equivalent to:</p>
+<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="o">+</span><span class="n">epsx</span>
+</pre></div>
+
+
+<p>where</p>
+<div class="codehilite"><pre>   <span class="n">epsx</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+
+<p>The input quantities tx, nx, kx, and bcoef should be
+  unchanged since the last call of <a href="../proc/db1ink.html">db1ink</a>.</p>
+<h1>History</h1>
+<ul>
+<li>Jacob Williams, 10/30/2015 : Created 1D routine.</li>
+</ul>
     
     
      
@@ -302,16 +425,16 @@ function f2(x, y)
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
-<!-- Title: proc~~f2~2~~CalledByGraph Pages: 1 -->
-<svg id="procf22CalledByGraph" width="168pt" height="34pt"
+<!-- Title: proc~~db1val~~CalledByGraph Pages: 1 -->
+<svg id="procdb1valCalledByGraph" width="168pt" height="34pt"
  viewBox="0.00 0.00 168.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="proc~~f2~2~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
-<title>proc~~f2~2~~CalledByGraph</title>
+<g id="proc~~db1val~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
+<title>proc~~db1val~~CalledByGraph</title>
 <polygon fill="white" stroke="white" points="-4,5 -4,-30 165,-30 165,5 -4,5"/>
-<!-- proc~f2~2 -->
-<g id="node1" class="node"><title>proc~f2~2</title>
+<!-- proc~db1val -->
+<g id="node1" class="node"><title>proc~db1val</title>
 <polygon fill="none" stroke="black" points="160,-26 106,-26 106,-1.24345e-14 160,-3.55271e-15 160,-26"/>
-<text text-anchor="middle" x="133" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">f2</text>
+<text text-anchor="middle" x="133" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">db1val</text>
 </g>
 <!-- program~bspline_test -->
 <g id="node2" class="node"><title>program~bspline_test</title>
@@ -320,8 +443,8 @@ function f2(x, y)
 <text text-anchor="middle" x="35" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_test</text>
 </a>
 </g>
-<!-- program~bspline_test&#45;&gt;proc~f2~2 -->
-<g id="edge2" class="edge"><title>program~bspline_test&#45;&gt;proc~f2~2</title>
+<!-- program~bspline_test&#45;&gt;proc~db1val -->
+<g id="edge2" class="edge"><title>program~bspline_test&#45;&gt;proc~db1val</title>
 <path fill="none" stroke="black" d="M70.1034,-13C78.3675,-13 87.2064,-13 95.5686,-13"/>
 <polygon fill="black" stroke="black" points="95.8266,-16.5001 105.827,-13 95.8266,-9.5001 95.8266,-16.5001"/>
 </g>
@@ -439,11 +562,25 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-piov2%7E6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-work%7E2"></span>real(kind=wp),</td>
   
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>piov2</strong></td><td></td><td></td><td></td>
+  <td>public,</td>
+  <td>dimension(3*kx)</td><td>::</td>
+  <td><strong>work</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-inbvx%7E2"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>save</td><td>::</td>
+  <td><strong>inbvx</strong></td><td> =</td><td>1</td><td></td>
   
 </tr>
 
@@ -470,12 +607,36 @@ implementation in a submodule of an interface in a parent module.</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="k">function </span><span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="c">!! 2d test function</span>
-        <span class="k">implicit none</span>
-<span class="k">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">piov2</span>
-        <span class="n">piov2</span> <span class="o">=</span> <span class="mf">2.0_wp</span> <span class="o">*</span> <span class="nb">atan</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">)</span>
-        <span class="n">f2</span> <span class="o">=</span> <span class="mf">0.5_wp</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="nb">sin</span><span class="p">(</span><span class="n">piov2</span><span class="o">*</span><span class="n">y</span><span class="p">)</span> <span class="p">)</span>
-        <span class="k">end function </span><span class="n">f2</span>
+    <div class="highlight"><pre>    <span class="k">subroutine </span><span class="n">db1val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">inbvx_in</span><span class="p">)</span>
+
+    <span class="k">implicit none</span>
+
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">idx</span>      <span class="c">!! x derivative of piecewise polynomial to evaluate.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">nx</span>       <span class="c">!! the number of interpolation points in x. (same as in last call to db1ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">kx</span>       <span class="c">!! order of polynomial pieces in x. (same as in last call to db1ink)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">xval</span>     <span class="c">!! x coordinate of evaluation point.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db1ink)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">bcoef</span>    <span class="c">!! the b-spline coefficients computed by db1ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">f</span>        <span class="c">!! interpolated value</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>          <span class="kd">::</span> <span class="n">inbvx_in</span> <span class="c">!! inbvx initialization parameter from class</span>
+
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">kx</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span>
+
+    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">inbvx_in</span><span class="p">))</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="n">inbvx_in</span>
+    
+    <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span> <span class="k">return</span>
+<span class="k">        </span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+ 
+    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">work</span><span class="p">)</span>
+        
+    <span class="k">end subroutine </span><span class="n">db1val</span>
 </pre></div>
 
     </section>
