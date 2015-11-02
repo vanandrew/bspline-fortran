@@ -66,8 +66,6 @@
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
 				
-            <li><a href="../lists/programs.html">Programs</a></li>
-				
           </ul>
         
         <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -166,12 +164,6 @@
       
       <a class="list-group-item" href="../sourcefile/bspline_sub_module.f90.html">bspline_sub_module.f90</a>
       
-      <a class="list-group-item" href="../sourcefile/test.f90.html">test.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_oo.f90.html">test_oo.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_regrid.f90.html">test_regrid.f90</a>
-      
     </div>
   </div>
   
@@ -207,10 +199,11 @@
 <span class="k">    private        </span>
 
 <span class="k">    type</span><span class="p">,</span><span class="k">public</span><span class="p">,</span><span class="k">abstract</span> <span class="kd">::</span> <span class="n">bspline_class</span>
-        <span class="c">!! base class for the b-spline types</span>
-        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c">!! Base class for the b-spline types</span>
+        <span class="k">private</span>
+<span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c">!! internal variable used by dbvalu for efficient processing</span>
     <span class="k">contains</span>
-<span class="k">        procedure</span><span class="p">(</span><span class="n">destroy_func</span><span class="p">),</span><span class="k">deferred</span> <span class="kd">::</span> <span class="n">destroy</span>  <span class="c">!! destructor</span>
+<span class="k">        procedure</span><span class="p">(</span><span class="n">destroy_func</span><span class="p">),</span><span class="k">deferred</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span>  <span class="c">!! destructor</span>
     <span class="k">end type </span><span class="n">bspline_class</span>
 
     <span class="k">abstract interface</span>
