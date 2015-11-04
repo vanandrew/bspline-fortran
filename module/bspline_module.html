@@ -210,7 +210,7 @@
 </a>
 </g>
 <!-- module~bspline_sub_module&#45;&gt;module~bspline_oo_module -->
-<g id="edge6" class="edge"><title>module~bspline_sub_module&#45;&gt;module~bspline_oo_module</title>
+<g id="edge4" class="edge"><title>module~bspline_sub_module&#45;&gt;module~bspline_oo_module</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M226.278,-40.9146C239.75,-37.1053 254.618,-32.9011 268.638,-28.9369"/>
 <polygon fill="black" stroke="black" points="269.994,-32.1906 278.665,-26.1017 268.09,-25.4547 269.994,-32.1906"/>
 </g>
@@ -232,7 +232,7 @@
 <polygon fill="black" stroke="black" points="113.939,-47.3407 124.356,-45.4078 115.007,-40.4227 113.939,-47.3407"/>
 </g>
 <!-- iso_fortran_env&#45;&gt;module~bspline_oo_module -->
-<g id="edge4" class="edge"><title>iso_fortran_env&#45;&gt;module~bspline_oo_module</title>
+<g id="edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~bspline_oo_module</title>
 <path fill="none" stroke="black" stroke-dasharray="5,2" d="M87.5979,-29.8969C134.231,-26.5779 208.631,-21.2825 261.709,-17.5047"/>
 <polygon fill="black" stroke="black" points="261.967,-20.9953 271.693,-16.7941 261.47,-14.013 261.967,-20.9953"/>
 </g>
@@ -333,6 +333,68 @@ implementation in a submodule of an interface in a parent module.</p>
     <h1>Description</h1>
 <p>Multidimensional (2D-6D) B-Spline interpolation of data on a regular grid.
   This module uses both the subroutine and object-oriented modules.</p>
+<h1>iflag Codes</h1>
+<p>The following are the <code>iflag</code> codes that can be issued by the various
+ routines. They are divided into the initialize routines 
+ (e.g., <a href="../proc/db1ink.html">db1ink</a>, <a href="../proc/db2ink.html">db2ink</a>, etc.)
+ and the evaluate routines (e.g., <a href="../proc/db1val.html">db1val</a>, <a href="../proc/db2val.html">db2val</a>, etc.).</p>
+<h2>Initialize Routines</h2>
+<div class="codehilite"><pre><span class="nx">db</span><span class="o">*</span><span class="nx">ink</span>    <span class="mi">1</span><span class="o">:</span> <span class="nx">successful</span> <span class="nx">execution</span><span class="p">.</span>
+          <span class="mi">2</span><span class="o">:</span> <span class="nx">iflag</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+          <span class="mi">3</span><span class="o">:</span> <span class="nx">nx</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+          <span class="mi">4</span><span class="o">:</span> <span class="nx">kx</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+          <span class="mi">5</span><span class="o">:</span> <span class="nx">x</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
+          <span class="mi">6</span><span class="o">:</span> <span class="nx">tx</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
+          <span class="mi">7</span><span class="o">:</span> <span class="nx">ny</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+          <span class="mi">8</span><span class="o">:</span> <span class="nx">ky</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+          <span class="mi">9</span><span class="o">:</span> <span class="nx">y</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
+         <span class="mi">10</span><span class="o">:</span> <span class="nx">ty</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
+         <span class="mi">11</span><span class="o">:</span> <span class="nx">nz</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+         <span class="mi">12</span><span class="o">:</span> <span class="nx">kz</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+         <span class="mi">13</span><span class="o">:</span> <span class="nx">z</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
+         <span class="mi">14</span><span class="o">:</span> <span class="nx">tz</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
+         <span class="mi">15</span><span class="o">:</span> <span class="nx">nq</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+         <span class="mi">16</span><span class="o">:</span> <span class="nx">kq</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+         <span class="mi">17</span><span class="o">:</span> <span class="nx">q</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
+         <span class="mi">18</span><span class="o">:</span> <span class="nx">tq</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
+         <span class="mi">19</span><span class="o">:</span> <span class="nx">nr</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+         <span class="mi">20</span><span class="o">:</span> <span class="nx">kr</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
+         <span class="mi">21</span><span class="o">:</span> <span class="nx">r</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
+         <span class="mi">22</span><span class="o">:</span> <span class="nx">tr</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
+
+<span class="nx">dbintk</span>  <span class="mi">100</span><span class="o">:</span> <span class="nx">k</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">k</span><span class="o">&gt;=</span><span class="mi">1</span>
+        <span class="mi">101</span><span class="o">:</span> <span class="nx">n</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">n</span><span class="o">&gt;=</span><span class="nx">k</span>
+        <span class="mi">102</span><span class="o">:</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="o">&lt;</span><span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="nx">some</span> <span class="nx">i</span>
+        <span class="mi">103</span><span class="o">:</span> <span class="nx">some</span> <span class="nx">abscissa</span> <span class="nx">was</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">support</span> <span class="nx">of</span> <span class="nx">the</span>
+             <span class="nx">corresponding</span> <span class="nx">basis</span> <span class="kd">function</span> <span class="nx">and</span> <span class="nx">the</span> <span class="nx">system</span> <span class="nx">is</span> <span class="nx">singular</span>
+        <span class="mi">104</span><span class="o">:</span> <span class="nx">the</span> <span class="nx">system</span> <span class="nx">of</span> <span class="nx">solver</span> <span class="nx">detects</span> <span class="nx">a</span> <span class="nx">singular</span> <span class="nx">system</span>
+             <span class="nx">although</span> <span class="nx">the</span> <span class="nx">theoretical</span> <span class="nx">conditions</span> <span class="k">for</span> <span class="nx">a</span> <span class="nx">solution</span> <span class="nx">were</span> <span class="nx">satisfied</span>
+
+<span class="nx">dbspvn</span>  <span class="mi">201</span><span class="o">:</span> <span class="nx">k</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">k</span><span class="o">&gt;=</span><span class="mi">1</span>
+        <span class="mi">202</span><span class="o">:</span> <span class="nx">jhigh</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="mi">1</span><span class="o">&lt;=</span><span class="nx">jhigh</span><span class="o">&lt;=</span><span class="nx">k</span>
+        <span class="mi">203</span><span class="o">:</span> <span class="nx">index</span> <span class="nx">is</span> <span class="nx">not</span> <span class="mi">1</span> <span class="nx">or</span> <span class="mi">2</span>
+        <span class="mi">204</span><span class="o">:</span> <span class="nx">x</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">t</span><span class="p">(</span><span class="nx">ileft</span><span class="p">)</span><span class="o">&lt;=</span><span class="nx">x</span><span class="o">&lt;=</span><span class="nx">t</span><span class="p">(</span><span class="nx">ileft</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nx">dbtpcf</span>  <span class="mi">301</span><span class="o">:</span> <span class="nx">n</span> <span class="nx">should</span> <span class="nx">be</span> <span class="o">&gt;</span><span class="mi">0</span>
+</pre></div>
+
+
+<h2>Evaluate Routines</h2>
+<div class="codehilite"><pre>db*val   0: successful execution
+         1: x value out of bounds
+         2: y value out of bounds
+         3: z value out of bounds
+         4: q value out of bounds
+         5: r value out of bounds
+         6: s value out of bounds
+
+dbvalu 401: k does not satisfy k&gt;=1
+       402: n does not satisfy n&gt;=k
+       403: ideriv does not satisfy 0&lt;=ideriv&lt;k
+       404: x is not greater than or equal to t(k)
+       405: x is not less than or equal to t(n+1)
+       406: a left limiting value cannot be obtained at t(k)
+</pre></div>
     <br>
     
 
