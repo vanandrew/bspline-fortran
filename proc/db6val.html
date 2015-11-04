@@ -1507,7 +1507,7 @@ public subroutine db6val(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq,
         <span class="k">return</span>
 <span class="k">    end if</span>
 <span class="k">    if</span> <span class="p">(</span><span class="n">sval</span><span class="o">&lt;</span><span class="n">ts</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">sval</span><span class="o">&gt;</span><span class="n">ts</span><span class="p">(</span><span class="n">ns</span><span class="o">+</span><span class="n">ks</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<span class="k">        write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="s1">&#39;db6val - r value out of bounds&#39;</span>
+<span class="k">        write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="s1">&#39;db6val - s value out of bounds&#39;</span>
         <span class="n">iflag</span> <span class="o">=</span> <span class="mi">6</span>
         <span class="k">return</span>
 <span class="k">    end if</span>
