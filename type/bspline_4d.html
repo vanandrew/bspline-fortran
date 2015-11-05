@@ -582,7 +582,7 @@ private subroutine evaluate_4d(me, xval, yval, zval, qval, idx, idy, idz, idq, f
 <tr>
   
   <td><span class="anchor" ></span>class(<a href='../type/bspline_4d.html'>bspline_4d</a>),</td>
-  <td>intent(in)</td>
+  <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
@@ -848,6 +848,9 @@ private subroutine destroy_4d(me)
         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">ty</span>
         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">tz</span>
         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">tq</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbvy</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbvz</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbvq</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iloy</span>  <span class="o">=</span> <span class="mi">1</span>
         <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iloz</span>  <span class="o">=</span> <span class="mi">1</span>
         <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iloq</span>  <span class="o">=</span> <span class="mi">1</span>

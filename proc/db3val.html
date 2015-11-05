@@ -133,10 +133,6 @@
       
       <a class="list-group-item" href="../proc/db3val.html#variable-work%7E6">work</a>
       
-      <a class="list-group-item" href="../proc/db3val.html#variable-inbv1">inbv1</a>
-      
-      <a class="list-group-item" href="../proc/db3val.html#variable-inbv2">inbv2</a>
-      
       <a class="list-group-item" href="../proc/db3val.html#variable-lefty%7E2">lefty</a>
       
       <a class="list-group-item" href="../proc/db3val.html#variable-leftz">leftz</a>
@@ -152,12 +148,6 @@
       <a class="list-group-item" href="../proc/db3val.html#variable-j">j</a>
       
       <a class="list-group-item" href="../proc/db3val.html#variable-k%7E2">k</a>
-      
-      <a class="list-group-item" href="../proc/db3val.html#variable-inbvx%7E3">inbvx</a>
-      
-      <a class="list-group-item" href="../proc/db3val.html#variable-iloy%7E2">iloy</a>
-      
-      <a class="list-group-item" href="../proc/db3val.html#variable-iloz">iloz</a>
       
     </div>
   </div>
@@ -225,7 +215,7 @@
     
     <div class="col-lg-9" id='text'>
     <h2>
-public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in)
+public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag, inbvx, inbvy, inbvz, iloy, iloz)
     
     
     
@@ -523,12 +513,12 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
   
 <tr>
   
-  <td><span class="anchor" id="variable-inbvx_in%7E3"></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td><span class="anchor" id="variable-inbvx%7E3"></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvx</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -538,12 +528,12 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
   
 <tr>
   
-  <td><span class="anchor" id="variable-iloy_in%7E2"></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td><span class="anchor" id="variable-inbvy%7E2"></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -553,12 +543,42 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
   
 <tr>
   
-  <td><span class="anchor" id="variable-iloz_in"></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td><span class="anchor" id="variable-inbvz"></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iloy%7E2"></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iloz"></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -661,34 +681,6 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
   <td>public,</td>
   <td>dimension(3*max(kx,ky,kz))</td><td>::</td>
   <td><strong>work</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-inbv1"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>inbv1</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-inbv2"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>inbv2</strong></td><td></td><td></td><td></td>
   
 </tr>
 
@@ -804,48 +796,6 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-inbvx%7E3"></span>integer,</td>
-  
-  <td>public,</td>
-  <td>save</td><td>::</td>
-  <td><strong>inbvx</strong></td><td> =</td><td>1</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-iloy%7E2"></span>integer,</td>
-  
-  <td>public,</td>
-  <td>save</td><td>::</td>
-  <td><strong>iloy</strong></td><td> =</td><td>1</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-iloz"></span>integer,</td>
-  
-  <td>public,</td>
-  <td>save</td><td>::</td>
-  <td><strong>iloz</strong></td><td> =</td><td>1</td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -872,7 +822,7 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
     <div class="highlight"><pre>    <span class="k">subroutine </span><span class="n">db3val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,&amp;</span>
                                      <span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,&amp;</span>
                                      <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">,&amp;</span>
-                                     <span class="n">inbvx_in</span><span class="p">,</span><span class="n">iloy_in</span><span class="p">,</span><span class="n">iloz_in</span><span class="p">)</span>
+                                     <span class="n">inbvx</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">iloz</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -894,24 +844,18 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>    <span class="c">!! the b-spline coefficients computed by db3ink.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                    <span class="kd">::</span> <span class="n">f</span>        <span class="c">!! interpolated value</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>             <span class="kd">::</span> <span class="n">inbvx_in</span> <span class="c">!! inbvx initialization parameter from class (used by object-oriented interface)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>             <span class="kd">::</span> <span class="n">iloy_in</span>  <span class="c">!! iloy initialization parameter from class (used by object-oriented interface)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>             <span class="kd">::</span> <span class="n">iloz_in</span>  <span class="c">!! iloz initialization parameter from class (used by object-oriented interface)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">inbvx</span>    <span class="c">!! initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">inbvy</span>    <span class="c">!! initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">inbvz</span>    <span class="c">!! initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">iloy</span>     <span class="c">!! initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">iloz</span>     <span class="c">!! initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">temp2</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">))</span>    <span class="kd">::</span> <span class="n">work</span>
 
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbv1</span><span class="p">,</span> <span class="n">inbv2</span><span class="p">,</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">leftz</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,&amp;</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">leftz</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,&amp;</span>
                 <span class="n">kcoly</span><span class="p">,</span> <span class="n">kcolz</span><span class="p">,</span> <span class="n">izm1</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span>
-
-    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloy</span>  <span class="o">=</span> <span class="mi">1</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">save</span> <span class="kd">::</span> <span class="n">iloz</span>  <span class="o">=</span> <span class="mi">1</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">inbvx_in</span><span class="p">))</span> <span class="n">inbvx</span> <span class="o">=</span> <span class="n">inbvx_in</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iloy_in</span><span class="p">))</span>  <span class="n">iloy</span>  <span class="o">=</span> <span class="n">iloy_in</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iloz_in</span><span class="p">))</span>  <span class="n">iloz</span>  <span class="o">=</span> <span class="n">iloz_in</span>
     
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 
@@ -936,8 +880,6 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
 <span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">iloz</span><span class="p">,</span><span class="n">leftz</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 
 <span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">inbv1</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">inbv2</span> <span class="o">=</span> <span class="mi">1</span>
 
     <span class="n">kcolz</span> <span class="o">=</span> <span class="n">leftz</span> <span class="o">-</span> <span class="n">kz</span>
     <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kz</span>
@@ -952,12 +894,12 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
 
 <span class="k">    </span><span class="n">kcoly</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kz</span>
-        <span class="n">temp2</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcoly</span><span class="p">:),</span><span class="n">temp1</span><span class="p">(:,</span><span class="n">k</span><span class="p">),</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbv1</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+        <span class="n">temp2</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcoly</span><span class="p">:),</span><span class="n">temp1</span><span class="p">(:,</span><span class="n">k</span><span class="p">),</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    end do</span>
 
 <span class="k">    </span><span class="n">kcolz</span> <span class="o">=</span> <span class="n">leftz</span> <span class="o">-</span> <span class="n">kz</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbv2</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">end subroutine </span><span class="n">db3val</span>
 </pre></div>

@@ -687,7 +687,7 @@ public subroutine <a href='../proc/db1ink.html'>db1ink</a>(x, nx, fcn, kx, tx, b
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db1val"></span><h3>
-public subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx_in)
+public subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
     
     
     
@@ -835,11 +835,11 @@ public subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, nx, kx
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvx</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -1099,7 +1099,7 @@ public subroutine <a href='../proc/db2ink.html'>db2ink</a>(x, nx, y, ny, fcn, kx
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db2val"></span><h3>
-public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f, iflag, inbvx_in, iloy_in)
+public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f, iflag, inbvx, inbvy, iloy)
     
     
     
@@ -1322,11 +1322,11 @@ public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy,
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvx</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -1337,11 +1337,26 @@ public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy,
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -1670,7 +1685,7 @@ public subroutine <a href='../proc/db3ink.html'>db3ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db3val"></span><h3>
-public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in)
+public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag, inbvx, inbvy, inbvz, iloy, iloz)
     
     
     
@@ -1968,11 +1983,11 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvx</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -1983,11 +1998,11 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -1998,11 +2013,41 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -2398,7 +2443,7 @@ public subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db4val"></span><h3>
-public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty, tz, tq, nx, ny, nz, nq, kx, ky, kz, kq, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in, iloq_in)
+public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty, tz, tq, nx, ny, nz, nq, kx, ky, kz, kq, bcoef, f, iflag, inbvx, inbvy, inbvz, inbvq, iloy, iloz, iloq)
     
     
     
@@ -2771,11 +2816,11 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvx</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -2786,11 +2831,11 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -2801,11 +2846,11 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -2816,11 +2861,56 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloq_in</strong></td><td><p>iloq initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvq</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloq</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -3281,7 +3371,7 @@ public subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db5val"></span><h3>
-public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qval, rval, idx, idy, idz, idq, idr, tx, ty, tz, tq, tr, nx, ny, nz, nq, nr, kx, ky, kz, kq, kr, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in, iloq_in, ilor_in)
+public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qval, rval, idx, idy, idz, idq, idr, tx, ty, tz, tq, tr, nx, ny, nz, nq, nr, kx, ky, kz, kq, kr, bcoef, f, iflag, inbvx, inbvy, inbvz, inbvq, inbvr, iloy, iloz, iloq, ilor)
     
     
     
@@ -3729,11 +3819,11 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvx</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -3744,11 +3834,11 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -3759,11 +3849,11 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -3774,11 +3864,11 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloq_in</strong></td><td><p>iloq initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvq</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -3789,11 +3879,71 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ilor_in</strong></td><td><p>ilor initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvr</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloq</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilor</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -4321,7 +4471,7 @@ public subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z, nz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db6val"></span><h3>
-public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq, idr, ids, tx, ty, tz, tq, tr, ts, nx, ny, nz, nq, nr, ns, kx, ky, kz, kq, kr, ks, bcoef, f, iflag, inbvx_in, iloy_in, iloz_in, iloq_in, ilor_in, ilos_in)
+public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qval, rval, sval, idx, idy, idz, idq, idr, ids, tx, ty, tz, tq, tr, ts, nx, ny, nz, nq, nr, ns, kx, ky, kz, kq, kr, ks, bcoef, f, iflag, inbvx, inbvy, inbvz, inbvq, inbvr, inbvs, iloy, iloz, iloq, ilor, ilos)
     
     
     
@@ -4844,11 +4994,11 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>inbvx_in</strong></td><td><p>inbvx initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvx</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -4859,11 +5009,11 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloy_in</strong></td><td><p>iloy initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -4874,11 +5024,11 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloz_in</strong></td><td><p>iloz initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -4889,11 +5039,11 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iloq_in</strong></td><td><p>iloq initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvq</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -4904,11 +5054,11 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ilor_in</strong></td><td><p>ilor initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvr</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
@@ -4919,11 +5069,86 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
 <tr>
   
   <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in),</td>
-  <td>optional</td>
+  <td>intent(inout)</td>
+  <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ilos_in</strong></td><td><p>ilos initialization parameter from class (used by object-oriented interface)</p></td>
+  <td><strong>inbvs</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloy</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloz</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iloq</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilor</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ilos</strong></td><td><p>initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</p></td>
   
 </tr>
 
