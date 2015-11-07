@@ -127,8 +127,6 @@
     <div class="panel-heading text-left"><h3 class="panel-title">Variables</h3></div>
     <div class="list-group">
       
-      <a class="list-group-item" href="../proc/db1ink.html#variable-temp">temp</a>
-      
       <a class="list-group-item" href="../proc/db1ink.html#variable-work">work</a>
       
       <a class="list-group-item" href="../proc/db1ink.html#variable-status_ok">status_ok</a>
@@ -376,20 +374,6 @@ public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
   
 <tr>
   
-  <td><span class="anchor" id="variable-temp"></span>real(kind=wp),</td>
-  
-  <td>public,</td>
-  <td>dimension(nx)</td><td>::</td>
-  <td><strong>temp</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-work"></span>real(kind=wp),</td>
   
   <td>public,</td>
@@ -459,7 +443,6 @@ public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
                                                       <span class="c">!!                6 = tx not non-decreasing.</span>
 
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kx</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="kd">::</span> <span class="n">work</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
   
