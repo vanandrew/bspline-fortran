@@ -258,7 +258,7 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
   <td></td>
   
   <td>dimension(nx+kx)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db1ink)</p></td>
+  <td><strong>tx</strong></td><td><p>sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -273,7 +273,7 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>nx</strong></td><td><p>the number of interpolation points in x. (same as in last call to db1ink)</p></td>
+  <td><strong>nx</strong></td><td><p>the number of interpolation points in x. (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -288,7 +288,7 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kx</strong></td><td><p>order of polynomial pieces in x. (same as in last call to db1ink)</p></td>
+  <td><strong>kx</strong></td><td><p>order of polynomial pieces in x. (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -303,7 +303,7 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
   <td></td>
   
   <td>dimension(nx)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by db1ink.</p></td>
+  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by <a href="../proc/db1ink.html">db1ink</a>.</p></td>
   
 </tr>
 
@@ -444,11 +444,11 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
     <span class="k">implicit none</span>
 
 <span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">idx</span>      <span class="c">!! x derivative of piecewise polynomial to evaluate.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">nx</span>       <span class="c">!! the number of interpolation points in x. (same as in last call to db1ink)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">kx</span>       <span class="c">!! order of polynomial pieces in x. (same as in last call to db1ink)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">nx</span>       <span class="c">!! the number of interpolation points in x. (same as in last call to [[db1ink]])</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">kx</span>       <span class="c">!! order of polynomial pieces in x. (same as in last call to [[db1ink]])</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">xval</span>     <span class="c">!! x coordinate of evaluation point.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to db1ink)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">bcoef</span>    <span class="c">!! the b-spline coefficients computed by db1ink.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>       <span class="c">!! sequence of knots defining the piecewise polynomial in the x direction. (same as in last call to [[db1ink]])</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">bcoef</span>    <span class="c">!! the b-spline coefficients computed by [[db1ink]].</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">f</span>        <span class="c">!! interpolated value</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!! status flag: 0 : no errors, /=0 : error</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">inbvx</span>    <span class="c">!! initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</span>

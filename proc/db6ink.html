@@ -519,7 +519,7 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-   If iflag=0 these are chosen by db6ink.
+   If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
    If iflag=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
@@ -537,7 +537,7 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
   
   <td>dimension(ny+ky)</td><td>::</td>
   <td><strong>ty</strong></td><td><p>The knots in the y direction for the spline interpolant.
-    If iflag=0 these are chosen by db6ink.
+    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
     If iflag=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
@@ -555,7 +555,7 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
   
   <td>dimension(nz+kz)</td><td>::</td>
   <td><strong>tz</strong></td><td><p>The knots in the z direction for the spline interpolant.
-    If iflag=0 these are chosen by db6ink.
+    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
     If iflag=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
@@ -573,7 +573,7 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
   
   <td>dimension(nq+kq)</td><td>::</td>
   <td><strong>tq</strong></td><td><p>The knots in the q direction for the spline interpolant.
-    If iflag=0 these are chosen by db6ink.
+    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
     If iflag=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
@@ -591,7 +591,7 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
   
   <td>dimension(nr+kr)</td><td>::</td>
   <td><strong>tr</strong></td><td><p>The knots in the r direction for the spline interpolant.
-    If iflag=0 these are chosen by db6ink.
+    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
     If iflag=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
@@ -609,7 +609,7 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
   
   <td>dimension(ns+ks)</td><td>::</td>
   <td><strong>ts</strong></td><td><p>The knots in the s direction for the spline interpolant.
-    If iflag=0 these are chosen by db6ink.
+    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
     If iflag=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
@@ -641,7 +641,7 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td><p><strong>on input</strong>    0 = knot sequence chosen by db6ink.
+  <td><strong>iflag</strong></td><td><p><strong>on input</strong>    0 = knot sequence chosen by <a href="../proc/db6ink.html">db6ink</a>.
                  1 = knot sequence chosen by user.
  <strong>on output</strong>   1 = successful execution.
                  2 = iflag out of range.
@@ -800,31 +800,31 @@ public subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx, ky, 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">ns</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">fcn</span>   <span class="c">!! array of function values to interpolate. fcn(i,j,k,q,r,s) should</span>
                                                                <span class="c">!!   contain the function value at the point (x(i),y(j),z(k),q(l),r(m),s(n))</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">tx</span>    <span class="c">!! The knots in the x direction for the spline interpolant.</span>
-                                                               <span class="c">!!   If iflag=0 these are chosen by db6ink.</span>
+                                                               <span class="c">!!   If iflag=0 these are chosen by [[db6ink]].</span>
                                                                <span class="c">!!   If iflag=1 these are specified by the user.</span>
                                                                <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">ty</span>    <span class="c">!! The knots in the y direction for the spline interpolant.</span>
-                                                               <span class="c">!!    If iflag=0 these are chosen by db6ink.</span>
+                                                               <span class="c">!!    If iflag=0 these are chosen by [[db6ink]].</span>
                                                                <span class="c">!!    If iflag=1 these are specified by the user.</span>
                                                                <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">tz</span>    <span class="c">!! The knots in the z direction for the spline interpolant.</span>
-                                                               <span class="c">!!    If iflag=0 these are chosen by db6ink.</span>
+                                                               <span class="c">!!    If iflag=0 these are chosen by [[db6ink]].</span>
                                                                <span class="c">!!    If iflag=1 these are specified by the user.</span>
                                                                <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">tq</span>    <span class="c">!! The knots in the q direction for the spline interpolant.</span>
-                                                               <span class="c">!!    If iflag=0 these are chosen by db6ink.</span>
+                                                               <span class="c">!!    If iflag=0 these are chosen by [[db6ink]].</span>
                                                                <span class="c">!!    If iflag=1 these are specified by the user.</span>
                                                                <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">tr</span>    <span class="c">!! The knots in the r direction for the spline interpolant.</span>
-                                                               <span class="c">!!    If iflag=0 these are chosen by db6ink.</span>
+                                                               <span class="c">!!    If iflag=0 these are chosen by [[db6ink]].</span>
                                                                <span class="c">!!    If iflag=1 these are specified by the user.</span>
                                                                <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ns</span><span class="o">+</span><span class="n">ks</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">ts</span>    <span class="c">!! The knots in the s direction for the spline interpolant.</span>
-                                                               <span class="c">!!    If iflag=0 these are chosen by db6ink.</span>
+                                                               <span class="c">!!    If iflag=0 these are chosen by [[db6ink]].</span>
                                                                <span class="c">!!    If iflag=1 these are specified by the user.</span>
                                                                <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">ns</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span> <span class="c">!! array of coefficients of the b-spline interpolant.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">iflag</span> <span class="c">!! **on input**    0 = knot sequence chosen by db6ink.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">iflag</span> <span class="c">!! **on input**    0 = knot sequence chosen by [[db6ink]].</span>
                                                                <span class="c">!!                 1 = knot sequence chosen by user.</span>
                                                                <span class="c">!! **on output**   1 = successful execution.</span>
                                                                <span class="c">!!                 2 = iflag out of range.</span>

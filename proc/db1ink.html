@@ -292,7 +292,7 @@ public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-    If iflag=0 these are chosen by db1ink.
+    If iflag=0 these are chosen by <a href="../proc/db1ink.html">db1ink</a>.
     If iflag=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
@@ -324,7 +324,7 @@ public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td><p><strong>on input:</strong>  0 = knot sequence chosen by db1ink.
+  <td><strong>iflag</strong></td><td><p><strong>on input:</strong>  0 = knot sequence chosen by <a href="../proc/db1ink.html">db1ink</a>.
                 1 = knot sequence chosen by user.
  <strong>on output:</strong> 1 = successful execution.
                 2 = iflag out of range.
@@ -429,11 +429,11 @@ public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">fcn</span>    <span class="c">!! Array of function values to interpolate. fcn(i) should</span>
                                                       <span class="c">!!    contain the function value at the point x(i)</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The knots in the x direction for the spline interpolant.</span>
-                                                      <span class="c">!!    If iflag=0 these are chosen by db1ink.</span>
+                                                      <span class="c">!!    If iflag=0 these are chosen by [[db1ink]].</span>
                                                       <span class="c">!!    If iflag=1 these are specified by the user.</span>
                                                       <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! Array of coefficients of the b-spline interpolant.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! **on input:**  0 = knot sequence chosen by db1ink.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! **on input:**  0 = knot sequence chosen by [[db1ink]].</span>
                                                       <span class="c">!!                1 = knot sequence chosen by user.</span>
                                                       <span class="c">!! **on output:** 1 = successful execution.</span>
                                                       <span class="c">!!                2 = iflag out of range.</span>
