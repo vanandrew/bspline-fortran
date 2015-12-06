@@ -485,8 +485,8 @@ public subroutine db3ink(x, nx, y, ny, z, nz, fcn, kx, ky, kz, tx, ty, tz, bcoef
     
     <h3>Description</h3>
     <p>Determines the parameters of a function that interpolates
-  the three-dimensional gridded data 
-  $$ [x(i),y(j),z(k),\mathrm{fcn}(i,j,k)] ~\mathrm{for}~ 
+  the three-dimensional gridded data
+  $$ [x(i),y(j),z(k),\mathrm{fcn}(i,j,k)] ~\mathrm{for}~
      i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z $$
   The interpolating function and
   its derivatives may subsequently be evaluated by the function
@@ -494,14 +494,14 @@ public subroutine db3ink(x, nx, y, ny, z, nz, fcn, kx, ky, kz, tx, ty, tz, bcoef
 <p>The interpolating function is a piecewise polynomial function
   represented as a tensor product of one-dimensional b-splines. the
   form of this function is
-  $$ s(x,y,z) = \sum_{i=1}^{n_x} \sum_{j=1}^{n_y} \sum_{k=1}^{n_z} 
+  $$ s(x,y,z) = \sum_{i=1}^{n_x} \sum_{j=1}^{n_y} \sum_{k=1}^{n_z}
                 a_{ijk} u_i(x) v_j(y) w_k(z) $$</p>
 <p>where the functions \(u_i\), \(v_j\), and \(w_k\) are one-dimensional b-
   spline basis functions. the coefficients \(a_{ijk}\) are chosen so that:</p>
-<p>$$ s(x(i),y(j),z(k)) = \mathrm{fcn}(i,j,k) 
+<p>$$ s(x(i),y(j),z(k)) = \mathrm{fcn}(i,j,k)
      ~\mathrm{for}~ i=1,..,n_x , j=1,..,n_y , k=1,..,n_z $$</p>
 <p>Note that for fixed values of y and z s(x,y,z) is a piecewise
-  polynomial function of x alone, for fixed values of x and z s(x,y,z) 
+  polynomial function of x alone, for fixed values of x and z s(x,y,z)
   is a piecewise polynomial function of y alone, and for fixed
   values of x and y s(x,y,z) is a function of z alone. in one
   dimension a piecewise polynomial may be created by partitioning a
@@ -661,7 +661,7 @@ public subroutine db3ink(x, nx, y, ny, z, nz, fcn, kx, ky, kz, tx, ty, tz, bcoef
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kx</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="o">*</span><span class="n">ky</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="o">*</span><span class="n">kz</span><span class="o">*</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="kd">::</span> <span class="n">work</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
-      
+
     <span class="c">! check validity of input</span>
 
     <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span><span class="s1">&#39;db3ink&#39;</span><span class="p">,&amp;</span>
@@ -671,7 +671,7 @@ public subroutine db3ink(x, nx, y, ny, z, nz, fcn, kx, ky, kz, tx, ty, tz, bcoef
                         <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,&amp;</span>
                         <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">,&amp;</span>
                         <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
-                        
+
     <span class="k">if</span> <span class="p">(</span><span class="n">status_ok</span><span class="p">)</span> <span class="k">then</span>
 
         <span class="c">! choose knots</span>
@@ -681,18 +681,18 @@ public subroutine db3ink(x, nx, y, ny, z, nz, fcn, kx, ky, kz, tx, ty, tz, bcoef
             <span class="k">call </span><span class="n">dbknot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">ty</span><span class="p">)</span>
             <span class="k">call </span><span class="n">dbknot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">tz</span><span class="p">)</span>
         <span class="k">end if</span>
-    
+
         <span class="c">! copy fcn to work in packed for dbtpcf</span>
         <span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="p">)</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span> <span class="n">fcn</span><span class="p">,</span> <span class="p">[</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="p">]</span> <span class="p">)</span>
 
         <span class="c">! construct b-spline coefficients</span>
-        
+
                       <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">nz</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span> <span class="n">nz</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-    
+
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
-    
+
     <span class="k">end if</span>
 
 <span class="k">    end subroutine </span><span class="n">db3ink</span>

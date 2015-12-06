@@ -268,7 +268,7 @@ public subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
   <td></td>
   
   <td>dimension(ny)</td><td>::</td>
-  <td><strong>y</strong></td><td><p>Array of y abcissae. Must be strictly increasing.   </p></td>
+  <td><strong>y</strong></td><td><p>Array of y abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -283,7 +283,7 @@ public subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ny</strong></td><td><p>Number of y abcissae  </p></td>
+  <td><strong>ny</strong></td><td><p>Number of y abcissae</p></td>
   
 </tr>
 
@@ -545,11 +545,11 @@ public subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
     <span class="k">implicit none</span>
 
 <span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">nx</span>     <span class="c">!! Number of x abcissae</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">ny</span>     <span class="c">!! Number of y abcissae  </span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">ny</span>     <span class="c">!! Number of y abcissae</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">kx</span>     <span class="c">!! The order of spline pieces in x (&gt;= 2, &lt; nx). (order = polynomial degree + 1)</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">ky</span>     <span class="c">!! The order of spline pieces in y (&gt;= 2, &lt; ny). (order = polynomial degree + 1)</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! Array of x abcissae. Must be strictly increasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">y</span>      <span class="c">!! Array of y abcissae. Must be strictly increasing.   </span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">y</span>      <span class="c">!! Array of y abcissae. Must be strictly increasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">fcn</span>    <span class="c">!! Array of function values to interpolate. fcn(i,j) should</span>
                                                       <span class="c">!!    contain the function value at the point (x(i),y(j))</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The knots in the x direction for the spline interpolant.</span>
@@ -578,9 +578,9 @@ public subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kx</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="mi">2</span><span class="o">*</span><span class="n">ky</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span> <span class="kd">::</span> <span class="n">work</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
-  
+
     <span class="c">!check validity of inputs</span>
-    
+
     <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span><span class="s1">&#39;db2ink&#39;</span><span class="p">,&amp;</span>
                         <span class="n">iflag</span><span class="p">,&amp;</span>
                         <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,&amp;</span>
@@ -588,7 +588,7 @@ public subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
                         <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,&amp;</span>
                         <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="n">ty</span><span class="p">,&amp;</span>
                         <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
-                        
+
     <span class="k">if</span> <span class="p">(</span><span class="n">status_ok</span><span class="p">)</span> <span class="k">then</span>
 
         <span class="c">!choose knots</span>
@@ -604,7 +604,7 @@ public subroutine db2ink(x, nx, y, ny, fcn, kx, ky, tx, ty, bcoef, iflag)
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
-    
+
     <span class="k">end if</span>
 
 <span class="k">    end subroutine </span><span class="n">db2ink</span>

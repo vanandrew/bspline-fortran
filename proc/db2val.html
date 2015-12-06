@@ -482,25 +482,25 @@ public subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f,
     <h3>Description</h3>
     <p>Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db2ink.html">db2ink</a> or one of its
-  derivatives at the point (xval,yval). </p>
+  derivatives at the point (xval,yval).</p>
 <p>To evaluate the interpolant
   itself, set idx=idy=0, to evaluate the first partial with respect
   to x, set idx=1,idy=0, and so on.</p>
 <p>db2val returns 0.0 if (xval,yval) is out of range. that is, if</p>
-<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> 
+<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span>
    <span class="n">yval</span> <span class="o">&lt;</span> <span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span> <span class="o">&gt;</span> <span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">)</span>
 </pre></div>
 
 
 <p>if the knots tx and ty were chosen by <a href="../proc/db2ink.html">db2ink</a>, then this is equivalent to:</p>
-<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="o">+</span><span class="n">epsx</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> 
+<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="o">+</span><span class="n">epsx</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span>
    <span class="n">yval</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span><span class="o">+</span><span class="n">epsy</span>
 </pre></div>
 
 
 <p>where</p>
 <div class="codehilite"><pre>   <span class="n">epsx</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="o">-</span><span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-   <span class="n">epsy</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> 
+   <span class="n">epsy</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">ny</span><span class="p">)</span><span class="o">-</span><span class="n">y</span><span class="p">(</span><span class="n">ny</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 </pre></div>
 
 
@@ -660,7 +660,7 @@ public subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f,
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">k</span><span class="p">,</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,</span> <span class="n">kcol</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">))</span> <span class="kd">::</span> <span class="n">work</span>
-    
+
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span> <span class="k">then</span>
@@ -673,7 +673,7 @@ public subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f,
         <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
         <span class="k">return</span>
 <span class="k">    end if</span>
-<span class="k">    </span>
+
 <span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
     <span class="k">call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">lefty</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 
@@ -683,10 +683,10 @@ public subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoef, f,
         <span class="n">temp</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">(:,</span><span class="n">kcol</span><span class="p">),</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="c">!error</span>
     <span class="k">end do</span>
-<span class="k">    </span>
+
 <span class="k">    </span><span class="n">kcol</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcol</span><span class="p">:),</span><span class="n">temp</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-         
+
     <span class="k">end subroutine </span><span class="n">db2val</span>
 </pre></div>
 

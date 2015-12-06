@@ -341,8 +341,8 @@ implementation in a submodule of an interface in a parent module.</p>
 <p>This module is based on the bspline and spline routines from [1].
   The original Fortran 77 routines were converted to free-form source.
   Some of them are relatively unchanged from the originals, but some have
-  been extensively refactored. In addition, new routines for 
-  1d, 4d, 5d, and 6d interpolation were also created (these are simply 
+  been extensively refactored. In addition, new routines for
+  1d, 4d, 5d, and 6d interpolation were also created (these are simply
   extensions of the same algorithm into higher dimensions).</p>
 <h1>See also</h1>
 <ul>
@@ -356,12 +356,12 @@ implementation in a submodule of an interface in a parent module.</p>
 <li>Carl de Boor, "A Practical Guide to Splines",
      Springer-Verlag, New York, 1978.</li>
 <li>Carl de Boor, <a href="http://dl.acm.org/citation.cfm?id=355831">Efficient Computer Manipulation of Tensor
-     Products</a>, 
+     Products</a>,
      ACM Transactions on Mathematical Software,
      Vol. 5 (1979), p. 173-182.</li>
 <li>D.E. Amos, "Computation with Splines and B-Splines",
      SAND78-1968, Sandia Laboratories, March, 1979.</li>
-<li>Carl de Boor, 
+<li>Carl de Boor,
      <a href="http://epubs.siam.org/doi/abs/10.1137/0714026">Package for calculating with B-splines</a>,
      SIAM Journal on Numerical Analysis 14, 3 (June 1977), p. 441-472.</li>
 </ol>
@@ -864,7 +864,7 @@ public subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, nx, kx
        
        <p>Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db1ink.html">db1ink</a> or one of its
-  derivatives at the point xval. </p>
+  derivatives at the point xval.</p>
         
 
   </div>
@@ -936,7 +936,7 @@ public subroutine <a href='../proc/db2ink.html'>db2ink</a>(x, nx, y, ny, fcn, kx
   <td></td>
   
   <td>dimension(ny)</td><td>::</td>
-  <td><strong>y</strong></td><td><p>Array of y abcissae. Must be strictly increasing.   </p></td>
+  <td><strong>y</strong></td><td><p>Array of y abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -951,7 +951,7 @@ public subroutine <a href='../proc/db2ink.html'>db2ink</a>(x, nx, y, ny, fcn, kx
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ny</strong></td><td><p>Number of y abcissae  </p></td>
+  <td><strong>ny</strong></td><td><p>Number of y abcissae</p></td>
   
 </tr>
 
@@ -1381,7 +1381,7 @@ public subroutine <a href='../proc/db2val.html'>db2val</a>(xval, yval, idx, idy,
        
        <p>Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db2ink.html">db2ink</a> or one of its
-  derivatives at the point (xval,yval). </p>
+  derivatives at the point (xval,yval).</p>
         
 
   </div>
@@ -1676,8 +1676,8 @@ public subroutine <a href='../proc/db3ink.html'>db3ink</a>(x, nx, y, ny, z, nz, 
 
        
        <p>Determines the parameters of a function that interpolates
-  the three-dimensional gridded data 
-  $$ [x(i),y(j),z(k),\mathrm{fcn}(i,j,k)] ~\mathrm{for}~ 
+  the three-dimensional gridded data
+  $$ [x(i),y(j),z(k),\mathrm{fcn}(i,j,k)] ~\mathrm{for}~
      i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z $$
   The interpolating function and
   its derivatives may subsequently be evaluated by the function
@@ -1828,7 +1828,7 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
   <td></td>
   
   <td>dimension(ny+ky)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db3ink.html">db3ink</a>) </p></td>
+  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db3ink.html">db3ink</a>)</p></td>
   
 </tr>
 
@@ -1843,7 +1843,7 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
   <td></td>
   
   <td>dimension(nz+kz)</td><td>::</td>
-  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db3ink.html">db3ink</a>) </p></td>
+  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db3ink.html">db3ink</a>)</p></td>
   
 </tr>
 
@@ -1873,7 +1873,7 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db3ink.html">db3ink</a>) </p></td>
+  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db3ink.html">db3ink</a>)</p></td>
   
 </tr>
 
@@ -2072,7 +2072,7 @@ public subroutine <a href='../proc/db3val.html'>db3val</a>(xval, yval, zval, idx
        
        <p>Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db3ink.html">db3ink</a> or one of its
-  derivatives at the point (xval,yval,zval). </p>
+  derivatives at the point (xval,yval,zval).</p>
         
 
   </div>
@@ -2435,10 +2435,10 @@ public subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z, nz, 
        
        <p>Determines the parameters of a function that interpolates
   the four-dimensional gridded data
-  $$ [x(i),y(j),z(k),q(l),\mathrm{fcn}(i,j,k,l)] ~\mathrm{for}~ 
-     i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z, 
+  $$ [x(i),y(j),z(k),q(l),\mathrm{fcn}(i,j,k,l)] ~\mathrm{for}~
+     i=1,..,n_x ~\mathrm{and}~ j=1,..,n_y, ~\mathrm{and}~ k=1,..,n_z,
      ~\mathrm{and}~ l=1,..,n_q $$
-  The interpolating function and its derivatives may 
+  The interpolating function and its derivatives may
   subsequently be evaluated by the function <a href="../proc/db4val.html">db4val</a>.</p>
         
 
@@ -2616,7 +2616,7 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(ny+ky)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>) </p></td>
+  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -2631,7 +2631,7 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nz+kz)</td><td>::</td>
-  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>) </p></td>
+  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -2646,7 +2646,7 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nq+kq)</td><td>::</td>
-  <td><strong>tq</strong></td><td><p>sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>) </p></td>
+  <td><strong>tq</strong></td><td><p>sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -2676,7 +2676,7 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>) </p></td>
+  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -2935,7 +2935,7 @@ public subroutine <a href='../proc/db4val.html'>db4val</a>(xval, yval, zval, qva
        
        <p>Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db4ink.html">db4ink</a> or one of its
-  derivatives at the point (xval,yval,zval,qval). </p>
+  derivatives at the point (xval,yval,zval,qval).</p>
         
 
   </div>
@@ -3365,8 +3365,8 @@ public subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z, nz, 
        
        <p>Determines the parameters of a function that interpolates
   the five-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),fcn(i,j,k,l,m)) for
-  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, and m=1,..,nr. 
-  The interpolating function and its derivatives may subsequently be evaluated 
+  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, and m=1,..,nr.
+  The interpolating function and its derivatives may subsequently be evaluated
   by the function <a href="../proc/db5val.html">db5val</a>.</p>
         
 
@@ -3574,7 +3574,7 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(ny+ky)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>) </p></td>
+  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>)</p></td>
   
 </tr>
 
@@ -3589,7 +3589,7 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nz+kz)</td><td>::</td>
-  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>) </p></td>
+  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>)</p></td>
   
 </tr>
 
@@ -3604,7 +3604,7 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nq+kq)</td><td>::</td>
-  <td><strong>tq</strong></td><td><p>sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>) </p></td>
+  <td><strong>tq</strong></td><td><p>sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>)</p></td>
   
 </tr>
 
@@ -3619,7 +3619,7 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nr+kr)</td><td>::</td>
-  <td><strong>tr</strong></td><td><p>sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>) </p></td>
+  <td><strong>tr</strong></td><td><p>sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>)</p></td>
   
 </tr>
 
@@ -3649,7 +3649,7 @@ public subroutine <a href='../proc/db5val.html'>db5val</a>(xval, yval, zval, qva
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>) </p></td>
+  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db5ink.html">db5ink</a>)</p></td>
   
 </tr>
 
@@ -4465,8 +4465,8 @@ public subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z, nz, 
        
        <p>Determines the parameters of a function that interpolates
   the six-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),s(n),fcn(i,j,k,l,m,n)) for
-  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, m=1,..,nr, n=1,..,ns. 
-  the interpolating function and its derivatives may subsequently be evaluated 
+  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, m=1,..,nr, n=1,..,ns.
+  the interpolating function and its derivatives may subsequently be evaluated
   by the function <a href="../proc/db6val.html">db6val</a>.</p>
         
 
@@ -4704,7 +4704,7 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(ny+ky)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>) </p></td>
+  <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial in the y direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>)</p></td>
   
 </tr>
 
@@ -4719,7 +4719,7 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nz+kz)</td><td>::</td>
-  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>) </p></td>
+  <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial in the z direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>)</p></td>
   
 </tr>
 
@@ -4734,7 +4734,7 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nq+kq)</td><td>::</td>
-  <td><strong>tq</strong></td><td><p>sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>) </p></td>
+  <td><strong>tq</strong></td><td><p>sequence of knots defining the piecewise polynomial in the q direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>)</p></td>
   
 </tr>
 
@@ -4749,7 +4749,7 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(nr+kr)</td><td>::</td>
-  <td><strong>tr</strong></td><td><p>sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>) </p></td>
+  <td><strong>tr</strong></td><td><p>sequence of knots defining the piecewise polynomial in the r direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>)</p></td>
   
 </tr>
 
@@ -4764,7 +4764,7 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
   <td></td>
   
   <td>dimension(ns+ks)</td><td>::</td>
-  <td><strong>ts</strong></td><td><p>sequence of knots defining the piecewise polynomial in the s direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>) </p></td>
+  <td><strong>ts</strong></td><td><p>sequence of knots defining the piecewise polynomial in the s direction. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>)</p></td>
   
 </tr>
 
@@ -4794,7 +4794,7 @@ public subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval, qva
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>) </p></td>
+  <td><strong>ny</strong></td><td><p>the number of interpolation points in y. (same as in last call to <a href="../proc/db6ink.html">db6ink</a>)</p></td>
   
 </tr>
 

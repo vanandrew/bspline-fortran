@@ -620,8 +620,8 @@ public subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz, kq,
     <h3>Description</h3>
     <p>Determines the parameters of a function that interpolates
   the five-dimensional gridded data (x(i),y(j),z(k),q(l),r(m),fcn(i,j,k,l,m)) for
-  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, and m=1,..,nr. 
-  The interpolating function and its derivatives may subsequently be evaluated 
+  i=1,..,nx, j=1,..,ny, k=1,..,nz, l=1,..,nq, and m=1,..,nr.
+  The interpolating function and its derivatives may subsequently be evaluated
   by the function <a href="../proc/db5val.html">db5val</a>.</p>
 <p>See <a href="../proc/db3ink.html">db3ink</a> header for more details.</p>
 <h1>History</h1>
@@ -780,7 +780,7 @@ public subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz, kq,
                                                             <span class="c">!!                20 = kr out of range.</span>
                                                             <span class="c">!!                21 = r not strictly increasing.</span>
                                                             <span class="c">!!                22 = tr not non-decreasing.</span>
-           
+
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nq</span><span class="o">*</span><span class="n">nr</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span> <span class="mi">2</span><span class="o">*</span><span class="n">kx</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">),&amp;</span>
                             <span class="mi">2</span><span class="o">*</span><span class="n">ky</span><span class="o">*</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="mi">1</span><span class="p">),&amp;</span>
@@ -788,9 +788,9 @@ public subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz, kq,
                             <span class="mi">2</span><span class="o">*</span><span class="n">kq</span><span class="o">*</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="mi">1</span><span class="p">),&amp;</span>
                             <span class="mi">2</span><span class="o">*</span><span class="n">kr</span><span class="o">*</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">))</span> <span class="kd">::</span> <span class="n">work</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
-      
+
     <span class="c">!  check validity of input</span>
-    
+
     <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span><span class="s1">&#39;db5ink&#39;</span><span class="p">,&amp;</span>
                         <span class="n">iflag</span><span class="p">,&amp;</span>
                         <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="o">=</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="o">=</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="o">=</span><span class="n">nr</span><span class="p">,&amp;</span>
@@ -798,9 +798,9 @@ public subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz, kq,
                         <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,&amp;</span>
                         <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">,</span><span class="n">tq</span><span class="o">=</span><span class="n">tq</span><span class="p">,</span><span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">,&amp;</span>
                         <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
-                        
+
     <span class="k">if</span> <span class="p">(</span><span class="n">status_ok</span><span class="p">)</span> <span class="k">then</span>
-    
+
         <span class="c">!  choose knots</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
@@ -812,19 +812,19 @@ public subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz, kq,
         <span class="k">end if</span>
 
         <span class="c">! copy fcn to work in packed for dbtpcf</span>
-    
+
         <span class="n">temp</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nq</span><span class="o">*</span><span class="n">nr</span><span class="p">)</span> <span class="o">=</span> <span class="nb">reshape</span><span class="p">(</span> <span class="n">fcn</span><span class="p">,</span> <span class="p">[</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nq</span><span class="o">*</span><span class="n">nr</span><span class="p">]</span> <span class="p">)</span>
 
         <span class="c">!  construct b-spline coefficients</span>
-    
+
                       <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span>  <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nq</span><span class="o">*</span><span class="n">nr</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nq</span><span class="o">*</span><span class="n">nr</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span>  <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span>  <span class="n">nz</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nq</span><span class="o">*</span><span class="n">nr</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span> <span class="n">nq</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nr</span><span class="p">,</span><span class="n">tq</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span>  <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">nr</span><span class="p">,</span><span class="n">temp</span><span class="p">,</span>  <span class="n">nr</span><span class="p">,</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nq</span><span class="p">,</span><span class="n">tr</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span> <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-      
+
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
-     
+
      <span class="k">end if</span>
 
 <span class="k">    end subroutine </span><span class="n">db5ink</span>

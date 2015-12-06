@@ -367,11 +367,11 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
     <h3>Description</h3>
     <p>Evaluates the tensor product piecewise polynomial
   interpolant constructed by the routine <a href="../proc/db1ink.html">db1ink</a> or one of its
-  derivatives at the point xval. </p>
-<p>To evaluate the interpolant itself, set idx=0, 
+  derivatives at the point xval.</p>
+<p>To evaluate the interpolant itself, set idx=0,
   to evaluate the first partial with respect to x, set idx=1, and so on.</p>
 <p>db1val returns 0.0 if (xval,yval) is out of range. that is, if</p>
-<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> 
+<div class="codehilite"><pre>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span>
 </pre></div>
 
 
@@ -460,7 +460,7 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">inbvx</span>    <span class="c">!! initialization parameter which must be set to 1 the first time this routine is called, and must not be changed by the user.</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">kx</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span>
-    
+
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span> <span class="k">then</span>
@@ -468,9 +468,9 @@ public subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx)
         <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span>
 <span class="k">    end if</span>
-<span class="k">    </span>
+
 <span class="k">    </span><span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-        
+
     <span class="k">end subroutine </span><span class="n">db1val</span>
 </pre></div>
 
