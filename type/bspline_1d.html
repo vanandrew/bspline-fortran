@@ -335,7 +335,7 @@ implementation in a submodule of an interface in a parent module.</p>
     
 	   
 <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-initialize"></span><h3>procedure, public :: <strong>initialize</strong>  => initialize_1d 
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-initialize"></span><h3>generic, public :: <strong>initialize</strong>  => initialize_1d_auto_knots, initialize_1d_specify_knots 
     
   </h3></div>
   
@@ -344,9 +344,10 @@ implementation in a submodule of an interface in a parent module.</p>
       <li class="list-group-item">
       
          
+            
     
     <h3>
-private subroutine initialize_1d(me, x, fcn, kx, iflag)
+private subroutine initialize_1d_auto_knots(me, x, fcn, kx, iflag)
     
     
     
@@ -449,9 +450,143 @@ private subroutine initialize_1d(me, x, fcn, kx, iflag)
     
     <h4>Description</h4>
        
-       <p>Initialize a <a href="../type/bspline_1d.html">bspline_1d</a> type.  This is a wrapper for <a href="../proc/db1ink.html">db1ink</a>.</p>
+       <p>Initialize a <a href="../type/bspline_1d.html">bspline_1d</a> type (with automatically-computed knots).
+  This is a wrapper for <a href="../proc/db1ink.html">db1ink</a>.</p>
         
 
+         
+      
+      </li>
+    
+      <li class="list-group-item">
+      
+         
+            
+    
+    <h3>
+private subroutine initialize_1d_specify_knots(me, x, fcn, kx, tx, iflag)
+    
+    
+    
+</h3>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/bspline_1d.html'>bspline_1d</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>fcn</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+       <p>Initialize a <a href="../type/bspline_1d.html">bspline_1d</a> type (with user-specified knots).
+  This is a wrapper for <a href="../proc/db1ink.html">db1ink</a>.</p>
+        
+
+         
       
       </li>
     
@@ -665,7 +800,9 @@ private subroutine destroy_1d(me)
         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">bcoef</span>
         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">tx</span>
         <span class="k">contains</span>
-<span class="k">        procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">initialize</span> <span class="o">=&gt;</span> <span class="n">initialize_1d</span>
+<span class="k">        private</span>
+<span class="k">        generic</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">initialize</span> <span class="o">=&gt;</span> <span class="n">initialize_1d_auto_knots</span><span class="p">,</span><span class="n">initialize_1d_specify_knots</span>
+        <span class="k">procedure</span> <span class="kd">::</span> <span class="n">initialize_1d_auto_knots</span><span class="p">,</span><span class="n">initialize_1d_specify_knots</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">evaluate</span> <span class="o">=&gt;</span> <span class="n">evaluate_1d</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_1d</span>
     <span class="k">end type </span><span class="n">bspline_1d</span>

@@ -98,7 +98,7 @@
     <li><i class="fa fa-pencil"></i> Jacob Williams</li>
      
      
-    <li><i class="fa fa-calendar-o"></i> 6/20/2015</li>
+    <li><i class="fa fa-calendar-o"></i> 12/6/2015</li>
      
      
     <li><i class="fa fa-legal"></i> BSD</li>
@@ -195,6 +195,8 @@
   
     <ul class="list-inline">
       <li><h4>Uses:</h4></li>
+      
+      <li><a href="https://software.intel.com/en-us/node/511041">iso_fortran_env</a></li>
       
       <li><a href="https://software.intel.com/en-us/node/511041">iso_fortran_env</a></li>
       
@@ -531,7 +533,7 @@ implementation in a submodule of an interface in a parent module.</p>
       <table class="table table-striped varlist">
       <tbody>
       
-       <tr><td>procedure, public :: <strong>initialize</strong>  => initialize_1d </td>
+       <tr><td>generic, public :: <strong>initialize</strong>  => initialize_1d_auto_knots, initialize_1d_specify_knots </td>
        <td></td></tr>
       
        <tr><td>procedure, public :: <strong>evaluate</strong>  => evaluate_1d </td>
@@ -566,7 +568,7 @@ implementation in a submodule of an interface in a parent module.</p>
       <table class="table table-striped varlist">
       <tbody>
       
-       <tr><td>procedure, public :: <strong>initialize</strong>  => initialize_2d </td>
+       <tr><td>generic, public :: <strong>initialize</strong>  => initialize_2d_auto_knots, initialize_2d_specify_knots </td>
        <td></td></tr>
       
        <tr><td>procedure, public :: <strong>evaluate</strong>  => evaluate_2d </td>
@@ -601,7 +603,7 @@ implementation in a submodule of an interface in a parent module.</p>
       <table class="table table-striped varlist">
       <tbody>
       
-       <tr><td>procedure, public :: <strong>initialize</strong>  => initialize_3d </td>
+       <tr><td>generic, public :: <strong>initialize</strong>  => initialize_3d_auto_knots, initialize_3d_specify_knots </td>
        <td></td></tr>
       
        <tr><td>procedure, public :: <strong>evaluate</strong>  => evaluate_3d </td>
@@ -636,7 +638,7 @@ implementation in a submodule of an interface in a parent module.</p>
       <table class="table table-striped varlist">
       <tbody>
       
-       <tr><td>procedure, public :: <strong>initialize</strong>  => initialize_4d </td>
+       <tr><td>generic, public :: <strong>initialize</strong>  => initialize_4d_auto_knots, initialize_4d_specify_knots </td>
        <td></td></tr>
       
        <tr><td>procedure, public :: <strong>evaluate</strong>  => evaluate_4d </td>
@@ -671,7 +673,7 @@ implementation in a submodule of an interface in a parent module.</p>
       <table class="table table-striped varlist">
       <tbody>
       
-       <tr><td>procedure, public :: <strong>initialize</strong>  => initialize_5d </td>
+       <tr><td>generic, public :: <strong>initialize</strong>  => initialize_5d_auto_knots, initialize_5d_specify_knots </td>
        <td></td></tr>
       
        <tr><td>procedure, public :: <strong>evaluate</strong>  => evaluate_5d </td>
@@ -706,7 +708,7 @@ implementation in a submodule of an interface in a parent module.</p>
       <table class="table table-striped varlist">
       <tbody>
       
-       <tr><td>procedure, public :: <strong>initialize</strong>  => initialize_6d </td>
+       <tr><td>generic, public :: <strong>initialize</strong>  => initialize_6d_auto_knots, initialize_6d_specify_knots </td>
        <td></td></tr>
       
        <tr><td>procedure, public :: <strong>evaluate</strong>  => evaluate_6d </td>
