@@ -192,118 +192,118 @@
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span class="c">!*****************************************************************************************</span>
-<span class="c">!&gt; author: Jacob Williams</span>
-<span class="c">!  date: 12/6/2015</span>
-<span class="c">!</span>
-<span class="c">!  Tests for different knot vectors.</span>
-<span class="c">!</span>
-<span class="c">!  This requires [pyplot_module](https://github.com/jacobwilliams/pyplot-fortran)</span>
-<span class="c">!</span>
-<span class="c">!# Results</span>
-<span class="c">!  ![Plot of results](https://raw.githubusercontent.com/jacobwilliams/bspline-fortran/master/src/tests/knot_tests.png)</span>
-
-    <span class="k">program </span><span class="n">knot_tests</span>
-
-    <span class="k">use </span><span class="n">bspline_module</span>
-    <span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">wp</span> <span class="o">=&gt;</span> <span class="n">real64</span>
-    <span class="k">use </span><span class="n">pyplot_module</span>
-
-    <span class="k">implicit none</span>
-
-<span class="k">    </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>    <span class="c">!! counter</span>
-
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">kx</span>  <span class="o">=</span> <span class="mi">4</span>    <span class="c">!! x bspline order</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">6</span>    <span class="c">!! number of points in x dimension</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span><span class="n">wp</span><span class="p">),</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">,(</span><span class="mi">10</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">nx</span><span class="p">)]</span>    <span class="c">!! [0,20,40,60,80,100]</span>
-
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">fcn</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>
-    <span class="k">type</span><span class="p">(</span><span class="n">bspline_1d</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">s_default</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x_new</span><span class="p">,</span><span class="n">f_new_default</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span> <span class="c">!,f_actual</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">xval</span>
-    <span class="k">type</span><span class="p">(</span><span class="n">pyplot</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">plt</span>
-    <span class="kt">integer</span>                   <span class="kd">::</span> <span class="n">iflag</span>
-
-    <span class="c">!function evaluations for original grid:</span>
-    <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span>
-        <span class="n">fcn</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">test_func</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="k">end do</span>
-
-    <span class="c">!initialize the plot:</span>
-    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;f(x)&#39;</span><span class="p">,&amp;</span>
-                        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Knot Test&#39;</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
-    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Function $f(x) = \sin(x \cdot \pi/18)$ : $x=[0,20,40,60,80,100]$&#39;</span><span class="p">,&amp;</span>
-                        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;ko--&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="c">!initialize three with different knot sequences:</span>
-
-    <span class="c">! x = [ 0,      20,40,60,80,100                ] (x points)</span>
-    <span class="c">! t = [ 0,0,0,0,   40,60,      101,101,101,101 ] (tx for not a knot conditions)</span>
-
-    <span class="k">call </span><span class="n">s_default</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>  <span class="c">!default (not-a-knot)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error initializing s_default&#39;</span>
-
-    <span class="c">!user-specified knots:</span>
-
-    <span class="n">tx</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">],</span> <span class="n">wp</span><span class="p">)</span>
-    <span class="k">call </span><span class="n">s1</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error initializing s1&#39;</span>
-
-    <span class="n">tx</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">],</span> <span class="n">wp</span><span class="p">)</span>
-    <span class="k">call </span><span class="n">s2</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error initializing s2&#39;</span>
-
-    <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">100</span>
-
-        <span class="n">xval</span>     <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span>
-        <span class="n">x_new</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">xval</span>
-
-        <span class="c">!f_actual(i) = test_func(xval)</span>
-
-        <span class="k">call </span><span class="n">s_default</span><span class="p">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">f_new_default</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">iflag</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error evaluating s_default&#39;</span>
-
-        <span class="k">call </span><span class="n">s1</span><span class="p">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">f1</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">iflag</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error evaluating s1&#39;</span>
-
-        <span class="k">call </span><span class="n">s2</span><span class="p">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">f2</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">iflag</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error evaluating s2&#39;</span>
-
-    <span class="k">end do</span>
-
-    <span class="c">!call plt%add_plot(x_new,f_actual,label=&#39;Actual function&#39;,linestyle=&#39;k--&#39;,linewidth=2)</span>
-
-    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span><span class="n">f_new_default</span><span class="p">,&amp;</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated : $t_x=[0,0,0,0,40,60,102,102,102,102]$ (Default)&#39;</span><span class="p">,&amp;</span>
-            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span><span class="n">f1</span><span class="p">,&amp;</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated : $t_x=[0,0,0,0,20,40,101,101,101,101]$&#39;</span><span class="p">,&amp;</span>
-            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span><span class="n">f2</span><span class="p">,&amp;</span>
-            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated : $t_x=[0,0,0,0,60,80,101,101,101,101]$&#39;</span><span class="p">,&amp;</span>
-            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="c">!plot the results:</span>
-    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;knot_tests.png&#39;</span><span class="p">)</span>
-
-    <span class="k">contains</span>
-
-<span class="k">        pure function </span><span class="n">test_func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-        <span class="c">!! 1d test function</span>
-
-        <span class="k">implicit none</span>
-
-<span class="k">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">f</span>
-        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span>
-
-        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">acos</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0_wp</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="mf">8.0_wp</span>
-
-        <span class="n">f</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
-
-        <span class="k">end function </span><span class="n">test_func</span>
-
-    <span class="k">end program </span><span class="n">knot_tests</span>
+    <div class="hl"><pre><a name="ln-1"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2"></a><span class="c">!&gt; author: Jacob Williams</span>
+<a name="ln-3"></a><span class="c">!  date: 12/6/2015</span>
+<a name="ln-4"></a><span class="c">!</span>
+<a name="ln-5"></a><span class="c">!  Tests for different knot vectors.</span>
+<a name="ln-6"></a><span class="c">!</span>
+<a name="ln-7"></a><span class="c">!  This requires [pyplot_module](https://github.com/jacobwilliams/pyplot-fortran)</span>
+<a name="ln-8"></a><span class="c">!</span>
+<a name="ln-9"></a><span class="c">!# Results</span>
+<a name="ln-10"></a><span class="c">!  ![Plot of results](https://raw.githubusercontent.com/jacobwilliams/bspline-fortran/master/src/tests/knot_tests.png)</span>
+<a name="ln-11"></a>
+<a name="ln-12"></a>    <span class="k">program </span><span class="n">knot_tests</span>
+<a name="ln-13"></a>
+<a name="ln-14"></a>    <span class="k">use </span><span class="n">bspline_module</span>
+<a name="ln-15"></a>    <span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">wp</span> <span class="o">=&gt;</span> <span class="n">real64</span>
+<a name="ln-16"></a>    <span class="k">use </span><span class="n">pyplot_module</span>
+<a name="ln-17"></a>
+<a name="ln-18"></a>    <span class="k">implicit none</span>
+<a name="ln-19"></a>
+<a name="ln-20"></a><span class="k">    </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span>    <span class="c">!! counter</span>
+<a name="ln-21"></a>
+<a name="ln-22"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">kx</span>  <span class="o">=</span> <span class="mi">4</span>    <span class="c">!! x bspline order</span>
+<a name="ln-23"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">6</span>    <span class="c">!! number of points in x dimension</span>
+<a name="ln-24"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span><span class="n">wp</span><span class="p">),</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">,(</span><span class="mi">10</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">nx</span><span class="p">)]</span>    <span class="c">!! [0,20,40,60,80,100]</span>
+<a name="ln-25"></a>
+<a name="ln-26"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">fcn</span>
+<a name="ln-27"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>
+<a name="ln-28"></a>    <span class="k">type</span><span class="p">(</span><span class="n">bspline_1d</span><span class="p">)</span>          <span class="kd">::</span> <span class="n">s_default</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span>
+<a name="ln-29"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x_new</span><span class="p">,</span><span class="n">f_new_default</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span> <span class="c">!,f_actual</span>
+<a name="ln-30"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">xval</span>
+<a name="ln-31"></a>    <span class="k">type</span><span class="p">(</span><span class="n">pyplot</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">plt</span>
+<a name="ln-32"></a>    <span class="kt">integer</span>                   <span class="kd">::</span> <span class="n">iflag</span>
+<a name="ln-33"></a>
+<a name="ln-34"></a>    <span class="c">!function evaluations for original grid:</span>
+<a name="ln-35"></a>    <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span>
+<a name="ln-36"></a>        <span class="n">fcn</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">test_func</span><span class="p">(</span><span class="n">x</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<a name="ln-37"></a>    <span class="k">end do</span>
+<a name="ln-38"></a>
+<a name="ln-39"></a>    <span class="c">!initialize the plot:</span>
+<a name="ln-40"></a>    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;f(x)&#39;</span><span class="p">,&amp;</span>
+<a name="ln-41"></a>                        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Knot Test&#39;</span><span class="p">,</span><span class="n">legend</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<a name="ln-42"></a>    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Function $f(x) = \sin(x \cdot \pi/18)$ : $x=[0,20,40,60,80,100]$&#39;</span><span class="p">,&amp;</span>
+<a name="ln-43"></a>                        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;ko--&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<a name="ln-44"></a>
+<a name="ln-45"></a>    <span class="c">!initialize three with different knot sequences:</span>
+<a name="ln-46"></a>
+<a name="ln-47"></a>    <span class="c">! x = [ 0,      20,40,60,80,100                ] (x points)</span>
+<a name="ln-48"></a>    <span class="c">! t = [ 0,0,0,0,   40,60,      101,101,101,101 ] (tx for not a knot conditions)</span>
+<a name="ln-49"></a>
+<a name="ln-50"></a>    <span class="k">call </span><span class="n">s_default</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>  <span class="c">!default (not-a-knot)</span>
+<a name="ln-51"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error initializing s_default&#39;</span>
+<a name="ln-52"></a>
+<a name="ln-53"></a>    <span class="c">!user-specified knots:</span>
+<a name="ln-54"></a>
+<a name="ln-55"></a>    <span class="n">tx</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">],</span> <span class="n">wp</span><span class="p">)</span>
+<a name="ln-56"></a>    <span class="k">call </span><span class="n">s1</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+<a name="ln-57"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error initializing s1&#39;</span>
+<a name="ln-58"></a>
+<a name="ln-59"></a>    <span class="n">tx</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">101</span><span class="p">],</span> <span class="n">wp</span><span class="p">)</span>
+<a name="ln-60"></a>    <span class="k">call </span><span class="n">s2</span><span class="p">%</span><span class="n">initialize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+<a name="ln-61"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error initializing s2&#39;</span>
+<a name="ln-62"></a>
+<a name="ln-63"></a>    <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">100</span>
+<a name="ln-64"></a>
+<a name="ln-65"></a>        <span class="n">xval</span>     <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-66"></a>        <span class="n">x_new</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">xval</span>
+<a name="ln-67"></a>
+<a name="ln-68"></a>        <span class="c">!f_actual(i) = test_func(xval)</span>
+<a name="ln-69"></a>
+<a name="ln-70"></a>        <span class="k">call </span><span class="n">s_default</span><span class="p">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">f_new_default</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">iflag</span><span class="p">)</span>
+<a name="ln-71"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error evaluating s_default&#39;</span>
+<a name="ln-72"></a>
+<a name="ln-73"></a>        <span class="k">call </span><span class="n">s1</span><span class="p">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">f1</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">iflag</span><span class="p">)</span>
+<a name="ln-74"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error evaluating s1&#39;</span>
+<a name="ln-75"></a>
+<a name="ln-76"></a>        <span class="k">call </span><span class="n">s2</span><span class="p">%</span><span class="n">evaluate</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">f2</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">iflag</span><span class="p">)</span>
+<a name="ln-77"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error evaluating s2&#39;</span>
+<a name="ln-78"></a>
+<a name="ln-79"></a>    <span class="k">end do</span>
+<a name="ln-80"></a>
+<a name="ln-81"></a>    <span class="c">!call plt%add_plot(x_new,f_actual,label=&#39;Actual function&#39;,linestyle=&#39;k--&#39;,linewidth=2)</span>
+<a name="ln-82"></a>
+<a name="ln-83"></a>    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span><span class="n">f_new_default</span><span class="p">,&amp;</span>
+<a name="ln-84"></a>            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated : $t_x=[0,0,0,0,40,60,102,102,102,102]$ (Default)&#39;</span><span class="p">,&amp;</span>
+<a name="ln-85"></a>            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;b-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-86"></a>    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span><span class="n">f1</span><span class="p">,&amp;</span>
+<a name="ln-87"></a>            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated : $t_x=[0,0,0,0,20,40,101,101,101,101]$&#39;</span><span class="p">,&amp;</span>
+<a name="ln-88"></a>            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-89"></a>    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">add_plot</span><span class="p">(</span><span class="n">x_new</span><span class="p">,</span><span class="n">f2</span><span class="p">,&amp;</span>
+<a name="ln-90"></a>            <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Interpolated : $t_x=[0,0,0,0,60,80,101,101,101,101]$&#39;</span><span class="p">,&amp;</span>
+<a name="ln-91"></a>            <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;g-&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-92"></a>
+<a name="ln-93"></a>    <span class="c">!plot the results:</span>
+<a name="ln-94"></a>    <span class="k">call </span><span class="n">plt</span><span class="p">%</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;knot_tests.png&#39;</span><span class="p">)</span>
+<a name="ln-95"></a>
+<a name="ln-96"></a>    <span class="k">contains</span>
+<a name="ln-97"></a>
+<a name="ln-98"></a><span class="k">        pure function </span><span class="n">test_func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a name="ln-99"></a>        <span class="c">!! 1d test function</span>
+<a name="ln-100"></a>
+<a name="ln-101"></a>        <span class="k">implicit none</span>
+<a name="ln-102"></a>
+<a name="ln-103"></a><span class="k">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">f</span>
+<a name="ln-104"></a>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span>
+<a name="ln-105"></a>
+<a name="ln-106"></a>        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">a</span> <span class="o">=</span> <span class="nb">acos</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0_wp</span><span class="p">)</span><span class="o">/</span><span class="mi">1</span><span class="mf">8.0_wp</span>
+<a name="ln-107"></a>
+<a name="ln-108"></a>        <span class="n">f</span> <span class="o">=</span> <span class="nb">sin</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<a name="ln-109"></a>
+<a name="ln-110"></a>        <span class="k">end function </span><span class="n">test_func</span>
+<a name="ln-111"></a>
+<a name="ln-112"></a>    <span class="k">end program </span><span class="n">knot_tests</span>
 </pre></div>
 
     </section>
@@ -313,8 +313,9 @@
     <hr>
     <footer>
         <div class="row">
-        <div class="col-md-6">&copy; 2015 bspline-fortran was written by Jacob Williams. </div>
-        <div class="col-md-6"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a>.</span></div>
+        <div class="col-md-4">&copy; 2015 </div>
+	<div class="col-md-4"><span class="text-center"> bspline-fortran was developed by Jacob Williams</span></div>
+        <div class="col-md-4"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a></span></div>
         </div>
         <br>
     </footer>
