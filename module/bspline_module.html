@@ -345,54 +345,54 @@ implementation in a submodule of an interface in a parent module.</p>
  (e.g., <a href="../proc/db1ink.html">db1ink</a>, <a href="../proc/db2ink.html">db2ink</a>, etc.)
  and the evaluate routines (e.g., <a href="../proc/db1val.html">db1val</a>, <a href="../proc/db2val.html">db2val</a>, etc.).</p>
 <h2>Initialize Routines</h2>
-<div class="codehilite"><pre><span class="nx">db</span><span class="o">*</span><span class="nx">ink</span>    <span class="mi">1</span><span class="o">:</span> <span class="nx">successful</span> <span class="nx">execution</span>
-          <span class="mi">2</span><span class="o">:</span> <span class="nx">iflag</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-          <span class="mi">3</span><span class="o">:</span> <span class="nx">nx</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-          <span class="mi">4</span><span class="o">:</span> <span class="nx">kx</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-          <span class="mi">5</span><span class="o">:</span> <span class="nx">x</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
-          <span class="mi">6</span><span class="o">:</span> <span class="nx">tx</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
-          <span class="mi">7</span><span class="o">:</span> <span class="nx">ny</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-          <span class="mi">8</span><span class="o">:</span> <span class="nx">ky</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-          <span class="mi">9</span><span class="o">:</span> <span class="nx">y</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
-         <span class="mi">10</span><span class="o">:</span> <span class="nx">ty</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
-         <span class="mi">11</span><span class="o">:</span> <span class="nx">nz</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">12</span><span class="o">:</span> <span class="nx">kz</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">13</span><span class="o">:</span> <span class="nx">z</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
-         <span class="mi">14</span><span class="o">:</span> <span class="nx">tz</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
-         <span class="mi">15</span><span class="o">:</span> <span class="nx">nq</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">16</span><span class="o">:</span> <span class="nx">kq</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">17</span><span class="o">:</span> <span class="nx">q</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
-         <span class="mi">18</span><span class="o">:</span> <span class="nx">tq</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
-         <span class="mi">19</span><span class="o">:</span> <span class="nx">nr</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">20</span><span class="o">:</span> <span class="nx">kr</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">21</span><span class="o">:</span> <span class="nx">r</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
-         <span class="mi">22</span><span class="o">:</span> <span class="nx">tr</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
-         <span class="mi">23</span><span class="o">:</span> <span class="nx">ns</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">24</span><span class="o">:</span> <span class="nx">ks</span> <span class="nx">out</span> <span class="nx">of</span> <span class="nx">range</span>
-         <span class="mi">25</span><span class="o">:</span> <span class="nx">s</span> <span class="nx">not</span> <span class="nx">strictly</span> <span class="nx">increasing</span>
-         <span class="mi">26</span><span class="o">:</span> <span class="nx">ts</span> <span class="nx">not</span> <span class="nx">non</span><span class="o">-</span><span class="nx">decreasing</span>
+<div class="codehilite"><pre>db*ink    1: successful execution
+          2: iflag out of range
+          3: nx out of range
+          4: kx out of range
+          5: x not strictly increasing
+          6: tx not non-decreasing
+          7: ny out of range
+          8: ky out of range
+          9: y not strictly increasing
+         10: ty not non-decreasing
+         11: nz out of range
+         12: kz out of range
+         13: z not strictly increasing
+         14: tz not non-decreasing
+         15: nq out of range
+         16: kq out of range
+         17: q not strictly increasing
+         18: tq not non-decreasing
+         19: nr out of range
+         20: kr out of range
+         21: r not strictly increasing
+         22: tr not non-decreasing
+         23: ns out of range
+         24: ks out of range
+         25: s not strictly increasing
+         26: ts not non-decreasing
 
-<span class="nx">initialize_</span><span class="o">*</span><span class="nx">d_specify_knots</span> <span class="mi">501</span><span class="o">:</span> <span class="nx">tx</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">the</span> <span class="nx">correct</span> <span class="nx">size</span> <span class="p">(</span><span class="nx">kx</span><span class="o">+</span><span class="nx">nx</span><span class="p">)</span>
-                            <span class="mi">502</span><span class="o">:</span> <span class="nx">ty</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">the</span> <span class="nx">correct</span> <span class="nx">size</span> <span class="p">(</span><span class="nx">ky</span><span class="o">+</span><span class="nx">ny</span><span class="p">)</span>
-                            <span class="mi">503</span><span class="o">:</span> <span class="nx">tz</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">the</span> <span class="nx">correct</span> <span class="nx">size</span> <span class="p">(</span><span class="nx">kz</span><span class="o">+</span><span class="nx">nz</span><span class="p">)</span>
-                            <span class="mi">504</span><span class="o">:</span> <span class="nx">tq</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">the</span> <span class="nx">correct</span> <span class="nx">size</span> <span class="p">(</span><span class="nx">kq</span><span class="o">+</span><span class="nx">nq</span><span class="p">)</span>
-                            <span class="mi">505</span><span class="o">:</span> <span class="nx">tr</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">the</span> <span class="nx">correct</span> <span class="nx">size</span> <span class="p">(</span><span class="nx">kr</span><span class="o">+</span><span class="nx">nr</span><span class="p">)</span>
-                            <span class="mi">506</span><span class="o">:</span> <span class="nx">ts</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">the</span> <span class="nx">correct</span> <span class="nx">size</span> <span class="p">(</span><span class="nx">ks</span><span class="o">+</span><span class="nx">ns</span><span class="p">)</span>
+initialize_*d_specify_knots 501: tx is not the correct size (kx+nx)
+                            502: ty is not the correct size (ky+ny)
+                            503: tz is not the correct size (kz+nz)
+                            504: tq is not the correct size (kq+nq)
+                            505: tr is not the correct size (kr+nr)
+                            506: ts is not the correct size (ks+ns)
 
-<span class="nx">dbintk</span>  <span class="mi">100</span><span class="o">:</span> <span class="nx">k</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">k</span><span class="o">&gt;=</span><span class="mi">1</span>
-        <span class="mi">101</span><span class="o">:</span> <span class="nx">n</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">n</span><span class="o">&gt;=</span><span class="nx">k</span>
-        <span class="mi">102</span><span class="o">:</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="o">&lt;</span><span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="nx">some</span> <span class="nx">i</span>
-        <span class="mi">103</span><span class="o">:</span> <span class="nx">some</span> <span class="nx">abscissa</span> <span class="nx">was</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">support</span> <span class="nx">of</span> <span class="nx">the</span>
-             <span class="nx">corresponding</span> <span class="nx">basis</span> <span class="kd">function</span> <span class="nx">and</span> <span class="nx">the</span> <span class="nx">system</span> <span class="nx">is</span> <span class="nx">singular</span>
-        <span class="mi">104</span><span class="o">:</span> <span class="nx">the</span> <span class="nx">system</span> <span class="nx">of</span> <span class="nx">solver</span> <span class="nx">detects</span> <span class="nx">a</span> <span class="nx">singular</span> <span class="nx">system</span>
-             <span class="nx">although</span> <span class="nx">the</span> <span class="nx">theoretical</span> <span class="nx">conditions</span> <span class="k">for</span> <span class="nx">a</span> <span class="nx">solution</span> <span class="nx">were</span> <span class="nx">satisfied</span>
+dbintk  100: k does not satisfy k&gt;=1
+        101: n does not satisfy n&gt;=k
+        102: x(i) does not satisfy x(i)&lt;x(i+1) for some i
+        103: some abscissa was not in the support of the
+             corresponding basis function and the system is singular
+        104: the system of solver detects a singular system
+             although the theoretical conditions for a solution were satisfied
 
-<span class="nx">dbspvn</span>  <span class="mi">201</span><span class="o">:</span> <span class="nx">k</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">k</span><span class="o">&gt;=</span><span class="mi">1</span>
-        <span class="mi">202</span><span class="o">:</span> <span class="nx">jhigh</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="mi">1</span><span class="o">&lt;=</span><span class="nx">jhigh</span><span class="o">&lt;=</span><span class="nx">k</span>
-        <span class="mi">203</span><span class="o">:</span> <span class="nx">index</span> <span class="nx">is</span> <span class="nx">not</span> <span class="mi">1</span> <span class="nx">or</span> <span class="mi">2</span>
-        <span class="mi">204</span><span class="o">:</span> <span class="nx">x</span> <span class="nx">does</span> <span class="nx">not</span> <span class="nx">satisfy</span> <span class="nx">t</span><span class="p">(</span><span class="nx">ileft</span><span class="p">)</span><span class="o">&lt;=</span><span class="nx">x</span><span class="o">&lt;=</span><span class="nx">t</span><span class="p">(</span><span class="nx">ileft</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+dbspvn  201: k does not satisfy k&gt;=1
+        202: jhigh does not satisfy 1&lt;=jhigh&lt;=k
+        203: index is not 1 or 2
+        204: x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)
 
-<span class="nx">dbtpcf</span>  <span class="mi">301</span><span class="o">:</span> <span class="nx">n</span> <span class="nx">should</span> <span class="nx">be</span> <span class="o">&gt;</span><span class="mi">0</span>
+dbtpcf  301: n should be &gt;0
 </pre></div>
 
 
@@ -432,41 +432,41 @@ dbvalu 401: k does not satisfy k&gt;=1
 <polygon fill="none" stroke="black" points="88,-70 4.26326e-14,-70 0,-44 88,-44 88,-70"/>
 <text text-anchor="middle" x="44" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50">bspline_module</text>
 </g>
-<!-- program~bspline_regridding_test -->
-<g id="node2" class="node"><title>program~bspline_regridding_test</title>
-<a xlink:href="../program/bspline_regridding_test.html" xlink:title="bspline_regridding_test">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="248,-114 124,-114 124,-88 248,-88 248,-114"/>
-<text text-anchor="middle" x="186" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_regridding_test</text>
-</a>
-</g>
-<!-- module~bspline_module&#45;&gt;program~bspline_regridding_test -->
-<g id="edge2" class="edge"><title>module~bspline_module&#45;&gt;program~bspline_regridding_test</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M86.2202,-70.0823C101.25,-74.7395 118.351,-80.0384 134.098,-84.9177"/>
-<polygon fill="black" stroke="black" points="133.109,-88.2755 143.697,-87.8921 135.181,-81.5891 133.109,-88.2755"/>
-</g>
-<!-- program~knot_tests -->
-<g id="node3" class="node"><title>program~knot_tests</title>
-<a xlink:href="../program/knot_tests.html" xlink:title="knot_tests">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="216,-70 156,-70 156,-44 216,-44 216,-70"/>
-<text text-anchor="middle" x="186" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">knot_tests</text>
-</a>
-</g>
-<!-- module~bspline_module&#45;&gt;program~knot_tests -->
-<g id="edge4" class="edge"><title>module~bspline_module&#45;&gt;program~knot_tests</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M88.1513,-57C106.391,-57 127.403,-57 145.268,-57"/>
-<polygon fill="black" stroke="black" points="145.379,-60.5001 155.379,-57 145.379,-53.5001 145.379,-60.5001"/>
-</g>
 <!-- program~bspline_test -->
-<g id="node4" class="node"><title>program~bspline_test</title>
+<g id="node2" class="node"><title>program~bspline_test</title>
 <a xlink:href="../program/bspline_test.html" xlink:title="bspline_test">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="221,-26 151,-26 151,-1.24345e-14 221,-3.55271e-15 221,-26"/>
-<text text-anchor="middle" x="186" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_test</text>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="221,-114 151,-114 151,-88 221,-88 221,-114"/>
+<text text-anchor="middle" x="186" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_test</text>
 </a>
 </g>
 <!-- module~bspline_module&#45;&gt;program~bspline_test -->
-<g id="edge6" class="edge"><title>module~bspline_module&#45;&gt;program~bspline_test</title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M86.2202,-43.9177C103.442,-38.5813 123.383,-32.4023 140.891,-26.9775"/>
-<polygon fill="black" stroke="black" points="142.363,-30.1856 150.879,-23.8826 140.291,-23.4992 142.363,-30.1856"/>
+<g id="edge2" class="edge"><title>module~bspline_module&#45;&gt;program~bspline_test</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M86.2202,-70.0823C103.442,-75.4187 123.383,-81.5977 140.891,-87.0225"/>
+<polygon fill="black" stroke="black" points="140.291,-90.5008 150.879,-90.1174 142.363,-83.8144 140.291,-90.5008"/>
+</g>
+<!-- program~bspline_regridding_test -->
+<g id="node3" class="node"><title>program~bspline_regridding_test</title>
+<a xlink:href="../program/bspline_regridding_test.html" xlink:title="bspline_regridding_test">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="248,-70 124,-70 124,-44 248,-44 248,-70"/>
+<text text-anchor="middle" x="186" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_regridding_test</text>
+</a>
+</g>
+<!-- module~bspline_module&#45;&gt;program~bspline_regridding_test -->
+<g id="edge4" class="edge"><title>module~bspline_module&#45;&gt;program~bspline_regridding_test</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M88.1513,-57C96.2852,-57 104.97,-57 113.682,-57"/>
+<polygon fill="black" stroke="black" points="113.889,-60.5001 123.889,-57 113.889,-53.5001 113.889,-60.5001"/>
+</g>
+<!-- program~knot_tests -->
+<g id="node4" class="node"><title>program~knot_tests</title>
+<a xlink:href="../program/knot_tests.html" xlink:title="knot_tests">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="216,-26 156,-26 156,-1.24345e-14 216,-3.55271e-15 216,-26"/>
+<text text-anchor="middle" x="186" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">knot_tests</text>
+</a>
+</g>
+<!-- module~bspline_module&#45;&gt;program~knot_tests -->
+<g id="edge6" class="edge"><title>module~bspline_module&#45;&gt;program~knot_tests</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M86.2202,-43.9177C105.069,-38.0771 127.176,-31.227 145.785,-25.4611"/>
+<polygon fill="black" stroke="black" points="146.923,-28.7725 155.439,-22.4695 144.851,-22.0862 146.923,-28.7725"/>
 </g>
 </g>
 </svg>
@@ -585,7 +585,7 @@ implementation in a submodule of an interface in a parent module.</p>
     <hr>
     <footer>
         <div class="row">
-        <div class="col-md-4">&copy; 2015 </div>
+        <div class="col-md-4">&copy; 2016 </div>
 	<div class="col-md-4"><span class="text-center"> bspline-fortran was developed by Jacob Williams</span></div>
         <div class="col-md-4"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a></span></div>
         </div>
