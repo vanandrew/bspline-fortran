@@ -2750,91 +2750,113 @@
 <a name="ln-2556"></a><span class="c">!  * dintrv author: amos, d. e., (snla) : date written 800901</span>
 <a name="ln-2557"></a><span class="c">!  * revision date 820801</span>
 <a name="ln-2558"></a><span class="c">!  * Jacob Williams, 2/24/2015 : updated to free-form Fortran.</span>
-<a name="ln-2559"></a><span class="c">!</span>
-<a name="ln-2560"></a><span class="c">!@warning Need to remove all the `goto` statements from this routine.</span>
-<a name="ln-2561"></a>
-<a name="ln-2562"></a>    <span class="k">subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
-<a name="ln-2563"></a>
-<a name="ln-2564"></a>    <span class="k">implicit none</span>
-<a name="ln-2565"></a>
-<a name="ln-2566"></a><span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">lxt</span>    <span class="c">!! length of the `xt` vector</span>
-<a name="ln-2567"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">lxt</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xt</span>     <span class="c">!! a knot or break point vector of length `lxt`</span>
-<a name="ln-2568"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! argument</span>
-<a name="ln-2569"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">ilo</span>    <span class="c">!! an initialization parameter which must be set</span>
-<a name="ln-2570"></a>                                                 <span class="c">!! to 1 the first time the spline array `xt` is</span>
-<a name="ln-2571"></a>                                                 <span class="c">!! processed by dintrv. `ilo` contains information for</span>
-<a name="ln-2572"></a>                                                 <span class="c">!! efficient processing after the initial call and `ilo`</span>
-<a name="ln-2573"></a>                                                 <span class="c">!! must not be changed by the user.  distinct splines</span>
-<a name="ln-2574"></a>                                                 <span class="c">!! require distinct i`lo parameters.</span>
-<a name="ln-2575"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>  <span class="c">!! largest integer satisfying `xt(ileft) &lt;= x`</span>
-<a name="ln-2576"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">mflag</span>  <span class="c">!! signals when `x` lies out of bounds</span>
-<a name="ln-2577"></a>
-<a name="ln-2578"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ihi</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">middle</span>
-<a name="ln-2579"></a>
-<a name="ln-2580"></a>      <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2581"></a>      <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-2582"></a><span class="k">         if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">goto </span><span class="mi">500</span>
-<a name="ln-2583"></a>         <span class="k">if</span> <span class="p">(</span> <span class="n">lxt</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">goto </span><span class="mi">300</span>
-<a name="ln-2584"></a>         <span class="n">ilo</span> <span class="o">=</span> <span class="n">lxt</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-2585"></a>         <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
-<a name="ln-2586"></a>      <span class="n">endif</span>
-<a name="ln-2587"></a>
-<a name="ln-2588"></a>      <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-2589"></a>         <span class="c">! now x &gt;= xt(ilo). find upper bound</span>
-<a name="ln-2590"></a>         <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-2591"></a> <span class="mi">50</span>      <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span>
-<a name="ln-2592"></a>         <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="n">istep</span>
-<a name="ln-2593"></a>         <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-2594"></a><span class="k">            if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">goto </span><span class="mi">500</span>
-<a name="ln-2595"></a>            <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
-<a name="ln-2596"></a>         <span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-2597"></a><span class="k">            </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
-<a name="ln-2598"></a>            <span class="k">goto </span><span class="mi">50</span>
-<a name="ln-2599"></a>         <span class="n">endif</span>
-<a name="ln-2600"></a>      <span class="k">else</span>
-<a name="ln-2601"></a><span class="k">         if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">goto </span><span class="mi">400</span>
-<a name="ln-2602"></a>         <span class="c">! now x &lt;= xt(ihi). find lower bound</span>
-<a name="ln-2603"></a>         <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-2604"></a> <span class="mi">100</span>     <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span>
-<a name="ln-2605"></a>         <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span> <span class="o">-</span> <span class="n">istep</span>
-<a name="ln-2606"></a>         <span class="k">if</span> <span class="p">(</span> <span class="n">ilo</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-2607"></a><span class="k">            </span><span class="n">ilo</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-2608"></a>            <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span> <span class="k">goto </span><span class="mi">300</span>
-<a name="ln-2609"></a>         <span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-2610"></a><span class="k">            </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
-<a name="ln-2611"></a>            <span class="k">goto </span><span class="mi">100</span>
-<a name="ln-2612"></a>         <span class="n">endif</span>
-<a name="ln-2613"></a>      <span class="n">endif</span>
-<a name="ln-2614"></a>
-<a name="ln-2615"></a>      <span class="c">! now xt(ilo) &lt;= x &lt; xt(ihi). narrow the interval</span>
-<a name="ln-2616"></a> <span class="mi">200</span>  <span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">ilo</span><span class="o">+</span><span class="n">ihi</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-<a name="ln-2617"></a>      <span class="k">if</span> <span class="p">(</span> <span class="n">middle</span><span class="o">==</span><span class="n">ilo</span> <span class="p">)</span> <span class="k">goto </span><span class="mi">400</span>
-<a name="ln-2618"></a>      <span class="c">! note. it is assumed that middle = ilo in case ihi = ilo+1</span>
-<a name="ln-2619"></a>      <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-2620"></a><span class="k">         </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">middle</span>
-<a name="ln-2621"></a>      <span class="k">else</span>
-<a name="ln-2622"></a><span class="k">         </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">middle</span>
-<a name="ln-2623"></a>      <span class="n">endif</span>
-<a name="ln-2624"></a>      <span class="k">goto </span><span class="mi">200</span>
-<a name="ln-2625"></a>
-<a name="ln-2626"></a>      <span class="c">! set output and return</span>
-<a name="ln-2627"></a> <span class="mi">300</span>  <span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<a name="ln-2628"></a>      <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-2629"></a>      <span class="k">return</span>
-<a name="ln-2630"></a>
-<a name="ln-2631"></a><span class="k"> </span><span class="mi">400</span>  <span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-2632"></a>      <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
-<a name="ln-2633"></a>      <span class="k">return</span>
-<a name="ln-2634"></a>
-<a name="ln-2635"></a><span class="k"> </span><span class="mi">500</span>  <span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-2636"></a>      <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
-<a name="ln-2637"></a>
-<a name="ln-2638"></a>    <span class="k">end subroutine </span><span class="n">dintrv</span>
-<a name="ln-2639"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-2640"></a>
-<a name="ln-2641"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-2642"></a>    <span class="k">end module </span><span class="n">bspline_sub_module</span>
-<a name="ln-2643"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2559"></a><span class="c">!  * Jacob Williams, 2/17/2016 : additional refactoring (eliminated GOTOs).</span>
+<a name="ln-2560"></a>
+<a name="ln-2561"></a>    <span class="k">subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
+<a name="ln-2562"></a>
+<a name="ln-2563"></a>    <span class="k">implicit none</span>
+<a name="ln-2564"></a>
+<a name="ln-2565"></a><span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">lxt</span>    <span class="c">!! length of the `xt` vector</span>
+<a name="ln-2566"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">lxt</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xt</span>     <span class="c">!! a knot or break point vector of length `lxt`</span>
+<a name="ln-2567"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! argument</span>
+<a name="ln-2568"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">ilo</span>    <span class="c">!! an initialization parameter which must be set</span>
+<a name="ln-2569"></a>                                                 <span class="c">!! to 1 the first time the spline array `xt` is</span>
+<a name="ln-2570"></a>                                                 <span class="c">!! processed by dintrv. `ilo` contains information for</span>
+<a name="ln-2571"></a>                                                 <span class="c">!! efficient processing after the initial call and `ilo`</span>
+<a name="ln-2572"></a>                                                 <span class="c">!! must not be changed by the user.  distinct splines</span>
+<a name="ln-2573"></a>                                                 <span class="c">!! require distinct i`lo parameters.</span>
+<a name="ln-2574"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>  <span class="c">!! largest integer satisfying `xt(ileft) &lt;= x`</span>
+<a name="ln-2575"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">mflag</span>  <span class="c">!! signals when `x` lies out of bounds</span>
+<a name="ln-2576"></a>
+<a name="ln-2577"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ihi</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">middle</span>
+<a name="ln-2578"></a>
+<a name="ln-2579"></a>    <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2580"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2581"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2582"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2583"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-2584"></a>            <span class="k">return</span>
+<a name="ln-2585"></a><span class="k">        end if</span>
+<a name="ln-2586"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">lxt</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2587"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<a name="ln-2588"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2589"></a>            <span class="k">return</span>
+<a name="ln-2590"></a><span class="k">        end if</span>
+<a name="ln-2591"></a><span class="k">        </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">lxt</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-2592"></a>        <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-2593"></a>    <span class="n">endif</span>
+<a name="ln-2594"></a>
+<a name="ln-2595"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2596"></a>
+<a name="ln-2597"></a>        <span class="c">! now x &gt;= xt(ilo). find upper bound</span>
+<a name="ln-2598"></a>        <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2599"></a>        <span class="k">do</span>
+<a name="ln-2600"></a><span class="k">            </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span>
+<a name="ln-2601"></a>            <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="n">istep</span>
+<a name="ln-2602"></a>            <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2603"></a><span class="k">                if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2604"></a><span class="k">                    </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2605"></a>                    <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-2606"></a>                    <span class="k">return</span>
+<a name="ln-2607"></a><span class="k">                end if</span>
+<a name="ln-2608"></a><span class="k">                </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-2609"></a>            <span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2610"></a><span class="k">                </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
+<a name="ln-2611"></a>                <span class="k">cycle</span>
+<a name="ln-2612"></a><span class="k">            </span><span class="n">endif</span>
+<a name="ln-2613"></a>            <span class="k">exit</span>
+<a name="ln-2614"></a><span class="k">        end do</span>
+<a name="ln-2615"></a>
+<a name="ln-2616"></a><span class="k">    else</span>
+<a name="ln-2617"></a>
+<a name="ln-2618"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2619"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-2620"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
+<a name="ln-2621"></a>            <span class="k">return</span>
+<a name="ln-2622"></a><span class="k">        end if</span>
+<a name="ln-2623"></a>        <span class="c">! now x &lt;= xt(ihi). find lower bound</span>
+<a name="ln-2624"></a>        <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2625"></a>        <span class="k">do</span>
+<a name="ln-2626"></a><span class="k">            </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span>
+<a name="ln-2627"></a>            <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span> <span class="o">-</span> <span class="n">istep</span>
+<a name="ln-2628"></a>            <span class="k">if</span> <span class="p">(</span> <span class="n">ilo</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2629"></a><span class="k">                </span><span class="n">ilo</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2630"></a>                <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2631"></a><span class="k">                    </span><span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<a name="ln-2632"></a>                    <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2633"></a>                    <span class="k">return</span>
+<a name="ln-2634"></a><span class="k">                end if</span>
+<a name="ln-2635"></a><span class="k">            </span><span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2636"></a><span class="k">                </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
+<a name="ln-2637"></a>                <span class="k">cycle</span>
+<a name="ln-2638"></a><span class="k">            </span><span class="n">endif</span>
+<a name="ln-2639"></a>            <span class="k">exit</span>
+<a name="ln-2640"></a><span class="k">        end do</span>
+<a name="ln-2641"></a>
+<a name="ln-2642"></a><span class="k">    </span><span class="n">endif</span>
+<a name="ln-2643"></a>
+<a name="ln-2644"></a>    <span class="c">! now xt(ilo) &lt;= x &lt; xt(ihi). narrow the interval</span>
+<a name="ln-2645"></a>    <span class="k">do</span>
+<a name="ln-2646"></a><span class="k">        </span><span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">ilo</span><span class="o">+</span><span class="n">ihi</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<a name="ln-2647"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">middle</span><span class="o">==</span><span class="n">ilo</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2648"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-2649"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
+<a name="ln-2650"></a>            <span class="k">return</span>
+<a name="ln-2651"></a><span class="k">        end if</span>
+<a name="ln-2652"></a>        <span class="c">! note. it is assumed that middle = ilo in case ihi = ilo+1</span>
+<a name="ln-2653"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-2654"></a><span class="k">            </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">middle</span>
+<a name="ln-2655"></a>        <span class="k">else</span>
+<a name="ln-2656"></a><span class="k">            </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">middle</span>
+<a name="ln-2657"></a>        <span class="n">endif</span>
+<a name="ln-2658"></a>    <span class="k">end do</span>
+<a name="ln-2659"></a>
+<a name="ln-2660"></a><span class="k">    end subroutine </span><span class="n">dintrv</span>
+<a name="ln-2661"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2662"></a>
+<a name="ln-2663"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2664"></a>    <span class="k">end module </span><span class="n">bspline_sub_module</span>
+<a name="ln-2665"></a><span class="c">!*****************************************************************************************</span>
 </pre></div>
 
     </section>
