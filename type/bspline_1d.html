@@ -128,6 +128,16 @@
   
   
   
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#cons">Constructor</a></h3></div>
+    <div id="cons" class="panel-collapse collapse">
+        <div class="list-group">
+          <a class="list-group-item" href="../type/bspline_1d.html#interface-bspline_1d">bspline_1d</a>
+        </div>
+    </div>
+  </div>
+  
+  
   
   
   
@@ -328,6 +338,290 @@ implementation in a submodule of an interface in a parent module.</p>
     
     
     
+	 <section>
+	 <h2>Constructor</h2>
+	   
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-bspline_1d"></span><h3>public interface <a href='../interface/bspline_1d.html'>bspline_1d</a>
+    
+  </h3></div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private elemental function bspline_1d_constructor_empty() result(me)
+    
+    
+    
+</h3>
+    
+    <h4>Arguments</h4>
+    
+      <em>None</em>
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(<a href='../type/bspline_1d.html'>bspline_1d</a>)
+  </small></h4>
+  
+    
+    
+    <h4>Description</h4>
+       
+       <p>It returns an empty [[bspline_1d]] type. Note that INITIALIZE still
+  needs to be called before it can be used.
+  Not really that useful except perhaps in some OpenMP applications.</p>
+        
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function bspline_1d_constructor_auto_knots(x, fcn, kx, iflag) result(me)
+    
+    
+    
+</h3>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>fcn</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(<a href='../type/bspline_1d.html'>bspline_1d</a>)
+  </small></h4>
+  
+    
+    
+    <h4>Description</h4>
+       
+       <p>Constructor for a [[bspline_1d]] type (auto knots).
+  This is a wrapper for [[initialize_1d_auto_knots]].</p>
+        
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private function bspline_1d_constructor_specify_knots(x, fcn, kx, tx, iflag) result(me)
+    
+    
+    
+</h3>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>fcn</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tx</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(<a href='../type/bspline_1d.html'>bspline_1d</a>)
+  </small></h4>
+  
+    
+    
+    <h4>Description</h4>
+       
+       <p>Constructor for a [[bspline_1d]] type (user-specified knots).
+  This is a wrapper for [[initialize_1d_specify_knots]].</p>
+        
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+	   
+	 </section>
+	 <br>
+    
     
     
     
@@ -452,7 +746,7 @@ private subroutine initialize_1d_auto_knots(me, x, fcn, kx, iflag)
     
     <h4>Description</h4>
        
-       <p>Initialize a <a href="../type/bspline_1d.html">bspline_1d</a> type (with automatically-computed knots).
+       <p>Initialize a <a href="../interface/bspline_1d.html">bspline_1d</a> type (with automatically-computed knots).
   This is a wrapper for <a href="../proc/db1ink.html">db1ink</a>.</p>
         
 
@@ -584,7 +878,7 @@ private subroutine initialize_1d_specify_knots(me, x, fcn, kx, tx, iflag)
     
     <h4>Description</h4>
        
-       <p>Initialize a <a href="../type/bspline_1d.html">bspline_1d</a> type (with user-specified knots).
+       <p>Initialize a <a href="../interface/bspline_1d.html">bspline_1d</a> type (with user-specified knots).
   This is a wrapper for <a href="../proc/db1ink.html">db1ink</a>.</p>
         
 
@@ -712,7 +1006,7 @@ private subroutine evaluate_1d(me, xval, idx, f, iflag)
     
     <h4>Description</h4>
        
-       <p>Evaluate a <a href="../type/bspline_1d.html">bspline_1d</a> interpolate.  This is a wrapper for <a href="../proc/db1val.html">db1val</a>.</p>
+       <p>Evaluate a <a href="../interface/bspline_1d.html">bspline_1d</a> interpolate.  This is a wrapper for <a href="../proc/db1val.html">db1val</a>.</p>
         
 
       
@@ -778,7 +1072,7 @@ private subroutine destroy_1d(me)
     
     <h4>Description</h4>
        
-       <p>Destructor for <a href="../type/bspline_1d.html">bspline_1d</a> type.</p>
+       <p>Destructor for <a href="../interface/bspline_1d.html">bspline_1d</a> type.</p>
         
 
       
