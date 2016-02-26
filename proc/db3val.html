@@ -135,8 +135,6 @@
         
         <a class="list-group-item" href="../proc/db3val.html#variable-temp2">temp2</a>
         
-        <a class="list-group-item" href="../proc/db3val.html#variable-work%7E6">work</a>
-        
         <a class="list-group-item" href="../proc/db3val.html#variable-lefty%7E2">lefty</a>
         
         <a class="list-group-item" href="../proc/db3val.html#variable-leftz">leftz</a>
@@ -259,6 +257,8 @@
           
           <a class="list-group-item" href="../proc/f6%7E3.html">f6</a>
           
+          <a class="list-group-item" href="../proc/get_status_message.html">get_status_message</a>
+          
           <a class="list-group-item" href="../proc/test_func.html">test_func</a>
           
           <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
@@ -273,7 +273,7 @@
     
     <div class="col-lg-9" id='text'>
     <h2>
-public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag, inbvx, inbvy, inbvz, iloy, iloz)
+public pure subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz, kx, ky, kz, bcoef, f, iflag, inbvx, inbvy, inbvz, iloy, iloz)
     
     
     
@@ -556,7 +556,7 @@ public subroutine db3val(xval, yval, zval, idx, idy, idz, tx, ty, tz, nx, ny, nz
   
 <tr>
   
-  <td><span class="anchor" id="variable-iflag%7E6"></span>integer,</td>
+  <td><span class="anchor" id="variable-iflag%7E7"></span>integer,</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -858,20 +858,6 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-work%7E6"></span>real(kind=wp),</td>
-  
-  <td>public,</td>
-  <td>dimension(3*max(kx,ky,kz))</td><td>::</td>
-  <td><strong>work</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-lefty%7E2"></span>integer,</td>
   
   <td>public</td>
@@ -987,7 +973,7 @@ implementation in a submodule of an interface in a parent module.</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">db3val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,&amp;</span>
+    <div class="highlight"><pre><span></span>    <span class="k">pure subroutine </span><span class="n">db3val</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">idz</span><span class="p">,&amp;</span>
                                      <span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="p">,&amp;</span>
                                      <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">,&amp;</span>
                                      <span class="n">inbvx</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">iloz</span><span class="p">)</span>
@@ -1020,7 +1006,6 @@ implementation in a submodule of an interface in a parent module.</p>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">temp2</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">))</span>    <span class="kd">::</span> <span class="n">work</span>
 
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">leftz</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,&amp;</span>
                 <span class="n">kcoly</span><span class="p">,</span> <span class="n">kcolz</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span>
@@ -1028,18 +1013,18 @@ implementation in a submodule of an interface in a parent module.</p>
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">        write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="s1">&#39;db3val - x value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db3val - x value out of bounds&#39;</span>
+        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">601</span>
         <span class="k">return</span>
 <span class="k">    end if</span>
 <span class="k">    if</span> <span class="p">(</span><span class="n">yval</span><span class="o">&lt;</span><span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span><span class="o">&gt;</span><span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">        write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="s1">&#39;db3val - y value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db3val - y value out of bounds&#39;</span>
+        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">602</span>
         <span class="k">return</span>
 <span class="k">    end if</span>
 <span class="k">    if</span> <span class="p">(</span><span class="n">zval</span><span class="o">&lt;</span><span class="n">tz</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">zval</span><span class="o">&gt;</span><span class="n">tz</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">        write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span><span class="s1">&#39;(A)&#39;</span><span class="p">)</span> <span class="s1">&#39;db3val - z value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db3val - z value out of bounds&#39;</span>
+        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">603</span>
         <span class="k">return</span>
 <span class="k">    end if</span>
 
@@ -1055,19 +1040,19 @@ implementation in a submodule of an interface in a parent module.</p>
         <span class="n">kcoly</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span>
         <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ky</span>
             <span class="n">kcoly</span> <span class="o">=</span> <span class="n">kcoly</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="n">temp1</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">)</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">(:,</span><span class="n">kcoly</span><span class="p">,</span><span class="n">kcolz</span><span class="p">),</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">(:,</span><span class="n">kcoly</span><span class="p">,</span><span class="n">kcolz</span><span class="p">),</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp1</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">))</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">        end do</span>
 <span class="k">    end do</span>
 
 <span class="k">    </span><span class="n">kcoly</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kz</span>
-        <span class="n">temp2</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcoly</span><span class="p">:),</span><span class="n">temp1</span><span class="p">(:,</span><span class="n">k</span><span class="p">),</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+        <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcoly</span><span class="p">:),</span><span class="n">temp1</span><span class="p">(:,</span><span class="n">k</span><span class="p">),</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp2</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    end do</span>
 
 <span class="k">    </span><span class="n">kcolz</span> <span class="o">=</span> <span class="n">leftz</span> <span class="o">-</span> <span class="n">kz</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
 
     <span class="k">end subroutine </span><span class="n">db3val</span>
 </pre></div>

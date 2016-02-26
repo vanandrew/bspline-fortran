@@ -389,7 +389,7 @@ private elemental function bspline_4d_constructor_empty() result(me)
     
     
     <h3>
-private function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, kq, iflag) result(me)
+private pure function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, kq) result(me)
     
     
     
@@ -543,21 +543,6 @@ private function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, 
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -586,7 +571,7 @@ private function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, 
     
     
     <h3>
-private function bspline_4d_constructor_specify_knots(x, y, z, q, fcn, kx, ky, kz, kq, tx, ty, tz, tq, iflag) result(me)
+private pure function bspline_4d_constructor_specify_knots(x, y, z, q, fcn, kx, ky, kz, kq, tx, ty, tz, tq) result(me)
     
     
     
@@ -800,21 +785,6 @@ private function bspline_4d_constructor_specify_knots(x, y, z, q, fcn, kx, ky, k
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -868,7 +838,7 @@ private function bspline_4d_constructor_specify_knots(x, y, z, q, fcn, kx, ky, k
             
     
     <h3>
-private subroutine initialize_4d_auto_knots(me, x, y, z, q, fcn, kx, ky, kz, kq, iflag)
+private pure subroutine initialize_4d_auto_knots(me, x, y, z, q, fcn, kx, ky, kz, kq, iflag)
     
     
     
@@ -1075,7 +1045,7 @@ private subroutine initialize_4d_auto_knots(me, x, y, z, q, fcn, kx, ky, kz, kq,
             
     
     <h3>
-private subroutine initialize_4d_specify_knots(me, x, y, z, q, fcn, kx, ky, kz, kq, tx, ty, tz, tq, iflag)
+private pure subroutine initialize_4d_specify_knots(me, x, y, z, q, fcn, kx, ky, kz, kq, tx, ty, tz, tq, iflag)
     
     
     
@@ -1353,7 +1323,7 @@ private subroutine initialize_4d_specify_knots(me, x, y, z, q, fcn, kx, ky, kz, 
          
     
     <h3>
-private subroutine evaluate_4d(me, xval, yval, zval, qval, idx, idy, idz, idq, f, iflag)
+private pure subroutine evaluate_4d(me, xval, yval, zval, qval, idx, idy, idz, idq, f, iflag)
     
     
     
@@ -1612,7 +1582,7 @@ private subroutine destroy_4d(me)
     
     <h4>Description</h4>
        
-       <p>Destructor for <a href="../interface/bspline_4d.html">bspline_4d</a> type.</p>
+       <p>Destructor for <a href="../interface/bspline_4d.html">bspline_4d</a> class.</p>
         
 
       

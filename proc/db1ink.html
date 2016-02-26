@@ -131,8 +131,6 @@
     <div id="vars" class="panel-collapse collapse">
       <div class="list-group">
         
-        <a class="list-group-item" href="../proc/db1ink.html#variable-work">work</a>
-        
         <a class="list-group-item" href="../proc/db1ink.html#variable-status_ok">status_ok</a>
         
       </div>
@@ -243,6 +241,8 @@
           
           <a class="list-group-item" href="../proc/f6%7E3.html">f6</a>
           
+          <a class="list-group-item" href="../proc/get_status_message.html">get_status_message</a>
+          
           <a class="list-group-item" href="../proc/test_func.html">test_func</a>
           
           <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
@@ -257,7 +257,7 @@
     
     <div class="col-lg-9" id='text'>
     <h2>
-public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
+public pure subroutine db1ink(x, nx, fcn, kx, iknot, tx, bcoef, iflag)
     
     
     
@@ -346,6 +346,22 @@ public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
   
 <tr>
   
+  <td><span class="anchor" id="variable-iknot"></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iknot</strong></td><td><p>0 = knot sequence chosen by <a href="../proc/db1ink.html">db1ink</a>.
+ 1 = knot sequence chosen by user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-tx"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td></td>
@@ -379,19 +395,17 @@ public subroutine db1ink(x, nx, fcn, kx, tx, bcoef, iflag)
   
 <tr>
   
-  <td><span class="anchor" id="variable-iflag"></span>integer,</td>
-  <td>intent(inout)</td>
+  <td><span class="anchor" id="variable-iflag%7E2"></span>integer,</td>
+  <td>intent(out)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td><p><strong>on input:</strong>  0 = knot sequence chosen by <a href="../proc/db1ink.html">db1ink</a>.
-                1 = knot sequence chosen by user.
- <strong>on output:</strong> 1 = successful execution.
-                2 = iflag out of range.
-                3 = nx out of range.
-                4 = kx out of range.
-                5 = x not strictly increasing.
-                6 = tx not non-decreasing.</p></td>
+  <td><strong>iflag</strong></td><td><p>0 = successful execution.
+ 2 = iknot out of range.
+ 3 = nx out of range.
+ 4 = kx out of range.
+ 5 = x not strictly increasing.
+ 6 = tx not non-decreasing.</p></td>
   
 </tr>
 
@@ -558,20 +572,6 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-work"></span>real(kind=wp),</td>
-  
-  <td>public,</td>
-  <td>dimension(2*kx*(nx+1))</td><td>::</td>
-  <td><strong>work</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-status_ok"></span>logical,</td>
   
   <td>public</td>
@@ -603,7 +603,7 @@ implementation in a submodule of an interface in a parent module.</p>
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>    <span class="k">subroutine </span><span class="n">db1ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>    <span class="k">pure subroutine </span><span class="n">db1ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">iknot</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -612,27 +612,26 @@ implementation in a submodule of an interface in a parent module.</p>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! Array of x abcissae. Must be strictly increasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">fcn</span>    <span class="c">!! Array of function values to interpolate. fcn(i) should</span>
                                                       <span class="c">!!    contain the function value at the point x(i)</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">iknot</span>  <span class="c">!! 0 = knot sequence chosen by [[db1ink]].</span>
+                                                      <span class="c">!! 1 = knot sequence chosen by user.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The knots in the x direction for the spline interpolant.</span>
                                                       <span class="c">!!    If iflag=0 these are chosen by [[db1ink]].</span>
                                                       <span class="c">!!    If iflag=1 these are specified by the user.</span>
                                                       <span class="c">!!    Must be non-decreasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! Array of coefficients of the b-spline interpolant.</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! **on input:**  0 = knot sequence chosen by [[db1ink]].</span>
-                                                      <span class="c">!!                1 = knot sequence chosen by user.</span>
-                                                      <span class="c">!! **on output:** 1 = successful execution.</span>
-                                                      <span class="c">!!                2 = iflag out of range.</span>
-                                                      <span class="c">!!                3 = nx out of range.</span>
-                                                      <span class="c">!!                4 = kx out of range.</span>
-                                                      <span class="c">!!                5 = x not strictly increasing.</span>
-                                                      <span class="c">!!                6 = tx not non-decreasing.</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! 0 = successful execution.</span>
+                                                      <span class="c">!! 2 = iknot out of range.</span>
+                                                      <span class="c">!! 3 = nx out of range.</span>
+                                                      <span class="c">!! 4 = kx out of range.</span>
+                                                      <span class="c">!! 5 = x not strictly increasing.</span>
+                                                      <span class="c">!! 6 = tx not non-decreasing.</span>
 
-
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kx</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="kd">::</span> <span class="n">work</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
 
     <span class="c">!check validity of inputs</span>
 
     <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span><span class="s1">&#39;db1ink&#39;</span><span class="p">,&amp;</span>
+                        <span class="n">iknot</span><span class="p">,&amp;</span>
                         <span class="n">iflag</span><span class="p">,&amp;</span>
                         <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,&amp;</span>
                         <span class="n">kx</span><span class="o">=</span><span class="n">kx</span><span class="p">,&amp;</span>
@@ -644,15 +643,13 @@ implementation in a submodule of an interface in a parent module.</p>
 
         <span class="c">!choose knots</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">iknot</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">            call </span><span class="n">dbknot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">tx</span><span class="p">)</span>
         <span class="k">end if</span>
 
         <span class="c">!construct b-spline coefficients</span>
 
-        <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">end if</span>
 

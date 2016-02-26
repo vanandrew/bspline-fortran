@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	 
+	 <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
+    
+    <meta name="author" content="Chris MacMackin" >
+    <link rel="icon" href="../favicon.png">
+
+    <title>get_status_message &ndash; bspline-fortran</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/pygments.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/local.css" rel="stylesheet">
+    
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <script src="../js/svg-pan-zoom.min.js"></script>
+
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">bspline-fortran </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+				
+                
+            <li><a href="../lists/files.html">Source Files</a></li>
+				
+				
+            <li><a href="../lists/modules.html">Modules</a></li>
+				
+				
+            <li><a href="../lists/procedures.html">Procedures</a></li>
+				
+								
+            <li><a href="../lists/types.html">Derived Types</a></li>
+				
+				
+            <li><a href="../lists/programs.html">Programs</a></li>
+				
+          </ul>
+        
+        <form action="../search.html" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+        </div>
+<!--
+        <button type="submit" class="btn btn-default">Submit</button>
+-->
+        </form>
+        
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+    
+  
+  <div class="row">
+    <h1>get_status_message
+    <small>Function</small>
+    
+    </h1>
+	 
+<div class="row">
+<div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+    <li><i class="fa fa-code"></i><a href="../src/bspline_sub_module.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/bspline_sub_module.f90.html'>bspline_sub_module.f90</a></li>
+  
+     <li><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></li>
+  
+     <li class="active">get_status_message</li>
+  </ol>
+</div>
+</div>
+</div>
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-lg-3">
+    
+<div id="sidebar">
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars">Variables</a></h3></div>
+    <div id="vars" class="panel-collapse collapse">
+      <div class="list-group">
+        
+        <a class="list-group-item" href="../proc/get_status_message.html#variable-istr">istr</a>
+        
+        <a class="list-group-item" href="../proc/get_status_message.html#variable-istat">istat</a>
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+    <div class="list-group">
+      <a class="list-group-item" href="../proc/get_status_message.html#src">get_status_message</a>
+    </div>
+  </div>
+  
+  <hr>
+  
+  <div class="panel panel-default">
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprocs">All Procedures</a></h3></div>
+    <div id="allprocs" class="panel-collapse collapse">
+        <div class="list-group">
+          
+          <a class="list-group-item" href="../interface/bspline_1d.html">bspline_1d</a>
+          
+          <a class="list-group-item" href="../interface/bspline_2d.html">bspline_2d</a>
+          
+          <a class="list-group-item" href="../interface/bspline_3d.html">bspline_3d</a>
+          
+          <a class="list-group-item" href="../interface/bspline_4d.html">bspline_4d</a>
+          
+          <a class="list-group-item" href="../interface/bspline_5d.html">bspline_5d</a>
+          
+          <a class="list-group-item" href="../interface/bspline_6d.html">bspline_6d</a>
+          
+          <a class="list-group-item" href="../proc/db1ink.html">db1ink</a>
+          
+          <a class="list-group-item" href="../proc/db1val.html">db1val</a>
+          
+          <a class="list-group-item" href="../proc/db2ink.html">db2ink</a>
+          
+          <a class="list-group-item" href="../proc/db2val.html">db2val</a>
+          
+          <a class="list-group-item" href="../proc/db3ink.html">db3ink</a>
+          
+          <a class="list-group-item" href="../proc/db3val.html">db3val</a>
+          
+          <a class="list-group-item" href="../proc/db4ink.html">db4ink</a>
+          
+          <a class="list-group-item" href="../proc/db4val.html">db4val</a>
+          
+          <a class="list-group-item" href="../proc/db5ink.html">db5ink</a>
+          
+          <a class="list-group-item" href="../proc/db5val.html">db5val</a>
+          
+          <a class="list-group-item" href="../proc/db6ink.html">db6ink</a>
+          
+          <a class="list-group-item" href="../proc/db6val.html">db6val</a>
+          
+          <a class="list-group-item" href="../proc/f1.html">f1</a>
+          
+          <a class="list-group-item" href="../proc/f1%7E2.html">f1</a>
+          
+          <a class="list-group-item" href="../proc/f1%7E3.html">f1</a>
+          
+          <a class="list-group-item" href="../proc/f2.html">f2</a>
+          
+          <a class="list-group-item" href="../proc/f2%7E2.html">f2</a>
+          
+          <a class="list-group-item" href="../proc/f2%7E3.html">f2</a>
+          
+          <a class="list-group-item" href="../proc/f3.html">f3</a>
+          
+          <a class="list-group-item" href="../proc/f3%7E2.html">f3</a>
+          
+          <a class="list-group-item" href="../proc/f3%7E3.html">f3</a>
+          
+          <a class="list-group-item" href="../proc/f4.html">f4</a>
+          
+          <a class="list-group-item" href="../proc/f4%7E2.html">f4</a>
+          
+          <a class="list-group-item" href="../proc/f4%7E3.html">f4</a>
+          
+          <a class="list-group-item" href="../proc/f5.html">f5</a>
+          
+          <a class="list-group-item" href="../proc/f5%7E2.html">f5</a>
+          
+          <a class="list-group-item" href="../proc/f5%7E3.html">f5</a>
+          
+          <a class="list-group-item" href="../proc/f6.html">f6</a>
+          
+          <a class="list-group-item" href="../proc/f6%7E2.html">f6</a>
+          
+          <a class="list-group-item" href="../proc/f6%7E3.html">f6</a>
+          
+          <a class="list-group-item" href="../proc/get_status_message.html">get_status_message</a>
+          
+          <a class="list-group-item" href="../proc/test_func.html">test_func</a>
+          
+          <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
+          
+        </div>
+    </div>
+  </div>
+  
+</div>
+
+    </div>
+    
+    <div class="col-lg-9" id='text'>
+    <h2>
+public pure function get_status_message(iflag) result(msg)
+    
+    
+    
+</h2>
+    
+  
+
+
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-iflag"></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>return code from one of the routines</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    
+    
+    
+    
+	 <h3>Return Value <small><span class="anchor" id="variable-msg"></span>character(len=:),
+  allocatable</small></h3>
+    <p>status message associated with the flag</p>
+    
+    
+    <h3>Description</h3>
+    <p>Returns a message string associated with the status code.</p>
+    
+    
+     
+     <h3>Called By</h3>
+     
+                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: proc~~get_status_message~~CalledByGraph Pages: 1 -->
+<svg id="procget_status_messageCalledByGraph" width="244pt" height="78pt"
+ viewBox="0.00 0.00 244.00 78.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="proc~~get_status_message~~CalledByGraph" class="graph" transform="scale(1 1) rotate(0) translate(4 74)">
+<title>proc~~get_status_message~~CalledByGraph</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-74 241,-74 241,5 -4,5"/>
+<!-- proc~get_status_message -->
+<g id="node1" class="node"><title>proc~get_status_message</title>
+<polygon fill="none" stroke="black" points="236,-48 124,-48 124,-22 236,-22 236,-48"/>
+<text text-anchor="middle" x="180" y="-32.55" font-family="Helvetica,sans-Serif" font-size="10.50">get_status_message</text>
+</g>
+<!-- program~bspline_oo_test -->
+<g id="node2" class="node"><title>program~bspline_oo_test</title>
+<a xlink:href="../program/bspline_oo_test.html" xlink:title="bspline_oo_test">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="88,-70 4.26326e-14,-70 0,-44 88,-44 88,-70"/>
+<text text-anchor="middle" x="44" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_oo_test</text>
+</a>
+</g>
+<!-- program~bspline_oo_test&#45;&gt;proc~get_status_message -->
+<g id="edge2" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~get_status_message</title>
+<path fill="none" stroke="black" d="M88.1553,-49.8572C96.2943,-48.5406 104.955,-47.1396 113.582,-45.7441"/>
+<polygon fill="black" stroke="black" points="114.348,-49.1658 123.66,-44.1138 113.23,-42.2556 114.348,-49.1658"/>
+</g>
+<!-- program~bspline_test -->
+<g id="node3" class="node"><title>program~bspline_test</title>
+<a xlink:href="../program/bspline_test.html" xlink:title="bspline_test">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="79,-26 9,-26 9,-1.24345e-14 79,-3.55271e-15 79,-26"/>
+<text text-anchor="middle" x="44" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_test</text>
+</a>
+</g>
+<!-- program~bspline_test&#45;&gt;proc~get_status_message -->
+<g id="edge4" class="edge"><title>program~bspline_test&#45;&gt;proc~get_status_message</title>
+<path fill="none" stroke="black" d="M79.0234,-18.6655C89.722,-20.3962 101.858,-22.3593 113.913,-24.3095"/>
+<polygon fill="black" stroke="black" points="113.557,-27.7973 123.987,-25.9391 114.675,-20.8871 113.557,-27.7973"/>
+</g>
+</g>
+</svg>
+</div>
+                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
+                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
+                      </div>
+                      <div class="modal-body">
+                        
+Nodes of different colours represent the following:
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+ "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generated by graphviz version 2.26.3 (20100126.1600)
+ -->
+<!-- Title: Graph Key Pages: 1 -->
+<svg width="641pt" height="28pt"
+ viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<title>Graph Key</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
+<!-- Module -->
+<g id="node1" class="node"><title>Module</title>
+<polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
+<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
+</g>
+<!-- Submodule -->
+<g id="node2" class="node"><title>Submodule</title>
+<polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
+<text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
+</g>
+<!-- Type -->
+<g id="node3" class="node"><title>Type</title>
+<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
+<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
+</g>
+<!-- Subroutine -->
+<g id="node4" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
+<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+</g>
+<!-- Function -->
+<g id="node5" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
+<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+</g>
+<!-- Interface -->
+<g id="node6" class="node"><title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
+<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+</g>
+<!-- Unknown Procedure Type -->
+<g id="node7" class="node"><title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
+<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+</g>
+<!-- Program -->
+<g id="node8" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
+<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+</g>
+<!-- This Page&#39;s Entity -->
+<g id="node9" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
+<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+</g>
+</g>
+</svg>
+
+<h5>Module Graph</h5>
+<p>Solid arrows point from a parent (sub)module to the submodule which is
+descended from it. Dashed arrows point from a module being used to the
+module using it.</p>
+<h5>Type Graph</h5>
+<p>Solid arrows point from one derived type to another which extends
+(inherits from) it. Dashed arrows point from a derived type to another
+type containing it as a components, with a label listing the name(s) of
+said component(s).</p>
+<h5>Call Graph</h5>
+<p>Solid arrows point from a procedure to one which it calls. Dashed 
+arrows point from an interface to procedures which implement that interface.
+This could include the module procedures in a generic interface or the
+implementation in a submodule of an interface in a parent module.</p>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+     
+    <br>
+    
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-istr"></span>character(len=10),</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>istr</strong></td><td></td><td></td><td><p>for integer to string conversion</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-istat"></span>integer,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>istat</strong></td><td></td><td></td><td><p>for write statement</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+    
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span>    <span class="k">pure function </span><span class="n">get_status_message</span><span class="p">(</span><span class="n">iflag</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">implicit none</span>
+
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! return code from one of the routines</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">msg</span>    <span class="c">!! status message associated with the flag</span>
+
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="kd">::</span> <span class="n">istr</span>   <span class="c">!! for integer to string conversion</span>
+    <span class="kt">integer</span>           <span class="kd">::</span> <span class="n">istat</span>  <span class="c">!! for write statement</span>
+
+    <span class="k">select case</span> <span class="p">(</span><span class="n">iflag</span><span class="p">)</span>
+
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">0</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Successful execution&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">1</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in evaluate_*d: class is not initialized&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">2</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: iknot out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">3</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nx out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">4</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kx out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">5</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: x not strictly increasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">6</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tx not non-decreasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">7</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ny out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">8</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ky out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span>  <span class="mi">9</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: y not strictly increasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">10</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ty not non-decreasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">11</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nz out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">12</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kz out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">13</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: z not strictly increasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">14</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tz not non-decreasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">15</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nq out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">16</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kq out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">17</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: q not strictly increasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">18</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tq not non-decreasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">19</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nr out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">20</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kr out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">21</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: r not strictly increasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">22</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tr not non-decreasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">23</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ns out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">24</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ks out of range&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">25</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: s not strictly increasing&#39;</span>
+    <span class="k">case</span><span class="p">(</span> <span class="mi">26</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ts not non-decreasing&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: k does not satisfy k&gt;=1&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">101</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: n does not satisfy n&gt;=k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">102</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: x(i) does not satisfy x(i)&lt;x(i+1) for some i&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">103</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: some abscissa was not in the support of the &#39;</span><span class="o">//</span><span class="p">&amp;</span>
+                    <span class="s1">&#39;corresponding basis function and the system is singular&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">104</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: the system of solver detects a singular system &#39;</span><span class="o">//</span><span class="p">&amp;</span>
+                   <span class="s1">&#39;although the theoretical conditions for a solution were satisfied&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">201</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: k does not satisfy k&gt;=1&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">202</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: jhigh does not satisfy 1&lt;=jhigh&lt;=k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">203</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: index is not 1 or 2&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">204</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">301</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbtpcf: n should be &gt; 0&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">401</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: k does not satisfy k&gt;=1&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">402</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: n does not satisfy n&gt;=k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: ideriv does not satisfy 0&lt;=ideriv&lt;k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: x is not greater than or equal to t(k)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">405</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: x is not less than or equal to t(n+1)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">406</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: a left limiting value cannot be obtained at t(k)&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">501</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tx is not the correct size (kx+nx)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">502</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: ty is not the correct size (ky+ny)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">503</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tz is not the correct size (kz+nz)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">504</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tq is not the correct size (kq+nq)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">505</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tr is not the correct size (kr+nr)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">506</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: ts is not the correct size (ks+ns)&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">601</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: x value out of bounds&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">602</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: y value out of bounds&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">603</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: z value out of bounds&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">604</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: q value out of bounds&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">605</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: r value out of bounds&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">606</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: s value out of bounds&#39;</span>
+
+    <span class="k">case </span><span class="n">default</span>
+        <span class="k">write</span><span class="p">(</span><span class="n">istr</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(I10)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span> <span class="n">iflag</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Unknown status flag: &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">istr</span><span class="p">))</span>
+    <span class="k">end select</span>
+
+<span class="k">    end function </span><span class="n">get_status_message</span>
+</pre></div>
+
+    </section>
+    <br>
+    
+    
+    </div>
+  </div>
+
+    <hr>
+    <footer>
+        <div class="row">
+        <div class="col-md-4">&copy; 2016 </div>
+	<div class="col-md-4"><span class="text-center"> bspline-fortran was developed by Jacob Williams</span></div>
+        <div class="col-md-4"><span class="pull-right">Documentation generated by <a href="https://github.com/cmacmackin/ford">FORD</a></span></div>
+        </div>
+        <br>
+    </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- MathJax JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
+        jax: ['input/TeX','input/MathML','output/HTML-CSS'],
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
+        'HTML-CSS': { 
+           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
+        }
+      });
+    </script>
+    <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

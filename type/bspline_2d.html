@@ -389,7 +389,7 @@ private elemental function bspline_2d_constructor_empty() result(me)
     
     
     <h3>
-private function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky, iflag) result(me)
+private pure function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky) result(me)
     
     
     
@@ -483,21 +483,6 @@ private function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky, iflag) res
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -526,7 +511,7 @@ private function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky, iflag) res
     
     
     <h3>
-private function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty, iflag) result(me)
+private pure function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty) result(me)
     
     
     
@@ -650,21 +635,6 @@ private function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty,
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -718,7 +688,7 @@ private function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty,
             
     
     <h3>
-private subroutine initialize_2d_auto_knots(me, x, y, fcn, kx, ky, iflag)
+private pure subroutine initialize_2d_auto_knots(me, x, y, fcn, kx, ky, iflag)
     
     
     
@@ -865,7 +835,7 @@ private subroutine initialize_2d_auto_knots(me, x, y, fcn, kx, ky, iflag)
             
     
     <h3>
-private subroutine initialize_2d_specify_knots(me, x, y, fcn, kx, ky, tx, ty, iflag)
+private pure subroutine initialize_2d_specify_knots(me, x, y, fcn, kx, ky, tx, ty, iflag)
     
     
     
@@ -1053,7 +1023,7 @@ private subroutine initialize_2d_specify_knots(me, x, y, fcn, kx, ky, tx, ty, if
          
     
     <h3>
-private subroutine evaluate_2d(me, xval, yval, idx, idy, f, iflag)
+private pure subroutine evaluate_2d(me, xval, yval, idx, idy, f, iflag)
     
     
     
@@ -1252,7 +1222,7 @@ private subroutine destroy_2d(me)
     
     <h4>Description</h4>
        
-       <p>Destructor for <a href="../interface/bspline_2d.html">bspline_2d</a> type.</p>
+       <p>Destructor for <a href="../interface/bspline_2d.html">bspline_2d</a> class.</p>
         
 
       

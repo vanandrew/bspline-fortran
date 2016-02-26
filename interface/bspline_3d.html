@@ -237,6 +237,8 @@
           
           <a class="list-group-item" href="../proc/f6%7E3.html">f6</a>
           
+          <a class="list-group-item" href="../proc/get_status_message.html">get_status_message</a>
+          
           <a class="list-group-item" href="../proc/test_func.html">test_func</a>
           
           <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
@@ -303,7 +305,7 @@ private elemental function bspline_3d_constructor_empty() result(me)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_3d_constructor_auto_knots"></span><h3>
-private function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz, iflag) result(me)
+private pure function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz) result(me)
     
     
     
@@ -429,21 +431,6 @@ private function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz, ifl
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -473,7 +460,7 @@ private function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz, ifl
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_3d_constructor_specify_knots"></span><h3>
-private function bspline_3d_constructor_specify_knots(x, y, z, fcn, kx, ky, kz, tx, ty, tz, iflag) result(me)
+private pure function bspline_3d_constructor_specify_knots(x, y, z, fcn, kx, ky, kz, tx, ty, tz) result(me)
     
     
     
@@ -641,21 +628,6 @@ private function bspline_3d_constructor_specify_knots(x, y, z, fcn, kx, ky, kz, 
   
   <td>dimension(:)</td><td>::</td>
   <td><strong>tz</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
   
 </tr>
 

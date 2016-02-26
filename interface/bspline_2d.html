@@ -237,6 +237,8 @@
           
           <a class="list-group-item" href="../proc/f6%7E3.html">f6</a>
           
+          <a class="list-group-item" href="../proc/get_status_message.html">get_status_message</a>
+          
           <a class="list-group-item" href="../proc/test_func.html">test_func</a>
           
           <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
@@ -303,7 +305,7 @@ private elemental function bspline_2d_constructor_empty() result(me)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_2d_constructor_auto_knots"></span><h3>
-private function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky, iflag) result(me)
+private pure function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky) result(me)
     
     
     
@@ -399,21 +401,6 @@ private function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky, iflag) res
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -443,7 +430,7 @@ private function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky, iflag) res
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_2d_constructor_specify_knots"></span><h3>
-private function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty, iflag) result(me)
+private pure function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty) result(me)
     
     
     
@@ -566,21 +553,6 @@ private function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty,
   
   <td>dimension(:)</td><td>::</td>
   <td><strong>ty</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
   
 </tr>
 

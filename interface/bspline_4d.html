@@ -237,6 +237,8 @@
           
           <a class="list-group-item" href="../proc/f6%7E3.html">f6</a>
           
+          <a class="list-group-item" href="../proc/get_status_message.html">get_status_message</a>
+          
           <a class="list-group-item" href="../proc/test_func.html">test_func</a>
           
           <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
@@ -303,7 +305,7 @@ private elemental function bspline_4d_constructor_empty() result(me)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_4d_constructor_auto_knots"></span><h3>
-private function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, kq, iflag) result(me)
+private pure function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, kq) result(me)
     
     
     
@@ -459,21 +461,6 @@ private function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, 
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -503,7 +490,7 @@ private function bspline_4d_constructor_auto_knots(x, y, z, q, fcn, kx, ky, kz, 
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_4d_constructor_specify_knots"></span><h3>
-private function bspline_4d_constructor_specify_knots(x, y, z, q, fcn, kx, ky, kz, kq, tx, ty, tz, tq, iflag) result(me)
+private pure function bspline_4d_constructor_specify_knots(x, y, z, q, fcn, kx, ky, kz, kq, tx, ty, tz, tq) result(me)
     
     
     
@@ -716,21 +703,6 @@ private function bspline_4d_constructor_specify_knots(x, y, z, q, fcn, kx, ky, k
   
   <td>dimension(:)</td><td>::</td>
   <td><strong>tq</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
   
 </tr>
 

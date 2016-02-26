@@ -200,95 +200,19 @@
 <a name="ln-6"></a><span class="c">!</span>
 <a name="ln-7"></a><span class="c">!  Multidimensional (1D-6D) B-Spline interpolation of data on a regular grid.</span>
 <a name="ln-8"></a><span class="c">!  This module uses both the subroutine and object-oriented modules.</span>
-<a name="ln-9"></a><span class="c">!</span>
-<a name="ln-10"></a><span class="c">!# iflag Codes</span>
-<a name="ln-11"></a><span class="c">!</span>
-<a name="ln-12"></a><span class="c">! The following are the `iflag` codes that can be issued by the various</span>
-<a name="ln-13"></a><span class="c">! routines. They are divided into the initialize routines</span>
-<a name="ln-14"></a><span class="c">! (e.g., [[db1ink]], [[db2ink]], etc.)</span>
-<a name="ln-15"></a><span class="c">! and the evaluate routines (e.g., [[db1val]], [[db2val]], etc.).</span>
-<a name="ln-16"></a><span class="c">!</span>
-<a name="ln-17"></a><span class="c">!## Initialize Routines</span>
-<a name="ln-18"></a><span class="c">!```</span>
-<a name="ln-19"></a><span class="c">!db*ink    1: successful execution</span>
-<a name="ln-20"></a><span class="c">!          2: iflag out of range</span>
-<a name="ln-21"></a><span class="c">!          3: nx out of range</span>
-<a name="ln-22"></a><span class="c">!          4: kx out of range</span>
-<a name="ln-23"></a><span class="c">!          5: x not strictly increasing</span>
-<a name="ln-24"></a><span class="c">!          6: tx not non-decreasing</span>
-<a name="ln-25"></a><span class="c">!          7: ny out of range</span>
-<a name="ln-26"></a><span class="c">!          8: ky out of range</span>
-<a name="ln-27"></a><span class="c">!          9: y not strictly increasing</span>
-<a name="ln-28"></a><span class="c">!         10: ty not non-decreasing</span>
-<a name="ln-29"></a><span class="c">!         11: nz out of range</span>
-<a name="ln-30"></a><span class="c">!         12: kz out of range</span>
-<a name="ln-31"></a><span class="c">!         13: z not strictly increasing</span>
-<a name="ln-32"></a><span class="c">!         14: tz not non-decreasing</span>
-<a name="ln-33"></a><span class="c">!         15: nq out of range</span>
-<a name="ln-34"></a><span class="c">!         16: kq out of range</span>
-<a name="ln-35"></a><span class="c">!         17: q not strictly increasing</span>
-<a name="ln-36"></a><span class="c">!         18: tq not non-decreasing</span>
-<a name="ln-37"></a><span class="c">!         19: nr out of range</span>
-<a name="ln-38"></a><span class="c">!         20: kr out of range</span>
-<a name="ln-39"></a><span class="c">!         21: r not strictly increasing</span>
-<a name="ln-40"></a><span class="c">!         22: tr not non-decreasing</span>
-<a name="ln-41"></a><span class="c">!         23: ns out of range</span>
-<a name="ln-42"></a><span class="c">!         24: ks out of range</span>
-<a name="ln-43"></a><span class="c">!         25: s not strictly increasing</span>
-<a name="ln-44"></a><span class="c">!         26: ts not non-decreasing</span>
-<a name="ln-45"></a><span class="c">!</span>
-<a name="ln-46"></a><span class="c">!initialize_*d_specify_knots 501: tx is not the correct size (kx+nx)</span>
-<a name="ln-47"></a><span class="c">!                            502: ty is not the correct size (ky+ny)</span>
-<a name="ln-48"></a><span class="c">!                            503: tz is not the correct size (kz+nz)</span>
-<a name="ln-49"></a><span class="c">!                            504: tq is not the correct size (kq+nq)</span>
-<a name="ln-50"></a><span class="c">!                            505: tr is not the correct size (kr+nr)</span>
-<a name="ln-51"></a><span class="c">!                            506: ts is not the correct size (ks+ns)</span>
-<a name="ln-52"></a><span class="c">!</span>
-<a name="ln-53"></a><span class="c">!dbintk  100: k does not satisfy k&gt;=1</span>
-<a name="ln-54"></a><span class="c">!        101: n does not satisfy n&gt;=k</span>
-<a name="ln-55"></a><span class="c">!        102: x(i) does not satisfy x(i)&lt;x(i+1) for some i</span>
-<a name="ln-56"></a><span class="c">!        103: some abscissa was not in the support of the</span>
-<a name="ln-57"></a><span class="c">!             corresponding basis function and the system is singular</span>
-<a name="ln-58"></a><span class="c">!        104: the system of solver detects a singular system</span>
-<a name="ln-59"></a><span class="c">!             although the theoretical conditions for a solution were satisfied</span>
-<a name="ln-60"></a><span class="c">!</span>
-<a name="ln-61"></a><span class="c">!dbspvn  201: k does not satisfy k&gt;=1</span>
-<a name="ln-62"></a><span class="c">!        202: jhigh does not satisfy 1&lt;=jhigh&lt;=k</span>
-<a name="ln-63"></a><span class="c">!        203: index is not 1 or 2</span>
-<a name="ln-64"></a><span class="c">!        204: x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)</span>
-<a name="ln-65"></a><span class="c">!</span>
-<a name="ln-66"></a><span class="c">!dbtpcf  301: n should be &gt;0</span>
-<a name="ln-67"></a><span class="c">!```</span>
-<a name="ln-68"></a><span class="c">!</span>
-<a name="ln-69"></a><span class="c">!## Evaluate Routines</span>
-<a name="ln-70"></a><span class="c">!```</span>
-<a name="ln-71"></a><span class="c">!db*val   0: successful execution</span>
-<a name="ln-72"></a><span class="c">!         1: x value out of bounds</span>
-<a name="ln-73"></a><span class="c">!         2: y value out of bounds</span>
-<a name="ln-74"></a><span class="c">!         3: z value out of bounds</span>
-<a name="ln-75"></a><span class="c">!         4: q value out of bounds</span>
-<a name="ln-76"></a><span class="c">!         5: r value out of bounds</span>
-<a name="ln-77"></a><span class="c">!         6: s value out of bounds</span>
-<a name="ln-78"></a><span class="c">!</span>
-<a name="ln-79"></a><span class="c">!dbvalu 401: k does not satisfy k&gt;=1</span>
-<a name="ln-80"></a><span class="c">!       402: n does not satisfy n&gt;=k</span>
-<a name="ln-81"></a><span class="c">!       403: ideriv does not satisfy 0&lt;=ideriv&lt;k</span>
-<a name="ln-82"></a><span class="c">!       404: x is not greater than or equal to t(k)</span>
-<a name="ln-83"></a><span class="c">!       405: x is not less than or equal to t(n+1)</span>
-<a name="ln-84"></a><span class="c">!       406: a left limiting value cannot be obtained at t(k)</span>
-<a name="ln-85"></a><span class="c">!```</span>
-<a name="ln-86"></a>
-<a name="ln-87"></a>    <span class="k">module </span><span class="n">bspline_module</span>
-<a name="ln-88"></a>
-<a name="ln-89"></a>    <span class="k">use </span><span class="n">bspline_oo_module</span>
-<a name="ln-90"></a>    <span class="k">use </span><span class="n">bspline_sub_module</span>
-<a name="ln-91"></a>
-<a name="ln-92"></a>    <span class="k">implicit none</span>
-<a name="ln-93"></a>
-<a name="ln-94"></a><span class="k">    public</span>
-<a name="ln-95"></a>
-<a name="ln-96"></a><span class="k">    end module </span><span class="n">bspline_module</span>
-<a name="ln-97"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-9"></a>
+<a name="ln-10"></a>    <span class="k">module </span><span class="n">bspline_module</span>
+<a name="ln-11"></a>
+<a name="ln-12"></a>    <span class="k">use </span><span class="n">bspline_oo_module</span>
+<a name="ln-13"></a>    <span class="k">use </span><span class="n">bspline_sub_module</span>
+<a name="ln-14"></a>
+<a name="ln-15"></a>    <span class="k">implicit none</span>
+<a name="ln-16"></a>
+<a name="ln-17"></a><span class="k">    public</span>
+<a name="ln-18"></a>
+<a name="ln-19"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-20"></a>    <span class="k">end module </span><span class="n">bspline_module</span>
+<a name="ln-21"></a><span class="c">!*****************************************************************************************</span>
 </pre></div>
 
     </section>

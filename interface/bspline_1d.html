@@ -237,6 +237,8 @@
           
           <a class="list-group-item" href="../proc/f6%7E3.html">f6</a>
           
+          <a class="list-group-item" href="../proc/get_status_message.html">get_status_message</a>
+          
           <a class="list-group-item" href="../proc/test_func.html">test_func</a>
           
           <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
@@ -266,7 +268,7 @@
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_1d_constructor_empty"></span><h3>
-private elemental function bspline_1d_constructor_empty() result(me)
+private pure elemental function bspline_1d_constructor_empty() result(me)
     
     
     
@@ -303,7 +305,7 @@ private elemental function bspline_1d_constructor_empty() result(me)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_1d_constructor_auto_knots"></span><h3>
-private function bspline_1d_constructor_auto_knots(x, fcn, kx, iflag) result(me)
+private pure function bspline_1d_constructor_auto_knots(x, fcn, kx) result(me)
     
     
     
@@ -369,21 +371,6 @@ private function bspline_1d_constructor_auto_knots(x, fcn, kx, iflag) result(me)
   
 </tr>
 
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
-  
-</tr>
-
 </tbody>
 </table>
 
@@ -413,7 +400,7 @@ private function bspline_1d_constructor_auto_knots(x, fcn, kx, iflag) result(me)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_1d_constructor_specify_knots"></span><h3>
-private function bspline_1d_constructor_specify_knots(x, fcn, kx, tx, iflag) result(me)
+private pure function bspline_1d_constructor_specify_knots(x, fcn, kx, tx) result(me)
     
     
     
@@ -491,21 +478,6 @@ private function bspline_1d_constructor_specify_knots(x, fcn, kx, tx, iflag) res
   
   <td>dimension(:)</td><td>::</td>
   <td><strong>tx</strong></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td></td>
   
 </tr>
 

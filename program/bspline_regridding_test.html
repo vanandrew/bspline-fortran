@@ -145,19 +145,21 @@
         
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny%7E11">ny</a>
         
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x%7E27">x</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y%7E22">y</a>
-        
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-nx_new">nx_new</a>
         
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny_new">ny_new</a>
         
+        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iknot%7E7">iknot</a>
+        
+        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x%7E27">x</a>
+        
+        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y%7E22">y</a>
+        
+        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_new">fcn_new</a>
+        
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x_new">x_new</a>
         
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y_new">y_new</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_new">fcn_new</a>
         
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-tx%7E13">tx</a>
         
@@ -177,7 +179,7 @@
         
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-j%7E5">j</a>
         
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iflag%7E13">iflag</a>
+        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iflag%7E14">iflag</a>
         
         <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-inbvx%7E7">inbvx</a>
         
@@ -700,34 +702,6 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-x%7E27"></span>real(kind=wp),</td>
-  
-  
-  <td>parameter, dimension(nx)</td><td>::</td>
-  <td><strong>x</strong></td><td> =</td><td>[0.0_wp, 2.0_wp, 4.0_wp, 6.0_wp, 8.0_wp, 10.0_wp]</td><td><p>x points in original grid</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-y%7E22"></span>real(kind=wp),</td>
-  
-  
-  <td>parameter, dimension(ny)</td><td>::</td>
-  <td><strong>y</strong></td><td> =</td><td>[0.0_wp, 2.0_wp, 4.0_wp, 6.0_wp, 8.0_wp]</td><td><p>y points in original grid</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-nx_new"></span>integer,</td>
   
   
@@ -756,6 +730,62 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
+  <td><span class="anchor" id="variable-iknot%7E7"></span>integer,</td>
+  
+  
+  <td>parameter</td><td>::</td>
+  <td><strong>iknot</strong></td><td> =</td><td>0</td><td><p>automatically select the knots</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-x%7E27"></span>real(kind=wp),</td>
+  
+  
+  <td>parameter, dimension(nx)</td><td>::</td>
+  <td><strong>x</strong></td><td> =</td><td>[0.0_wp, 2.0_wp, 4.0_wp, 6.0_wp, 8.0_wp, 10.0_wp]</td><td><p>x points in original grid</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-y%7E22"></span>real(kind=wp),</td>
+  
+  
+  <td>parameter, dimension(ny)</td><td>::</td>
+  <td><strong>y</strong></td><td> =</td><td>[0.0_wp, 2.0_wp, 4.0_wp, 6.0_wp, 8.0_wp]</td><td><p>y points in original grid</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-fcn_new"></span>real(kind=wp),</td>
+  
+  
+  <td>dimension(nx_new,ny_new)</td><td>::</td>
+  <td><strong>fcn_new</strong></td><td></td><td></td><td><p>new grid function evaluations</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-x_new"></span>real(kind=wp),</td>
   
   
@@ -775,20 +805,6 @@ implementation in a submodule of an interface in a parent module.</p>
   
   <td>dimension(ny_new)</td><td>::</td>
   <td><strong>y_new</strong></td><td></td><td></td><td><p>new grid y points</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-fcn_new"></span>real(kind=wp),</td>
-  
-  
-  <td>dimension(nx_new,ny_new)</td><td>::</td>
-  <td><strong>fcn_new</strong></td><td></td><td></td><td><p>new grid function evaluations</p></td>
   
 </tr>
 
@@ -924,7 +940,7 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-iflag%7E13"></span>integer</td>
+  <td><span class="anchor" id="variable-iflag%7E14"></span>integer</td>
   
   
   <td></td><td>::</td>
@@ -1093,27 +1109,28 @@ function <a href='../proc/test_func.html'>test_func</a>(x, y) result(f)
 
     <span class="k">implicit none</span>
 
-<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">kx</span> <span class="o">=</span> <span class="mi">4</span>    <span class="c">!! x bspline order</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">ky</span> <span class="o">=</span> <span class="mi">4</span>    <span class="c">!! y bspline order</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c">!! [[db2val]] input</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">idy</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c">!! [[db2val]] input</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">nx</span> <span class="o">=</span> <span class="mi">6</span>    <span class="c">!! number of points in x dimension in original grid</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">ny</span> <span class="o">=</span> <span class="mi">5</span>    <span class="c">!! number of points in y dimension in original grid</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">kx</span>     <span class="o">=</span> <span class="mi">4</span>    <span class="c">!! x bspline order</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">ky</span>     <span class="o">=</span> <span class="mi">4</span>    <span class="c">!! y bspline order</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">idx</span>    <span class="o">=</span> <span class="mi">0</span>    <span class="c">!! [[db2val]] input</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">idy</span>    <span class="o">=</span> <span class="mi">0</span>    <span class="c">!! [[db2val]] input</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">nx</span>     <span class="o">=</span> <span class="mi">6</span>    <span class="c">!! number of points in x dimension in original grid</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">ny</span>     <span class="o">=</span> <span class="mi">5</span>    <span class="c">!! number of points in y dimension in original grid</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">nx_new</span> <span class="o">=</span> <span class="mi">11</span>   <span class="c">!! number of points in x dimension for new grid</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">ny_new</span> <span class="o">=</span> <span class="mi">9</span>    <span class="c">!! number of points in y dimension for new grid</span>
+    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">iknot</span>  <span class="o">=</span> <span class="mi">0</span>    <span class="c">!! automatically select the knots</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">2.0_wp</span><span class="p">,</span><span class="mf">4.0_wp</span><span class="p">,</span><span class="mf">6.0_wp</span><span class="p">,</span><span class="mf">8.0_wp</span><span class="p">,</span><span class="mi">1</span><span class="mf">0.0_wp</span><span class="p">]</span>  <span class="c">!! x points in original grid</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0_wp</span><span class="p">,</span><span class="mf">2.0_wp</span><span class="p">,</span><span class="mf">4.0_wp</span><span class="p">,</span><span class="mf">6.0_wp</span><span class="p">,</span><span class="mf">8.0_wp</span><span class="p">]</span>          <span class="c">!! y points in original grid</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">nx_new</span> <span class="o">=</span> <span class="mi">11</span>  <span class="c">!! number of points in x dimension for new grid</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">ny_new</span> <span class="o">=</span> <span class="mi">9</span>   <span class="c">!! number of points in y dimension for new grid</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx_new</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">x_new</span>   <span class="c">!! new grid x points</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny_new</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">y_new</span>   <span class="c">!! new grid y points</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx_new</span><span class="p">,</span><span class="n">ny_new</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fcn_new</span>  <span class="c">!! new grid function evaluations</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>  <span class="c">!! x knots</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ty</span>  <span class="c">!! y knots</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fcn_2d</span>  <span class="c">!! original grid function evaluations</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx_new</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">x_new</span>    <span class="c">!! new grid x points</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny_new</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">y_new</span>    <span class="c">!! new grid y points</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">tx</span>       <span class="c">!! x knots</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">ty</span>       <span class="c">!! y knots</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">fcn_2d</span>   <span class="c">!! original grid function evaluations</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span><span class="p">,</span><span class="n">tru</span><span class="p">,</span><span class="n">err</span><span class="p">,</span><span class="n">errmax</span>
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span>
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag</span>
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">inbvx</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">iloy</span>
+    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span>
+    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag</span>
+    <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">inbvx</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">iloy</span>
 
     <span class="c">!function evaluations for original grid:</span>
     <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span>
@@ -1142,9 +1159,8 @@ function <a href='../proc/test_func.html'>test_func</a>(x, y) result(f)
     <span class="n">inbvy</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">iloy</span>  <span class="o">=</span> <span class="mi">1</span>
 
-    <span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">call </span><span class="n">db2ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">fcn_2d</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">fcn_2d</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error calling db2ink&#39;</span>
+    <span class="k">call </span><span class="n">db2ink</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">fcn_2d</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">iknot</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="n">fcn_2d</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="n">error</span> <span class="k">stop</span> <span class="s1">&#39;error calling db2ink&#39;</span>
     <span class="n">errmax</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
     <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nx_new</span>
         <span class="n">x_new</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span>
