@@ -141,6 +141,8 @@
         
         <a class="list-group-item" href="../proc/db2val.html#variable-temp%7E2">temp</a>
         
+        <a class="list-group-item" href="../proc/db2val.html#variable-work%7E2">work</a>
+        
       </div>
     </div>
   </div>
@@ -789,6 +791,20 @@ implementation in a submodule of an interface in a parent module.</p>
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-work%7E2"></span>real(kind=wp),</td>
+  
+  <td>public,</td>
+  <td>dimension(3*max(kx,ky))</td><td>::</td>
+  <td><strong>work</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -835,6 +851,7 @@ implementation in a submodule of an interface in a parent module.</p>
 
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">k</span><span class="p">,</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,</span> <span class="n">kcol</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">))</span> <span class="kd">::</span> <span class="n">work</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 
@@ -855,12 +872,12 @@ implementation in a submodule of an interface in a parent module.</p>
 <span class="k">    </span><span class="n">kcol</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span>
     <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ky</span>
         <span class="n">kcol</span> <span class="o">=</span> <span class="n">kcol</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">(:,</span><span class="n">kcol</span><span class="p">),</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+        <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">(:,</span><span class="n">kcol</span><span class="p">),</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="c">!error</span>
     <span class="k">end do</span>
 
 <span class="k">    </span><span class="n">kcol</span> <span class="o">=</span> <span class="n">lefty</span> <span class="o">-</span> <span class="n">ky</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcol</span><span class="p">:),</span><span class="n">temp</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcol</span><span class="p">:),</span><span class="n">temp</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
 
     <span class="k">end subroutine </span><span class="n">db2val</span>
 </pre></div>
