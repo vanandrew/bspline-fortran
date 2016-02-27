@@ -150,6 +150,18 @@
   
   
   
+  <div class="panel panel-primary">
+    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#fins">Finalization Procedures</a></h3></div>
+    <div id="fins" class="panel-collapse collapse">
+        <div class="list-group">
+          
+          <a class="list-group-item" href="../type/bspline_2d.html#finalproc-finalize_2d">finalize_2d</a>
+          
+        </div>
+    </div>
+  </div>
+  
+  
   
   <div class="panel panel-primary">
     <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#boundprocs">Type-Bound Procedures</a></h3></div>
@@ -669,6 +681,78 @@ private pure function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx
     
     
     
+    <section>
+    <h2>Finalization Procedures</h2>
+	   
+         
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="finalproc-finalize_2d"></span><h3>final :: <strong>finalize_2d</strong> 
+    </h3></div>
+  <div class="panel-body">
+    
+
+
+    
+  </div>
+  <ul class="list-group">
+     <li class="list-group-item">
+       
+    
+    <h3>
+private pure elemental subroutine finalize_2d(me)
+    
+    
+    
+</h3>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(<a href='../type/bspline_2d.html'>bspline_2d</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+    
+    <h4>Description</h4>
+       
+       <p>Finalizer for [[bspline_2d]] class. Just a wrapper for [[destroy_2d]].</p>
+        
+
+     </li>
+  </ul>
+</div>
+
+         
+    </section>
+    <br>
+    
     
      
     <section>
@@ -1179,7 +1263,7 @@ private pure subroutine evaluate_2d(me, xval, yval, idx, idy, f, iflag)
          
     
     <h3>
-private subroutine destroy_2d(me)
+private pure subroutine destroy_2d(me)
     
     
     
@@ -1205,7 +1289,7 @@ private subroutine destroy_2d(me)
 <tr>
   
   <td><span class="anchor" ></span>class(<a href='../type/bspline_2d.html'>bspline_2d</a>),</td>
-  <td>intent(out)</td>
+  <td>intent(inout)</td>
   <td></td>
   
   <td></td><td>::</td>
@@ -1257,6 +1341,7 @@ private subroutine destroy_2d(me)
         <span class="k">procedure</span> <span class="kd">::</span> <span class="n">initialize_2d_specify_knots</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">evaluate</span> <span class="o">=&gt;</span> <span class="n">evaluate_2d</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_2d</span>
+        <span class="k">final</span> <span class="kd">::</span> <span class="n">finalize_2d</span>
     <span class="k">end type </span><span class="n">bspline_2d</span>
 </pre></div>
 
