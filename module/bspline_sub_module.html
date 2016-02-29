@@ -787,8 +787,8 @@ public pure subroutine <a href='../proc/db1ink.html'>db1ink</a>(x, nx, fcn, kx, 
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db1ink.html">db1ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db1ink.html">db1ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -1191,8 +1191,8 @@ public pure subroutine <a href='../proc/db2ink.html'>db2ink</a>(x, nx, y, ny, fc
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -1209,8 +1209,8 @@ public pure subroutine <a href='../proc/db2ink.html'>db2ink</a>(x, nx, y, ny, fc
   
   <td>dimension(ny+ky)</td><td>::</td>
   <td><strong>ty</strong></td><td><p>The knots in the y direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -1767,8 +1767,8 @@ public pure subroutine <a href='../proc/db3ink.html'>db3ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-   If iflag=0 these are chosen by <a href="../proc/db3ink.html">db3ink</a>.
-   If iflag=1 these are specified by the user.
+   If iknot=0 these are chosen by <a href="../proc/db3ink.html">db3ink</a>.
+   If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -1785,8 +1785,8 @@ public pure subroutine <a href='../proc/db3ink.html'>db3ink</a>(x, nx, y, ny, z,
   
   <td>dimension(ny+ky)</td><td>::</td>
   <td><strong>ty</strong></td><td><p>The knots in the y direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db3ink.html">db3ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db3ink.html">db3ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -1803,8 +1803,8 @@ public pure subroutine <a href='../proc/db3ink.html'>db3ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nz+kz)</td><td>::</td>
   <td><strong>tz</strong></td><td><p>The knots in the z direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db3ink.html">db3ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db3ink.html">db3ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -2519,8 +2519,8 @@ public pure subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-   If iflag=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
-   If iflag=1 these are specified by the user.
+   If iknot=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
+   If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -2537,8 +2537,8 @@ public pure subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z,
   
   <td>dimension(ny+ky)</td><td>::</td>
   <td><strong>ty</strong></td><td><p>The knots in the y direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -2555,8 +2555,8 @@ public pure subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nz+kz)</td><td>::</td>
   <td><strong>tz</strong></td><td><p>The knots in the z direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -2573,8 +2573,8 @@ public pure subroutine <a href='../proc/db4ink.html'>db4ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nq+kq)</td><td>::</td>
   <td><strong>tq</strong></td><td><p>The knots in the q direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db4ink.html">db4ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -3441,8 +3441,8 @@ public pure subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-   If iflag=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
-   If iflag=1 these are specified by the user.
+   If iknot=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
+   If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -3459,8 +3459,8 @@ public pure subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z,
   
   <td>dimension(ny+ky)</td><td>::</td>
   <td><strong>ty</strong></td><td><p>The knots in the y direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -3477,8 +3477,8 @@ public pure subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nz+kz)</td><td>::</td>
   <td><strong>tz</strong></td><td><p>The knots in the z direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -3495,8 +3495,8 @@ public pure subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nq+kq)</td><td>::</td>
   <td><strong>tq</strong></td><td><p>The knots in the q direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -3513,8 +3513,8 @@ public pure subroutine <a href='../proc/db5ink.html'>db5ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nr+kr)</td><td>::</td>
   <td><strong>tr</strong></td><td><p>The knots in the r direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db5ink.html">db5ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -4533,8 +4533,8 @@ public pure subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-   If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
-   If iflag=1 these are specified by the user.
+   If iknot=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
+   If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -4551,8 +4551,8 @@ public pure subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z,
   
   <td>dimension(ny+ky)</td><td>::</td>
   <td><strong>ty</strong></td><td><p>The knots in the y direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -4569,8 +4569,8 @@ public pure subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nz+kz)</td><td>::</td>
   <td><strong>tz</strong></td><td><p>The knots in the z direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -4587,8 +4587,8 @@ public pure subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nq+kq)</td><td>::</td>
   <td><strong>tq</strong></td><td><p>The knots in the q direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -4605,8 +4605,8 @@ public pure subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z,
   
   <td>dimension(nr+kr)</td><td>::</td>
   <td><strong>tr</strong></td><td><p>The knots in the r direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -4623,8 +4623,8 @@ public pure subroutine <a href='../proc/db6ink.html'>db6ink</a>(x, nx, y, ny, z,
   
   <td>dimension(ns+ks)</td><td>::</td>
   <td><strong>ts</strong></td><td><p>The knots in the s direction for the spline interpolant.
-    If iflag=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
-    If iflag=1 these are specified by the user.
+    If iknot=0 these are chosen by <a href="../proc/db6ink.html">db6ink</a>.
+    If iknot=1 these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
