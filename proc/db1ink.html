@@ -131,6 +131,8 @@
     <div id="vars" class="panel-collapse collapse">
       <div class="list-group">
         
+        <a class="list-group-item" href="../proc/db1ink.html#variable-work">work</a>
+        
         <a class="list-group-item" href="../proc/db1ink.html#variable-status_ok%7E2">status_ok</a>
         
       </div>
@@ -576,6 +578,20 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
+  <td><span class="anchor" id="variable-work"></span>real(kind=wp),</td>
+  
+  <td>public,</td>
+  <td>dimension(2*kx*(nx+1))</td><td>::</td>
+  <td><strong>work</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-status_ok%7E2"></span>logical,</td>
   
   <td>public</td>
@@ -634,6 +650,7 @@ implementation in a submodule of an interface in a parent module.</p>
                                                       <span class="c">!! 712 = size(tx) /= nx+kx.</span>
                                                       <span class="c">!! 800 = size(x) /= size(bcoef,1).</span>
 
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">kx</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="kd">::</span> <span class="n">work</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
 
     <span class="c">!check validity of inputs</span>
@@ -659,7 +676,7 @@ implementation in a submodule of an interface in a parent module.</p>
 
         <span class="c">!construct b-spline coefficients</span>
 
-        <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+        <span class="k">call </span><span class="n">dbtpcf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">fcn</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
     <span class="k">end if</span>
 
