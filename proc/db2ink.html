@@ -291,8 +291,8 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td>intent(in),</td>
   <td></td>
   
-  <td>dimension(nx)</td><td>::</td>
-  <td><strong>x</strong></td><td><p>Array of x abcissae. Must be strictly increasing.</p></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td><p><code>nx</code> array of x abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -321,8 +321,8 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td>intent(in),</td>
   <td></td>
   
-  <td>dimension(ny)</td><td>::</td>
-  <td><strong>y</strong></td><td><p>Array of y abcissae. Must be strictly increasing.</p></td>
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>y</strong></td><td><p><code>ny</code> array of y abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -351,9 +351,9 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td>intent(in),</td>
   <td></td>
   
-  <td>dimension(nx,ny)</td><td>::</td>
-  <td><strong>fcn</strong></td><td><p>Array of function values to interpolate. fcn(i,j) should
-    contain the function value at the point (x(i),y(j))</p></td>
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>fcn</strong></td><td><p>'(nx,ny)<code>matrix of function values to interpolate.</code>fcn(i,j)<code>should
+    contain the function value at the point</code>(x(i),y(j))`</p></td>
   
 </tr>
 
@@ -413,10 +413,10 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td>intent(inout),</td>
   <td></td>
   
-  <td>dimension(nx+kx)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>The knots in the x direction for the spline interpolant.
-    If iknot=0 these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
-    If iknot=1 these are specified by the user.
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tx</strong></td><td><p>The <code>nx+kx</code> knots in the <code>x</code> direction for the spline interpolant.
+    If <code>iknot=0</code> these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
+    If <code>iknot=1</code> these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -431,10 +431,10 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td>intent(inout),</td>
   <td></td>
   
-  <td>dimension(ny+ky)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>The knots in the y direction for the spline interpolant.
-    If iknot=0 these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
-    If iknot=1 these are specified by the user.
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>ty</strong></td><td><p>The <code>ny+ky</code> knots in the <code>y</code> direction for the spline interpolant.
+    If <code>iknot=0</code> these are chosen by <a href="../proc/db2ink.html">db2ink</a>.
+    If <code>iknot=1</code> these are specified by the user.
     Must be non-decreasing.</p></td>
   
 </tr>
@@ -449,8 +449,8 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td>intent(out),</td>
   <td></td>
   
-  <td>dimension(nx,ny)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>Array of coefficients of the b-spline interpolant.</p></td>
+  <td>dimension(:,:)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p><code>(nx,ny)</code> matrix of coefficients of the b-spline interpolant.</p></td>
   
 </tr>
 
@@ -474,7 +474,13 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   7 = ny out of range.
   8 = ky out of range.
   9 = y not strictly increasing.
- 10 = ty not non-decreasing.</p></td>
+ 10 = ty not non-decreasing.
+ 700 = size(x) /= size(fcn,1).
+ 701 = size(y) /= size(fcn,2).
+ 706 = size(x) /= nx.
+ 707 = size(y) /= ny.
+ 712 = size(tx) /= nx+kx.
+ 713 = size(ty) /= ny+ky.</p></td>
   
 </tr>
 
@@ -738,21 +744,21 @@ implementation in a submodule of an interface in a parent module.</p>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">ny</span>     <span class="c">!! Number of y abcissae</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">kx</span>     <span class="c">!! The order of spline pieces in x (&gt;= 2, &lt; nx). (order = polynomial degree + 1)</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">ky</span>     <span class="c">!! The order of spline pieces in y (&gt;= 2, &lt; ny). (order = polynomial degree + 1)</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! Array of x abcissae. Must be strictly increasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">y</span>      <span class="c">!! Array of y abcissae. Must be strictly increasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">fcn</span>    <span class="c">!! Array of function values to interpolate. fcn(i,j) should</span>
-                                                      <span class="c">!!    contain the function value at the point (x(i),y(j))</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! `nx` array of x abcissae. Must be strictly increasing.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>        <span class="kd">::</span> <span class="n">y</span>      <span class="c">!! `ny` array of y abcissae. Must be strictly increasing.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">fcn</span>    <span class="c">!! &#39;(nx,ny)` matrix of function values to interpolate. `fcn(i,j)` should</span>
+                                                      <span class="c">!!    contain the function value at the point `(x(i),y(j))`</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                      <span class="kd">::</span> <span class="n">iknot</span>  <span class="c">!! 0 = knot sequence chosen by [[db1ink]].</span>
                                                       <span class="c">!! 1 = knot sequence chosen by user.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The knots in the x direction for the spline interpolant.</span>
-                                                      <span class="c">!!    If iknot=0 these are chosen by [[db2ink]].</span>
-                                                      <span class="c">!!    If iknot=1 these are specified by the user.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The `nx+kx` knots in the `x` direction for the spline interpolant.</span>
+                                                      <span class="c">!!    If `iknot=0` these are chosen by [[db2ink]].</span>
+                                                      <span class="c">!!    If `iknot=1` these are specified by the user.</span>
                                                       <span class="c">!!    Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">ty</span>     <span class="c">!! The knots in the y direction for the spline interpolant.</span>
-                                                      <span class="c">!!    If iknot=0 these are chosen by [[db2ink]].</span>
-                                                      <span class="c">!!    If iknot=1 these are specified by the user.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">ty</span>     <span class="c">!! The `ny+ky` knots in the `y` direction for the spline interpolant.</span>
+                                                      <span class="c">!!    If `iknot=0` these are chosen by [[db2ink]].</span>
+                                                      <span class="c">!!    If `iknot=1` these are specified by the user.</span>
                                                       <span class="c">!!    Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>   <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! Array of coefficients of the b-spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">bcoef</span>  <span class="c">!! `(nx,ny)` matrix of coefficients of the b-spline interpolant.</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                     <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!!  0 = successful execution.</span>
                                                       <span class="c">!!  2 = iknot out of range.</span>
                                                       <span class="c">!!  3 = nx out of range.</span>
@@ -763,6 +769,12 @@ implementation in a submodule of an interface in a parent module.</p>
                                                       <span class="c">!!  8 = ky out of range.</span>
                                                       <span class="c">!!  9 = y not strictly increasing.</span>
                                                       <span class="c">!! 10 = ty not non-decreasing.</span>
+                                                      <span class="c">!! 700 = size(x) /= size(fcn,1).</span>
+                                                      <span class="c">!! 701 = size(y) /= size(fcn,2).</span>
+                                                      <span class="c">!! 706 = size(x) /= nx.</span>
+                                                      <span class="c">!! 707 = size(y) /= ny.</span>
+                                                      <span class="c">!! 712 = size(tx) /= nx+kx.</span>
+                                                      <span class="c">!! 713 = size(ty) /= ny+ky.</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
@@ -776,6 +788,7 @@ implementation in a submodule of an interface in a parent module.</p>
                         <span class="n">kx</span><span class="o">=</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="o">=</span><span class="n">ky</span><span class="p">,&amp;</span>
                         <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,&amp;</span>
                         <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="n">ty</span><span class="p">,&amp;</span>
+                        <span class="n">f2</span><span class="o">=</span><span class="n">fcn</span><span class="p">,&amp;</span>
                         <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">status_ok</span><span class="p">)</span> <span class="k">then</span>
