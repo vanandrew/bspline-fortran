@@ -760,7 +760,13 @@ public pure subroutine db6ink(x, nx, y, ny, z, nz, q, nq, r, nr, s, ns, fcn, kx,
  714 = size(tz) /= nz+kz.
  715 = size(tq) /= nq+kq.
  716 = size(tr) /= nr+kr.
- 717 = size(ts) /= ns+ks.</p></td>
+ 717 = size(ts) /= ns+ks.
+ 800 = size(x) /= size(bcoef,1).
+ 801 = size(y) /= size(bcoef,2).
+ 802 = size(z) /= size(bcoef,3).
+ 803 = size(q) /= size(bcoef,4).
+ 804 = size(r) /= size(bcoef,5).
+ 805 = size(s) /= size(bcoef,6).</p></td>
   
 </tr>
 
@@ -1073,6 +1079,12 @@ implementation in a submodule of an interface in a parent module.</p>
                                                                <span class="c">!! 715 = size(tq) /= nq+kq.</span>
                                                                <span class="c">!! 716 = size(tr) /= nr+kr.</span>
                                                                <span class="c">!! 717 = size(ts) /= ns+ks.</span>
+                                                               <span class="c">!! 800 = size(x) /= size(bcoef,1).</span>
+                                                               <span class="c">!! 801 = size(y) /= size(bcoef,2).</span>
+                                                               <span class="c">!! 802 = size(z) /= size(bcoef,3).</span>
+                                                               <span class="c">!! 803 = size(q) /= size(bcoef,4).</span>
+                                                               <span class="c">!! 804 = size(r) /= size(bcoef,5).</span>
+                                                               <span class="c">!! 805 = size(s) /= size(bcoef,6).</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="o">*</span><span class="n">nq</span><span class="o">*</span><span class="n">nr</span><span class="o">*</span><span class="n">ns</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
@@ -1086,6 +1098,8 @@ implementation in a submodule of an interface in a parent module.</p>
                         <span class="n">kx</span><span class="o">=</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="o">=</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="o">=</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="o">=</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="o">=</span><span class="n">kr</span><span class="p">,</span><span class="n">ks</span><span class="o">=</span><span class="n">ks</span><span class="p">,&amp;</span>
                         <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span><span class="n">q</span><span class="o">=</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">r</span><span class="p">,</span><span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">,&amp;</span>
                         <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">,</span><span class="n">tq</span><span class="o">=</span><span class="n">tq</span><span class="p">,</span><span class="n">tr</span><span class="o">=</span><span class="n">tr</span><span class="p">,</span><span class="n">ts</span><span class="o">=</span><span class="n">ts</span><span class="p">,&amp;</span>
+                        <span class="n">f6</span><span class="o">=</span><span class="n">fcn</span><span class="p">,&amp;</span>
+                        <span class="n">bcoef6</span><span class="o">=</span><span class="n">bcoef</span><span class="p">,&amp;</span>
                         <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">status_ok</span><span class="p">)</span> <span class="k">then</span>

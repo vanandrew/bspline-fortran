@@ -382,7 +382,7 @@ public pure subroutine db3ink(x, nx, y, ny, z, nz, fcn, kx, ky, kz, iknot, tx, t
   <td></td>
   
   <td>dimension(:,:,:)</td><td>::</td>
-  <td><strong>fcn</strong></td><td><p>'(nx,ny,nz)' matrix of function values to interpolate. fcn(i,j,k) should
+  <td><strong>fcn</strong></td><td><p><code>(nx,ny,nz)</code> matrix of function values to interpolate. fcn(i,j,k) should
    contain the function value at the point (x(i),y(j),z(k))</p></td>
   
 </tr>
@@ -550,7 +550,10 @@ public pure subroutine db3ink(x, nx, y, ny, z, nz, fcn, kx, ky, kz, iknot, tx, t
  708 = size(z) /= nz.
  712 = size(tx) /= nx+kx.
  713 = size(ty) /= ny+ky.
- 714 = size(tz) /= nz+kz.</p></td>
+ 714 = size(tz) /= nz+kz.
+ 800 = size(x) /= size(bcoef,1).
+ 801 = size(y) /= size(bcoef,2).
+ 802 = size(z) /= size(bcoef,3).</p></td>
   
 </tr>
 
@@ -813,7 +816,7 @@ implementation in a submodule of an interface in a parent module.</p>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">x</span>     <span class="c">!! `nx` array of x abcissae. must be strictly increasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">y</span>     <span class="c">!! `ny` array of y abcissae. must be strictly increasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>         <span class="kd">::</span> <span class="n">z</span>     <span class="c">!! `nz` array of z abcissae. must be strictly increasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">fcn</span>   <span class="c">!! &#39;(nx,ny,nz)&#39; matrix of function values to interpolate. fcn(i,j,k) should</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">fcn</span>   <span class="c">!! `(nx,ny,nz)` matrix of function values to interpolate. fcn(i,j,k) should</span>
                                                       <span class="c">!!   contain the function value at the point (x(i),y(j),z(k))</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                       <span class="kd">::</span> <span class="n">iknot</span> <span class="c">!! 0 = knot sequence chosen by [[db1ink]].</span>
                                                       <span class="c">!! 1 = knot sequence chosen by user.</span>
@@ -853,6 +856,9 @@ implementation in a submodule of an interface in a parent module.</p>
                                                       <span class="c">!! 712 = size(tx) /= nx+kx.</span>
                                                       <span class="c">!! 713 = size(ty) /= ny+ky.</span>
                                                       <span class="c">!! 714 = size(tz) /= nz+kz.</span>
+                                                      <span class="c">!! 800 = size(x) /= size(bcoef,1).</span>
+                                                      <span class="c">!! 801 = size(y) /= size(bcoef,2).</span>
+                                                      <span class="c">!! 802 = size(z) /= size(bcoef,3).</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">*</span><span class="n">ny</span><span class="o">*</span><span class="n">nz</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
@@ -867,6 +873,7 @@ implementation in a submodule of an interface in a parent module.</p>
                         <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,&amp;</span>
                         <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,</span><span class="n">ty</span><span class="o">=</span><span class="n">ty</span><span class="p">,</span><span class="n">tz</span><span class="o">=</span><span class="n">tz</span><span class="p">,&amp;</span>
                         <span class="n">f3</span><span class="o">=</span><span class="n">fcn</span><span class="p">,&amp;</span>
+                        <span class="n">bcoef3</span><span class="o">=</span><span class="n">bcoef</span><span class="p">,&amp;</span>
                         <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">status_ok</span><span class="p">)</span> <span class="k">then</span>

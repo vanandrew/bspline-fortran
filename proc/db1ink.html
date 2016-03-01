@@ -408,7 +408,8 @@ public pure subroutine db1ink(x, nx, fcn, kx, iknot, tx, bcoef, iflag)
  6 = tx not non-decreasing.
  700 = size(x) /= size(fcn,1).
  706 = size(x) /= nx.
- 712 = size(tx) /= nx+kx.</p></td>
+ 712 = size(tx) /= nx+kx.
+ 800 = size(x) /= size(bcoef,1).</p></td>
   
 </tr>
 
@@ -631,6 +632,7 @@ implementation in a submodule of an interface in a parent module.</p>
                                                       <span class="c">!! 700 = size(x) /= size(fcn,1).</span>
                                                       <span class="c">!! 706 = size(x) /= nx.</span>
                                                       <span class="c">!! 712 = size(tx) /= nx+kx.</span>
+                                                      <span class="c">!! 800 = size(x) /= size(bcoef,1).</span>
 
     <span class="kt">logical</span> <span class="kd">::</span> <span class="n">status_ok</span>
 
@@ -643,6 +645,7 @@ implementation in a submodule of an interface in a parent module.</p>
                         <span class="n">kx</span><span class="o">=</span><span class="n">kx</span><span class="p">,&amp;</span>
                         <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,&amp;</span>
                         <span class="n">f1</span><span class="o">=</span><span class="n">fcn</span><span class="p">,&amp;</span>
+                        <span class="n">bcoef1</span><span class="o">=</span><span class="n">bcoef</span><span class="p">,&amp;</span>
                         <span class="n">tx</span><span class="o">=</span><span class="n">tx</span><span class="p">,&amp;</span>
                         <span class="n">status_ok</span><span class="o">=</span><span class="n">status_ok</span><span class="p">)</span>
 
