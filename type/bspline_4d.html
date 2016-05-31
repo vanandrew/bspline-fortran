@@ -174,6 +174,8 @@
           
           <a class="list-group-item" href="../type/bspline_4d.html#boundprocedure-destroy%7E5">destroy</a>
           
+          <a class="list-group-item" href="../type/bspline_4d.html#boundprocedure-size_of%7E5">size_of</a>
+          
         </div>
     </div>
   </div>
@@ -1678,6 +1680,81 @@ private pure subroutine destroy_4d(me)
 </div>
 
     
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-size_of%7E5"></span><h3>procedure, public :: <strong>size_of</strong>  => size_4d 
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private pure function size_4d(me) result(s)
+    
+    
+    
+</h3>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/bspline_4d.html'>bspline_4d</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>integer
+  </small></h4>
+  <p>size of the structure in bits</p>
+    
+    
+    <h4>Description</h4>
+       
+       <p>Actual size of a <a href="../interface/bspline_4d.html">bspline_4d</a> structure in bits.</p>
+        
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
     </section>
     
     
@@ -1713,6 +1790,7 @@ private pure subroutine destroy_4d(me)
         <span class="k">procedure</span> <span class="kd">::</span> <span class="n">initialize_4d_specify_knots</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">evaluate</span> <span class="o">=&gt;</span> <span class="n">evaluate_4d</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_4d</span>
+        <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">size_of</span> <span class="o">=&gt;</span> <span class="n">size_4d</span>
         <span class="k">final</span> <span class="kd">::</span> <span class="n">finalize_4d</span>
     <span class="k">end type </span><span class="n">bspline_4d</span>
 </pre></div>
