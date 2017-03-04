@@ -7,7 +7,7 @@
 	 
 	 <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
     
-    <meta name="author" content="Chris MacMackin" >
+    <meta name="author" content="Jacob Williams" >
     <link rel="icon" href="../favicon.png">
 
     <title>bspline_regridding_test &ndash; bspline-fortran</title>
@@ -53,13 +53,20 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
 				
-                
+            <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
+              <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button"
+              aria-haspopup="true"
+		 aria-expanded="false">Contents <span class="caret"></span></a>
+	      <ul class="dropdown-menu">
+              
             <li><a href="../lists/files.html">Source Files</a></li>
 				
 				
             <li><a href="../lists/modules.html">Modules</a></li>
 				
-				
+            
+                                
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
 								
@@ -68,6 +75,24 @@
 				
             <li><a href="../lists/programs.html">Programs</a></li>
 				
+            </ul>
+            </li>
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
+
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
+
+                             
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
+
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/programs.html">Programs</a></li>
+
           </ul>
         
         <form action="../search.html" class="navbar-form navbar-right" role="search">
@@ -87,17 +112,17 @@
     
   
   <div class="row">
-    <h1>bspline_regridding_test 
+    <h1>bspline_regridding_test
     <small>Program</small>
     
     </h1>
-	 
+    
 <div class="row">
-<div class="col-lg-12">
+  <div class="col-lg-12">
 <div class="well well-sm">
   <ul class="list-inline" style="margin-bottom:0px;display:inline">
      
-    <li><i class="fa fa-pencil"></i> Jacob Williams</li>
+     <li><i class="fa fa-pencil"></i> Jacob Williams</li>
      
      
     <li><i class="fa fa-calendar-o"></i> 10/5/2015</li>
@@ -106,6 +131,13 @@
      
     
     
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title=" 8.0% of total for programs.">83 statements</a>
+     </li> 
+     
+     
     <li><i class="fa fa-code"></i><a href="../src/test_regrid.f90"> Source File</a></li>
      
   </ul>
@@ -118,144 +150,151 @@
 </div>
 </div>
 </div>
-    
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
   </div>
   
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
     
 <div id="sidebar">
   
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars">Variables</a></h3></div>
-    <div id="vars" class="panel-collapse collapse">
-      <div class="list-group">
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-kx%7E13">kx</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ky%7E11">ky</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-idx%7E7">idx</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-idy%7E6">idy</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-nx%7E13">nx</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny%7E11">ny</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-nx_new">nx_new</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny_new">ny_new</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iknot%7E7">iknot</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x%7E33">x</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y%7E27">y</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_new">fcn_new</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x_new">x_new</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y_new">y_new</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-tx%7E13">tx</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ty%7E11">ty</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_2d">fcn_2d</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-val">val</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-tru">tru</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-err">err</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-errmax">errmax</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-i">i</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-j%7E5">j</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iflag%7E14">iflag</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-inbvx%7E7">inbvx</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-inbvy%7E6">inbvy</a>
-        
-        <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iloy%7E6">iloy</a>
-        
-      </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs">Functions</a></h3></div>
-    <div id="funcs" class="panel-collapse collapse">
-        <div class="list-group">
-          
-          <a class="list-group-item" href="../program/bspline_regridding_test.html#proc-test_func">test_func</a>
-          
-        </div>
-    </div>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <div class="panel panel-primary">
-    <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
     <div class="list-group">
-      <a class="list-group-item" href="../program/bspline_regridding_test.html#src">bspline_regridding_test</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-kx%7E13">kx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ky%7E11">ky</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-idx%7E7">idx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-idy%7E6">idy</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-nx%7E13">nx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny%7E11">ny</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-nx_new">nx_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny_new">ny_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iknot%7E7">iknot</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x%7E33">x</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y%7E27">y</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_new">fcn_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x_new">x_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y_new">y_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-tx%7E13">tx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ty%7E11">ty</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_2d">fcn_2d</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-val">val</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-tru">tru</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-err">err</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-errmax">errmax</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-i">i</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-j">j</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iflag%7E14">iflag</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-inbvx%7E7">inbvx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-inbvy%7E6">inbvy</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iloy%7E6">iloy</a>
+      
     </div>
   </div>
-  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-0">Functions</a></h3></div>
+  <div id="funcs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#proc-test_func">test_func</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../program/bspline_regridding_test.html#src">bspline_regridding_test</a>
+  </div>
+</div>
+
+
   <hr>
   
-  <div class="panel panel-default">
-    <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs">All Programs</a></h3></div>
-    <div id="allprogs" class="panel-collapse collapse">
-        <div class="list-group">
-          
-          <a class="list-group-item" href="../program/bspline_oo_test.html">bspline_oo_test</a>
-          
-          <a class="list-group-item" href="../program/bspline_regridding_test.html">bspline_regridding_test</a>
-          
-          <a class="list-group-item" href="../program/bspline_speed_test.html">bspline_speed_test</a>
-          
-          <a class="list-group-item" href="../program/bspline_speed_test_oo.html">bspline_speed_test_oo</a>
-          
-          <a class="list-group-item" href="../program/bspline_test.html">bspline_test</a>
-          
-          <a class="list-group-item" href="../program/knot_tests.html">knot_tests</a>
-          
-        </div>
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-0">All Programs</a></h3></div>
+  <div id="allprogs-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/bspline_oo_test.html">bspline_oo_test</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html">bspline_regridding_test</a>
+      
+      <a class="list-group-item" href="../program/bspline_speed_test.html">bspline_speed_test</a>
+      
+      <a class="list-group-item" href="../program/bspline_speed_test_oo.html">bspline_speed_test_oo</a>
+      
+      <a class="list-group-item" href="../program/bspline_test.html">bspline_test</a>
+      
+      <a class="list-group-item" href="../program/knot_tests.html">knot_tests</a>
+      
     </div>
   </div>
-  
 </div>
+
+
+</div>  
 
     </div>
     
-    <div class="col-lg-9" id='text'>
+    <div class="col-md-9" id='text'>
     
   
     <ul class="list-inline">
@@ -266,8 +305,6 @@
       <li><a href="https://software.intel.com/en-us/node/511041">iso_fortran_env</a></li>
       
     </ul>
-  
-
     
                 <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -285,15 +322,27 @@
 <polygon fill="none" stroke="black" points="662,-59.5304 538,-59.5304 538,-33.5304 662,-33.5304 662,-59.5304"/>
 <text text-anchor="middle" x="600" y="-44.0804" font-family="Helvetica,sans-Serif" font-size="10.50">bspline_regridding_test</text>
 </g>
+<!-- module~bspline_module -->
+<g id="node2" class="node"><title>module~bspline_module</title>
+<a xlink:href="../module/bspline_module.html" xlink:title="bspline_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="502,-39.5304 414,-39.5304 414,-13.5304 502,-13.5304 502,-39.5304"/>
+<text text-anchor="middle" x="458" y="-24.0804" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_module</text>
+</a>
+</g>
+<!-- module~bspline_module&#45;&gt;program~bspline_regridding_test -->
+<g id="edge12" class="edge"><title>module~bspline_module&#45;&gt;program~bspline_regridding_test</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M502.151,-32.7489C510.374,-33.9069 519.159,-35.1443 527.966,-36.3847"/>
+<polygon fill="#000000" stroke="#000000" points="527.499,-39.8534 537.889,-37.7824 528.475,-32.9218 527.499,-39.8534"/>
+</g>
 <!-- iso_fortran_env -->
-<g id="node2" class="node"><title>iso_fortran_env</title>
+<g id="node3" class="node"><title>iso_fortran_env</title>
 <a xlink:href="https://software.intel.com/en-us/node/511041" xlink:title="iso_fortran_env">
 <polygon fill="#337ab7" stroke="#337ab7" points="87,-59.5304 1,-59.5304 1,-33.5304 87,-33.5304 87,-59.5304"/>
 <text text-anchor="middle" x="44" y="-44.0804" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
 </a>
 </g>
 <!-- iso_fortran_env&#45;&gt;program~bspline_regridding_test -->
-<g id="edge12" class="edge"><title>iso_fortran_env&#45;&gt;program~bspline_regridding_test</title>
+<g id="edge14" class="edge"><title>iso_fortran_env&#45;&gt;program~bspline_regridding_test</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M180,-67.5304C302.12,-68.3091 443.968,-59.1043 527.625,-52.6302"/>
 <polygon fill="#000000" stroke="#000000" points="528.087,-56.1048 537.783,-51.8353 527.54,-49.1262 528.087,-56.1048"/>
 </g>
@@ -321,18 +370,6 @@
 <g id="edge6" class="edge"><title>iso_fortran_env&#45;&gt;module~bspline_sub_module</title>
 <path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M87.7799,-40.0922C96.2426,-38.8476 105.281,-37.5185 114.267,-36.1971"/>
 <polygon fill="#000000" stroke="#000000" points="114.971,-39.6311 124.356,-34.7134 113.953,-32.7056 114.971,-39.6311"/>
-</g>
-<!-- module~bspline_module -->
-<g id="node3" class="node"><title>module~bspline_module</title>
-<a xlink:href="../module/bspline_module.html" xlink:title="bspline_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="502,-39.5304 414,-39.5304 414,-13.5304 502,-13.5304 502,-39.5304"/>
-<text text-anchor="middle" x="458" y="-24.0804" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_module</text>
-</a>
-</g>
-<!-- module~bspline_module&#45;&gt;program~bspline_regridding_test -->
-<g id="edge14" class="edge"><title>module~bspline_module&#45;&gt;program~bspline_regridding_test</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M502.151,-32.7489C510.374,-33.9069 519.159,-35.1443 527.966,-36.3847"/>
-<polygon fill="#000000" stroke="#000000" points="527.499,-39.8534 537.889,-37.7824 528.475,-32.9218 527.499,-39.8534"/>
 </g>
 <!-- module~bspline_oo_module&#45;&gt;module~bspline_module -->
 <g id="edge8" class="edge"><title>module~bspline_oo_module&#45;&gt;module~bspline_module</title>
@@ -368,18 +405,18 @@
                       </div>
                       <div class="modal-body">
                         
-Nodes of different colours represent the following:
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="641pt" height="28pt"
- viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<svg width="486pt" height="34pt"
+ viewBox="0.00 0.00 486.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 483,-30 483,5 -4,5"/>
 <!-- Module -->
 <g id="node1" class="node"><title>Module</title>
 <polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
@@ -390,66 +427,42 @@ Nodes of different colours represent the following:
 <polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
 <text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
 </g>
-<!-- Type -->
-<g id="node3" class="node"><title>Type</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
-<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
-</g>
 <!-- Subroutine -->
-<g id="node4" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
-<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<g id="node3" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="220,-26 156,-26 156,-1.24345e-14 220,-3.55271e-15 220,-26"/>
+<text text-anchor="middle" x="188" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
-<g id="node5" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
-<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
-</g>
-<!-- Interface -->
-<g id="node6" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
-<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
-</g>
-<!-- Unknown Procedure Type -->
-<g id="node7" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
-<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<g id="node4" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="292,-26 238,-26 238,-1.24345e-14 292,-3.55271e-15 292,-26"/>
+<text text-anchor="middle" x="265" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Program -->
-<g id="node8" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
-<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<g id="node5" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
+<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node9" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
-<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<g id="node6" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="478,-26 382,-26 382,-1.24345e-14 478,-3.55271e-15 478,-26"/>
+<text text-anchor="middle" x="430" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
-Where possible, edges connecting nodes are given different colours to make them
-easier to distinguish in large graphs.
-<h5>Module Graph</h5>
-<p>Solid arrows point from a parent (sub)module to the submodule which is
-descended from it. Dashed arrows point from a module being used to the
-module using it.</p>
-<h5>Type Graph</h5>
-<p>Solid arrows point from one derived type to another which extends
-(inherits from) it. Dashed arrows point from a derived type to another
-type containing it as a components, with a label listing the name(s) of
-said component(s).</p>
-<h5>Call Graph</h5>
-<p>Solid arrows point from a procedure to one which it calls. Dashed 
-arrows point from an interface to procedures which implement that interface.
-This could include the module procedures in a generic interface or the
-implementation in a submodule of an interface in a parent module.</p>
-
+    
+    <p>Solid arrows point from a parent (sub)module to the submodule which is
+    descended from it. Dashed arrows point from a module being used to the
+    module or program unit using it.
+    </p>
+    
                       </div>
                     </div>
                   </div>
                 </div>
                 
+    
+
     <br><br>
     <p>2D data regridding using the bspline module.</p>
     
@@ -471,15 +484,13 @@ implementation in a submodule of an interface in a parent module.</p>
 <polygon fill="none" stroke="black" points="124,-70 4.9738e-14,-70 0,-44 124,-44 124,-70"/>
 <text text-anchor="middle" x="62" y="-54.55" font-family="Helvetica,sans-Serif" font-size="10.50">bspline_regridding_test</text>
 </g>
-<!-- proc~db2ink -->
-<g id="node2" class="node"><title>proc~db2ink</title>
-<a xlink:href="../proc/db2ink.html" xlink:title="db2ink">
-<polygon fill="#d9534f" stroke="#d9534f" points="215,-114 161,-114 161,-88 215,-88 215,-114"/>
-<text text-anchor="middle" x="188" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">db2ink</text>
-</a>
+<!-- db2val -->
+<g id="node2" class="node"><title>db2val</title>
+<polygon fill="#777777" stroke="#777777" points="215,-114 161,-114 161,-88 215,-88 215,-114"/>
+<text text-anchor="middle" x="188" y="-98.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">db2val</text>
 </g>
-<!-- program~bspline_regridding_test&#45;&gt;proc~db2ink -->
-<g id="edge2" class="edge"><title>program~bspline_regridding_test&#45;&gt;proc~db2ink</title>
+<!-- program~bspline_regridding_test&#45;&gt;db2val -->
+<g id="edge2" class="edge"><title>program~bspline_regridding_test&#45;&gt;db2val</title>
 <path fill="none" stroke="#000000" d="M99.463,-70.0823C115.803,-75.7884 134.902,-82.4578 151.17,-88.1386"/>
 <polygon fill="#000000" stroke="#000000" points="150.288,-91.5379 160.883,-91.5305 152.596,-84.9293 150.288,-91.5379"/>
 </g>
@@ -495,15 +506,13 @@ implementation in a submodule of an interface in a parent module.</p>
 <path fill="none" stroke="#000000" d="M124.262,-57C132.97,-57 141.697,-57 149.777,-57"/>
 <polygon fill="#000000" stroke="#000000" points="149.971,-60.5001 159.971,-57 149.97,-53.5001 149.971,-60.5001"/>
 </g>
-<!-- proc~db2val -->
-<g id="node4" class="node"><title>proc~db2val</title>
-<a xlink:href="../proc/db2val.html" xlink:title="db2val">
-<polygon fill="#d9534f" stroke="#d9534f" points="215,-26 161,-26 161,-1.24345e-14 215,-3.55271e-15 215,-26"/>
-<text text-anchor="middle" x="188" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">db2val</text>
-</a>
+<!-- db2ink -->
+<g id="node4" class="node"><title>db2ink</title>
+<polygon fill="#777777" stroke="#777777" points="215,-26 161,-26 161,-1.24345e-14 215,-3.55271e-15 215,-26"/>
+<text text-anchor="middle" x="188" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">db2ink</text>
 </g>
-<!-- program~bspline_regridding_test&#45;&gt;proc~db2val -->
-<g id="edge6" class="edge"><title>program~bspline_regridding_test&#45;&gt;proc~db2val</title>
+<!-- program~bspline_regridding_test&#45;&gt;db2ink -->
+<g id="edge6" class="edge"><title>program~bspline_regridding_test&#45;&gt;db2ink</title>
 <path fill="none" stroke="#000000" d="M99.463,-43.9177C115.803,-38.2116 134.902,-31.5422 151.17,-25.8614"/>
 <polygon fill="#000000" stroke="#000000" points="152.596,-29.0707 160.883,-22.4695 150.288,-22.4621 152.596,-29.0707"/>
 </g>
@@ -520,83 +529,58 @@ implementation in a submodule of an interface in a parent module.</p>
                       </div>
                       <div class="modal-body">
                         
-Nodes of different colours represent the following:
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <p>Nodes of different colours represent the following: </p>
+    <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.26.3 (20100126.1600)
  -->
 <!-- Title: Graph Key Pages: 1 -->
-<svg width="641pt" height="28pt"
- viewBox="0.00 0.00 641.00 27.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph1" class="graph" transform="scale(0.817602 0.817602) rotate(0) translate(4 30)">
+<svg width="556pt" height="34pt"
+ viewBox="0.00 0.00 556.00 34.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 30)">
 <title>Graph Key</title>
-<polygon fill="white" stroke="white" points="-4,5 -4,-30 781,-30 781,5 -4,5"/>
-<!-- Module -->
-<g id="node1" class="node"><title>Module</title>
-<polygon fill="#337ab7" stroke="#337ab7" points="54,-26 2.13163e-14,-26 0,-1.24345e-14 54,-3.55271e-15 54,-26"/>
-<text text-anchor="middle" x="27" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Module</text>
-</g>
-<!-- Submodule -->
-<g id="node2" class="node"><title>Submodule</title>
-<polygon fill="#5bc0de" stroke="#5bc0de" points="138,-26 72,-26 72,-1.24345e-14 138,-3.55271e-15 138,-26"/>
-<text text-anchor="middle" x="105" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Submodule</text>
-</g>
-<!-- Type -->
-<g id="node3" class="node"><title>Type</title>
-<polygon fill="#5cb85c" stroke="#5cb85c" points="210,-26 156,-26 156,-1.24345e-14 210,-3.55271e-15 210,-26"/>
-<text text-anchor="middle" x="183" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Type</text>
-</g>
+<polygon fill="white" stroke="white" points="-4,5 -4,-30 553,-30 553,5 -4,5"/>
 <!-- Subroutine -->
-<g id="node4" class="node"><title>Subroutine</title>
-<polygon fill="#d9534f" stroke="#d9534f" points="292,-26 228,-26 228,-1.24345e-14 292,-3.55271e-15 292,-26"/>
-<text text-anchor="middle" x="260" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
+<g id="node1" class="node"><title>Subroutine</title>
+<polygon fill="#d9534f" stroke="#d9534f" points="64,-26 3.19744e-14,-26 0,-1.24345e-14 64,-3.55271e-15 64,-26"/>
+<text text-anchor="middle" x="32" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Subroutine</text>
 </g>
 <!-- Function -->
-<g id="node5" class="node"><title>Function</title>
-<polygon fill="#d94e8f" stroke="#d94e8f" points="364,-26 310,-26 310,-1.24345e-14 364,-3.55271e-15 364,-26"/>
-<text text-anchor="middle" x="337" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
+<g id="node2" class="node"><title>Function</title>
+<polygon fill="#d94e8f" stroke="#d94e8f" points="136,-26 82,-26 82,-1.24345e-14 136,-3.55271e-15 136,-26"/>
+<text text-anchor="middle" x="109" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Function</text>
 </g>
 <!-- Interface -->
-<g id="node6" class="node"><title>Interface</title>
-<polygon fill="#a7506f" stroke="#a7506f" points="436,-26 382,-26 382,-1.24345e-14 436,-3.55271e-15 436,-26"/>
-<text text-anchor="middle" x="409" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
+<g id="node3" class="node"><title>Interface</title>
+<polygon fill="#a7506f" stroke="#a7506f" points="208,-26 154,-26 154,-1.24345e-14 208,-3.55271e-15 208,-26"/>
+<text text-anchor="middle" x="181" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Interface</text>
 </g>
 <!-- Unknown Procedure Type -->
-<g id="node7" class="node"><title>Unknown Procedure Type</title>
-<polygon fill="#777777" stroke="#777777" points="590,-26 454,-26 454,-1.24345e-14 590,-3.55271e-15 590,-26"/>
-<text text-anchor="middle" x="522" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
+<g id="node4" class="node"><title>Unknown Procedure Type</title>
+<polygon fill="#777777" stroke="#777777" points="362,-26 226,-26 226,-1.24345e-14 362,-3.55271e-15 362,-26"/>
+<text text-anchor="middle" x="294" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Unknown Procedure Type</text>
 </g>
 <!-- Program -->
-<g id="node8" class="node"><title>Program</title>
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="662,-26 608,-26 608,-1.24345e-14 662,-3.55271e-15 662,-26"/>
-<text text-anchor="middle" x="635" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
+<g id="node5" class="node"><title>Program</title>
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="434,-26 380,-26 380,-1.24345e-14 434,-3.55271e-15 434,-26"/>
+<text text-anchor="middle" x="407" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">Program</text>
 </g>
 <!-- This Page&#39;s Entity -->
-<g id="node9" class="node"><title>This Page&#39;s Entity</title>
-<polygon fill="none" stroke="black" points="776,-26 680,-26 680,-1.24345e-14 776,-3.55271e-15 776,-26"/>
-<text text-anchor="middle" x="728" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
+<g id="node6" class="node"><title>This Page&#39;s Entity</title>
+<polygon fill="none" stroke="black" points="548,-26 452,-26 452,-1.24345e-14 548,-3.55271e-15 548,-26"/>
+<text text-anchor="middle" x="500" y="-10.55" font-family="Helvetica,sans-Serif" font-size="10.50">This Page&#39;s Entity</text>
 </g>
 </g>
 </svg>
 
-Where possible, edges connecting nodes are given different colours to make them
-easier to distinguish in large graphs.
-<h5>Module Graph</h5>
-<p>Solid arrows point from a parent (sub)module to the submodule which is
-descended from it. Dashed arrows point from a module being used to the
-module using it.</p>
-<h5>Type Graph</h5>
-<p>Solid arrows point from one derived type to another which extends
-(inherits from) it. Dashed arrows point from a derived type to another
-type containing it as a components, with a label listing the name(s) of
-said component(s).</p>
-<h5>Call Graph</h5>
-<p>Solid arrows point from a procedure to one which it calls. Dashed 
-arrows point from an interface to procedures which implement that interface.
-This could include the module procedures in a generic interface or the
-implementation in a submodule of an interface in a parent module.</p>
-
+    
+    <p>Solid arrows point from a procedure to one which it calls. Dashed 
+    arrows point from an interface to procedures which implement that interface.
+    This could include the module procedures in a generic interface or the
+    implementation in a submodule of an interface in a parent module.
+    </p>
+    
                       </div>
                     </div>
                   </div>
@@ -604,6 +588,115 @@ implementation in a submodule of an interface in a parent module.</p>
                 
      
     <br>
+
+     <section class="visible-xs visible-sm hidden-md">
+       
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-kx%7E13">kx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ky%7E11">ky</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-idx%7E7">idx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-idy%7E6">idy</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-nx%7E13">nx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny%7E11">ny</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-nx_new">nx_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ny_new">ny_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iknot%7E7">iknot</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x%7E33">x</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y%7E27">y</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_new">fcn_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-x_new">x_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-y_new">y_new</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-tx%7E13">tx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-ty%7E11">ty</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-fcn_2d">fcn_2d</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-val">val</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-tru">tru</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-err">err</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-errmax">errmax</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-i">i</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-j">j</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iflag%7E14">iflag</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-inbvx%7E7">inbvx</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-inbvy%7E6">inbvy</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#variable-iloy%7E6">iloy</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-1">Functions</a></h3></div>
+  <div id="funcs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html#proc-test_func">test_func</a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../program/bspline_regridding_test.html#src">bspline_regridding_test</a>
+  </div>
+</div>
+
+
+     </section>
+     <br class="visible-xs visible-sm hidden-md">
+
+     
 
     
     <section>
@@ -932,7 +1025,7 @@ implementation in a submodule of an interface in a parent module.</p>
   
 <tr>
   
-  <td><span class="anchor" id="variable-j%7E5"></span>integer</td>
+  <td><span class="anchor" id="variable-j"></span>integer</td>
   
   
   <td></td><td>::</td>
@@ -1021,10 +1114,19 @@ implementation in a submodule of an interface in a parent module.</p>
 function <a href='../proc/test_func.html'>test_func</a>(x, y) result(f)
     
     
-    
+	 
 </h3></div>
   <div class="panel-body">
        
+    
+
+
+
+
+
+
+
+<p>2d test function</p>
     
     <h4>Arguments</h4>
     
@@ -1084,15 +1186,6 @@ function <a href='../proc/test_func.html'>test_func</a>(x, y) result(f)
   </small></h4>
   
     
-    
-    <h4>Description</h4>
-       
-       
-
-
-       
-       <p>2d test function</p>
-        
 
   </div>
   </div>
@@ -1223,23 +1316,52 @@ function <a href='../proc/test_func.html'>test_func</a>(x, y) result(f)
     </div>
   </div>
 
+  <section class="visible-xs visible-sm hidden-md">
     <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-1">All Programs</a></h3></div>
+  <div id="allprogs-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../program/bspline_oo_test.html">bspline_oo_test</a>
+      
+      <a class="list-group-item" href="../program/bspline_regridding_test.html">bspline_regridding_test</a>
+      
+      <a class="list-group-item" href="../program/bspline_speed_test.html">bspline_speed_test</a>
+      
+      <a class="list-group-item" href="../program/bspline_speed_test_oo.html">bspline_speed_test_oo</a>
+      
+      <a class="list-group-item" href="../program/bspline_test.html">bspline_test</a>
+      
+      <a class="list-group-item" href="../program/knot_tests.html">knot_tests</a>
+      
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  
+    <hr>    
+    </div> <!-- /container -->
     <footer>
+      <div class="container">
       <div class="row">
-        <div class="col-md-4">&copy; 2016 </div>
-        <div class="col-md-4"><span class="text-center"> bspline-fortran was developed by Jacob Williams</span></div>
-        <div class="col-md-4">
-          <span class="pull-right">
+        <div class="col-xs-6 col-md-4"><p>&copy; 2017 </p></div>
+        <div class="col-xs-6 col-md-4 col-md-push-4">
+          <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
             
-          </span>
+          </p>
         </div>
+        <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> bspline-fortran was developed by Jacob Williams</p></div>
       </div>
       <br>
+      </div> <!-- /container -->    
     </footer>
-    </div> <!-- /container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -1264,6 +1386,6 @@ function <a href='../proc/test_func.html'>test_func</a>(x, y) result(f)
         }
       });
     </script>
-    <script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   </body>
 </html>
