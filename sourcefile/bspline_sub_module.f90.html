@@ -3105,600 +3105,604 @@
 <a name="ln-2653"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">nrow</span><span class="p">)</span><span class="o">==</span><span class="mf">0.0_wp</span><span class="p">)</span> <span class="n">iflag</span> <span class="o">=</span> <span class="mi">2</span>
 <a name="ln-2654"></a>
 <a name="ln-2655"></a>    <span class="k">end subroutine </span><span class="n">dbnfac</span>
-<a name="ln-2656"></a>
-<a name="ln-2657"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-2658"></a><span class="c">!&gt;</span>
-<a name="ln-2659"></a><span class="c">!  Companion routine to [[dbnfac]]. it returns the solution x of the</span>
-<a name="ln-2660"></a><span class="c">!  linear system a*x = b in place of b, given the lu-factorization</span>
-<a name="ln-2661"></a><span class="c">!  for a in the work array w from dbnfac.</span>
-<a name="ln-2662"></a><span class="c">!</span>
-<a name="ln-2663"></a><span class="c">!  (with \( a = l*u \), as stored in w), the unit lower triangular system</span>
-<a name="ln-2664"></a><span class="c">!  \( l(u*x) = b \) is solved for \( y = u*x \), and y stored in b. then the</span>
-<a name="ln-2665"></a><span class="c">!  upper triangular system \(u*x = y \) is solved for x. the calculations</span>
-<a name="ln-2666"></a><span class="c">!  are so arranged that the innermost loops stay within columns.</span>
-<a name="ln-2667"></a><span class="c">!</span>
-<a name="ln-2668"></a><span class="c">!### History</span>
-<a name="ln-2669"></a><span class="c">!  * banslv written by carl de boor [5]</span>
-<a name="ln-2670"></a><span class="c">!  * dbnslv from SLATEC library [1]</span>
-<a name="ln-2671"></a><span class="c">!  * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
-<a name="ln-2672"></a>
-<a name="ln-2673"></a>    <span class="k">pure subroutine </span><span class="n">dbnslv</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
-<a name="ln-2674"></a>
-<a name="ln-2675"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nroww</span>   <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
-<a name="ln-2676"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nrow</span>    <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
-<a name="ln-2677"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandl</span>  <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
-<a name="ln-2678"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandu</span>  <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
-<a name="ln-2679"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>    <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
-<a name="ln-2680"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">b</span>  <span class="c">!! * **in**: right side of the system to be solved</span>
-<a name="ln-2681"></a>                                                 <span class="c">!! * **out**: the solution x, of order nrow</span>
-<a name="ln-2682"></a>
-<a name="ln-2683"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">nrowm1</span>
-<a name="ln-2684"></a>
-<a name="ln-2685"></a>    <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2686"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">nrow</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2687"></a>
-<a name="ln-2688"></a><span class="k">        </span><span class="n">nrowm1</span> <span class="o">=</span> <span class="n">nrow</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-2689"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">nbandl</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2690"></a>
-<a name="ln-2691"></a>            <span class="c">! forward pass</span>
-<a name="ln-2692"></a>            <span class="c">! for i=1,2,...,nrow-1, subtract right side(i)*(i-th column of l)</span>
-<a name="ln-2693"></a>            <span class="c">!                       from right side (below i-th row).</span>
-<a name="ln-2694"></a>            <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
-<a name="ln-2695"></a>                <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-2696"></a>                <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
-<a name="ln-2697"></a>                    <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-2698"></a>                <span class="k">end do</span>
-<a name="ln-2699"></a><span class="k">            end do</span>
-<a name="ln-2700"></a>
-<a name="ln-2701"></a><span class="k">        end if</span>
-<a name="ln-2702"></a>
-<a name="ln-2703"></a>        <span class="c">! backward pass</span>
-<a name="ln-2704"></a>        <span class="c">! for i=nrow,nrow-1,...,1, divide right side(i) by i-th diagonal</span>
-<a name="ln-2705"></a>        <span class="c">!                          entry of u, then subtract right side(i)*(i-th column</span>
-<a name="ln-2706"></a>        <span class="c">!                          of u) from right side (above i-th row).</span>
-<a name="ln-2707"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">nbandu</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2708"></a>            <span class="c">! a is lower triangular.</span>
-<a name="ln-2709"></a>            <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrow</span>
-<a name="ln-2710"></a>                <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-2711"></a>            <span class="k">end do</span>
-<a name="ln-2712"></a><span class="k">            return</span>
-<a name="ln-2713"></a><span class="k">        end if</span>
-<a name="ln-2714"></a>
-<a name="ln-2715"></a><span class="k">        </span><span class="n">i</span> <span class="o">=</span> <span class="n">nrow</span>
-<a name="ln-2716"></a>        <span class="k">do</span>
-<a name="ln-2717"></a><span class="k">            </span><span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-2718"></a>            <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandu</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-2719"></a>            <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
-<a name="ln-2720"></a>                <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-2721"></a>            <span class="k">end do</span>
-<a name="ln-2722"></a><span class="k">            </span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-2723"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="k">exit</span>
-<a name="ln-2724"></a><span class="k">        end do</span>
-<a name="ln-2725"></a>
-<a name="ln-2726"></a><span class="k">    end if</span>
-<a name="ln-2727"></a>
-<a name="ln-2728"></a><span class="k">    </span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-2729"></a>
-<a name="ln-2730"></a>    <span class="k">end subroutine </span><span class="n">dbnslv</span>
-<a name="ln-2731"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-2732"></a>
-<a name="ln-2733"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-2734"></a><span class="c">!&gt;</span>
-<a name="ln-2735"></a><span class="c">!  Calculates the value of all (possibly) nonzero basis</span>
-<a name="ln-2736"></a><span class="c">!  functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)</span>
-<a name="ln-2737"></a><span class="c">!  &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on</span>
-<a name="ln-2738"></a><span class="c">!  the first call when index=1.  ileft is such that t(ileft) &lt;=</span>
-<a name="ln-2739"></a><span class="c">!  x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)</span>
-<a name="ln-2740"></a><span class="c">!  produces the proper ileft.  dbspvn calculates using the basic</span>
-<a name="ln-2741"></a><span class="c">!  algorithm needed in dbspvd.  if only basis functions are</span>
-<a name="ln-2742"></a><span class="c">!  desired, setting jhigh=k and index=1 can be faster than</span>
-<a name="ln-2743"></a><span class="c">!  calling dbspvd, but extra coding is required for derivatives</span>
-<a name="ln-2744"></a><span class="c">!  (index=2) and dbspvd is set up for this purpose.</span>
-<a name="ln-2745"></a><span class="c">!</span>
-<a name="ln-2746"></a><span class="c">!  left limiting values are set up as described in dbspvd.</span>
-<a name="ln-2747"></a><span class="c">!</span>
-<a name="ln-2748"></a><span class="c">!### Error Conditions</span>
-<a name="ln-2749"></a><span class="c">!</span>
-<a name="ln-2750"></a><span class="c">!  * improper input</span>
-<a name="ln-2751"></a><span class="c">!</span>
-<a name="ln-2752"></a><span class="c">!### History</span>
-<a name="ln-2753"></a><span class="c">!  * bsplvn written by carl de boor [5]</span>
-<a name="ln-2754"></a><span class="c">!  * dbspvn author: amos, d. e., (snla) : date written 800901</span>
-<a name="ln-2755"></a><span class="c">!  * revision date 820801</span>
-<a name="ln-2756"></a><span class="c">!  * 000330 modified array declarations.  (jec)</span>
-<a name="ln-2757"></a><span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
-<a name="ln-2758"></a>
-<a name="ln-2759"></a>    <span class="k">pure subroutine </span><span class="n">dbspvn</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">jhigh</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="nb">index</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">vnikx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iwork</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-<a name="ln-2760"></a>
-<a name="ln-2761"></a>    <span class="k">implicit none</span>
-<a name="ln-2762"></a>
-<a name="ln-2763"></a><span class="k">    </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">t</span>        <span class="c">!! knot vector of length n+k, where</span>
-<a name="ln-2764"></a>                                                  <span class="c">!! n = number of b-spline basis functions</span>
-<a name="ln-2765"></a>                                                  <span class="c">!! n = sum of knot multiplicities-k</span>
-<a name="ln-2766"></a>                                                  <span class="c">!! dimension t(ileft+jhigh)</span>
-<a name="ln-2767"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">jhigh</span>    <span class="c">!! order of b-spline, 1 &lt;= jhigh &lt;= k</span>
-<a name="ln-2768"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">k</span>        <span class="c">!! highest possible order</span>
-<a name="ln-2769"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="nb">index</span>    <span class="c">!! index = 1 gives basis functions of order jhigh</span>
-<a name="ln-2770"></a>                                                  <span class="c">!!       = 2 denotes previous entry with work, iwork</span>
-<a name="ln-2771"></a>                                                  <span class="c">!!         values saved for subsequent calls to</span>
-<a name="ln-2772"></a>                                                  <span class="c">!!         dbspvn.</span>
-<a name="ln-2773"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">x</span>        <span class="c">!! argument of basis functions, t(k) &lt;= x &lt;= t(n+1)</span>
-<a name="ln-2774"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>    <span class="c">!! largest integer such that t(ileft) &lt;= x &lt; t(ileft+1)</span>
-<a name="ln-2775"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">k</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vnikx</span>    <span class="c">!! vector of length k for spline values.</span>
-<a name="ln-2776"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span>     <span class="c">!! a work vector of length 2*k</span>
-<a name="ln-2777"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">iwork</span>    <span class="c">!! a work parameter.  both work and iwork contain</span>
-<a name="ln-2778"></a>                                                  <span class="c">!! information necessary to continue for index = 2.</span>
-<a name="ln-2779"></a>                                                  <span class="c">!! when index = 1 exclusively, these are scratch</span>
-<a name="ln-2780"></a>                                                  <span class="c">!! variables and can be used for other purposes.</span>
-<a name="ln-2781"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!!   0: no errors</span>
-<a name="ln-2782"></a>                                                  <span class="c">!! 201: k does not satisfy k&gt;=1</span>
-<a name="ln-2783"></a>                                                  <span class="c">!! 202: jhigh does not satisfy 1&lt;=jhigh&lt;=k</span>
-<a name="ln-2784"></a>                                                  <span class="c">!! 203: index is not 1 or 2</span>
-<a name="ln-2785"></a>                                                  <span class="c">!! 204: x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)</span>
-<a name="ln-2786"></a>
-<a name="ln-2787"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">imjp1</span><span class="p">,</span> <span class="n">ipj</span><span class="p">,</span> <span class="n">jp1</span><span class="p">,</span> <span class="n">jp1ml</span><span class="p">,</span> <span class="n">l</span>
-<a name="ln-2788"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vm</span><span class="p">,</span> <span class="n">vmprev</span>
-<a name="ln-2789"></a>
-<a name="ln-2790"></a>    <span class="c">! content of j, deltam, deltap is expected unchanged between calls.</span>
-<a name="ln-2791"></a>    <span class="c">! work(i) = deltap(i),</span>
-<a name="ln-2792"></a>    <span class="c">! work(k+i) = deltam(i), i = 1,k</span>
-<a name="ln-2793"></a>
-<a name="ln-2794"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2795"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - k does not satisfy k&gt;=1&#39;</span>
-<a name="ln-2796"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">201</span>
-<a name="ln-2797"></a>        <span class="k">return</span>
-<a name="ln-2798"></a><span class="k">    end if</span>
-<a name="ln-2799"></a><span class="k">    if</span> <span class="p">(</span><span class="n">jhigh</span><span class="o">&gt;</span><span class="n">k</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">jhigh</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2800"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - jhigh does not satisfy 1&lt;=jhigh&lt;=k&#39;</span>
-<a name="ln-2801"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">202</span>
-<a name="ln-2802"></a>        <span class="k">return</span>
-<a name="ln-2803"></a><span class="k">    end if</span>
-<a name="ln-2804"></a><span class="k">    if</span> <span class="p">(</span><span class="nb">index</span><span class="o">&lt;</span><span class="mi">1</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">index</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2805"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - index is not 1 or 2&#39;</span>
-<a name="ln-2806"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">203</span>
-<a name="ln-2807"></a>        <span class="k">return</span>
-<a name="ln-2808"></a><span class="k">    end if</span>
-<a name="ln-2809"></a><span class="k">    if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-2810"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)&#39;</span>
-<a name="ln-2811"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">204</span>
-<a name="ln-2812"></a>        <span class="k">return</span>
-<a name="ln-2813"></a><span class="k">    end if</span>
-<a name="ln-2814"></a>
-<a name="ln-2815"></a><span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-2816"></a>
-<a name="ln-2817"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2818"></a><span class="k">        </span><span class="n">iwork</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-2819"></a>        <span class="n">vnikx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
-<a name="ln-2820"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&gt;=</span><span class="n">jhigh</span><span class="p">)</span> <span class="k">return</span>
-<a name="ln-2821"></a><span class="k">    end if</span>
-<a name="ln-2822"></a>
-<a name="ln-2823"></a><span class="k">    do</span>
-<a name="ln-2824"></a><span class="k">        </span><span class="n">ipj</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">+</span> <span class="n">iwork</span>
-<a name="ln-2825"></a>        <span class="n">work</span><span class="p">(</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">ipj</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
-<a name="ln-2826"></a>        <span class="n">imjp1</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">-</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2827"></a>        <span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="n">imjp1</span><span class="p">)</span>
-<a name="ln-2828"></a>        <span class="n">vmprev</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-2829"></a>        <span class="n">jp1</span> <span class="o">=</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2830"></a>        <span class="k">do </span><span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">iwork</span>
-<a name="ln-2831"></a>            <span class="n">jp1ml</span> <span class="o">=</span> <span class="n">jp1</span> <span class="o">-</span> <span class="n">l</span>
-<a name="ln-2832"></a>            <span class="n">vm</span> <span class="o">=</span> <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">))</span>
-<a name="ln-2833"></a>            <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">+</span> <span class="n">vmprev</span>
-<a name="ln-2834"></a>            <span class="n">vmprev</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">)</span>
-<a name="ln-2835"></a>        <span class="k">end do</span>
-<a name="ln-2836"></a><span class="k">        </span><span class="n">vnikx</span><span class="p">(</span><span class="n">jp1</span><span class="p">)</span> <span class="o">=</span> <span class="n">vmprev</span>
-<a name="ln-2837"></a>        <span class="n">iwork</span> <span class="o">=</span> <span class="n">jp1</span>
-<a name="ln-2838"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&gt;=</span><span class="n">jhigh</span><span class="p">)</span> <span class="k">exit</span>
-<a name="ln-2839"></a><span class="k">    end do</span>
-<a name="ln-2840"></a>
-<a name="ln-2841"></a><span class="k">    end subroutine </span><span class="n">dbspvn</span>
-<a name="ln-2842"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-2843"></a>
-<a name="ln-2844"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-2845"></a><span class="c">!&gt;</span>
-<a name="ln-2846"></a><span class="c">!  Evaluates the b-representation (t,a,n,k) of a b-spline</span>
-<a name="ln-2847"></a><span class="c">!  at x for the function value on ideriv=0 or any of its</span>
-<a name="ln-2848"></a><span class="c">!  derivatives on ideriv=1,2,...,k-1.  right limiting values</span>
-<a name="ln-2849"></a><span class="c">!  (right derivatives) are returned except at the right end</span>
-<a name="ln-2850"></a><span class="c">!  point x=t(n+1) where left limiting values are computed.  the</span>
-<a name="ln-2851"></a><span class="c">!  spline is defined on t(k) &lt;= x &lt;= t(n+1).  dbvalu returns</span>
-<a name="ln-2852"></a><span class="c">!  a fatal error message when x is outside of this interval.</span>
-<a name="ln-2853"></a><span class="c">!</span>
-<a name="ln-2854"></a><span class="c">!  to compute left derivatives or left limiting values at a</span>
-<a name="ln-2855"></a><span class="c">!  knot t(i), replace n by i-1 and set x=t(i), i=k+1,n+1.</span>
-<a name="ln-2856"></a><span class="c">!</span>
-<a name="ln-2857"></a><span class="c">!### Error Conditions</span>
+<a name="ln-2656"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2657"></a>
+<a name="ln-2658"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2659"></a><span class="c">!&gt;</span>
+<a name="ln-2660"></a><span class="c">!  Companion routine to [[dbnfac]]. it returns the solution x of the</span>
+<a name="ln-2661"></a><span class="c">!  linear system a*x = b in place of b, given the lu-factorization</span>
+<a name="ln-2662"></a><span class="c">!  for a in the work array w from dbnfac.</span>
+<a name="ln-2663"></a><span class="c">!</span>
+<a name="ln-2664"></a><span class="c">!  (with \( a = l*u \), as stored in w), the unit lower triangular system</span>
+<a name="ln-2665"></a><span class="c">!  \( l(u*x) = b \) is solved for \( y = u*x \), and y stored in b. then the</span>
+<a name="ln-2666"></a><span class="c">!  upper triangular system \(u*x = y \) is solved for x. the calculations</span>
+<a name="ln-2667"></a><span class="c">!  are so arranged that the innermost loops stay within columns.</span>
+<a name="ln-2668"></a><span class="c">!</span>
+<a name="ln-2669"></a><span class="c">!### History</span>
+<a name="ln-2670"></a><span class="c">!  * banslv written by carl de boor [5]</span>
+<a name="ln-2671"></a><span class="c">!  * dbnslv from SLATEC library [1]</span>
+<a name="ln-2672"></a><span class="c">!  * Jacob Williams, 5/10/2015 : converted to free-form Fortran.</span>
+<a name="ln-2673"></a>
+<a name="ln-2674"></a>    <span class="k">pure subroutine </span><span class="n">dbnslv</span><span class="p">(</span><span class="n">w</span><span class="p">,</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">,</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nbandu</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<a name="ln-2675"></a>
+<a name="ln-2676"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nroww</span>   <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
+<a name="ln-2677"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nrow</span>    <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
+<a name="ln-2678"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandl</span>  <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
+<a name="ln-2679"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">nbandu</span>  <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
+<a name="ln-2680"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nroww</span><span class="p">,</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>    <span class="c">!! describes the lu-factorization of a banded matrix a of order `nrow` as constructed in [[dbnfac]].</span>
+<a name="ln-2681"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nrow</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">b</span>  <span class="c">!! * **in**: right side of the system to be solved</span>
+<a name="ln-2682"></a>                                                 <span class="c">!! * **out**: the solution x, of order nrow</span>
+<a name="ln-2683"></a>
+<a name="ln-2684"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">jmax</span><span class="p">,</span> <span class="n">middle</span><span class="p">,</span> <span class="n">nrowm1</span>
+<a name="ln-2685"></a>
+<a name="ln-2686"></a>    <span class="n">middle</span> <span class="o">=</span> <span class="n">nbandu</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2687"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">nrow</span><span class="o">/=</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2688"></a>
+<a name="ln-2689"></a><span class="k">        </span><span class="n">nrowm1</span> <span class="o">=</span> <span class="n">nrow</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-2690"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">nbandl</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2691"></a>
+<a name="ln-2692"></a>            <span class="c">! forward pass</span>
+<a name="ln-2693"></a>            <span class="c">! for i=1,2,...,nrow-1, subtract right side(i)*(i-th column of l)</span>
+<a name="ln-2694"></a>            <span class="c">!                       from right side (below i-th row).</span>
+<a name="ln-2695"></a>            <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrowm1</span>
+<a name="ln-2696"></a>                <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandl</span><span class="p">,</span><span class="n">nrow</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+<a name="ln-2697"></a>                <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+<a name="ln-2698"></a>                    <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">+</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+<a name="ln-2699"></a>                <span class="k">end do</span>
+<a name="ln-2700"></a><span class="k">            end do</span>
+<a name="ln-2701"></a>
+<a name="ln-2702"></a><span class="k">        end if</span>
+<a name="ln-2703"></a>
+<a name="ln-2704"></a>        <span class="c">! backward pass</span>
+<a name="ln-2705"></a>        <span class="c">! for i=nrow,nrow-1,...,1, divide right side(i) by i-th diagonal</span>
+<a name="ln-2706"></a>        <span class="c">!                          entry of u, then subtract right side(i)*(i-th column</span>
+<a name="ln-2707"></a>        <span class="c">!                          of u) from right side (above i-th row).</span>
+<a name="ln-2708"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">nbandu</span><span class="o">&lt;=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2709"></a>            <span class="c">! a is lower triangular.</span>
+<a name="ln-2710"></a>            <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">nrow</span>
+<a name="ln-2711"></a>                <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+<a name="ln-2712"></a>            <span class="k">end do</span>
+<a name="ln-2713"></a><span class="k">            return</span>
+<a name="ln-2714"></a><span class="k">        end if</span>
+<a name="ln-2715"></a>
+<a name="ln-2716"></a><span class="k">        </span><span class="n">i</span> <span class="o">=</span> <span class="n">nrow</span>
+<a name="ln-2717"></a>        <span class="k">do</span>
+<a name="ln-2718"></a><span class="k">            </span><span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+<a name="ln-2719"></a>            <span class="n">jmax</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nbandu</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-2720"></a>            <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">jmax</span>
+<a name="ln-2721"></a>                <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="p">)</span> <span class="o">-</span> <span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">*</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="o">-</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+<a name="ln-2722"></a>            <span class="k">end do</span>
+<a name="ln-2723"></a><span class="k">            </span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-2724"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">)</span> <span class="k">exit</span>
+<a name="ln-2725"></a><span class="k">        end do</span>
+<a name="ln-2726"></a>
+<a name="ln-2727"></a><span class="k">    end if</span>
+<a name="ln-2728"></a>
+<a name="ln-2729"></a><span class="k">    </span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">w</span><span class="p">(</span><span class="n">middle</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-2730"></a>
+<a name="ln-2731"></a>    <span class="k">end subroutine </span><span class="n">dbnslv</span>
+<a name="ln-2732"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2733"></a>
+<a name="ln-2734"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2735"></a><span class="c">!&gt;</span>
+<a name="ln-2736"></a><span class="c">!  Calculates the value of all (possibly) nonzero basis</span>
+<a name="ln-2737"></a><span class="c">!  functions at x of order max(jhigh,(j+1)*(index-1)), where t(k)</span>
+<a name="ln-2738"></a><span class="c">!  &lt;= x &lt;= t(n+1) and j=iwork is set inside the routine on</span>
+<a name="ln-2739"></a><span class="c">!  the first call when index=1.  ileft is such that t(ileft) &lt;=</span>
+<a name="ln-2740"></a><span class="c">!  x &lt; t(ileft+1).  a call to dintrv(t,n+1,x,ilo,ileft,mflag)</span>
+<a name="ln-2741"></a><span class="c">!  produces the proper ileft.  dbspvn calculates using the basic</span>
+<a name="ln-2742"></a><span class="c">!  algorithm needed in dbspvd.  if only basis functions are</span>
+<a name="ln-2743"></a><span class="c">!  desired, setting jhigh=k and index=1 can be faster than</span>
+<a name="ln-2744"></a><span class="c">!  calling dbspvd, but extra coding is required for derivatives</span>
+<a name="ln-2745"></a><span class="c">!  (index=2) and dbspvd is set up for this purpose.</span>
+<a name="ln-2746"></a><span class="c">!</span>
+<a name="ln-2747"></a><span class="c">!  left limiting values are set up as described in dbspvd.</span>
+<a name="ln-2748"></a><span class="c">!</span>
+<a name="ln-2749"></a><span class="c">!### Error Conditions</span>
+<a name="ln-2750"></a><span class="c">!</span>
+<a name="ln-2751"></a><span class="c">!  * improper input</span>
+<a name="ln-2752"></a><span class="c">!</span>
+<a name="ln-2753"></a><span class="c">!### History</span>
+<a name="ln-2754"></a><span class="c">!  * bsplvn written by carl de boor [5]</span>
+<a name="ln-2755"></a><span class="c">!  * dbspvn author: amos, d. e., (snla) : date written 800901</span>
+<a name="ln-2756"></a><span class="c">!  * revision date 820801</span>
+<a name="ln-2757"></a><span class="c">!  * 000330 modified array declarations.  (jec)</span>
+<a name="ln-2758"></a><span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
+<a name="ln-2759"></a>
+<a name="ln-2760"></a>    <span class="k">pure subroutine </span><span class="n">dbspvn</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">jhigh</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="nb">index</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">vnikx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iwork</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+<a name="ln-2761"></a>
+<a name="ln-2762"></a>    <span class="k">implicit none</span>
+<a name="ln-2763"></a>
+<a name="ln-2764"></a><span class="k">    </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">t</span>        <span class="c">!! knot vector of length n+k, where</span>
+<a name="ln-2765"></a>                                                  <span class="c">!! n = number of b-spline basis functions</span>
+<a name="ln-2766"></a>                                                  <span class="c">!! n = sum of knot multiplicities-k</span>
+<a name="ln-2767"></a>                                                  <span class="c">!! dimension t(ileft+jhigh)</span>
+<a name="ln-2768"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">jhigh</span>    <span class="c">!! order of b-spline, 1 &lt;= jhigh &lt;= k</span>
+<a name="ln-2769"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">k</span>        <span class="c">!! highest possible order</span>
+<a name="ln-2770"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="nb">index</span>    <span class="c">!! index = 1 gives basis functions of order jhigh</span>
+<a name="ln-2771"></a>                                                  <span class="c">!!       = 2 denotes previous entry with work, iwork</span>
+<a name="ln-2772"></a>                                                  <span class="c">!!         values saved for subsequent calls to</span>
+<a name="ln-2773"></a>                                                  <span class="c">!!         dbspvn.</span>
+<a name="ln-2774"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">x</span>        <span class="c">!! argument of basis functions, t(k) &lt;= x &lt;= t(n+1)</span>
+<a name="ln-2775"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>    <span class="c">!! largest integer such that t(ileft) &lt;= x &lt; t(ileft+1)</span>
+<a name="ln-2776"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">k</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vnikx</span>    <span class="c">!! vector of length k for spline values.</span>
+<a name="ln-2777"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="o">*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span>     <span class="c">!! a work vector of length 2*k</span>
+<a name="ln-2778"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">iwork</span>    <span class="c">!! a work parameter.  both work and iwork contain</span>
+<a name="ln-2779"></a>                                                  <span class="c">!! information necessary to continue for index = 2.</span>
+<a name="ln-2780"></a>                                                  <span class="c">!! when index = 1 exclusively, these are scratch</span>
+<a name="ln-2781"></a>                                                  <span class="c">!! variables and can be used for other purposes.</span>
+<a name="ln-2782"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!!   0: no errors</span>
+<a name="ln-2783"></a>                                                  <span class="c">!! 201: k does not satisfy k&gt;=1</span>
+<a name="ln-2784"></a>                                                  <span class="c">!! 202: jhigh does not satisfy 1&lt;=jhigh&lt;=k</span>
+<a name="ln-2785"></a>                                                  <span class="c">!! 203: index is not 1 or 2</span>
+<a name="ln-2786"></a>                                                  <span class="c">!! 204: x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)</span>
+<a name="ln-2787"></a>
+<a name="ln-2788"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">imjp1</span><span class="p">,</span> <span class="n">ipj</span><span class="p">,</span> <span class="n">jp1</span><span class="p">,</span> <span class="n">jp1ml</span><span class="p">,</span> <span class="n">l</span>
+<a name="ln-2789"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vm</span><span class="p">,</span> <span class="n">vmprev</span>
+<a name="ln-2790"></a>
+<a name="ln-2791"></a>    <span class="c">! content of j, deltam, deltap is expected unchanged between calls.</span>
+<a name="ln-2792"></a>    <span class="c">! work(i) = deltap(i),</span>
+<a name="ln-2793"></a>    <span class="c">! work(k+i) = deltam(i), i = 1,k</span>
+<a name="ln-2794"></a>
+<a name="ln-2795"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2796"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - k does not satisfy k&gt;=1&#39;</span>
+<a name="ln-2797"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">201</span>
+<a name="ln-2798"></a>        <span class="k">return</span>
+<a name="ln-2799"></a><span class="k">    end if</span>
+<a name="ln-2800"></a><span class="k">    if</span> <span class="p">(</span><span class="n">jhigh</span><span class="o">&gt;</span><span class="n">k</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">jhigh</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2801"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - jhigh does not satisfy 1&lt;=jhigh&lt;=k&#39;</span>
+<a name="ln-2802"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">202</span>
+<a name="ln-2803"></a>        <span class="k">return</span>
+<a name="ln-2804"></a><span class="k">    end if</span>
+<a name="ln-2805"></a><span class="k">    if</span> <span class="p">(</span><span class="nb">index</span><span class="o">&lt;</span><span class="mi">1</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">index</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2806"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - index is not 1 or 2&#39;</span>
+<a name="ln-2807"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">203</span>
+<a name="ln-2808"></a>        <span class="k">return</span>
+<a name="ln-2809"></a><span class="k">    end if</span>
+<a name="ln-2810"></a><span class="k">    if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">ileft</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-2811"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbspvn - x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)&#39;</span>
+<a name="ln-2812"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">204</span>
+<a name="ln-2813"></a>        <span class="k">return</span>
+<a name="ln-2814"></a><span class="k">    end if</span>
+<a name="ln-2815"></a>
+<a name="ln-2816"></a><span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-2817"></a>
+<a name="ln-2818"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2819"></a><span class="k">        </span><span class="n">iwork</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-2820"></a>        <span class="n">vnikx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
+<a name="ln-2821"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&gt;=</span><span class="n">jhigh</span><span class="p">)</span> <span class="k">return</span>
+<a name="ln-2822"></a><span class="k">    end if</span>
+<a name="ln-2823"></a>
+<a name="ln-2824"></a><span class="k">    do</span>
+<a name="ln-2825"></a><span class="k">        </span><span class="n">ipj</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">+</span> <span class="n">iwork</span>
+<a name="ln-2826"></a>        <span class="n">work</span><span class="p">(</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">ipj</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
+<a name="ln-2827"></a>        <span class="n">imjp1</span> <span class="o">=</span> <span class="n">ileft</span> <span class="o">-</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2828"></a>        <span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">iwork</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="n">imjp1</span><span class="p">)</span>
+<a name="ln-2829"></a>        <span class="n">vmprev</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a name="ln-2830"></a>        <span class="n">jp1</span> <span class="o">=</span> <span class="n">iwork</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2831"></a>        <span class="k">do </span><span class="n">l</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">iwork</span>
+<a name="ln-2832"></a>            <span class="n">jp1ml</span> <span class="o">=</span> <span class="n">jp1</span> <span class="o">-</span> <span class="n">l</span>
+<a name="ln-2833"></a>            <span class="n">vm</span> <span class="o">=</span> <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">))</span>
+<a name="ln-2834"></a>            <span class="n">vnikx</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">+</span> <span class="n">vmprev</span>
+<a name="ln-2835"></a>            <span class="n">vmprev</span> <span class="o">=</span> <span class="n">vm</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jp1ml</span><span class="p">)</span>
+<a name="ln-2836"></a>        <span class="k">end do</span>
+<a name="ln-2837"></a><span class="k">        </span><span class="n">vnikx</span><span class="p">(</span><span class="n">jp1</span><span class="p">)</span> <span class="o">=</span> <span class="n">vmprev</span>
+<a name="ln-2838"></a>        <span class="n">iwork</span> <span class="o">=</span> <span class="n">jp1</span>
+<a name="ln-2839"></a>        <span class="k">if</span> <span class="p">(</span><span class="n">iwork</span><span class="o">&gt;=</span><span class="n">jhigh</span><span class="p">)</span> <span class="k">exit</span>
+<a name="ln-2840"></a><span class="k">    end do</span>
+<a name="ln-2841"></a>
+<a name="ln-2842"></a><span class="k">    end subroutine </span><span class="n">dbspvn</span>
+<a name="ln-2843"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2844"></a>
+<a name="ln-2845"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-2846"></a><span class="c">!&gt;</span>
+<a name="ln-2847"></a><span class="c">!  Evaluates the b-representation (`t`,`a`,`n`,`k`) of a b-spline</span>
+<a name="ln-2848"></a><span class="c">!  at `x` for the function value on `ideriv=0` or any of its</span>
+<a name="ln-2849"></a><span class="c">!  derivatives on `ideriv=1,2,...,k-1`.  right limiting values</span>
+<a name="ln-2850"></a><span class="c">!  (right derivatives) are returned except at the right end</span>
+<a name="ln-2851"></a><span class="c">!  point `x=t(n+1)` where left limiting values are computed.  the</span>
+<a name="ln-2852"></a><span class="c">!  spline is defined on `t(k)` \( \le \) `x` \( \le \) `t(n+1)`.</span>
+<a name="ln-2853"></a><span class="c">!  dbvalu returns a fatal error message when `x` is outside of this</span>
+<a name="ln-2854"></a><span class="c">!  interval.</span>
+<a name="ln-2855"></a><span class="c">!</span>
+<a name="ln-2856"></a><span class="c">!  To compute left derivatives or left limiting values at a</span>
+<a name="ln-2857"></a><span class="c">!  knot `t(i)`, replace `n` by `i-1` and set `x=t(i), i=k+1,n+1`.</span>
 <a name="ln-2858"></a><span class="c">!</span>
-<a name="ln-2859"></a><span class="c">!  * improper input</span>
+<a name="ln-2859"></a><span class="c">!### Error Conditions</span>
 <a name="ln-2860"></a><span class="c">!</span>
-<a name="ln-2861"></a><span class="c">!### History</span>
-<a name="ln-2862"></a><span class="c">!  * bvalue written by carl de boor [5]</span>
-<a name="ln-2863"></a><span class="c">!  * dbvalu author: amos, d. e., (snla) : date written 800901</span>
-<a name="ln-2864"></a><span class="c">!  * revision date 820801</span>
-<a name="ln-2865"></a><span class="c">!  * 000330 modified array declarations.  (jec)</span>
-<a name="ln-2866"></a><span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
-<a name="ln-2867"></a>
-<a name="ln-2868"></a>    <span class="k">pure subroutine </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ideriv</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">inbv</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
+<a name="ln-2861"></a><span class="c">!  * improper input</span>
+<a name="ln-2862"></a><span class="c">!</span>
+<a name="ln-2863"></a><span class="c">!### History</span>
+<a name="ln-2864"></a><span class="c">!  * bvalue written by carl de boor [5]</span>
+<a name="ln-2865"></a><span class="c">!  * dbvalu author: amos, d. e., (snla) : date written 800901</span>
+<a name="ln-2866"></a><span class="c">!  * revision date 820801</span>
+<a name="ln-2867"></a><span class="c">!  * 000330 modified array declarations.  (jec)</span>
+<a name="ln-2868"></a><span class="c">!  * Jacob Williams, 2/24/2015 : extensive refactoring of CMLIB routine.</span>
 <a name="ln-2869"></a>
-<a name="ln-2870"></a>    <span class="k">implicit none</span>
+<a name="ln-2870"></a>    <span class="k">pure subroutine </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">ideriv</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">inbv</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">val</span><span class="p">)</span>
 <a name="ln-2871"></a>
-<a name="ln-2872"></a><span class="k">    </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">val</span>     <span class="c">!! the interpolated value</span>
-<a name="ln-2873"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">n</span>       <span class="c">!! number of b-spline coefficients.</span>
-<a name="ln-2874"></a>                                                <span class="c">!! (sum of knot multiplicities-k)</span>
-<a name="ln-2875"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>       <span class="c">!! knot vector of length n+k</span>
-<a name="ln-2876"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>       <span class="c">!! b-spline coefficient vector of length n</span>
-<a name="ln-2877"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">k</span>       <span class="c">!! order of the b-spline, k &gt;= 1</span>
-<a name="ln-2878"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">ideriv</span>  <span class="c">!! order of the derivative, 0 &lt;= ideriv &lt;= k-1.</span>
-<a name="ln-2879"></a>                                                <span class="c">!! ideriv = 0 returns the b-spline value</span>
-<a name="ln-2880"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">x</span>       <span class="c">!! argument, t(k) &lt;= x &lt;= t(n+1)</span>
-<a name="ln-2881"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">inbv</span>    <span class="c">!! an initialization parameter which must be set</span>
-<a name="ln-2882"></a>                                                <span class="c">!! to 1 the first time dbvalu is called.</span>
-<a name="ln-2883"></a>                                                <span class="c">!! inbv contains information for efficient process-</span>
-<a name="ln-2884"></a>                                                <span class="c">!! ing after the initial call and inbv must not</span>
-<a name="ln-2885"></a>                                                <span class="c">!! be changed by the user.  distinct splines require</span>
-<a name="ln-2886"></a>                                                <span class="c">!! distinct inbv parameters.</span>
-<a name="ln-2887"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span> <span class="c">!! work vector of length at least 3*k</span>
-<a name="ln-2888"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">iflag</span>   <span class="c">!!   0: no errors</span>
-<a name="ln-2889"></a>                                                <span class="c">!! 401: k does not satisfy k&gt;=1</span>
-<a name="ln-2890"></a>                                                <span class="c">!! 402: n does not satisfy n&gt;=k</span>
-<a name="ln-2891"></a>                                                <span class="c">!! 403: ideriv does not satisfy 0&lt;=ideriv&lt;k</span>
-<a name="ln-2892"></a>                                                <span class="c">!! 404: x is not greater than or equal to t(k)</span>
-<a name="ln-2893"></a>                                                <span class="c">!! 405: x is not less than or equal to t(n+1)</span>
-<a name="ln-2894"></a>                                                <span class="c">!! 406: a left limiting value cannot be obtained at t(k)</span>
-<a name="ln-2895"></a>
-<a name="ln-2896"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span><span class="n">iderp1</span><span class="p">,</span><span class="n">ihi</span><span class="p">,</span><span class="n">ihmkmj</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">imk</span><span class="p">,</span><span class="n">imkpj</span><span class="p">,</span><span class="n">ipj</span><span class="p">,&amp;</span>
-<a name="ln-2897"></a>               <span class="n">ip1</span><span class="p">,</span><span class="n">ip1mj</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">jj</span><span class="p">,</span><span class="n">j1</span><span class="p">,</span><span class="n">j2</span><span class="p">,</span><span class="n">kmider</span><span class="p">,</span><span class="n">kmj</span><span class="p">,</span><span class="n">km1</span><span class="p">,</span><span class="n">kpk</span><span class="p">,</span><span class="n">mflag</span>
-<a name="ln-2898"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fkmj</span>
+<a name="ln-2872"></a>    <span class="k">implicit none</span>
+<a name="ln-2873"></a>
+<a name="ln-2874"></a><span class="k">    </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">val</span>     <span class="c">!! the interpolated value</span>
+<a name="ln-2875"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">n</span>       <span class="c">!! number of b-spline coefficients.</span>
+<a name="ln-2876"></a>                                                <span class="c">!! (sum of knot multiplicities-`k`)</span>
+<a name="ln-2877"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">t</span>       <span class="c">!! knot vector of length `n+k`</span>
+<a name="ln-2878"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">a</span>       <span class="c">!! b-spline coefficient vector of length `n`</span>
+<a name="ln-2879"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">k</span>       <span class="c">!! order of the b-spline, `k &gt;= 1`</span>
+<a name="ln-2880"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">ideriv</span>  <span class="c">!! order of the derivative, `0 &lt;= ideriv &lt;= k-1`.</span>
+<a name="ln-2881"></a>                                                <span class="c">!! `ideriv = 0` returns the b-spline value</span>
+<a name="ln-2882"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">x</span>       <span class="c">!! argument, `t(k) &lt;= x &lt;= t(n+1)`</span>
+<a name="ln-2883"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">inbv</span>    <span class="c">!! an initialization parameter which must be set</span>
+<a name="ln-2884"></a>                                                <span class="c">!! to 1 the first time [[dbvalu]] is called.</span>
+<a name="ln-2885"></a>                                                <span class="c">!! `inbv` contains information for efficient processing</span>
+<a name="ln-2886"></a>                                                <span class="c">!! after the initial call and `inbv` must not</span>
+<a name="ln-2887"></a>                                                <span class="c">!! be changed by the user.  distinct splines require</span>
+<a name="ln-2888"></a>                                                <span class="c">!! distinct `inbv` parameters.</span>
+<a name="ln-2889"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span> <span class="c">!! work vector of length at least `3*k`</span>
+<a name="ln-2890"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">iflag</span>   <span class="c">!! status flag:</span>
+<a name="ln-2891"></a>                                                <span class="c">!!</span>
+<a name="ln-2892"></a>                                                <span class="c">!! * 0: no errors</span>
+<a name="ln-2893"></a>                                                <span class="c">!! * 401: `k` does not satisfy `k` \( \ge \) 1</span>
+<a name="ln-2894"></a>                                                <span class="c">!! * 402: `n` does not satisfy `n` \( \ge \) `k`</span>
+<a name="ln-2895"></a>                                                <span class="c">!! * 403: `ideriv` does not satisfy 0 \( \le \) `ideriv` \(&lt;\) `k`</span>
+<a name="ln-2896"></a>                                                <span class="c">!! * 404: `x` is not greater than or equal to `t(k)`</span>
+<a name="ln-2897"></a>                                                <span class="c">!! * 405: `x` is not less than or equal to `t(n+1)`</span>
+<a name="ln-2898"></a>                                                <span class="c">!! * 406: a left limiting value cannot be obtained at `t(k)`</span>
 <a name="ln-2899"></a>
-<a name="ln-2900"></a>    <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-2901"></a>
-<a name="ln-2902"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2903"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - k does not satisfy k&gt;=1&#39;</span>
-<a name="ln-2904"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">401</span>
-<a name="ln-2905"></a>        <span class="k">return</span>
-<a name="ln-2906"></a><span class="k">    end if</span>
-<a name="ln-2907"></a>
-<a name="ln-2908"></a><span class="k">    if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2909"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - n does not satisfy n&gt;=k&#39;</span>
-<a name="ln-2910"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">402</span>
-<a name="ln-2911"></a>        <span class="k">return</span>
-<a name="ln-2912"></a><span class="k">    end if</span>
-<a name="ln-2913"></a>
-<a name="ln-2914"></a><span class="k">    if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">&lt;</span><span class="mi">0</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">ideriv</span><span class="o">&gt;=</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2915"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - ideriv does not satisfy 0&lt;=ideriv&lt;k&#39;</span>
-<a name="ln-2916"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">403</span>
-<a name="ln-2917"></a>        <span class="k">return</span>
-<a name="ln-2918"></a><span class="k">    end if</span>
-<a name="ln-2919"></a>
-<a name="ln-2920"></a><span class="k">    </span><span class="n">kmider</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">ideriv</span>
-<a name="ln-2921"></a>
-<a name="ln-2922"></a>    <span class="c">! find *i* in (k,n) such that t(i) &lt;= x &lt; t(i+1)</span>
-<a name="ln-2923"></a>    <span class="c">! (or, &lt;= t(i+1) if t(i) &lt; t(i+1) = t(n+1)).</span>
-<a name="ln-2924"></a>
-<a name="ln-2925"></a>    <span class="n">km1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-2926"></a>    <span class="k">call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">inbv</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mflag</span><span class="p">)</span>
-<a name="ln-2927"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-2928"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - x is not greater than or equal to t(k)&#39;</span>
-<a name="ln-2929"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">404</span>
-<a name="ln-2930"></a>        <span class="k">return</span>
-<a name="ln-2931"></a><span class="k">    end if</span>
-<a name="ln-2932"></a>
-<a name="ln-2933"></a><span class="k">    if</span> <span class="p">(</span><span class="n">mflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2934"></a>
-<a name="ln-2935"></a><span class="k">        if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-2936"></a>            <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - x is not less than or equal to t(n+1)&#39;</span>
-<a name="ln-2937"></a>            <span class="n">iflag</span> <span class="o">=</span> <span class="mi">405</span>
-<a name="ln-2938"></a>            <span class="k">return</span>
-<a name="ln-2939"></a><span class="k">        end if</span>
-<a name="ln-2940"></a>
-<a name="ln-2941"></a><span class="k">        do</span>
-<a name="ln-2942"></a><span class="k">            if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2943"></a>                <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - a left limiting value cannot be obtained at t(k)&#39;</span>
-<a name="ln-2944"></a>                <span class="n">iflag</span> <span class="o">=</span> <span class="mi">406</span>
-<a name="ln-2945"></a>                <span class="k">return</span>
-<a name="ln-2946"></a><span class="k">            end if</span>
-<a name="ln-2947"></a><span class="k">            </span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-2948"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">/=</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-2949"></a><span class="k">        end do</span>
-<a name="ln-2950"></a>
-<a name="ln-2951"></a><span class="k">    end if</span>
-<a name="ln-2952"></a>
-<a name="ln-2953"></a>    <span class="c">! difference the coefficients *ideriv* times</span>
-<a name="ln-2954"></a>    <span class="c">! work(i) = aj(i), work(k+i) = dp(i), work(k+k+i) = dm(i), i=1.k</span>
-<a name="ln-2955"></a>
-<a name="ln-2956"></a>    <span class="n">imk</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span>
-<a name="ln-2957"></a>    <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span>
-<a name="ln-2958"></a>        <span class="n">imkpj</span> <span class="o">=</span> <span class="n">imk</span> <span class="o">+</span> <span class="n">j</span>
-<a name="ln-2959"></a>        <span class="n">work</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="n">imkpj</span><span class="p">)</span>
-<a name="ln-2960"></a>    <span class="k">end do</span>
-<a name="ln-2961"></a>
-<a name="ln-2962"></a><span class="k">    if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2963"></a><span class="k">        do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ideriv</span>
-<a name="ln-2964"></a>            <span class="n">kmj</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">j</span>
-<a name="ln-2965"></a>            <span class="n">fkmj</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">kmj</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span>
-<a name="ln-2966"></a>            <span class="k">do </span><span class="n">jj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmj</span>
-<a name="ln-2967"></a>                <span class="n">ihi</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">jj</span>
-<a name="ln-2968"></a>                <span class="n">ihmkmj</span> <span class="o">=</span> <span class="n">ihi</span> <span class="o">-</span> <span class="n">kmj</span>
-<a name="ln-2969"></a>                <span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span><span class="o">-</span><span class="n">t</span><span class="p">(</span><span class="n">ihmkmj</span><span class="p">))</span><span class="o">*</span><span class="n">fkmj</span>
-<a name="ln-2970"></a>            <span class="k">end do</span>
-<a name="ln-2971"></a><span class="k">        end do</span>
-<a name="ln-2972"></a><span class="k">    end if</span>
-<a name="ln-2973"></a>
-<a name="ln-2974"></a>    <span class="c">! compute value at *x* in (t(i),(t(i+1)) of ideriv-th derivative,</span>
-<a name="ln-2975"></a>    <span class="c">! given its relevant b-spline coeff. in aj(1),...,aj(k-ideriv).</span>
-<a name="ln-2976"></a>
-<a name="ln-2977"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">/=</span><span class="n">km1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2978"></a><span class="k">        </span><span class="n">ip1</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2979"></a>        <span class="n">kpk</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="n">k</span>
-<a name="ln-2980"></a>        <span class="n">j1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2981"></a>        <span class="n">j2</span> <span class="o">=</span> <span class="n">kpk</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2982"></a>        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmider</span>
-<a name="ln-2983"></a>            <span class="n">ipj</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
-<a name="ln-2984"></a>            <span class="n">work</span><span class="p">(</span><span class="n">j1</span><span class="p">)</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">ipj</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
-<a name="ln-2985"></a>            <span class="n">ip1mj</span> <span class="o">=</span> <span class="n">ip1</span> <span class="o">-</span> <span class="n">j</span>
-<a name="ln-2986"></a>            <span class="n">work</span><span class="p">(</span><span class="n">j2</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="n">ip1mj</span><span class="p">)</span>
-<a name="ln-2987"></a>            <span class="n">j1</span> <span class="o">=</span> <span class="n">j1</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2988"></a>            <span class="n">j2</span> <span class="o">=</span> <span class="n">j2</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2989"></a>        <span class="k">end do</span>
-<a name="ln-2990"></a><span class="k">        </span><span class="n">iderp1</span> <span class="o">=</span> <span class="n">ideriv</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-2991"></a>        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="n">iderp1</span><span class="p">,</span><span class="n">km1</span>
-<a name="ln-2992"></a>            <span class="n">kmj</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">j</span>
-<a name="ln-2993"></a>            <span class="n">ilo</span> <span class="o">=</span> <span class="n">kmj</span>
-<a name="ln-2994"></a>            <span class="k">do </span><span class="n">jj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmj</span>
-<a name="ln-2995"></a>                <span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span><span class="o">*</span><span class="p">&amp;</span>
-<a name="ln-2996"></a>                            <span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span>
-<a name="ln-2997"></a>                <span class="n">ilo</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-2998"></a>            <span class="k">end do</span>
-<a name="ln-2999"></a><span class="k">        end do</span>
-<a name="ln-3000"></a><span class="k">    end if</span>
-<a name="ln-3001"></a>
-<a name="ln-3002"></a><span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-3003"></a>    <span class="n">val</span> <span class="o">=</span> <span class="n">work</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-3004"></a>
-<a name="ln-3005"></a>    <span class="k">end subroutine </span><span class="n">dbvalu</span>
-<a name="ln-3006"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-3007"></a>
-<a name="ln-3008"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-3009"></a><span class="c">!&gt;</span>
-<a name="ln-3010"></a><span class="c">!  Computes the largest integer ileft in 1 &lt;= ileft &lt;= lxt</span>
-<a name="ln-3011"></a><span class="c">!  such that xt(ileft) &lt;= x where xt(*) is a subdivision of</span>
-<a name="ln-3012"></a><span class="c">!  the x interval.</span>
-<a name="ln-3013"></a><span class="c">!  precisely,</span>
-<a name="ln-3014"></a><span class="c">!</span>
-<a name="ln-3015"></a><span class="c">!```fortran</span>
-<a name="ln-3016"></a><span class="c">!         if            x &lt; xt(1)   then ileft=1,   mflag=-1</span>
-<a name="ln-3017"></a><span class="c">!         if   xt(i) &lt;= x &lt; xt(i+1) then ileft=i,   mflag=0</span>
-<a name="ln-3018"></a><span class="c">!         if xt(lxt) &lt;= x           then ileft=lxt, mflag=1</span>
-<a name="ln-3019"></a><span class="c">!```</span>
-<a name="ln-3020"></a><span class="c">!</span>
-<a name="ln-3021"></a><span class="c">!  that is, when multiplicities are present in the break point</span>
-<a name="ln-3022"></a><span class="c">!  to the left of x, the largest index is taken for ileft.</span>
-<a name="ln-3023"></a><span class="c">!</span>
-<a name="ln-3024"></a><span class="c">!### History</span>
-<a name="ln-3025"></a><span class="c">!  * interv written by carl de boor [5]</span>
-<a name="ln-3026"></a><span class="c">!  * dintrv author: amos, d. e., (snla) : date written 800901</span>
-<a name="ln-3027"></a><span class="c">!  * revision date 820801</span>
-<a name="ln-3028"></a><span class="c">!  * Jacob Williams, 2/24/2015 : updated to free-form Fortran.</span>
-<a name="ln-3029"></a><span class="c">!  * Jacob Williams, 2/17/2016 : additional refactoring (eliminated GOTOs).</span>
-<a name="ln-3030"></a>
-<a name="ln-3031"></a>    <span class="k">pure subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
-<a name="ln-3032"></a>
-<a name="ln-3033"></a>    <span class="k">implicit none</span>
+<a name="ln-2900"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">i</span><span class="p">,</span><span class="n">iderp1</span><span class="p">,</span><span class="n">ihi</span><span class="p">,</span><span class="n">ihmkmj</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">imk</span><span class="p">,</span><span class="n">imkpj</span><span class="p">,</span><span class="n">ipj</span><span class="p">,&amp;</span>
+<a name="ln-2901"></a>               <span class="n">ip1</span><span class="p">,</span><span class="n">ip1mj</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">jj</span><span class="p">,</span><span class="n">j1</span><span class="p">,</span><span class="n">j2</span><span class="p">,</span><span class="n">kmider</span><span class="p">,</span><span class="n">kmj</span><span class="p">,</span><span class="n">km1</span><span class="p">,</span><span class="n">kpk</span><span class="p">,</span><span class="n">mflag</span>
+<a name="ln-2902"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">fkmj</span>
+<a name="ln-2903"></a>
+<a name="ln-2904"></a>    <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a name="ln-2905"></a>
+<a name="ln-2906"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2907"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - k does not satisfy k&gt;=1&#39;</span>
+<a name="ln-2908"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">401</span>
+<a name="ln-2909"></a>        <span class="k">return</span>
+<a name="ln-2910"></a><span class="k">    end if</span>
+<a name="ln-2911"></a>
+<a name="ln-2912"></a><span class="k">    if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2913"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - n does not satisfy n&gt;=k&#39;</span>
+<a name="ln-2914"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">402</span>
+<a name="ln-2915"></a>        <span class="k">return</span>
+<a name="ln-2916"></a><span class="k">    end if</span>
+<a name="ln-2917"></a>
+<a name="ln-2918"></a><span class="k">    if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">&lt;</span><span class="mi">0</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">ideriv</span><span class="o">&gt;=</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2919"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - ideriv does not satisfy 0&lt;=ideriv&lt;k&#39;</span>
+<a name="ln-2920"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">403</span>
+<a name="ln-2921"></a>        <span class="k">return</span>
+<a name="ln-2922"></a><span class="k">    end if</span>
+<a name="ln-2923"></a>
+<a name="ln-2924"></a><span class="k">    </span><span class="n">kmider</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">ideriv</span>
+<a name="ln-2925"></a>
+<a name="ln-2926"></a>    <span class="c">! find *i* in (k,n) such that t(i) &lt;= x &lt; t(i+1)</span>
+<a name="ln-2927"></a>    <span class="c">! (or, &lt;= t(i+1) if t(i) &lt; t(i+1) = t(n+1)).</span>
+<a name="ln-2928"></a>
+<a name="ln-2929"></a>    <span class="n">km1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-2930"></a>    <span class="k">call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">inbv</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">mflag</span><span class="p">)</span>
+<a name="ln-2931"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-2932"></a>        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - x is not greater than or equal to t(k)&#39;</span>
+<a name="ln-2933"></a>        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">404</span>
+<a name="ln-2934"></a>        <span class="k">return</span>
+<a name="ln-2935"></a><span class="k">    end if</span>
+<a name="ln-2936"></a>
+<a name="ln-2937"></a><span class="k">    if</span> <span class="p">(</span><span class="n">mflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2938"></a>
+<a name="ln-2939"></a><span class="k">        if</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-2940"></a>            <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - x is not less than or equal to t(n+1)&#39;</span>
+<a name="ln-2941"></a>            <span class="n">iflag</span> <span class="o">=</span> <span class="mi">405</span>
+<a name="ln-2942"></a>            <span class="k">return</span>
+<a name="ln-2943"></a><span class="k">        end if</span>
+<a name="ln-2944"></a>
+<a name="ln-2945"></a><span class="k">        do</span>
+<a name="ln-2946"></a><span class="k">            if</span> <span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2947"></a>                <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;dbvalu - a left limiting value cannot be obtained at t(k)&#39;</span>
+<a name="ln-2948"></a>                <span class="n">iflag</span> <span class="o">=</span> <span class="mi">406</span>
+<a name="ln-2949"></a>                <span class="k">return</span>
+<a name="ln-2950"></a><span class="k">            end if</span>
+<a name="ln-2951"></a><span class="k">            </span><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-2952"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">/=</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-2953"></a><span class="k">        end do</span>
+<a name="ln-2954"></a>
+<a name="ln-2955"></a><span class="k">    end if</span>
+<a name="ln-2956"></a>
+<a name="ln-2957"></a>    <span class="c">! difference the coefficients *ideriv* times</span>
+<a name="ln-2958"></a>    <span class="c">! work(i) = aj(i), work(k+i) = dp(i), work(k+k+i) = dm(i), i=1.k</span>
+<a name="ln-2959"></a>
+<a name="ln-2960"></a>    <span class="n">imk</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span>
+<a name="ln-2961"></a>    <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span>
+<a name="ln-2962"></a>        <span class="n">imkpj</span> <span class="o">=</span> <span class="n">imk</span> <span class="o">+</span> <span class="n">j</span>
+<a name="ln-2963"></a>        <span class="n">work</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">a</span><span class="p">(</span><span class="n">imkpj</span><span class="p">)</span>
+<a name="ln-2964"></a>    <span class="k">end do</span>
+<a name="ln-2965"></a>
+<a name="ln-2966"></a><span class="k">    if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2967"></a><span class="k">        do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ideriv</span>
+<a name="ln-2968"></a>            <span class="n">kmj</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">j</span>
+<a name="ln-2969"></a>            <span class="n">fkmj</span> <span class="o">=</span> <span class="kt">real</span><span class="p">(</span><span class="n">kmj</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span>
+<a name="ln-2970"></a>            <span class="k">do </span><span class="n">jj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmj</span>
+<a name="ln-2971"></a>                <span class="n">ihi</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">jj</span>
+<a name="ln-2972"></a>                <span class="n">ihmkmj</span> <span class="o">=</span> <span class="n">ihi</span> <span class="o">-</span> <span class="n">kmj</span>
+<a name="ln-2973"></a>                <span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span><span class="o">-</span><span class="n">t</span><span class="p">(</span><span class="n">ihmkmj</span><span class="p">))</span><span class="o">*</span><span class="n">fkmj</span>
+<a name="ln-2974"></a>            <span class="k">end do</span>
+<a name="ln-2975"></a><span class="k">        end do</span>
+<a name="ln-2976"></a><span class="k">    end if</span>
+<a name="ln-2977"></a>
+<a name="ln-2978"></a>    <span class="c">! compute value at *x* in (t(i),(t(i+1)) of ideriv-th derivative,</span>
+<a name="ln-2979"></a>    <span class="c">! given its relevant b-spline coeff. in aj(1),...,aj(k-ideriv).</span>
+<a name="ln-2980"></a>
+<a name="ln-2981"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">/=</span><span class="n">km1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2982"></a><span class="k">        </span><span class="n">ip1</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2983"></a>        <span class="n">kpk</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="n">k</span>
+<a name="ln-2984"></a>        <span class="n">j1</span> <span class="o">=</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2985"></a>        <span class="n">j2</span> <span class="o">=</span> <span class="n">kpk</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2986"></a>        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmider</span>
+<a name="ln-2987"></a>            <span class="n">ipj</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span>
+<a name="ln-2988"></a>            <span class="n">work</span><span class="p">(</span><span class="n">j1</span><span class="p">)</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">ipj</span><span class="p">)</span> <span class="o">-</span> <span class="n">x</span>
+<a name="ln-2989"></a>            <span class="n">ip1mj</span> <span class="o">=</span> <span class="n">ip1</span> <span class="o">-</span> <span class="n">j</span>
+<a name="ln-2990"></a>            <span class="n">work</span><span class="p">(</span><span class="n">j2</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">t</span><span class="p">(</span><span class="n">ip1mj</span><span class="p">)</span>
+<a name="ln-2991"></a>            <span class="n">j1</span> <span class="o">=</span> <span class="n">j1</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2992"></a>            <span class="n">j2</span> <span class="o">=</span> <span class="n">j2</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2993"></a>        <span class="k">end do</span>
+<a name="ln-2994"></a><span class="k">        </span><span class="n">iderp1</span> <span class="o">=</span> <span class="n">ideriv</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-2995"></a>        <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="n">iderp1</span><span class="p">,</span><span class="n">km1</span>
+<a name="ln-2996"></a>            <span class="n">kmj</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">j</span>
+<a name="ln-2997"></a>            <span class="n">ilo</span> <span class="o">=</span> <span class="n">kmj</span>
+<a name="ln-2998"></a>            <span class="k">do </span><span class="n">jj</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kmj</span>
+<a name="ln-2999"></a>                <span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">jj</span><span class="p">)</span><span class="o">*</span><span class="p">&amp;</span>
+<a name="ln-3000"></a>                            <span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">work</span><span class="p">(</span><span class="n">kpk</span><span class="o">+</span><span class="n">ilo</span><span class="p">)</span><span class="o">+</span><span class="n">work</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="n">jj</span><span class="p">))</span>
+<a name="ln-3001"></a>                <span class="n">ilo</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-3002"></a>            <span class="k">end do</span>
+<a name="ln-3003"></a><span class="k">        end do</span>
+<a name="ln-3004"></a><span class="k">    end if</span>
+<a name="ln-3005"></a>
+<a name="ln-3006"></a><span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-3007"></a>    <span class="n">val</span> <span class="o">=</span> <span class="n">work</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-3008"></a>
+<a name="ln-3009"></a>    <span class="k">end subroutine </span><span class="n">dbvalu</span>
+<a name="ln-3010"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-3011"></a>
+<a name="ln-3012"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-3013"></a><span class="c">!&gt;</span>
+<a name="ln-3014"></a><span class="c">!  Computes the largest integer `ileft` in 1 \( \le \) `ileft` \( \le \) `lxt`</span>
+<a name="ln-3015"></a><span class="c">!  such that `xt(ileft)` \( \le \) `x` where `xt(*)` is a subdivision of</span>
+<a name="ln-3016"></a><span class="c">!  the `x` interval.</span>
+<a name="ln-3017"></a><span class="c">!  precisely,</span>
+<a name="ln-3018"></a><span class="c">!</span>
+<a name="ln-3019"></a><span class="c">!```fortran</span>
+<a name="ln-3020"></a><span class="c">!         if            x &lt; xt(1)   then ileft=1,   mflag=-1</span>
+<a name="ln-3021"></a><span class="c">!         if   xt(i) &lt;= x &lt; xt(i+1) then ileft=i,   mflag=0</span>
+<a name="ln-3022"></a><span class="c">!         if xt(lxt) &lt;= x           then ileft=lxt, mflag=1</span>
+<a name="ln-3023"></a><span class="c">!```</span>
+<a name="ln-3024"></a><span class="c">!</span>
+<a name="ln-3025"></a><span class="c">!  that is, when multiplicities are present in the break point</span>
+<a name="ln-3026"></a><span class="c">!  to the left of `x`, the largest index is taken for `ileft`.</span>
+<a name="ln-3027"></a><span class="c">!</span>
+<a name="ln-3028"></a><span class="c">!### History</span>
+<a name="ln-3029"></a><span class="c">!  * interv written by carl de boor [5]</span>
+<a name="ln-3030"></a><span class="c">!  * dintrv author: amos, d. e., (snla) : date written 800901</span>
+<a name="ln-3031"></a><span class="c">!  * revision date 820801</span>
+<a name="ln-3032"></a><span class="c">!  * Jacob Williams, 2/24/2015 : updated to free-form Fortran.</span>
+<a name="ln-3033"></a><span class="c">!  * Jacob Williams, 2/17/2016 : additional refactoring (eliminated GOTOs).</span>
 <a name="ln-3034"></a>
-<a name="ln-3035"></a><span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">lxt</span>    <span class="c">!! length of the `xt` vector</span>
-<a name="ln-3036"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">lxt</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xt</span>     <span class="c">!! a knot or break point vector of length `lxt`</span>
-<a name="ln-3037"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! argument</span>
-<a name="ln-3038"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">ilo</span>    <span class="c">!! an initialization parameter which must be set</span>
-<a name="ln-3039"></a>                                                 <span class="c">!! to 1 the first time the spline array `xt` is</span>
-<a name="ln-3040"></a>                                                 <span class="c">!! processed by dintrv. `ilo` contains information for</span>
-<a name="ln-3041"></a>                                                 <span class="c">!! efficient processing after the initial call and `ilo`</span>
-<a name="ln-3042"></a>                                                 <span class="c">!! must not be changed by the user.  distinct splines</span>
-<a name="ln-3043"></a>                                                 <span class="c">!! require distinct `ilo` parameters.</span>
-<a name="ln-3044"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>  <span class="c">!! largest integer satisfying `xt(ileft) &lt;= x`</span>
-<a name="ln-3045"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">mflag</span>  <span class="c">!! signals when `x` lies out of bounds</span>
-<a name="ln-3046"></a>
-<a name="ln-3047"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ihi</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">middle</span>
-<a name="ln-3048"></a>
-<a name="ln-3049"></a>    <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-3050"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3051"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3052"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-3053"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
-<a name="ln-3054"></a>            <span class="k">return</span>
-<a name="ln-3055"></a><span class="k">        end if</span>
-<a name="ln-3056"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">lxt</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3057"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<a name="ln-3058"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-3059"></a>            <span class="k">return</span>
-<a name="ln-3060"></a><span class="k">        end if</span>
-<a name="ln-3061"></a><span class="k">        </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">lxt</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-3062"></a>        <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
-<a name="ln-3063"></a>    <span class="n">endif</span>
-<a name="ln-3064"></a>
-<a name="ln-3065"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3066"></a>
-<a name="ln-3067"></a>        <span class="c">! now x &gt;= xt(ilo). find upper bound</span>
-<a name="ln-3068"></a>        <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-3069"></a>        <span class="k">do</span>
-<a name="ln-3070"></a><span class="k">            </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span>
-<a name="ln-3071"></a>            <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="n">istep</span>
-<a name="ln-3072"></a>            <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3073"></a><span class="k">                if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3074"></a><span class="k">                    </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-3075"></a>                    <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
-<a name="ln-3076"></a>                    <span class="k">return</span>
-<a name="ln-3077"></a><span class="k">                end if</span>
-<a name="ln-3078"></a><span class="k">                </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
-<a name="ln-3079"></a>            <span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3080"></a><span class="k">                </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
-<a name="ln-3081"></a>                <span class="k">cycle</span>
-<a name="ln-3082"></a><span class="k">            </span><span class="n">endif</span>
-<a name="ln-3083"></a>            <span class="k">exit</span>
-<a name="ln-3084"></a><span class="k">        end do</span>
-<a name="ln-3085"></a>
-<a name="ln-3086"></a><span class="k">    else</span>
-<a name="ln-3087"></a>
-<a name="ln-3088"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3089"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-3090"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
-<a name="ln-3091"></a>            <span class="k">return</span>
-<a name="ln-3092"></a><span class="k">        end if</span>
-<a name="ln-3093"></a>        <span class="c">! now x &lt;= xt(ihi). find lower bound</span>
-<a name="ln-3094"></a>        <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-3095"></a>        <span class="k">do</span>
-<a name="ln-3096"></a><span class="k">            </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span>
-<a name="ln-3097"></a>            <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span> <span class="o">-</span> <span class="n">istep</span>
-<a name="ln-3098"></a>            <span class="k">if</span> <span class="p">(</span> <span class="n">ilo</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3099"></a><span class="k">                </span><span class="n">ilo</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-3100"></a>                <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3101"></a><span class="k">                    </span><span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-<a name="ln-3102"></a>                    <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
-<a name="ln-3103"></a>                    <span class="k">return</span>
-<a name="ln-3104"></a><span class="k">                end if</span>
-<a name="ln-3105"></a><span class="k">            </span><span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3106"></a><span class="k">                </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
-<a name="ln-3107"></a>                <span class="k">cycle</span>
-<a name="ln-3108"></a><span class="k">            </span><span class="n">endif</span>
-<a name="ln-3109"></a>            <span class="k">exit</span>
-<a name="ln-3110"></a><span class="k">        end do</span>
-<a name="ln-3111"></a>
-<a name="ln-3112"></a><span class="k">    </span><span class="n">endif</span>
-<a name="ln-3113"></a>
-<a name="ln-3114"></a>    <span class="c">! now xt(ilo) &lt;= x &lt; xt(ihi). narrow the interval</span>
-<a name="ln-3115"></a>    <span class="k">do</span>
-<a name="ln-3116"></a><span class="k">        </span><span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">ilo</span><span class="o">+</span><span class="n">ihi</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-<a name="ln-3117"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">middle</span><span class="o">==</span><span class="n">ilo</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3118"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-3119"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
-<a name="ln-3120"></a>            <span class="k">return</span>
-<a name="ln-3121"></a><span class="k">        end if</span>
-<a name="ln-3122"></a>        <span class="c">! note. it is assumed that middle = ilo in case ihi = ilo+1</span>
-<a name="ln-3123"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-<a name="ln-3124"></a><span class="k">            </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">middle</span>
-<a name="ln-3125"></a>        <span class="k">else</span>
-<a name="ln-3126"></a><span class="k">            </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">middle</span>
-<a name="ln-3127"></a>        <span class="n">endif</span>
-<a name="ln-3128"></a>    <span class="k">end do</span>
-<a name="ln-3129"></a>
-<a name="ln-3130"></a><span class="k">    end subroutine </span><span class="n">dintrv</span>
-<a name="ln-3131"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-3132"></a>
-<a name="ln-3133"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-3134"></a><span class="c">!&gt;</span>
-<a name="ln-3135"></a><span class="c">!  Returns a message string associated with the status code.</span>
+<a name="ln-3035"></a>    <span class="k">pure subroutine </span><span class="n">dintrv</span><span class="p">(</span><span class="n">xt</span><span class="p">,</span><span class="n">lxt</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">ilo</span><span class="p">,</span><span class="n">ileft</span><span class="p">,</span><span class="n">mflag</span><span class="p">)</span>
+<a name="ln-3036"></a>
+<a name="ln-3037"></a>    <span class="k">implicit none</span>
+<a name="ln-3038"></a>
+<a name="ln-3039"></a><span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">lxt</span>    <span class="c">!! length of the `xt` vector</span>
+<a name="ln-3040"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">lxt</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xt</span>     <span class="c">!! a knot or break point vector of length `lxt`</span>
+<a name="ln-3041"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">x</span>      <span class="c">!! argument</span>
+<a name="ln-3042"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">ilo</span>    <span class="c">!! an initialization parameter which must be set</span>
+<a name="ln-3043"></a>                                                 <span class="c">!! to 1 the first time the spline array `xt` is</span>
+<a name="ln-3044"></a>                                                 <span class="c">!! processed by dintrv. `ilo` contains information for</span>
+<a name="ln-3045"></a>                                                 <span class="c">!! efficient processing after the initial call and `ilo`</span>
+<a name="ln-3046"></a>                                                 <span class="c">!! must not be changed by the user.  distinct splines</span>
+<a name="ln-3047"></a>                                                 <span class="c">!! require distinct `ilo` parameters.</span>
+<a name="ln-3048"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">ileft</span>  <span class="c">!! largest integer satisfying `xt(ileft)` \( \le \) `x`</span>
+<a name="ln-3049"></a>    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">mflag</span>  <span class="c">!! signals when `x` lies out of bounds</span>
+<a name="ln-3050"></a>
+<a name="ln-3051"></a>    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ihi</span><span class="p">,</span> <span class="n">istep</span><span class="p">,</span> <span class="n">middle</span>
+<a name="ln-3052"></a>
+<a name="ln-3053"></a>    <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-3054"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3055"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3056"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-3057"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-3058"></a>            <span class="k">return</span>
+<a name="ln-3059"></a><span class="k">        end if</span>
+<a name="ln-3060"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">lxt</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3061"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<a name="ln-3062"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-3063"></a>            <span class="k">return</span>
+<a name="ln-3064"></a><span class="k">        end if</span>
+<a name="ln-3065"></a><span class="k">        </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">lxt</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-3066"></a>        <span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-3067"></a>    <span class="n">endif</span>
+<a name="ln-3068"></a>
+<a name="ln-3069"></a>    <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3070"></a>
+<a name="ln-3071"></a>        <span class="c">! now x &gt;= xt(ilo). find upper bound</span>
+<a name="ln-3072"></a>        <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-3073"></a>        <span class="k">do</span>
+<a name="ln-3074"></a><span class="k">            </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span>
+<a name="ln-3075"></a>            <span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span> <span class="o">+</span> <span class="n">istep</span>
+<a name="ln-3076"></a>            <span class="k">if</span> <span class="p">(</span> <span class="n">ihi</span><span class="o">&gt;=</span><span class="n">lxt</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3077"></a><span class="k">                if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">lxt</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3078"></a><span class="k">                    </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-3079"></a>                    <span class="n">ileft</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-3080"></a>                    <span class="k">return</span>
+<a name="ln-3081"></a><span class="k">                end if</span>
+<a name="ln-3082"></a><span class="k">                </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">lxt</span>
+<a name="ln-3083"></a>            <span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ihi</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3084"></a><span class="k">                </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
+<a name="ln-3085"></a>                <span class="k">cycle</span>
+<a name="ln-3086"></a><span class="k">            </span><span class="n">endif</span>
+<a name="ln-3087"></a>            <span class="k">exit</span>
+<a name="ln-3088"></a><span class="k">        end do</span>
+<a name="ln-3089"></a>
+<a name="ln-3090"></a><span class="k">    else</span>
+<a name="ln-3091"></a>
+<a name="ln-3092"></a><span class="k">        if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&gt;=</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3093"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-3094"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
+<a name="ln-3095"></a>            <span class="k">return</span>
+<a name="ln-3096"></a><span class="k">        end if</span>
+<a name="ln-3097"></a>        <span class="c">! now x &lt;= xt(ihi). find lower bound</span>
+<a name="ln-3098"></a>        <span class="n">istep</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-3099"></a>        <span class="k">do</span>
+<a name="ln-3100"></a><span class="k">            </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">ilo</span>
+<a name="ln-3101"></a>            <span class="n">ilo</span> <span class="o">=</span> <span class="n">ihi</span> <span class="o">-</span> <span class="n">istep</span>
+<a name="ln-3102"></a>            <span class="k">if</span> <span class="p">(</span> <span class="n">ilo</span><span class="o">&lt;=</span><span class="mi">1</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3103"></a><span class="k">                </span><span class="n">ilo</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-3104"></a>                <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3105"></a><span class="k">                    </span><span class="n">mflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<a name="ln-3106"></a>                    <span class="n">ileft</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-3107"></a>                    <span class="k">return</span>
+<a name="ln-3108"></a><span class="k">                end if</span>
+<a name="ln-3109"></a><span class="k">            </span><span class="n">elseif</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">ilo</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3110"></a><span class="k">                </span><span class="n">istep</span> <span class="o">=</span> <span class="n">istep</span><span class="o">*</span><span class="mi">2</span>
+<a name="ln-3111"></a>                <span class="k">cycle</span>
+<a name="ln-3112"></a><span class="k">            </span><span class="n">endif</span>
+<a name="ln-3113"></a>            <span class="k">exit</span>
+<a name="ln-3114"></a><span class="k">        end do</span>
+<a name="ln-3115"></a>
+<a name="ln-3116"></a><span class="k">    </span><span class="n">endif</span>
+<a name="ln-3117"></a>
+<a name="ln-3118"></a>    <span class="c">! now xt(ilo) &lt;= x &lt; xt(ihi). narrow the interval</span>
+<a name="ln-3119"></a>    <span class="k">do</span>
+<a name="ln-3120"></a><span class="k">        </span><span class="n">middle</span> <span class="o">=</span> <span class="p">(</span><span class="n">ilo</span><span class="o">+</span><span class="n">ihi</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+<a name="ln-3121"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">middle</span><span class="o">==</span><span class="n">ilo</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3122"></a><span class="k">            </span><span class="n">mflag</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-3123"></a>            <span class="n">ileft</span> <span class="o">=</span> <span class="n">ilo</span>
+<a name="ln-3124"></a>            <span class="k">return</span>
+<a name="ln-3125"></a><span class="k">        end if</span>
+<a name="ln-3126"></a>        <span class="c">! note. it is assumed that middle = ilo in case ihi = ilo+1</span>
+<a name="ln-3127"></a>        <span class="k">if</span> <span class="p">(</span> <span class="n">x</span><span class="o">&lt;</span><span class="n">xt</span><span class="p">(</span><span class="n">middle</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
+<a name="ln-3128"></a><span class="k">            </span><span class="n">ihi</span> <span class="o">=</span> <span class="n">middle</span>
+<a name="ln-3129"></a>        <span class="k">else</span>
+<a name="ln-3130"></a><span class="k">            </span><span class="n">ilo</span> <span class="o">=</span> <span class="n">middle</span>
+<a name="ln-3131"></a>        <span class="n">endif</span>
+<a name="ln-3132"></a>    <span class="k">end do</span>
+<a name="ln-3133"></a>
+<a name="ln-3134"></a><span class="k">    end subroutine </span><span class="n">dintrv</span>
+<a name="ln-3135"></a><span class="c">!*****************************************************************************************</span>
 <a name="ln-3136"></a>
-<a name="ln-3137"></a>    <span class="k">pure function </span><span class="n">get_status_message</span><span class="p">(</span><span class="n">iflag</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-<a name="ln-3138"></a>
-<a name="ln-3139"></a>    <span class="k">implicit none</span>
+<a name="ln-3137"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-3138"></a><span class="c">!&gt;</span>
+<a name="ln-3139"></a><span class="c">!  Returns a message string associated with the status code.</span>
 <a name="ln-3140"></a>
-<a name="ln-3141"></a><span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! return code from one of the routines</span>
-<a name="ln-3142"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">msg</span>    <span class="c">!! status message associated with the flag</span>
-<a name="ln-3143"></a>
-<a name="ln-3144"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="kd">::</span> <span class="n">istr</span>   <span class="c">!! for integer to string conversion</span>
-<a name="ln-3145"></a>    <span class="kt">integer</span>           <span class="kd">::</span> <span class="n">istat</span>  <span class="c">!! for write statement</span>
-<a name="ln-3146"></a>
-<a name="ln-3147"></a>    <span class="k">select case</span> <span class="p">(</span><span class="n">iflag</span><span class="p">)</span>
-<a name="ln-3148"></a>
-<a name="ln-3149"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">0</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Successful execution&#39;</span>
+<a name="ln-3141"></a>    <span class="k">pure function </span><span class="n">get_status_message</span><span class="p">(</span><span class="n">iflag</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<a name="ln-3142"></a>
+<a name="ln-3143"></a>    <span class="k">implicit none</span>
+<a name="ln-3144"></a>
+<a name="ln-3145"></a><span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! return code from one of the routines</span>
+<a name="ln-3146"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span> <span class="kd">::</span> <span class="n">msg</span>    <span class="c">!! status message associated with the flag</span>
+<a name="ln-3147"></a>
+<a name="ln-3148"></a>    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="kd">::</span> <span class="n">istr</span>   <span class="c">!! for integer to string conversion</span>
+<a name="ln-3149"></a>    <span class="kt">integer</span>           <span class="kd">::</span> <span class="n">istat</span>  <span class="c">!! for write statement</span>
 <a name="ln-3150"></a>
-<a name="ln-3151"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">1</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in evaluate_*d: class is not initialized&#39;</span>
+<a name="ln-3151"></a>    <span class="k">select case</span> <span class="p">(</span><span class="n">iflag</span><span class="p">)</span>
 <a name="ln-3152"></a>
-<a name="ln-3153"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">2</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: iknot out of range&#39;</span>
-<a name="ln-3154"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">3</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nx out of range&#39;</span>
-<a name="ln-3155"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">4</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kx out of range&#39;</span>
-<a name="ln-3156"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">5</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: x not strictly increasing&#39;</span>
-<a name="ln-3157"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">6</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tx not non-decreasing&#39;</span>
-<a name="ln-3158"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">7</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ny out of range&#39;</span>
-<a name="ln-3159"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">8</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ky out of range&#39;</span>
-<a name="ln-3160"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">9</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: y not strictly increasing&#39;</span>
-<a name="ln-3161"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">10</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ty not non-decreasing&#39;</span>
-<a name="ln-3162"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">11</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nz out of range&#39;</span>
-<a name="ln-3163"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">12</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kz out of range&#39;</span>
-<a name="ln-3164"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">13</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: z not strictly increasing&#39;</span>
-<a name="ln-3165"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">14</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tz not non-decreasing&#39;</span>
-<a name="ln-3166"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">15</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nq out of range&#39;</span>
-<a name="ln-3167"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">16</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kq out of range&#39;</span>
-<a name="ln-3168"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">17</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: q not strictly increasing&#39;</span>
-<a name="ln-3169"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">18</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tq not non-decreasing&#39;</span>
-<a name="ln-3170"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">19</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nr out of range&#39;</span>
-<a name="ln-3171"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">20</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kr out of range&#39;</span>
-<a name="ln-3172"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">21</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: r not strictly increasing&#39;</span>
-<a name="ln-3173"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">22</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tr not non-decreasing&#39;</span>
-<a name="ln-3174"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">23</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ns out of range&#39;</span>
-<a name="ln-3175"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">24</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ks out of range&#39;</span>
-<a name="ln-3176"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">25</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: s not strictly increasing&#39;</span>
-<a name="ln-3177"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">26</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ts not non-decreasing&#39;</span>
-<a name="ln-3178"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">700</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(x) /= size(fcn,1)&#39;</span>
-<a name="ln-3179"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">701</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(y) /= size(fcn,2)&#39;</span>
-<a name="ln-3180"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">702</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(z) /= size(fcn,3)&#39;</span>
-<a name="ln-3181"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">703</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(q) /= size(fcn,4)&#39;</span>
-<a name="ln-3182"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">704</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= size(fcn,5)&#39;</span>
-<a name="ln-3183"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">705</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= size(fcn,6)&#39;</span>
-<a name="ln-3184"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">706</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(x) /= nx&#39;</span>
-<a name="ln-3185"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">707</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(y) /= ny&#39;</span>
-<a name="ln-3186"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">708</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(z) /= nz&#39;</span>
-<a name="ln-3187"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">709</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(q) /= nq&#39;</span>
-<a name="ln-3188"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">710</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= nr&#39;</span>
-<a name="ln-3189"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">711</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= ns&#39;</span>
-<a name="ln-3190"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">712</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tx) /= nx+kx&#39;</span>
-<a name="ln-3191"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">713</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(ty) /= ny+ky&#39;</span>
-<a name="ln-3192"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">714</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tz) /= nz+kz&#39;</span>
-<a name="ln-3193"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">715</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tq) /= nq+kq&#39;</span>
-<a name="ln-3194"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">716</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tr) /= nr+kr&#39;</span>
-<a name="ln-3195"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">717</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(ts) /= ns+ks&#39;</span>
-<a name="ln-3196"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">800</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(x) /= size(bcoef,1)&#39;</span>
-<a name="ln-3197"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">801</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(y) /= size(bcoef,2)&#39;</span>
-<a name="ln-3198"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">802</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(z) /= size(bcoef,3)&#39;</span>
-<a name="ln-3199"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">803</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(q) /= size(bcoef,4)&#39;</span>
-<a name="ln-3200"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">804</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= size(bcoef,5)&#39;</span>
-<a name="ln-3201"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">805</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= size(bcoef,6)&#39;</span>
-<a name="ln-3202"></a>
-<a name="ln-3203"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: k does not satisfy k&gt;=1&#39;</span>
-<a name="ln-3204"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">101</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: n does not satisfy n&gt;=k&#39;</span>
-<a name="ln-3205"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">102</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: x(i) does not satisfy x(i)&lt;x(i+1) for some i&#39;</span>
-<a name="ln-3206"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">103</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: some abscissa was not in the support of the &#39;</span><span class="o">//</span><span class="p">&amp;</span>
-<a name="ln-3207"></a>                    <span class="s1">&#39;corresponding basis function and the system is singular&#39;</span>
-<a name="ln-3208"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">104</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: the system of solver detects a singular system &#39;</span><span class="o">//</span><span class="p">&amp;</span>
-<a name="ln-3209"></a>                   <span class="s1">&#39;although the theoretical conditions for a solution were satisfied&#39;</span>
-<a name="ln-3210"></a>
-<a name="ln-3211"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">201</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: k does not satisfy k&gt;=1&#39;</span>
-<a name="ln-3212"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">202</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: jhigh does not satisfy 1&lt;=jhigh&lt;=k&#39;</span>
-<a name="ln-3213"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">203</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: index is not 1 or 2&#39;</span>
-<a name="ln-3214"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">204</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)&#39;</span>
-<a name="ln-3215"></a>
-<a name="ln-3216"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">301</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbtpcf: n should be &gt; 0&#39;</span>
-<a name="ln-3217"></a>
-<a name="ln-3218"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">401</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: k does not satisfy k&gt;=1&#39;</span>
-<a name="ln-3219"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">402</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: n does not satisfy n&gt;=k&#39;</span>
-<a name="ln-3220"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: ideriv does not satisfy 0&lt;=ideriv&lt;k&#39;</span>
-<a name="ln-3221"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: x is not greater than or equal to t(k)&#39;</span>
-<a name="ln-3222"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">405</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: x is not less than or equal to t(n+1)&#39;</span>
-<a name="ln-3223"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">406</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: a left limiting value cannot be obtained at t(k)&#39;</span>
-<a name="ln-3224"></a>
-<a name="ln-3225"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">501</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tx is not the correct size (kx+nx)&#39;</span>
-<a name="ln-3226"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">502</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: ty is not the correct size (ky+ny)&#39;</span>
-<a name="ln-3227"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">503</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tz is not the correct size (kz+nz)&#39;</span>
-<a name="ln-3228"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">504</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tq is not the correct size (kq+nq)&#39;</span>
-<a name="ln-3229"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">505</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tr is not the correct size (kr+nr)&#39;</span>
-<a name="ln-3230"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">506</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: ts is not the correct size (ks+ns)&#39;</span>
-<a name="ln-3231"></a>
-<a name="ln-3232"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">601</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: x value out of bounds&#39;</span>
-<a name="ln-3233"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">602</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: y value out of bounds&#39;</span>
-<a name="ln-3234"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">603</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: z value out of bounds&#39;</span>
-<a name="ln-3235"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">604</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: q value out of bounds&#39;</span>
-<a name="ln-3236"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">605</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: r value out of bounds&#39;</span>
-<a name="ln-3237"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">606</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: s value out of bounds&#39;</span>
-<a name="ln-3238"></a>
-<a name="ln-3239"></a>    <span class="k">case </span><span class="n">default</span>
-<a name="ln-3240"></a>        <span class="k">write</span><span class="p">(</span><span class="n">istr</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(I10)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span> <span class="n">iflag</span>
-<a name="ln-3241"></a>        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Unknown status flag: &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">istr</span><span class="p">))</span>
-<a name="ln-3242"></a>    <span class="k">end select</span>
-<a name="ln-3243"></a>
-<a name="ln-3244"></a><span class="k">    end function </span><span class="n">get_status_message</span>
-<a name="ln-3245"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-3246"></a>
-<a name="ln-3247"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-3248"></a>    <span class="k">end module </span><span class="n">bspline_sub_module</span>
+<a name="ln-3153"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">0</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Successful execution&#39;</span>
+<a name="ln-3154"></a>
+<a name="ln-3155"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">1</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in evaluate_*d: class is not initialized&#39;</span>
+<a name="ln-3156"></a>
+<a name="ln-3157"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">2</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: iknot out of range&#39;</span>
+<a name="ln-3158"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">3</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nx out of range&#39;</span>
+<a name="ln-3159"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">4</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kx out of range&#39;</span>
+<a name="ln-3160"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">5</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: x not strictly increasing&#39;</span>
+<a name="ln-3161"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">6</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tx not non-decreasing&#39;</span>
+<a name="ln-3162"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">7</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ny out of range&#39;</span>
+<a name="ln-3163"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">8</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ky out of range&#39;</span>
+<a name="ln-3164"></a>    <span class="k">case</span><span class="p">(</span>  <span class="mi">9</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: y not strictly increasing&#39;</span>
+<a name="ln-3165"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">10</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ty not non-decreasing&#39;</span>
+<a name="ln-3166"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">11</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nz out of range&#39;</span>
+<a name="ln-3167"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">12</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kz out of range&#39;</span>
+<a name="ln-3168"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">13</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: z not strictly increasing&#39;</span>
+<a name="ln-3169"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">14</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tz not non-decreasing&#39;</span>
+<a name="ln-3170"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">15</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nq out of range&#39;</span>
+<a name="ln-3171"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">16</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kq out of range&#39;</span>
+<a name="ln-3172"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">17</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: q not strictly increasing&#39;</span>
+<a name="ln-3173"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">18</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tq not non-decreasing&#39;</span>
+<a name="ln-3174"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">19</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: nr out of range&#39;</span>
+<a name="ln-3175"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">20</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: kr out of range&#39;</span>
+<a name="ln-3176"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">21</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: r not strictly increasing&#39;</span>
+<a name="ln-3177"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">22</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: tr not non-decreasing&#39;</span>
+<a name="ln-3178"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">23</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ns out of range&#39;</span>
+<a name="ln-3179"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">24</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ks out of range&#39;</span>
+<a name="ln-3180"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">25</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: s not strictly increasing&#39;</span>
+<a name="ln-3181"></a>    <span class="k">case</span><span class="p">(</span> <span class="mi">26</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: ts not non-decreasing&#39;</span>
+<a name="ln-3182"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">700</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(x) /= size(fcn,1)&#39;</span>
+<a name="ln-3183"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">701</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(y) /= size(fcn,2)&#39;</span>
+<a name="ln-3184"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">702</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(z) /= size(fcn,3)&#39;</span>
+<a name="ln-3185"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">703</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(q) /= size(fcn,4)&#39;</span>
+<a name="ln-3186"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">704</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= size(fcn,5)&#39;</span>
+<a name="ln-3187"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">705</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= size(fcn,6)&#39;</span>
+<a name="ln-3188"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">706</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(x) /= nx&#39;</span>
+<a name="ln-3189"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">707</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(y) /= ny&#39;</span>
+<a name="ln-3190"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">708</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(z) /= nz&#39;</span>
+<a name="ln-3191"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">709</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(q) /= nq&#39;</span>
+<a name="ln-3192"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">710</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= nr&#39;</span>
+<a name="ln-3193"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">711</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= ns&#39;</span>
+<a name="ln-3194"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">712</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tx) /= nx+kx&#39;</span>
+<a name="ln-3195"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">713</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(ty) /= ny+ky&#39;</span>
+<a name="ln-3196"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">714</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tz) /= nz+kz&#39;</span>
+<a name="ln-3197"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">715</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tq) /= nq+kq&#39;</span>
+<a name="ln-3198"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">716</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(tr) /= nr+kr&#39;</span>
+<a name="ln-3199"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">717</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(ts) /= ns+ks&#39;</span>
+<a name="ln-3200"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">800</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(x) /= size(bcoef,1)&#39;</span>
+<a name="ln-3201"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">801</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(y) /= size(bcoef,2)&#39;</span>
+<a name="ln-3202"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">802</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(z) /= size(bcoef,3)&#39;</span>
+<a name="ln-3203"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">803</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(q) /= size(bcoef,4)&#39;</span>
+<a name="ln-3204"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">804</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= size(bcoef,5)&#39;</span>
+<a name="ln-3205"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">805</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= size(bcoef,6)&#39;</span>
+<a name="ln-3206"></a>
+<a name="ln-3207"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: k does not satisfy k&gt;=1&#39;</span>
+<a name="ln-3208"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">101</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: n does not satisfy n&gt;=k&#39;</span>
+<a name="ln-3209"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">102</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: x(i) does not satisfy x(i)&lt;x(i+1) for some i&#39;</span>
+<a name="ln-3210"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">103</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: some abscissa was not in the support of the &#39;</span><span class="o">//</span><span class="p">&amp;</span>
+<a name="ln-3211"></a>                    <span class="s1">&#39;corresponding basis function and the system is singular&#39;</span>
+<a name="ln-3212"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">104</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: the system of solver detects a singular system &#39;</span><span class="o">//</span><span class="p">&amp;</span>
+<a name="ln-3213"></a>                   <span class="s1">&#39;although the theoretical conditions for a solution were satisfied&#39;</span>
+<a name="ln-3214"></a>
+<a name="ln-3215"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">201</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: k does not satisfy k&gt;=1&#39;</span>
+<a name="ln-3216"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">202</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: jhigh does not satisfy 1&lt;=jhigh&lt;=k&#39;</span>
+<a name="ln-3217"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">203</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: index is not 1 or 2&#39;</span>
+<a name="ln-3218"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">204</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvn: x does not satisfy t(ileft)&lt;=x&lt;=t(ileft+1)&#39;</span>
+<a name="ln-3219"></a>
+<a name="ln-3220"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">301</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbtpcf: n should be &gt; 0&#39;</span>
+<a name="ln-3221"></a>
+<a name="ln-3222"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">401</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: k does not satisfy k&gt;=1&#39;</span>
+<a name="ln-3223"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">402</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: n does not satisfy n&gt;=k&#39;</span>
+<a name="ln-3224"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: ideriv does not satisfy 0&lt;=ideriv&lt;k&#39;</span>
+<a name="ln-3225"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: x is not greater than or equal to t(k)&#39;</span>
+<a name="ln-3226"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">405</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: x is not less than or equal to t(n+1)&#39;</span>
+<a name="ln-3227"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">406</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbvalu: a left limiting value cannot be obtained at t(k)&#39;</span>
+<a name="ln-3228"></a>
+<a name="ln-3229"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">501</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tx is not the correct size (kx+nx)&#39;</span>
+<a name="ln-3230"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">502</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: ty is not the correct size (ky+ny)&#39;</span>
+<a name="ln-3231"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">503</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tz is not the correct size (kz+nz)&#39;</span>
+<a name="ln-3232"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">504</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tq is not the correct size (kq+nq)&#39;</span>
+<a name="ln-3233"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">505</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: tr is not the correct size (kr+nr)&#39;</span>
+<a name="ln-3234"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">506</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in initialize_*d_specify_knots: ts is not the correct size (ks+ns)&#39;</span>
+<a name="ln-3235"></a>
+<a name="ln-3236"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">601</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: x value out of bounds&#39;</span>
+<a name="ln-3237"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">602</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: y value out of bounds&#39;</span>
+<a name="ln-3238"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">603</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: z value out of bounds&#39;</span>
+<a name="ln-3239"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">604</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: q value out of bounds&#39;</span>
+<a name="ln-3240"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">605</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: r value out of bounds&#39;</span>
+<a name="ln-3241"></a>    <span class="k">case</span><span class="p">(</span><span class="mi">606</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: s value out of bounds&#39;</span>
+<a name="ln-3242"></a>
+<a name="ln-3243"></a>    <span class="k">case </span><span class="n">default</span>
+<a name="ln-3244"></a>        <span class="k">write</span><span class="p">(</span><span class="n">istr</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(I10)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span> <span class="n">iflag</span>
+<a name="ln-3245"></a>        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Unknown status flag: &#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">istr</span><span class="p">))</span>
+<a name="ln-3246"></a>    <span class="k">end select</span>
+<a name="ln-3247"></a>
+<a name="ln-3248"></a><span class="k">    end function </span><span class="n">get_status_message</span>
 <a name="ln-3249"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-3250"></a>
+<a name="ln-3251"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-3252"></a>    <span class="k">end module </span><span class="n">bspline_sub_module</span>
+<a name="ln-3253"></a><span class="c">!*****************************************************************************************</span>
 </pre></div>
 
     </section>
