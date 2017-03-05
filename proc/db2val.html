@@ -625,7 +625,8 @@ public pure subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoe
   <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>extrap</strong></td><td><p>if extrapolation is allowed</p></td>
+  <td><strong>extrap</strong></td><td><p>if extrapolation is allowed
+ (if not present, default is False)</p></td>
   
 </tr>
 
@@ -729,6 +730,7 @@ public pure subroutine db2val(xval, yval, idx, idy, tx, ty, nx, ny, kx, ky, bcoe
                                                      <span class="c">!! the first time this routine is called,</span>
                                                      <span class="c">!! and must not be changed by the user.</span>
     <span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>          <span class="kd">::</span> <span class="n">extrap</span>   <span class="c">!! if extrapolation is allowed</span>
+                                                     <span class="c">!! (if not present, default is False)</span>
 
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">k</span><span class="p">,</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,</span> <span class="n">kcol</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">)</span> <span class="kd">::</span> <span class="n">temp</span>

@@ -826,7 +826,8 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
   <td>optional</td>
   
   <td></td><td>::</td>
-  <td><strong>extrap</strong></td><td><p>if extrapolation is allowed</p></td>
+  <td><strong>extrap</strong></td><td><p>if extrapolation is allowed
+ (if not present, default is False)</p></td>
   
 </tr>
 
@@ -963,6 +964,7 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
                                                            <span class="c">!! to 1 the first time this routine is called,</span>
                                                            <span class="c">!! and must not be changed by the user.</span>
     <span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                <span class="kd">::</span> <span class="n">extrap</span>   <span class="c">!! if extrapolation is allowed</span>
+                                                           <span class="c">!! (if not present, default is False)</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">)</span>             <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">temp2</span>
