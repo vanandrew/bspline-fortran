@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="11.3% of total for procedures.">118 statements</a>
+	  title="10.8% of total for procedures.">109 statements</a>
      </li> 
      
      
@@ -241,6 +241,8 @@
       
       <a class="list-group-item" href="../proc/f1%7E4.html">f1</a>
       
+      <a class="list-group-item" href="../proc/f1%7E5.html">f1</a>
+      
       <a class="list-group-item" href="../proc/f2.html">f2</a>
       
       <a class="list-group-item" href="../proc/f2%7E2.html">f2</a>
@@ -298,7 +300,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, idr, tx, ty, tz, tq, tr, nx, ny, nz, nq, nr, kx, ky, kz, kq, kr, bcoef, f, iflag, inbvx, inbvy, inbvz, inbvq, inbvr, iloy, iloz, iloq, ilor)
+public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, idr, tx, ty, tz, tq, tr, nx, ny, nz, nq, nr, kx, ky, kz, kq, kr, bcoef, f, iflag, inbvx, inbvy, inbvz, inbvq, inbvr, iloy, iloz, iloq, ilor, extrap)
     
     
 	 
@@ -930,6 +932,21 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-extrap%7E5"></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if extrapolation is allowed</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -998,7 +1015,8 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
                                 <span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="p">,&amp;</span>
                                 <span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">,&amp;</span>
                                 <span class="n">bcoef</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">,&amp;</span>
-                                <span class="n">inbvx</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">inbvq</span><span class="p">,</span><span class="n">inbvr</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">iloz</span><span class="p">,</span><span class="n">iloq</span><span class="p">,</span><span class="n">ilor</span><span class="p">)</span>
+                                <span class="n">inbvx</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">inbvq</span><span class="p">,</span><span class="n">inbvr</span><span class="p">,&amp;</span>
+                                <span class="n">iloy</span><span class="p">,</span><span class="n">iloz</span><span class="p">,</span><span class="n">iloq</span><span class="p">,</span><span class="n">ilor</span><span class="p">,</span><span class="n">extrap</span><span class="p">)</span>
 
     <span class="k">implicit none</span>
 
@@ -1080,6 +1098,7 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>                         <span class="kd">::</span> <span class="n">ilor</span>     <span class="c">!! initialization parameter which must be set</span>
                                                               <span class="c">!! to 1 the first time this routine is called,</span>
                                                               <span class="c">!! and must not be changed by the user.</span>
+    <span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span>                   <span class="kd">::</span> <span class="n">extrap</span>   <span class="c">!! if extrapolation is allowed</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">)</span>           <span class="kd">::</span> <span class="n">temp1</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="p">)</span>              <span class="kd">::</span> <span class="n">temp2</span>
@@ -1091,37 +1110,17 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
 
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">xval</span><span class="o">&lt;</span><span class="n">tx</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span><span class="o">&gt;</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span> <span class="k">then</span>
-        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db5val - x value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">601</span>
-        <span class="k">return</span>
-<span class="k">    end if</span>
-<span class="k">    if</span> <span class="p">(</span><span class="n">yval</span><span class="o">&lt;</span><span class="n">ty</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">yval</span><span class="o">&gt;</span><span class="n">ty</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">))</span> <span class="k">then</span>
-        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db5val - y value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">602</span>
-        <span class="k">return</span>
-<span class="k">    end if</span>
-<span class="k">    if</span> <span class="p">(</span><span class="n">zval</span><span class="o">&lt;</span><span class="n">tz</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">zval</span><span class="o">&gt;</span><span class="n">tz</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">))</span> <span class="k">then</span>
-        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db5val - z value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">603</span>
-        <span class="k">return</span>
-<span class="k">    end if</span>
-<span class="k">    if</span> <span class="p">(</span><span class="n">qval</span><span class="o">&lt;</span><span class="n">tq</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">qval</span><span class="o">&gt;</span><span class="n">tq</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db5val - q value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">604</span>
-        <span class="k">return</span>
-<span class="k">    end if</span>
-<span class="k">    if</span> <span class="p">(</span> <span class="n">rval</span><span class="o">&lt;</span><span class="n">tr</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">rval</span><span class="o">&gt;</span><span class="n">tr</span><span class="p">(</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">)</span> <span class="p">)</span> <span class="k">then</span>
-        <span class="c">!write(error_unit,&#39;(A)&#39;) &#39;db5val - r value out of bounds&#39;</span>
-        <span class="n">iflag</span> <span class="o">=</span> <span class="mi">605</span>
-        <span class="k">return</span>
-<span class="k">    end if</span>
+    <span class="n">iflag</span> <span class="o">=</span> <span class="n">check_value</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="n">check_value</span><span class="p">(</span><span class="n">yval</span><span class="p">,</span><span class="n">ty</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="n">check_value</span><span class="p">(</span><span class="n">zval</span><span class="p">,</span><span class="n">tz</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="n">check_value</span><span class="p">(</span><span class="n">qval</span><span class="p">,</span><span class="n">tq</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="n">check_value</span><span class="p">(</span><span class="n">rval</span><span class="p">,</span><span class="n">tr</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 
 <span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-    <span class="k">call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">lefty</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">iloz</span><span class="p">,</span><span class="n">leftz</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tq</span><span class="p">,</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">iloq</span><span class="p">,</span><span class="n">leftq</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
-<span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">ilor</span><span class="p">,</span><span class="n">leftr</span><span class="p">,</span><span class="n">mflag</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+    <span class="k">call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">ty</span><span class="p">,</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">iloy</span><span class="p">,</span><span class="n">lefty</span><span class="p">,</span><span class="n">mflag</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tz</span><span class="p">,</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">iloz</span><span class="p">,</span><span class="n">leftz</span><span class="p">,</span><span class="n">mflag</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tq</span><span class="p">,</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">iloq</span><span class="p">,</span><span class="n">leftq</span><span class="p">,</span><span class="n">mflag</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+<span class="k">    call </span><span class="n">dintrv</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span><span class="n">nr</span><span class="o">+</span><span class="n">kr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">ilor</span><span class="p">,</span><span class="n">leftr</span><span class="p">,</span><span class="n">mflag</span><span class="p">,</span><span class="n">extrap</span><span class="p">);</span> <span class="k">if</span> <span class="p">(</span><span class="n">mflag</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 
 <span class="k">    </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1139,7 +1138,8 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
                 <span class="k">do </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ky</span>
                     <span class="n">kcoly</span> <span class="o">=</span> <span class="n">kcoly</span> <span class="o">+</span> <span class="mi">1</span>
                     <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">(:,</span><span class="n">kcoly</span><span class="p">,</span><span class="n">kcolz</span><span class="p">,</span><span class="n">kcolq</span><span class="p">,</span><span class="n">kcolr</span><span class="p">),&amp;</span>
-                                <span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp1</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">))</span>
+                                <span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">xval</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp1</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">),&amp;</span>
+                                <span class="n">extrap</span><span class="p">)</span>
                     <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">                end do</span>
 <span class="k">            end do</span>
@@ -1151,7 +1151,8 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
     <span class="k">do </span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kr</span>
         <span class="k">do </span><span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kq</span>
             <span class="k">do </span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kz</span>
-                <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcoly</span><span class="p">:),</span><span class="n">temp1</span><span class="p">(:,</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">),</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp2</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">))</span>
+                <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">ty</span><span class="p">(</span><span class="n">kcoly</span><span class="p">:),</span><span class="n">temp1</span><span class="p">(:,</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">),</span><span class="n">ky</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">idy</span><span class="p">,</span><span class="n">yval</span><span class="p">,</span><span class="n">inbvy</span><span class="p">,&amp;</span>
+                            <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp2</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">),</span><span class="n">extrap</span><span class="p">)</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">            end do</span>
 <span class="k">        end do</span>
@@ -1161,7 +1162,8 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
     <span class="n">kcolz</span> <span class="o">=</span> <span class="n">leftz</span> <span class="o">-</span> <span class="n">kz</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">do </span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kr</span>
         <span class="k">do </span><span class="n">q</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kq</span>
-            <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">(:,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">),</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp3</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">))</span>
+            <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tz</span><span class="p">(</span><span class="n">kcolz</span><span class="p">:),</span><span class="n">temp2</span><span class="p">(:,</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">),</span><span class="n">kz</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">idz</span><span class="p">,</span><span class="n">zval</span><span class="p">,</span><span class="n">inbvz</span><span class="p">,&amp;</span>
+                        <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp3</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">r</span><span class="p">),</span><span class="n">extrap</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">        end do</span>
 <span class="k">    end do</span>
@@ -1169,13 +1171,14 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
     <span class="c">! q -&gt; r</span>
     <span class="n">kcolq</span> <span class="o">=</span> <span class="n">leftq</span> <span class="o">-</span> <span class="n">kq</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">do </span><span class="n">r</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">kr</span>
-        <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tq</span><span class="p">(</span><span class="n">kcolq</span><span class="p">:),</span><span class="n">temp3</span><span class="p">(:,</span><span class="n">r</span><span class="p">),</span><span class="n">kq</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">idq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">inbvq</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp4</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+        <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tq</span><span class="p">(</span><span class="n">kcolq</span><span class="p">:),</span><span class="n">temp3</span><span class="p">(:,</span><span class="n">r</span><span class="p">),</span><span class="n">kq</span><span class="p">,</span><span class="n">kq</span><span class="p">,</span><span class="n">idq</span><span class="p">,</span><span class="n">qval</span><span class="p">,</span><span class="n">inbvq</span><span class="p">,&amp;</span>
+                    <span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">temp4</span><span class="p">(</span><span class="n">r</span><span class="p">),</span><span class="n">extrap</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
 <span class="k">    end do</span>
 
     <span class="c">! r</span>
     <span class="n">kcolr</span> <span class="o">=</span> <span class="n">leftr</span> <span class="o">-</span> <span class="n">kr</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="n">kcolr</span><span class="p">:),</span><span class="n">temp4</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">idr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">inbvr</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">call </span><span class="n">dbvalu</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="n">kcolr</span><span class="p">:),</span><span class="n">temp4</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">kr</span><span class="p">,</span><span class="n">idr</span><span class="p">,</span><span class="n">rval</span><span class="p">,</span><span class="n">inbvr</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">extrap</span><span class="p">)</span>
 
     <span class="k">end subroutine </span><span class="n">db5val</span>
 </pre></div>
@@ -1239,6 +1242,8 @@ public pure subroutine db5val(xval, yval, zval, qval, rval, idx, idy, idz, idq, 
       <a class="list-group-item" href="../proc/f1%7E3.html">f1</a>
       
       <a class="list-group-item" href="../proc/f1%7E4.html">f1</a>
+      
+      <a class="list-group-item" href="../proc/f1%7E5.html">f1</a>
       
       <a class="list-group-item" href="../proc/f2.html">f2</a>
       
