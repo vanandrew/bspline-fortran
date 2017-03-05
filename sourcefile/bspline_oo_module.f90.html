@@ -1282,37 +1282,37 @@
 <a name="ln-753"></a>
 <a name="ln-754"></a><span class="c">!*****************************************************************************************</span>
 <a name="ln-755"></a><span class="c">!&gt;</span>
-<a name="ln-756"></a><span class="c">!  It returns an empty [[bspline_1d]] type. Note that INITIALIZE still</span>
-<a name="ln-757"></a><span class="c">!  needs to be called before it can be used.</span>
-<a name="ln-758"></a><span class="c">!  Not really that useful except perhaps in some OpenMP applications.</span>
+<a name="ln-756"></a><span class="c">!  Sets the `extrap` flag in the class.</span>
+<a name="ln-757"></a>
+<a name="ln-758"></a>    <span class="k">pure subroutine </span><span class="n">set_extrap_flag</span><span class="p">(</span><span class="n">me</span><span class="p">,</span><span class="n">extrap</span><span class="p">)</span>
 <a name="ln-759"></a>
-<a name="ln-760"></a>    <span class="k">pure elemental function </span><span class="n">bspline_1d_constructor_empty</span><span class="p">()</span> <span class="k">result</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+<a name="ln-760"></a>    <span class="k">implicit none</span>
 <a name="ln-761"></a>
-<a name="ln-762"></a>    <span class="k">implicit none</span>
-<a name="ln-763"></a>
-<a name="ln-764"></a><span class="k">    type</span><span class="p">(</span><span class="n">bspline_1d</span><span class="p">)</span> <span class="kd">::</span> <span class="n">me</span>
-<a name="ln-765"></a>
-<a name="ln-766"></a>    <span class="k">end function </span><span class="n">bspline_1d_constructor_empty</span>
-<a name="ln-767"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-768"></a>
-<a name="ln-769"></a><span class="c">!*****************************************************************************************</span>
-<a name="ln-770"></a><span class="c">!&gt;</span>
-<a name="ln-771"></a><span class="c">!  Sets the `extrap` flag in the class.</span>
-<a name="ln-772"></a>
-<a name="ln-773"></a>    <span class="k">pure subroutine </span><span class="n">set_extrap_flag</span><span class="p">(</span><span class="n">me</span><span class="p">,</span><span class="n">extrap</span><span class="p">)</span>
-<a name="ln-774"></a>
-<a name="ln-775"></a>    <span class="k">implicit none</span>
-<a name="ln-776"></a>
-<a name="ln-777"></a><span class="k">    class</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">me</span>
-<a name="ln-778"></a>    <span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">extrap</span>  <span class="c">!! if not present, then False is used</span>
+<a name="ln-762"></a><span class="k">    class</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">me</span>
+<a name="ln-763"></a>    <span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span> <span class="kd">::</span> <span class="n">extrap</span>  <span class="c">!! if not present, then False is used</span>
+<a name="ln-764"></a>
+<a name="ln-765"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">extrap</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-766"></a><span class="k">        </span><span class="n">me</span><span class="p">%</span><span class="n">extrap</span> <span class="o">=</span> <span class="n">extrap</span>
+<a name="ln-767"></a>    <span class="k">else</span>
+<a name="ln-768"></a><span class="k">        </span><span class="n">me</span><span class="p">%</span><span class="n">extrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-769"></a>    <span class="k">end if</span>
+<a name="ln-770"></a>
+<a name="ln-771"></a><span class="k">    end subroutine </span><span class="n">set_extrap_flag</span>
+<a name="ln-772"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-773"></a>
+<a name="ln-774"></a><span class="c">!*****************************************************************************************</span>
+<a name="ln-775"></a><span class="c">!&gt;</span>
+<a name="ln-776"></a><span class="c">!  It returns an empty [[bspline_1d]] type. Note that INITIALIZE still</span>
+<a name="ln-777"></a><span class="c">!  needs to be called before it can be used.</span>
+<a name="ln-778"></a><span class="c">!  Not really that useful except perhaps in some OpenMP applications.</span>
 <a name="ln-779"></a>
-<a name="ln-780"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">extrap</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-781"></a><span class="k">        </span><span class="n">me</span><span class="p">%</span><span class="n">extrap</span> <span class="o">=</span> <span class="n">extrap</span>
-<a name="ln-782"></a>    <span class="k">else</span>
-<a name="ln-783"></a><span class="k">        </span><span class="n">me</span><span class="p">%</span><span class="n">extrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-784"></a>    <span class="k">end if</span>
+<a name="ln-780"></a>    <span class="k">pure elemental function </span><span class="n">bspline_1d_constructor_empty</span><span class="p">()</span> <span class="k">result</span><span class="p">(</span><span class="n">me</span><span class="p">)</span>
+<a name="ln-781"></a>
+<a name="ln-782"></a>    <span class="k">implicit none</span>
+<a name="ln-783"></a>
+<a name="ln-784"></a><span class="k">    type</span><span class="p">(</span><span class="n">bspline_1d</span><span class="p">)</span> <span class="kd">::</span> <span class="n">me</span>
 <a name="ln-785"></a>
-<a name="ln-786"></a><span class="k">    end subroutine </span><span class="n">set_extrap_flag</span>
+<a name="ln-786"></a>    <span class="k">end function </span><span class="n">bspline_1d_constructor_empty</span>
 <a name="ln-787"></a><span class="c">!*****************************************************************************************</span>
 <a name="ln-788"></a>
 <a name="ln-789"></a><span class="c">!*****************************************************************************************</span>
