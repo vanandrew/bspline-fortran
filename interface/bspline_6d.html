@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 0.3% of total for procedures.</p>Including implementation: 49 statements,  4.8% of total for procedures.">3 statements</a>
+	  title="<p> 0.3% of total for procedures.</p>Including implementation: 51 statements,  5.0% of total for procedures.">3 statements</a>
      </li> 
      
      
@@ -401,7 +401,7 @@ private elemental function bspline_6d_constructor_empty() result(me)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_6d_constructor_auto_knots"></span><h3>
-private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks) result(me)
+private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, extrap) result(me)
     
     
 	 
@@ -637,6 +637,22 @@ private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, k
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -660,7 +676,7 @@ private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, k
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_6d_constructor_specify_knots"></span><h3>
-private pure function bspline_6d_constructor_specify_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, tx, ty, tz, tq, tr, ts) result(me)
+private pure function bspline_6d_constructor_specify_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, tx, ty, tz, tq, tr, ts, extrap) result(me)
     
     
 	 
@@ -995,6 +1011,22 @@ private pure function bspline_6d_constructor_specify_knots(x, y, z, q, r, s, fcn
   <td><strong>ts</strong></td><td><p>The <code>(ns+ks)</code> knots in the \(s\) direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 

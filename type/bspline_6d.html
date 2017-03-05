@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p>21.7% of total for derived types.</p>Including implementation: 363 statements, 22.6% of total for derived types.">41 statements</a>
+	  title="<p>21.5% of total for derived types.</p>Including implementation: 375 statements, 22.1% of total for derived types.">41 statements</a>
      </li> 
      
      
@@ -486,7 +486,7 @@ private elemental function bspline_6d_constructor_empty() result(me)
     
     
     <h3>
-private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks) result(me)
+private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, extrap) result(me)
     
     
 	 
@@ -720,6 +720,22 @@ private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, k
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -742,7 +758,7 @@ private pure function bspline_6d_constructor_auto_knots(x, y, z, q, r, s, fcn, k
     
     
     <h3>
-private pure function bspline_6d_constructor_specify_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, tx, ty, tz, tq, tr, ts) result(me)
+private pure function bspline_6d_constructor_specify_knots(x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, tx, ty, tz, tq, tr, ts, extrap) result(me)
     
     
 	 
@@ -1075,6 +1091,22 @@ private pure function bspline_6d_constructor_specify_knots(x, y, z, q, r, s, fcn
   <td><strong>ts</strong></td><td><p>The <code>(ns+ks)</code> knots in the \(s\) direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 
@@ -1454,7 +1486,7 @@ private elemental subroutine clear_bspline_flag(me)
             
     
     <h3>
-private pure subroutine initialize_6d_auto_knots(me, x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, iflag)
+private pure subroutine initialize_6d_auto_knots(me, x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, iflag, extrap)
     
     
 	 
@@ -1718,6 +1750,22 @@ private pure subroutine initialize_6d_auto_knots(me, x, y, z, q, r, s, fcn, kx, 
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1735,7 +1783,7 @@ private pure subroutine initialize_6d_auto_knots(me, x, y, z, q, r, s, fcn, kx, 
             
     
     <h3>
-private pure subroutine initialize_6d_specify_knots(me, x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, tx, ty, tz, tq, tr, ts, iflag)
+private pure subroutine initialize_6d_specify_knots(me, x, y, z, q, r, s, fcn, kx, ky, kz, kq, kr, ks, tx, ty, tz, tq, tr, ts, iflag, extrap)
     
     
 	 
@@ -2098,6 +2146,22 @@ private pure subroutine initialize_6d_specify_knots(me, x, y, z, q, r, s, fcn, k
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag (see <a href="../proc/db6ink.html">db6ink</a>)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 

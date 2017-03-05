@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 0.3% of total for procedures.</p>Including implementation: 29 statements,  2.9% of total for procedures.">3 statements</a>
+	  title="<p> 0.3% of total for procedures.</p>Including implementation: 31 statements,  3.1% of total for procedures.">3 statements</a>
      </li> 
      
      
@@ -401,7 +401,7 @@ private elemental function bspline_2d_constructor_empty() result(me)
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_2d_constructor_auto_knots"></span><h3>
-private pure function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky) result(me)
+private pure function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky, extrap) result(me)
     
     
 	 
@@ -509,6 +509,22 @@ private pure function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky) resul
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -532,7 +548,7 @@ private pure function bspline_2d_constructor_auto_knots(x, y, fcn, kx, ky) resul
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-bspline_2d_constructor_specify_knots"></span><h3>
-private pure function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty) result(me)
+private pure function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx, ty, extrap) result(me)
     
     
 	 
@@ -671,6 +687,22 @@ private pure function bspline_2d_constructor_specify_knots(x, y, fcn, kx, ky, tx
   <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the \(y\) direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 

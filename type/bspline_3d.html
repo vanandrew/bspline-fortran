@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p>14.3% of total for derived types.</p>Including implementation: 241 statements, 15.0% of total for derived types.">26 statements</a>
+	  title="<p>14.1% of total for derived types.</p>Including implementation: 253 statements, 14.9% of total for derived types.">26 statements</a>
      </li> 
      
      
@@ -486,7 +486,7 @@ private elemental function bspline_3d_constructor_empty() result(me)
     
     
     <h3>
-private pure function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz) result(me)
+private pure function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz, extrap) result(me)
     
     
 	 
@@ -624,6 +624,22 @@ private pure function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -646,7 +662,7 @@ private pure function bspline_3d_constructor_auto_knots(x, y, z, fcn, kx, ky, kz
     
     
     <h3>
-private pure function bspline_3d_constructor_specify_knots(x, y, z, fcn, kx, ky, kz, tx, ty, tz) result(me)
+private pure function bspline_3d_constructor_specify_knots(x, y, z, fcn, kx, ky, kz, tx, ty, tz, extrap) result(me)
     
     
 	 
@@ -832,6 +848,22 @@ private pure function bspline_3d_constructor_specify_knots(x, y, z, fcn, kx, ky,
   <td><strong>tz</strong></td><td><p>The <code>(nz+kz)</code> knots in the \(z\) direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 
@@ -1211,7 +1243,7 @@ private elemental subroutine clear_bspline_flag(me)
             
     
     <h3>
-private pure subroutine initialize_3d_auto_knots(me, x, y, z, fcn, kx, ky, kz, iflag)
+private pure subroutine initialize_3d_auto_knots(me, x, y, z, fcn, kx, ky, kz, iflag, extrap)
     
     
 	 
@@ -1379,6 +1411,22 @@ private pure subroutine initialize_3d_auto_knots(me, x, y, z, fcn, kx, ky, kz, i
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1396,7 +1444,7 @@ private pure subroutine initialize_3d_auto_knots(me, x, y, z, fcn, kx, ky, kz, i
             
     
     <h3>
-private pure subroutine initialize_3d_specify_knots(me, x, y, z, fcn, kx, ky, kz, tx, ty, tz, iflag)
+private pure subroutine initialize_3d_specify_knots(me, x, y, z, fcn, kx, ky, kz, tx, ty, tz, iflag, extrap)
     
     
 	 
@@ -1612,6 +1660,22 @@ private pure subroutine initialize_3d_specify_knots(me, x, y, z, fcn, kx, ky, kz
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag (see <a href="../proc/db3ink.html">db3ink</a>)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 

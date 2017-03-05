@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p>19.2% of total for derived types.</p>Including implementation: 322 statements, 20.0% of total for derived types.">36 statements</a>
+	  title="<p>19.0% of total for derived types.</p>Including implementation: 334 statements, 19.7% of total for derived types.">36 statements</a>
      </li> 
      
      
@@ -486,7 +486,7 @@ private elemental function bspline_5d_constructor_empty() result(me)
     
     
     <h3>
-private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, ky, kz, kq, kr) result(me)
+private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, ky, kz, kq, kr, extrap) result(me)
     
     
 	 
@@ -688,6 +688,22 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -710,7 +726,7 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
     
     
     <h3>
-private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, kx, ky, kz, kq, kr, tx, ty, tz, tq, tr) result(me)
+private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, kx, ky, kz, kq, kr, tx, ty, tz, tq, tr, extrap) result(me)
     
     
 	 
@@ -994,6 +1010,22 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td><strong>tr</strong></td><td><p>The <code>(nr+kr)</code> knots in the \(r\) direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 
@@ -1373,7 +1405,7 @@ private elemental subroutine clear_bspline_flag(me)
             
     
     <h3>
-private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky, kz, kq, kr, iflag)
+private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky, kz, kq, kr, iflag, extrap)
     
     
 	 
@@ -1605,6 +1637,22 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   
 </tr>
 
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
+  
+</tr>
+
 </tbody>
 </table>
 
@@ -1622,7 +1670,7 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
             
     
     <h3>
-private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, ky, kz, kq, kr, tx, ty, tz, tq, tr, iflag)
+private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, ky, kz, kq, kr, tx, ty, tz, tq, tr, iflag, extrap)
     
     
 	 
@@ -1936,6 +1984,22 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   
   <td></td><td>::</td>
   <td><strong>iflag</strong></td><td><p>status flag (see <a href="../proc/db5ink.html">db5ink</a>)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical,</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>extrap</strong></td><td><p>if true, then extrapolation is allowed
+ (default is false)</p></td>
   
 </tr>
 
