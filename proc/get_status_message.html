@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="16.8% of total for procedures.">170 statements</a>
+	  title="17.3% of total for procedures.">176 statements</a>
      </li> 
      
      
@@ -512,6 +512,10 @@ public pure function get_status_message(iflag) result(msg)
     <span class="k">case</span><span class="p">(</span><span class="mi">604</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: q value out of bounds&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">605</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: r value out of bounds&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">606</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*val: s value out of bounds&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">901</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsqad: k does not satisfy 1&lt;=k&lt;=20&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">902</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsqad: n does not satisfy n&gt;=k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">903</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsqad: x1 or x2 or both do not satisfy t(k)&lt;=x&lt;=t(n+1)&#39;</span>
 
     <span class="k">case </span><span class="n">default</span>
         <span class="k">write</span><span class="p">(</span><span class="n">istr</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(I10)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span> <span class="n">iflag</span>
