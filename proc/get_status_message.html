@@ -130,7 +130,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="17.1% of total for procedures.">176 statements</a>
+	  title="18.2% of total for procedures.">190 statements</a>
      </li> 
      
      
@@ -518,6 +518,15 @@ public pure function get_status_message(iflag) result(msg)
     <span class="k">case</span><span class="p">(</span><span class="mi">901</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsqad: k does not satisfy 1&lt;=k&lt;=20&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">902</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsqad: n does not satisfy n&gt;=k&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">903</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsqad: x1 or x2 or both do not satisfy t(k)&lt;=x&lt;=t(n+1)&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">1001</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbfqad: k does not satisfy k&gt;=1&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">1002</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbfqad: n does not satisfy n&gt;=k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">1003</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbfqad: d does not satisfy 0&lt;=id&lt;k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">1004</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbfqad: x1 or x2 or both do not satisfy t(k)&lt;=x&lt;=t(n+1)&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">1005</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbfqad: is less than machine epsilon or greater than 0.1&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">1101</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Warning in dbsgq8: a and b are too nearly equal to allow normal integration.&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">1102</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsgq8: ans is probably insufficiently accurate.&#39;</span>
 
     <span class="k">case </span><span class="n">default</span>
         <span class="k">write</span><span class="p">(</span><span class="n">istr</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(I10)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span> <span class="n">iflag</span>
