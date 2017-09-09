@@ -1,225 +1,128 @@
 !*****************************************************************************************
-!>
-!  Units test for 1d-6d tensor product b-spline interpolation.
+!> author: Jacob Williams
+!  date: 4/14/2015
+!  license: BSD
+!
+!  Unit test for [[pyplot_module]].
 
-    program bspline_test
+    program test
 
-    use bspline_module
-    use bspline_kinds_module, only: wp
+    use, intrinsic :: iso_fortran_env, only : wp => real64
+    use pyplot_module, only : pyplot
 
     implicit none
 
-    integer,parameter :: nx = 6     !! number of points in x
-    integer,parameter :: ny = 6     !! number of points in y
-    integer,parameter :: nz = 6     !! number of points in z
-    integer,parameter :: nq = 6     !! number of points in q
-    integer,parameter :: nr = 6     !! number of points in r
-    integer,parameter :: ns = 6     !! number of points in s
+    integer,parameter :: n = 100
 
-    integer,parameter :: kx = 4     !! order in x
-    integer,parameter :: ky = 4     !! order in y
-    integer,parameter :: kz = 4     !! order in z
-    integer,parameter :: kq = 4     !! order in q
-    integer,parameter :: kr = 4     !! order in r
-    integer,parameter :: ks = 4     !! order in s
+    real(wp), dimension(n)   :: x     !! x values
+    real(wp), dimension(n)   :: y     !! y values
+    real(wp), dimension(n)   :: yerr  !! error values for bar chart
+    real(wp), dimension(n)   :: sx    !! sin(x) values
+    real(wp), dimension(n)   :: cx    !! cos(x) values
+    real(wp), dimension(n)   :: tx    !! sin(x)*cos(x) values
+    real(wp), dimension(n,n) :: z     !! z matrix for contour plot
+    type(pyplot)             :: plt   !! pytplot handler
+    integer                  :: i     !! counter
+    integer                  :: j     !! counter
+    real(wp)                 :: r2    !! temp variable
+    real(wp), dimension(n,n) :: mat   !! image values
+    integer                  :: istat !! status code
 
-    integer,parameter :: iknot = 0  !! automatically select the knots
+    !generate some data:
+    x    = [(real(i,wp), i=0,size(x)-1)]/5.0_wp
+    sx   = sin(x)
+    cx   = cos(x)
+    tx   = sx * cx
+    yerr = abs(sx*.25_wp)
 
-    real(wp) :: x(nx),y(ny),z(nz),q(nq),r(nr),s(ns)
-    real(wp) :: tx(nx+kx),ty(ny+ky),tz(nz+kz),tq(nq+kq),tr(nr+kr),ts(ns+ks)
-    real(wp) :: fcn_1d(nx)
-    real(wp) :: fcn_2d(nx,ny)
-    real(wp) :: fcn_3d(nx,ny,nz)
-    real(wp) :: fcn_4d(nx,ny,nz,nq)
-    real(wp) :: fcn_5d(nx,ny,nz,nq,nr)
-    real(wp) :: fcn_6d(nx,ny,nz,nq,nr,ns)
-
-    real(wp) :: tol
-    real(wp),dimension(6) :: val,tru,err,errmax
-    logical :: fail
-    integer :: i,j,k,l,m,n,idx,idy,idz,idq,idr,ids
-    integer,dimension(6) :: iflag
-    integer :: inbvx,inbvy,inbvz,inbvq,inbvr,inbvs
-    integer :: iloy,iloz,iloq,ilor,ilos
-
-    fail = .false.
-    tol = 1.0e-14_wp
-    idx = 0
-    idy = 0
-    idz = 0
-    idq = 0
-    idr = 0
-    ids = 0
-
-     do i=1,nx
-        x(i) = dble(i-1)/dble(nx-1)
-     end do
-     do j=1,ny
-        y(j) = dble(j-1)/dble(ny-1)
-     end do
-     do k=1,nz
-        z(k) = dble(k-1)/dble(nz-1)
-     end do
-     do l=1,nq
-        q(l) = dble(l-1)/dble(nq-1)
-     end do
-     do m=1,nr
-        r(m) = dble(m-1)/dble(nr-1)
-     end do
-     do n=1,ns
-        s(n) = dble(n-1)/dble(ns-1)
-     end do
-     do i=1,nx
-                        fcn_1d(i) = f1(x(i))
-        do j=1,ny
-                        fcn_2d(i,j) = f2(x(i),y(j))
-           do k=1,nz
-                        fcn_3d(i,j,k) = f3(x(i),y(j),z(k))
-              do l=1,nq
-                        fcn_4d(i,j,k,l) = f4(x(i),y(j),z(k),q(l))
-                 do m=1,nr
-                        fcn_5d(i,j,k,l,m) = f5(x(i),y(j),z(k),q(l),r(m))
-                     do n=1,ns
-                        fcn_6d(i,j,k,l,m,n) = f6(x(i),y(j),z(k),q(l),r(m),s(n))
-                     end do
-                 end do
-              end do
-           end do
+    do i=1,n
+        do j=1,n
+            mat(i,j) = sin(real(i,wp)*real(j,wp))
         end do
-     end do
-
-    !have to set these before the first evaluate call:
-    inbvx = 1
-    inbvy = 1
-    inbvz = 1
-    inbvq = 1
-    inbvr = 1
-    inbvs = 1
-    iloy  = 1
-    iloz  = 1
-    iloq  = 1
-    ilor  = 1
-    ilos  = 1
-
-    ! initialize
-    call db1ink(x,nx,fcn_1d,kx,iknot,tx,fcn_1d,iflag(1))
-    call db2ink(x,nx,y,ny,fcn_2d,kx,ky,iknot,tx,ty,fcn_2d,iflag(2))
-    call db3ink(x,nx,y,ny,z,nz,fcn_3d,kx,ky,kz,iknot,tx,ty,tz,fcn_3d,iflag(3))
-    call db4ink(x,nx,y,ny,z,nz,q,nq,fcn_4d,kx,ky,kz,kq,iknot,tx,ty,tz,tq,fcn_4d,iflag(4))
-    call db5ink(x,nx,y,ny,z,nz,q,nq,r,nr,fcn_5d,kx,ky,kz,kq,kr,iknot,tx,ty,tz,tq,tr,fcn_5d,iflag(5))
-    call db6ink(x,nx,y,ny,z,nz,q,nq,r,nr,s,ns,fcn_6d,kx,ky,kz,kq,kr,ks,iknot,tx,ty,tz,tq,tr,ts,fcn_6d,iflag(6))
-
-    if (any(iflag/=0)) then
-        do i=1,6
-            if (iflag(i)/=0) then
-                write(*,*) 'Error initializing ',i,'D spline: '//get_status_message(iflag(i))
-            end if
-        end do
-    end if
-
-    ! compute max error at interpolation points
-
-     errmax = 0.0_wp
-     do i=1,nx
-                        call db1val(x(i),idx,&
-                                            tx,nx,kx,fcn_1d,val(1),iflag(1),inbvx)
-                        tru(1)    = f1(x(i))
-                        err(1)    = abs(tru(1)-val(1))
-                        errmax(1) = max(err(1),errmax(1))
-        do j=1,ny
-                        call db2val(x(i),y(j),idx,idy,&
-                                            tx,ty,nx,ny,kx,ky,fcn_2d,val(2),iflag(2),&
-                                            inbvx,inbvy,iloy)
-                        tru(2)    = f2(x(i),y(j))
-                        err(2)    = abs(tru(2)-val(2))
-                        errmax(2) = max(err(2),errmax(2))
-           do k=1,nz
-                        call db3val(x(i),y(j),z(k),idx,idy,idz,&
-                                            tx,ty,tz,nx,ny,nz,kx,ky,kz,fcn_3d,val(3),iflag(3),&
-                                            inbvx,inbvy,inbvz,iloy,iloz)
-                        tru(3)    = f3(x(i),y(j),z(k))
-                        err(3)    = abs(tru(3)-val(3))
-                        errmax(3) = max(err(3),errmax(3))
-              do l=1,nq
-                        call db4val(x(i),y(j),z(k),q(l),idx,idy,idz,idq,&
-                                            tx,ty,tz,tq,nx,ny,nz,nq,kx,ky,kz,kq,fcn_4d,val(4),iflag(4),&
-                                            inbvx,inbvy,inbvz,inbvq,iloy,iloz,iloq)
-                        tru(4)    = f4(x(i),y(j),z(k),q(l))
-                        err(4)    = abs(tru(4)-val(4))
-                        errmax(4) = max(err(4),errmax(4))
-                do m=1,nr
-                        call db5val(x(i),y(j),z(k),q(l),r(m),idx,idy,idz,idq,idr,&
-                                            tx,ty,tz,tq,tr,nx,ny,nz,nq,nr,kx,ky,kz,kq,kr,fcn_5d,val(5),iflag(5),&
-                                            inbvx,inbvy,inbvz,inbvq,inbvr,iloy,iloz,iloq,ilor)
-                        tru(5)    = f5(x(i),y(j),z(k),q(l),r(m))
-                        err(5)    = abs(tru(5)-val(5))
-                        errmax(5) = max(err(5),errmax(5))
-                    do n=1,ns
-                        call db6val(x(i),y(j),z(k),q(l),r(m),s(n),idx,idy,idz,idq,idr,ids,&
-                                            tx,ty,tz,tq,tr,ts,nx,ny,nz,nq,nr,ns,kx,ky,kz,kq,kr,ks,fcn_6d,val(6),iflag(6),&
-                                            inbvx,inbvy,inbvz,inbvq,inbvr,inbvs,iloy,iloz,iloq,ilor,ilos)
-                        tru(6)    = f6(x(i),y(j),z(k),q(l),r(m),s(n))
-                        err(6)    = abs(tru(6)-val(6))
-                        errmax(6) = max(err(6),errmax(6))
-                    end do
-                end do
-              end do
-           end do
-        end do
-     end do
-
-    ! check max error against tolerance
-    do i=1,6
-        write(*,*) i,'D: max error:', errmax(i)
-        if (errmax(i) >= tol) then
-            write(*,*)  ' ** test failed ** '
-        else
-            write(*,*)  ' ** test passed ** '
-        end if
-        write(*,*) ''
     end do
 
-    contains
+    !2d line plot:
+    call plt%initialize(grid=.true.,xlabel='angle (rad)',figsize=[20,10],&
+                        title='plot test',legend=.true.,axis_equal=.true.)
+    call plt%add_plot(x,sx,label='$\sin (x)$',linestyle='b-o',markersize=5,linewidth=2,istat=istat)
+    call plt%add_plot(x,cx,label='$\cos (x)$',linestyle='r-o',markersize=5,linewidth=2,istat=istat)
+    call plt%add_plot(x,tx,label='$\sin (x) \cos (x)$',linestyle='g-o',markersize=2,linewidth=1,istat=istat)
+    call plt%savefig('plottest.png', pyfile='plottest.py',istat=istat)
 
-        real(wp) function f1(x) !! 1d test function
-        implicit none
-        real(wp) :: x
-        f1 = 0.5_wp * (x*exp(-x) + sin(x) )
-        end function f1
+    !bar chart:
+    tx = 0.1_wp !for bar width
+    call plt%initialize(grid=.true.,xlabel='angle (rad)',&
+                        title='bar test',legend=.true.,figsize=[20,10],&
+                        font_size = 20,&
+                        axes_labelsize = 20,&
+                        xtick_labelsize = 20,&
+                        ytick_labelsize = 20,&
+                        legend_fontsize = 20 )
+    call plt%add_bar(left=x,height=sx,width=tx,label='$\sin (x)$',&
+                        color='r',yerr=yerr,xlim=[0.0_wp, 20.0_wp],align='center',istat=istat)
+    call plt%savefig('bartest.png', pyfile='bartest.py',istat=istat)
 
-        real(wp) function f2(x,y) !! 2d test function
-        implicit none
-        real(wp) x,y,piov2
-        piov2 = 2.0_wp * atan(1.0_wp)
-        f2 = 0.5_wp * (y*exp(-x) + sin(piov2*y) )
-        end function f2
+    !contour plot:
+    x = [(real(i,wp), i=0,n-1)]/100.0_wp
+    y = [(real(i,wp), i=0,n-1)]/100.0_wp
+    do i=1,n
+        do j=1,n
+            r2 = x(i)**2 + y(j)**2
+            z(i,j) = sin(x(i))*cos(y(j))*sin(r2)/(1.0_wp+log(r2+1.0_wp))
+        end do
+    end do
+    call plt%initialize(grid=.true.,xlabel='x angle (rad)',&
+                        ylabel='y angle (rad)',figsize=[10,10],&
+                        title='Contour plot test', real_fmt='*')
+    call plt%add_contour(x, y, z, label='contour', linestyle='-', &
+                         linewidth=2, filled=.true., cmap='bone',istat=istat)
+    call plt%savefig('contour.png',pyfile='contour.py',istat=istat)
 
-        real(wp) function f3 (x,y,z) !! 3d test function
-        implicit none
-        real(wp) x,y,z,piov2
-        piov2 = 2.0_wp*atan(1.0_wp)
-        f3 = 0.5_wp*( y*exp(-x) + z*sin(piov2*y) )
-        end function f3
+    !image plot:
+    call plt%initialize(grid=.true.,xlabel='x',ylabel='y',figsize=[20,20],&
+                        title='imshow test',&
+                        real_fmt='(F9.3)')
+    call plt%add_imshow(mat,xlim=[0.0_wp, 100.0_wp],ylim=[0.0_wp, 100.0_wp],istat=istat)
+    call plt%savefig('imshow.png', pyfile='imshow.py',istat=istat)
 
-        real(wp) function f4 (x,y,z,q) !! 4d test function
-        implicit none
-        real(wp) x,y,z,q,piov2
-        piov2 = 2.0_wp*atan(1.0_wp)
-        f4 = 0.5_wp*( y*exp(-x) + z*sin(piov2*y) + q )
-        end function f4
+    !histogram chart:
+    x = [0.194,0.501,-1.241,1.425,-2.217,-0.342,-0.979,0.909,0.994,0.101,       &
+         -0.131,-0.627,0.463,1.404,0.036,-2.000,0.109,1.250,-1.035,-1.115,      &
+          0.935,0.496,1.100,0.770,-1.307,-0.693,-0.072,-1.331,-0.701,           &
+         -0.494,0.666,-0.313,-0.430,-0.654,1.638,-0.334,-0.418,0.550,-0.034,    &
+          0.473,0.704,0.801,-0.157,0.055,-0.057,-1.049,-1.022,0.495,0.756,      &
+          0.149,0.543,-0.813,-0.171,-0.994,-1.532,0.502,1.324,-0.593,-0.467,    &
+          0.372,-0.904,1.255,0.931,-0.779,1.529,-0.036,0.783,0.292,-0.792,      &
+          -0.223,-0.325,0.225,-0.492,-0.941,0.065,1.300,-1.241,-1.124,-0.499,   &
+          1.233,-0.845,-0.948,-1.060,1.103,-1.154,-0.594,0.335,-1.423,0.571,    &
+         -0.903,1.129,-0.372,-1.043,-1.327,0.147,1.056,1.068,-0.699,0.988,-0.630]
 
-        real(wp) function f5 (x,y,z,q,r) !! 5d test function
-        implicit none
-        real(wp) x,y,z,q,r,piov2
-        piov2 = 2.0_wp*atan(1.0_wp)
-        f5 = 0.5_wp*( y*exp(-x) + z*sin(piov2*y) + q*r )
-        end function f5
+    call plt%initialize(grid=.true.,xlabel='x',&
+                        title='hist test',&
+                        legend=.true.,figsize=[20,10],&
+                        font_size = 20,&
+                        axes_labelsize = 20,&
+                        xtick_labelsize = 20,&
+                        ytick_labelsize = 20,&
+                        legend_fontsize = 20 )
 
-        real(wp) function f6 (x,y,z,q,r,s) !! 6d test function
-        implicit none
-        real(wp) x,y,z,q,r,s,piov2
-        piov2 = 2.0_wp*atan(1.0_wp)
-        f6 = 0.5_wp*( y*exp(-x) + z*sin(piov2*y) + q*r + 2.0_wp*s )
-        end function f6
+    call plt%add_hist(x=x, label='x', normed=.true.,istat=istat)
+    call plt%savefig('histtest1.png', pyfile='histtest1.py',istat=istat)
 
-    end program bspline_test
+    call plt%initialize(grid=.true.,xlabel='x',&
+                        title='cumulative hist test',&
+                        legend=.true.,figsize=[20,10],&
+                        font_size = 20,&
+                        axes_labelsize = 20,&
+                        xtick_labelsize = 20,&
+                        ytick_labelsize = 20,&
+                        legend_fontsize = 20 )
+
+    call plt%add_hist(x=x, label='x', bins=8, cumulative=.true.,istat=istat)
+    call plt%savefig('histtest2.png', &
+                        pyfile='histtest2.py', &
+                        dpi='200', &
+                        transparent=.true.,istat=istat)
+
+    end program test
+!*****************************************************************************************
