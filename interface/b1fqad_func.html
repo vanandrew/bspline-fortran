@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,9 +11,7 @@
     <meta name="author" content="Jacob Williams" >
     <link rel="icon" href="../favicon.png">
 
-    <title>
-All Programs &ndash; bspline-fortran
-</title>
+    <title>b1fqad_func &ndash; bspline-fortran</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -116,32 +115,182 @@ All Programs &ndash; bspline-fortran
 
     <div class="container">
     
-      <div class="row">
-        <div class="col-lg-12" id='text'>
-			 <h1>Programs</h1>
-			 <table class="table table-striped nostretch">
-			 <thead><tr><th>Program</th><th>Source File</th><th>Description</th></tr></thead>
-			 <tbody>
-			 
-			   <tr><td><a href='../program/bspline_extrap_test.html'>bspline_extrap_test</a></td><td><a href='../sourcefile/bspline_extrap_test.f90.html'>bspline_extrap_test.f90</a></td><td><p>Extrapolation test</p></td></tr>
-			 
-			   <tr><td><a href='../program/bspline_integrate_test.html'>bspline_integrate_test</a></td><td><a href='../sourcefile/test_integrate.f90.html'>test_integrate.f90</a></td><td><p>1D definite integral test using the bspline module.</p></td></tr>
-			 
-			   <tr><td><a href='../program/bspline_oo_test.html'>bspline_oo_test</a></td><td><a href='../sourcefile/test_oo.f90.html'>test_oo.f90</a></td><td><p>Units test for 1d-6d tensor product b-spline interpolation (object-oriented version).</p></td></tr>
-			 
-			   <tr><td><a href='../program/bspline_regridding_test.html'>bspline_regridding_test</a></td><td><a href='../sourcefile/test_regrid.f90.html'>test_regrid.f90</a></td><td><p>2D data regridding using the bspline module.</p></td></tr>
-			 
-			   <tr><td><a href='../program/bspline_speed_test.html'>bspline_speed_test</a></td><td><a href='../sourcefile/speed_test.f90.html'>speed_test.f90</a></td><td><p>Speed test for 1d-6d tensor product b-spline interpolation (subroutine version).</p></td></tr>
-			 
-			   <tr><td><a href='../program/bspline_speed_test_oo.html'>bspline_speed_test_oo</a></td><td><a href='../sourcefile/speed_test_oo.f90.html'>speed_test_oo.f90</a></td><td><p>Speed test for 1d-6d tensor product b-spline interpolation (object-oriented version).</p></td></tr>
-			 
-			   <tr><td><a href='../program/bspline_test.html'>bspline_test</a></td><td><a href='../sourcefile/test.f90.html'>test.f90</a></td><td><p>Units test for 1d-6d tensor product b-spline interpolation.</p></td></tr>
-			 
-			   <tr><td><a href='../program/knot_tests.html'>knot_tests</a></td><td><a href='../sourcefile/knot_tests.f90.html'>knot_tests.f90</a></td><td><p>Tests for different knot vectors.</p></td></tr>
-			 
-			 </tbody></table>
-        </div>
-      </div>
+  
+  <div class="row">
+    <h1>b1fqad_func
+	 <small>Abstract Interface</small>
+    
+    </h1>
+    
+    
+<div class="row">
+  <div class="col-lg-12">
+<div class="well well-sm">
+  <ul class="list-inline" style="margin-bottom:0px;display:inline">
+     
+     
+     
+     
+    
+    
+     <li><i class="fa fa-list-ol"></i>
+       <a data-toggle="tooltip"
+	  data-placement="bottom" data-html="true"
+	  title="100.0% of total for abstract interfaces.">8 statements</a>
+     </li> 
+     
+     
+    <li><i class="fa fa-code"></i><a href="../src/bspline_sub_module.f90"> Source File</a></li>
+     
+  </ul>
+  <ol class="breadcrumb in-well text-right">
+  
+     <li><a href='../sourcefile/bspline_sub_module.f90.html'>bspline_sub_module.f90</a></li>
+  
+     <li><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></li>
+  
+     <li class="active">b1fqad_func</li>
+  </ol>
+</div>
+</div>
+</div>
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+  })
+</script>
+
+    
+  </div>
+  
+  <div class="row">
+    <div class="col-md-3 hidden-xs hidden-sm visible-md visible-lg">
+    
+<div id="sidebar">
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <hr>
+  
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allabsints-0">All Abstract Interfaces</a></h3></div>
+  <div id="allabsints-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../interface/b1fqad_func.html">b1fqad_func</a>
+      
+    </div>
+  </div>
+</div> 
+
+
+</div>  
+
+    </div>
+    
+    <div class="col-md-9" id='text'>
+	
+    
+    <h2>abstract interface <br>
+    
+public function b1fqad_func(x) result(f)
+    
+    
+	 
+</h2>    
+    
+
+    
+  
+
+
+    <h3>Arguments</h3>
+    
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-x"></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    
+    
+    
+    
+    
+    
+    
+      <h3>Return Value <span class="anchor" id="variable-f"></span><small>real(kind=wp)
+  </small></h3>
+    <p>f(x)</p>
+    
+    
+    <h3>Description</h3>
+    <p>interface for the input function in [[dbfqad]]</p>
+    
+    <br>
+
+ </div>
+</div>
+
+  <section class="visible-xs visible-sm hidden-md">
+    <hr>
+    
+
+<div class="panel panel-default">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allabsints-1">All Abstract Interfaces</a></h3></div>
+  <div id="allabsints-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../interface/b1fqad_func.html">b1fqad_func</a>
+      
+    </div>
+  </div>
+</div> 
+
+
+  </section>
 
     <hr>    
     </div> <!-- /container -->

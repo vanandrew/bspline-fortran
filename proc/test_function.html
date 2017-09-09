@@ -10,7 +10,7 @@
     <meta name="author" content="Jacob Williams" >
     <link rel="icon" href="../favicon.png">
 
-    <title>db1qad &ndash; bspline-fortran</title>
+    <title>test_function &ndash; bspline-fortran</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -69,6 +69,8 @@
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
@@ -87,6 +89,8 @@
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
                              
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
@@ -112,8 +116,8 @@
     
   
   <div class="row">
-    <h1>db1qad
-      <small>Subroutine</small>
+    <h1>test_function
+      <small>Function</small>
     
     </h1>
     
@@ -130,20 +134,20 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title=" 1.2% of total for procedures.">13 statements</a>
+	  title=" 0.6% of total for procedures.">6 statements</a>
      </li> 
      
      
-    <li><i class="fa fa-code"></i><a href="../src/bspline_sub_module.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/test_integrate.f90"> Source File</a></li>
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
-     <li><a href='../sourcefile/bspline_sub_module.f90.html'>bspline_sub_module.f90</a></li>
+     <li><a href='../sourcefile/test_integrate.f90.html'>test_integrate.f90</a></li>
   
-     <li><a href='../module/bspline_sub_module.html'>bspline_sub_module</a></li>
+     <li><a href='../program/bspline_integrate_test.html'>bspline_integrate_test</a></li>
   
-     <li class="active">db1qad</li>
+     <li class="active">test_function</li>
   </ol>
 </div>
 </div>
@@ -184,7 +188,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/db1qad.html#src">db1qad</a>
+    <a class="list-group-item" href="../proc/test_function.html#src">test_function</a>
   </div>
 </div>
 
@@ -209,9 +213,11 @@
       
       <a class="list-group-item" href="../interface/bspline_6d.html">bspline_6d</a>
       
+      <a class="list-group-item" href="../proc/db1fqad.html">db1fqad</a>
+      
       <a class="list-group-item" href="../proc/db1ink.html">db1ink</a>
       
-      <a class="list-group-item" href="../proc/db1qad.html">db1qad</a>
+      <a class="list-group-item" href="../proc/db1sqad.html">db1sqad</a>
       
       <a class="list-group-item" href="../proc/db1val.html">db1val</a>
       
@@ -291,6 +297,8 @@
       
       <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
       
+      <a class="list-group-item" href="../proc/test_function.html">test_function</a>
+      
     </div>
   </div>
 </div>
@@ -302,7 +310,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
+function test_function(x) result(f)
     
     
 	 
@@ -311,15 +319,6 @@ public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
   
 
 
-    
-    <p>Computes the integral on <code>(x1,x2)</code> of a <code>kx</code>-th order b-spline.
-  Orders <code>kx</code> as high as 20 are permitted by applying a 2, 6, or 10
-  point gauss formula on subintervals of <code>(x1,x2)</code> which are
-  formed by included (distinct) knots.</p>
-<h3>See also</h3>
-<ul>
-<li>[[dbsqad]] -- the core routine.</li>
-</ul>
     
 
     <h3>Arguments</h3>
@@ -340,121 +339,12 @@ public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
   
 <tr>
   
-  <td><span class="anchor" id="variable-tx%7E3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(nx+kx)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>knot array</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-bcoef%7E3"></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(nx)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>b-spline coefficient array</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-nx%7E3"></span>integer,</td>
+  <td><span class="anchor" id="variable-x%7E20"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>nx</strong></td><td><p>length of coefficient array</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-kx%7E3"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>kx</strong></td><td><p>order of b-spline, <code>1 &lt;= k &lt;= 20</code></p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-x1"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>x1</strong></td><td><p>end point of quadrature interval in <code>t(kx) &lt;= x &lt;= t(nx+1)</code></p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-x2"></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>x2</strong></td><td><p>end point of quadrature interval in <code>t(kx) &lt;= x &lt;= t(nx+1)</code></p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-f%7E2"></span>real(kind=wp),</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>f</strong></td><td><p>integral of the b-spline over (<code>x1</code>,<code>x2</code>)</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-iflag%7E4"></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td><p>status flag:</p>
-<ul>
-<li>\( = 0 \)   : no errors</li>
-<li>\( \ne 0 \) : error</li>
-</ul></td>
+  <td><strong>x</strong></td><td></td>
   
 </tr>
 
@@ -462,6 +352,15 @@ public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
 </table>
 
     
+    
+    
+    
+    
+    
+    
+	 <h3>Return Value <small><span class="anchor" id="variable-f%7E16"></span>real(kind=wp)
+  </small></h3>
+    <p>f(x)</p>
     
     
      
@@ -492,7 +391,7 @@ public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/db1qad.html#src">db1qad</a>
+    <a class="list-group-item" href="../proc/test_function.html#src">test_function</a>
   </div>
 </div>
 
@@ -520,27 +419,16 @@ public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span>    <span class="k">pure subroutine </span><span class="n">db1qad</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span>        <span class="k">function </span><span class="n">test_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
-    <span class="k">implicit none</span>
+        <span class="k">implicit none</span>
 
-<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">nx</span>      <span class="c">!! length of coefficient array</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">kx</span>      <span class="c">!! order of b-spline, `1 &lt;= k &lt;= 20`</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tx</span>      <span class="c">!! knot array</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>    <span class="kd">::</span> <span class="n">bcoef</span>   <span class="c">!! b-spline coefficient array</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">x1</span>      <span class="c">!! end point of quadrature interval in `t(kx) &lt;= x &lt;= t(nx+1)`</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">x2</span>      <span class="c">!! end point of quadrature interval in `t(kx) &lt;= x &lt;= t(nx+1)`</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">f</span>       <span class="c">!! integral of the b-spline over (`x1`,`x2`)</span>
-    <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                  <span class="kd">::</span> <span class="n">iflag</span>   <span class="c">!! status flag:</span>
-                                                    <span class="c">!!</span>
-                                                    <span class="c">!! * \( = 0 \)   : no errors</span>
-                                                    <span class="c">!! * \( \ne 0 \) : error</span>
+<span class="k">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span>
+        <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">f</span>  <span class="c">!! f(x)</span>
 
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">kx</span><span class="p">)</span> <span class="kd">::</span> <span class="n">work</span> <span class="c">!! work array for [[dbsqad]]</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="mf">2.0_wp</span>
 
-    <span class="k">call </span><span class="n">dbsqad</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">work</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
-
-    <span class="k">end subroutine </span><span class="n">db1qad</span>
+        <span class="k">end function </span><span class="n">test_function</span>
 </pre></div>
 
     </section>
@@ -571,9 +459,11 @@ public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
       
       <a class="list-group-item" href="../interface/bspline_6d.html">bspline_6d</a>
       
+      <a class="list-group-item" href="../proc/db1fqad.html">db1fqad</a>
+      
       <a class="list-group-item" href="../proc/db1ink.html">db1ink</a>
       
-      <a class="list-group-item" href="../proc/db1qad.html">db1qad</a>
+      <a class="list-group-item" href="../proc/db1sqad.html">db1sqad</a>
       
       <a class="list-group-item" href="../proc/db1val.html">db1val</a>
       
@@ -652,6 +542,8 @@ public pure subroutine db1qad(tx, bcoef, nx, kx, x1, x2, f, iflag)
       <a class="list-group-item" href="../proc/test_func.html">test_func</a>
       
       <a class="list-group-item" href="../proc/test_func%7E2.html">test_func</a>
+      
+      <a class="list-group-item" href="../proc/test_function.html">test_function</a>
       
     </div>
   </div>

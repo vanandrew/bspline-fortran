@@ -69,6 +69,8 @@
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
 				
+				
+            <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
 								
             <li><a href="../lists/types.html">Derived Types</a></li>
 				
@@ -87,6 +89,8 @@
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/procedures.html">Procedures</a></li>
 
+
+<li class="visible-xs hidden-sm visible-lg"><a href="../lists/absint.html">Abstract Interfaces</a></li>
                              
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/types.html">Derived Types</a></li>
 
@@ -130,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
 	  data-placement="bottom" data-html="true"
-	  title="<p> 9.7% of total for derived types.</p>Including implementation: 186 statements, 10.9% of total for derived types.">17 statements</a>
+	  title="<p>10.1% of total for derived types.</p>Including implementation: 204 statements, 11.8% of total for derived types.">18 statements</a>
      </li> 
      
      
@@ -219,6 +223,8 @@
       <a class="list-group-item" href="../type/bspline_1d.html#boundprocedure-size_of%7E2">size_of</a>
       
       <a class="list-group-item" href="../type/bspline_1d.html#boundprocedure-integral">integral</a>
+      
+      <a class="list-group-item" href="../type/bspline_1d.html#boundprocedure-fintegral">fintegral</a>
       
     </div>
   </div>
@@ -414,6 +420,8 @@
       <a class="list-group-item" href="../type/bspline_1d.html#boundprocedure-size_of%7E2">size_of</a>
       
       <a class="list-group-item" href="../type/bspline_1d.html#boundprocedure-integral">integral</a>
+      
+      <a class="list-group-item" href="../type/bspline_1d.html#boundprocedure-fintegral">fintegral</a>
       
     </div>
   </div>
@@ -1660,7 +1668,7 @@ private pure subroutine integral_1d(me, x1, x2, f, iflag)
 
 
 
-<p>Evaluate a <a href="../interface/bspline_1d.html">bspline_1d</a> definite integral.  This is a wrapper for <a href="../proc/db1qad.html">db1qad</a>.</p>
+<p>Evaluate a <a href="../interface/bspline_1d.html">bspline_1d</a> definite integral.  This is a wrapper for <a href="../proc/db1sqad.html">db1sqad</a>.</p>
     
     <h4>Arguments</h4>
     
@@ -1746,7 +1754,180 @@ private pure subroutine integral_1d(me, x1, x2, f, iflag)
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td><p>status flag (see <a href="../proc/db1qad.html">db1qad</a>)</p></td>
+  <td><strong>iflag</strong></td><td><p>status flag (see <a href="../proc/db1sqad.html">db1sqad</a>)</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+      
+      </li>
+    
+  </ul>
+</div>
+
+    
+	   
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-fintegral"></span><h3>procedure, public :: <strong>fintegral</strong>  => fintegral_1d 
+    
+  </h3></div>
+  
+  <ul class="list-group">
+    
+      <li class="list-group-item">
+      
+         
+    
+    <h3>
+private subroutine fintegral_1d(me, fun, idx, x1, x2, tol, f, iflag)
+    
+    
+	 
+</h3>
+    
+
+
+
+<p>Evaluate a <a href="../interface/bspline_1d.html">bspline_1d</a> definite integral.  This is a wrapper for <a href="../proc/db1fqad.html">db1fqad</a>.</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/bspline_1d.html'>bspline_1d</a>),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>me</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>procedure(<a href='../interface/b1fqad_func.html'>b1fqad_func</a>)</td>
+  <td></td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fun</strong></td><td><p>external function of one argument for the
+ integrand <code>bf(x)=fun(x)*dbvalu(tx,bcoef,nx,kx,idx,x,inbv)</code></p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>idx</strong></td><td><p>order of the spline derivative, <code>0 &lt;= idx &lt;= k-1</code>
+ <code>idx=0</code> gives the spline function</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x1</strong></td><td><p>left point of interval</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>x2</strong></td><td><p>right point of interval</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>tol</strong></td><td><p>desired accuracy for the quadrature</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>f</strong></td><td><p>integral of <code>bf(x)</code> over \( [x_1, x_2] \)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>status flag (see <a href="../proc/db1sqad.html">db1sqad</a>)</p></td>
   
 </tr>
 
@@ -1786,6 +1967,7 @@ private pure subroutine integral_1d(me, x1, x2, f, iflag)
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">destroy</span> <span class="o">=&gt;</span> <span class="n">destroy_1d</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">size_of</span> <span class="o">=&gt;</span> <span class="n">size_1d</span>
         <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">integral</span> <span class="o">=&gt;</span> <span class="n">integral_1d</span>
+        <span class="k">procedure</span><span class="p">,</span><span class="k">public</span> <span class="kd">::</span> <span class="n">fintegral</span> <span class="o">=&gt;</span> <span class="n">fintegral_1d</span>
         <span class="k">final</span> <span class="kd">::</span> <span class="n">finalize_1d</span>
     <span class="k">end type </span><span class="n">bspline_1d</span>
 </pre></div>
