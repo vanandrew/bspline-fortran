@@ -357,6 +357,8 @@
     <br><br>
     
     <p>Class for 1d b-spline interpolation.</p>
+<p></p><div class="alert alert-info" role="alert"><h4>Note</h4><p>The 1D class also contains two methods
+      for computing definite integrals.</p></div>
     <br>
     
 
@@ -1953,6 +1955,9 @@ private subroutine fintegral_1d(me, fun, idx, x1, x2, tol, f, iflag)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_1d</span>
         <span class="c">!! Class for 1d b-spline interpolation.</span>
+        <span class="c">!!</span>
+        <span class="c">!!@note The 1D class also contains two methods</span>
+        <span class="c">!!      for computing definite integrals.</span>
         <span class="k">private</span>
 <span class="k">        </span><span class="kt">integer</span> <span class="kd">::</span> <span class="n">nx</span>  <span class="o">=</span> <span class="mi">0</span>  <span class="c">!! Number of \(x\) abcissae</span>
         <span class="kt">integer</span> <span class="kd">::</span> <span class="n">kx</span>  <span class="o">=</span> <span class="mi">0</span>  <span class="c">!! The order of spline pieces in \(x\)</span>

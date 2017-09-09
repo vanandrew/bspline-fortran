@@ -320,6 +320,9 @@ function test_function(x) result(f)
 
 
     
+    <p>the function \( f(x) = x^2 \)
+ to use for <a href="../proc/db1fqad.html">db1fqad</a> test.</p>
+    
 
     <h3>Arguments</h3>
     
@@ -421,12 +424,15 @@ function test_function(x) result(f)
     <h2><span class="anchor" id="src"></span>Source Code</h2>
     <div class="highlight"><pre><span></span>        <span class="k">function </span><span class="n">test_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
+        <span class="c">!! the function \( f(x) = x^2 \)</span>
+        <span class="c">!! to use for [[db1fqad]] test.</span>
+
         <span class="k">implicit none</span>
 
 <span class="k">        </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span>
         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">f</span>  <span class="c">!! f(x)</span>
 
-        <span class="n">f</span> <span class="o">=</span> <span class="mf">2.0_wp</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
 
         <span class="k">end function </span><span class="n">test_function</span>
 </pre></div>

@@ -480,7 +480,7 @@ public subroutine db1fqad(fun, tx, bcoef, nx, kx, idx, x1, x2, tol, f, iflag)
   <td></td><td>::</td>
   <td><strong>tol</strong></td><td><p>desired accuracy for the quadrature, suggest
  <code>10*dtol &lt; tol &lt;= 0.1</code> where <code>dtol</code> is the maximum
- of <code>1.0e-18</code> and real(wp) unit roundoff for
+ of <code>1.0e-300</code> and real(wp) unit roundoff for
  the machine</p></td>
   
 </tr>
@@ -597,7 +597,7 @@ public subroutine db1fqad(fun, tx, bcoef, nx, kx, idx, x1, x2, tol, f, iflag)
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">x2</span>     <span class="c">!! right point of quadrature interval in `t(k) &lt;= x &lt;= t(n+1)`</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">tol</span>    <span class="c">!! desired accuracy for the quadrature, suggest</span>
                                                   <span class="c">!! `10*dtol &lt; tol &lt;= 0.1` where `dtol` is the maximum</span>
-                                                  <span class="c">!! of `1.0e-18` and real(wp) unit roundoff for</span>
+                                                  <span class="c">!! of `1.0e-300` and real(wp) unit roundoff for</span>
                                                   <span class="c">!! the machine</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">f</span>      <span class="c">!! integral of `bf(x)` on `(x1,x2)`</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                 <span class="kd">::</span> <span class="n">iflag</span>  <span class="c">!! status flag:</span>
