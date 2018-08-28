@@ -3567,42 +3567,42 @@
 <a name="ln-2975"></a>    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">xt</span>
 <a name="ln-2976"></a>    <span class="kt">logical</span> <span class="kd">::</span> <span class="n">extrapolation_allowed</span>  <span class="c">!! if extrapolation is allowed</span>
 <a name="ln-2977"></a>
-<a name="ln-2978"></a>    <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">extrap</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-2979"></a><span class="k">        </span><span class="n">extrapolation_allowed</span> <span class="o">=</span> <span class="n">extrap</span>
-<a name="ln-2980"></a>    <span class="k">else</span>
-<a name="ln-2981"></a><span class="k">        </span><span class="n">extrapolation_allowed</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-2982"></a>    <span class="k">end if</span>
-<a name="ln-2983"></a>
-<a name="ln-2984"></a>    <span class="c">! make a temp copy of x (for computing the</span>
-<a name="ln-2985"></a>    <span class="c">! interval) in case extrapolation is allowed</span>
-<a name="ln-2986"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">extrapolation_allowed</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-2987"></a><span class="k">        if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-2988"></a><span class="k">            </span><span class="n">xt</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<a name="ln-2989"></a>        <span class="k">else if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-2990"></a><span class="k">            </span><span class="n">xt</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="p">)</span>
-<a name="ln-2991"></a>        <span class="k">else</span>
-<a name="ln-2992"></a><span class="k">            </span><span class="n">xt</span> <span class="o">=</span> <span class="n">x</span>
-<a name="ln-2993"></a>        <span class="k">end if</span>
-<a name="ln-2994"></a><span class="k">    else</span>
-<a name="ln-2995"></a><span class="k">        </span><span class="n">xt</span> <span class="o">=</span> <span class="n">x</span>
-<a name="ln-2996"></a>    <span class="k">end if</span>
-<a name="ln-2997"></a>
-<a name="ln-2998"></a><span class="k">    </span><span class="n">val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-2999"></a>
-<a name="ln-3000"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-3001"></a><span class="k">        </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">401</span>  <span class="c">! dbvalu - k does not satisfy k&gt;=1</span>
-<a name="ln-3002"></a>        <span class="k">return</span>
-<a name="ln-3003"></a><span class="k">    end if</span>
-<a name="ln-3004"></a>
-<a name="ln-3005"></a><span class="k">    if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-3006"></a><span class="k">        </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">402</span>  <span class="c">! dbvalu - n does not satisfy n&gt;=k</span>
-<a name="ln-3007"></a>        <span class="k">return</span>
-<a name="ln-3008"></a><span class="k">    end if</span>
-<a name="ln-3009"></a>
-<a name="ln-3010"></a><span class="k">    if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">&lt;</span><span class="mi">0</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">ideriv</span><span class="o">&gt;=</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-3011"></a><span class="k">        </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">403</span>  <span class="c">! dbvalu - ideriv does not satisfy 0&lt;=ideriv&lt;k</span>
-<a name="ln-3012"></a>        <span class="k">return</span>
-<a name="ln-3013"></a><span class="k">    end if</span>
+<a name="ln-2978"></a>    <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a name="ln-2979"></a>
+<a name="ln-2980"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2981"></a><span class="k">        </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">401</span>  <span class="c">! dbvalu - k does not satisfy k&gt;=1</span>
+<a name="ln-2982"></a>        <span class="k">return</span>
+<a name="ln-2983"></a><span class="k">    end if</span>
+<a name="ln-2984"></a>
+<a name="ln-2985"></a><span class="k">    if</span> <span class="p">(</span><span class="n">n</span><span class="o">&lt;</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2986"></a><span class="k">        </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">402</span>  <span class="c">! dbvalu - n does not satisfy n&gt;=k</span>
+<a name="ln-2987"></a>        <span class="k">return</span>
+<a name="ln-2988"></a><span class="k">    end if</span>
+<a name="ln-2989"></a>
+<a name="ln-2990"></a><span class="k">    if</span> <span class="p">(</span><span class="n">ideriv</span><span class="o">&lt;</span><span class="mi">0</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">ideriv</span><span class="o">&gt;=</span><span class="n">k</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-2991"></a><span class="k">        </span><span class="n">iflag</span> <span class="o">=</span> <span class="mi">403</span>  <span class="c">! dbvalu - ideriv does not satisfy 0&lt;=ideriv&lt;k</span>
+<a name="ln-2992"></a>        <span class="k">return</span>
+<a name="ln-2993"></a><span class="k">    end if</span>
+<a name="ln-2994"></a>
+<a name="ln-2995"></a><span class="k">    if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">extrap</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-2996"></a><span class="k">        </span><span class="n">extrapolation_allowed</span> <span class="o">=</span> <span class="n">extrap</span>
+<a name="ln-2997"></a>    <span class="k">else</span>
+<a name="ln-2998"></a><span class="k">        </span><span class="n">extrapolation_allowed</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-2999"></a>    <span class="k">end if</span>
+<a name="ln-3000"></a>
+<a name="ln-3001"></a>    <span class="c">! make a temp copy of x (for computing the</span>
+<a name="ln-3002"></a>    <span class="c">! interval) in case extrapolation is allowed</span>
+<a name="ln-3003"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">extrapolation_allowed</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-3004"></a><span class="k">        if</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;</span><span class="n">t</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-3005"></a><span class="k">            </span><span class="n">xt</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a name="ln-3006"></a>        <span class="k">else if</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;</span><span class="n">t</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-3007"></a><span class="k">            </span><span class="n">xt</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">k</span><span class="p">)</span>
+<a name="ln-3008"></a>        <span class="k">else</span>
+<a name="ln-3009"></a><span class="k">            </span><span class="n">xt</span> <span class="o">=</span> <span class="n">x</span>
+<a name="ln-3010"></a>        <span class="k">end if</span>
+<a name="ln-3011"></a><span class="k">    else</span>
+<a name="ln-3012"></a><span class="k">        </span><span class="n">xt</span> <span class="o">=</span> <span class="n">x</span>
+<a name="ln-3013"></a>    <span class="k">end if</span>
 <a name="ln-3014"></a>
 <a name="ln-3015"></a><span class="k">    </span><span class="n">kmider</span> <span class="o">=</span> <span class="n">k</span> <span class="o">-</span> <span class="n">ideriv</span>
 <a name="ln-3016"></a>
