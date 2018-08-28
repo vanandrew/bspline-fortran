@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
+   
+   <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
     
     <meta name="author" content="Jacob Williams" >
     <link rel="icon" href="../favicon.png">
@@ -17,6 +17,9 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +29,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-				
+        
+        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-								
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -133,17 +133,21 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title="13.2% of total for programs.">182 statements</a>
+    data-placement="bottom" data-html="true"
+    title="13.2% of total for programs.">182 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/test_oo.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/test_oo.f90.html'>test_oo.f90</a></li>
+    
   
      <li class="active">bspline_oo_test</li>
   </ol>
@@ -163,6 +167,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -282,6 +289,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-0">Functions</a></h3></div>
   <div id="funcs-0" class="panel-collapse collapse">
@@ -311,6 +319,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -319,186 +328,148 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-0">All Programs</a></h3></div>
-  <div id="allprogs-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../program/bspline_extrap_test.html">bspline_extrap_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_integrate_test.html">bspline_integrate_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_oo_test.html">bspline_oo_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_regridding_test.html">bspline_regridding_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_speed_test.html">bspline_speed_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_speed_test_oo.html">bspline_speed_test_oo</a>
-      
-      <a class="list-group-item" href="../program/bspline_test.html">bspline_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_test_2.html">bspline_test_2</a>
-      
-      <a class="list-group-item" href="../program/knot_tests.html">knot_tests</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
     <div class="col-md-9" id='text'>
     
   
-    <ul class="list-inline">
-      <li><h4>Uses:</h4></li>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Uses</h3>
+      </div>
+      <ul class="list-group">
       
-      <li><a href='../module/bspline_module.html'>bspline_module</a></li>
-      
-      <li><a href='../module/bspline_kinds_module.html'>bspline_kinds_module</a></li>
-      
-    </ul>
+      <li class="list-group-item">
+  <ul class="list-inline">
     
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <li><a href='../module/bspline_module.html'>bspline_module</a></li>
+    
+    <li><a href='../module/bspline_kinds_module.html'>bspline_kinds_module</a></li>
+    
+  </ul>
+      </li>
+      
+      
+      
+      <li class="list-group-item">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: program~~bspline_oo_test~~UsesGraph Pages: 1 -->
-<svg id="programbspline_oo_testUsesGraph" width="641pt" height="75pt"
- viewBox="0.00 0.00 641.00 74.51" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="program~~bspline_oo_test~~UsesGraph" class="graph" transform="scale(0.813452 0.813452) rotate(0) translate(4 87.595)">
+<svg id="programbspline_oo_testUsesGraph" width="641pt" height="91pt"
+ viewBox="0.00 0.00 641.00 91.11" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="program~~bspline_oo_test~~UsesGraph" class="graph" transform="scale(0.813452 0.813452) rotate(0) translate(4 108)">
 <title>program~~bspline_oo_test~~UsesGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-87.595 784,-87.595 784,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-108 784,-108 784,4 -4,4"/>
 <!-- program~bspline_oo_test -->
 <g id="program~~bspline_oo_test~~UsesGraph_node1" class="node"><title>program~bspline_oo_test</title>
-<polygon fill="none" stroke="black" points="780,-72.2579 692,-72.2579 692,-48.2579 780,-48.2579 780,-72.2579"/>
-<text text-anchor="middle" x="736" y="-57.8579" font-family="Helvetica,sans-Serif" font-size="10.50">bspline_oo_test</text>
-</g>
-<!-- module~bspline_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_node2" class="node"><title>module~bspline_module</title>
-<g id="a_program~~bspline_oo_test~~UsesGraph_node2"><a xlink:href="../module/bspline_module.html" xlink:title="bspline_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="656,-52.2579 568,-52.2579 568,-28.2579 656,-28.2579 656,-52.2579"/>
-<text text-anchor="middle" x="612" y="-37.8579" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_module</text>
-</a>
-</g>
-</g>
-<!-- module~bspline_module&#45;&gt;program~bspline_oo_test -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge10" class="edge"><title>module~bspline_module&#45;&gt;program~bspline_oo_test</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M656.013,-47.3092C664.395,-48.6833 673.275,-50.1391 681.938,-51.5592"/>
-<polygon fill="#000000" stroke="#000000" points="681.53,-55.039 691.965,-53.2029 682.663,-48.1312 681.53,-55.039"/>
+<polygon fill="none" stroke="black" points="780,-24 692,-24 692,-0 780,-0 780,-24"/>
+<text text-anchor="middle" x="736" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50">bspline_oo_test</text>
 </g>
 <!-- module~bspline_kinds_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_node3" class="node"><title>module~bspline_kinds_module</title>
-<g id="a_program~~bspline_oo_test~~UsesGraph_node3"><a xlink:href="../module/bspline_kinds_module.html" xlink:title="bspline_kinds_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="242,-52.2579 124,-52.2579 124,-28.2579 242,-28.2579 242,-52.2579"/>
-<text text-anchor="middle" x="183" y="-37.8579" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_kinds_module</text>
+<g id="program~~bspline_oo_test~~UsesGraph_node2" class="node"><title>module~bspline_kinds_module</title>
+<g id="a_program~~bspline_oo_test~~UsesGraph_node2"><a xlink:href=".././module/bspline_kinds_module.html" xlink:title="bspline_kinds_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="242,-24 124,-24 124,-0 242,-0 242,-24"/>
+<text text-anchor="middle" x="183" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_kinds_module</text>
 </a>
 </g>
 </g>
-<!-- module~bspline_kinds_module&#45;&gt;program~bspline_oo_test -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge11" class="edge"><title>module~bspline_kinds_module&#45;&gt;program~bspline_oo_test</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M480,-80.2579C549.601,-75.054 629.857,-68.7013 681.451,-64.5719"/>
-<polygon fill="#000000" stroke="#000000" points="682.004,-68.0388 691.693,-63.7512 681.445,-61.0612 682.004,-68.0388"/>
+<!-- program~bspline_oo_test&#45;&gt;module~bspline_kinds_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge1" class="edge"><title>program~bspline_oo_test&#45;&gt;module~bspline_kinds_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M691.95,-11.3563C680.285,-11.2088 667.659,-11.0738 656,-11 616.89,-10.7525 607.11,-10.7778 568,-11 528.887,-11.2222 519.114,-12 480,-12"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M478,-12C400.607,-9.2395 311.682,-9.75111 252.079,-10.6259"/>
+<polygon fill="#000000" stroke="#000000" points="251.982,-7.12691 242.037,-10.7808 252.09,-14.1261 251.982,-7.12691"/>
 </g>
-<!-- module~bspline_kinds_module&#45;&gt;module~bspline_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge7" class="edge"><title>module~bspline_kinds_module&#45;&gt;module~bspline_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M335,-80.2579C398.438,-84.1288 414.621,-84.9966 478,-80.2579"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M480,-80.2579C513.013,-77.7896 548.86,-66.1768 574.697,-56.0951"/>
-<polygon fill="#000000" stroke="#000000" points="576.106,-59.3013 584.082,-52.3285 573.498,-52.805 576.106,-59.3013"/>
-</g>
-<!-- module~bspline_oo_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_node4" class="node"><title>module~bspline_oo_module</title>
-<g id="a_program~~bspline_oo_test~~UsesGraph_node4"><a xlink:href="../module/bspline_oo_module.html" xlink:title="bspline_oo_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="532,-52.2579 426,-52.2579 426,-28.2579 532,-28.2579 532,-52.2579"/>
-<text text-anchor="middle" x="479" y="-37.8579" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_oo_module</text>
+<!-- module~bspline_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_node3" class="node"><title>module~bspline_module</title>
+<g id="a_program~~bspline_oo_test~~UsesGraph_node3"><a xlink:href=".././module/bspline_module.html" xlink:title="bspline_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="656,-44 568,-44 568,-20 656,-20 656,-44"/>
+<text text-anchor="middle" x="612" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_module</text>
 </a>
 </g>
 </g>
-<!-- module~bspline_kinds_module&#45;&gt;module~bspline_oo_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge2" class="edge"><title>module~bspline_kinds_module&#45;&gt;module~bspline_oo_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M214.5,-52.3252C244.199,-63.1402 290.894,-77.6886 333,-80.2579"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M335,-80.2579C373.439,-82.6034 415.711,-68.5907 444.253,-56.5124"/>
-<polygon fill="#000000" stroke="#000000" points="445.994,-59.571 453.748,-52.3509 443.184,-53.1599 445.994,-59.571"/>
+<!-- program~bspline_oo_test&#45;&gt;module~bspline_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge2" class="edge"><title>program~bspline_oo_test&#45;&gt;module~bspline_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M691.987,-19.0513C683.605,-20.4254 674.725,-21.8812 666.062,-23.3013"/>
+<polygon fill="#000000" stroke="#000000" points="665.337,-19.8733 656.035,-24.945 666.47,-26.7811 665.337,-19.8733"/>
+</g>
+<!-- iso_fortran_env -->
+<g id="program~~bspline_oo_test~~UsesGraph_node4" class="node"><title>iso_fortran_env</title>
+<g id="a_program~~bspline_oo_test~~UsesGraph_node4"><a xlink:href="http://fortranwiki.org/fortran/show/ISO_FORTRAN_ENV" xlink:title="iso_fortran_env">
+<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-44 0.5,-44 0.5,-20 87.5,-20 87.5,-44"/>
+<text text-anchor="middle" x="44" y="-29.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+</a>
+</g>
+</g>
+<!-- module~bspline_kinds_module&#45;&gt;iso_fortran_env -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge3" class="edge"><title>module~bspline_kinds_module&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M123.9,-20.4818C115.293,-21.7383 106.462,-23.0274 97.9675,-24.2675"/>
+<polygon fill="#000000" stroke="#000000" points="97.2,-20.8424 87.8105,-25.7503 98.2112,-27.769 97.2,-20.8424"/>
+</g>
+<!-- module~bspline_module&#45;&gt;module~bspline_kinds_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge4" class="edge"><title>module~bspline_module&#45;&gt;module~bspline_kinds_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M567.883,-22.0586C542.454,-17.0391 509.563,-12 480,-12"/>
 </g>
 <!-- module~bspline_sub_module -->
 <g id="program~~bspline_oo_test~~UsesGraph_node5" class="node"><title>module~bspline_sub_module</title>
-<g id="a_program~~bspline_oo_test~~UsesGraph_node5"><a xlink:href="../module/bspline_sub_module.html" xlink:title="bspline_sub_module">
-<polygon fill="#337ab7" stroke="#337ab7" points="389.5,-52.2579 278.5,-52.2579 278.5,-28.2579 389.5,-28.2579 389.5,-52.2579"/>
-<text text-anchor="middle" x="334" y="-37.8579" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_sub_module</text>
+<g id="a_program~~bspline_oo_test~~UsesGraph_node5"><a xlink:href=".././module/bspline_sub_module.html" xlink:title="bspline_sub_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="389.5,-104 278.5,-104 278.5,-80 389.5,-80 389.5,-104"/>
+<text text-anchor="middle" x="334" y="-89.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_sub_module</text>
 </a>
 </g>
 </g>
-<!-- module~bspline_kinds_module&#45;&gt;module~bspline_sub_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge4" class="edge"><title>module~bspline_kinds_module&#45;&gt;module~bspline_sub_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M242.034,-40.2579C250.609,-40.2579 259.49,-40.2579 268.191,-40.2579"/>
-<polygon fill="#000000" stroke="#000000" points="268.295,-43.758 278.295,-40.2579 268.295,-36.758 268.295,-43.758"/>
+<!-- module~bspline_module&#45;&gt;module~bspline_sub_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge5" class="edge"><title>module~bspline_module&#45;&gt;module~bspline_sub_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M592.705,-44.0795C577.219,-53.6545 554.079,-66.4728 532,-73 489.049,-85.6974 438.761,-90.3902 399.745,-91.9381"/>
+<polygon fill="#000000" stroke="#000000" points="399.445,-88.4461 389.569,-92.2812 399.681,-95.4422 399.445,-88.4461"/>
 </g>
-<!-- module~bspline_oo_module&#45;&gt;module~bspline_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge6" class="edge"><title>module~bspline_oo_module&#45;&gt;module~bspline_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M532.151,-40.2579C540.572,-40.2579 549.3,-40.2579 557.746,-40.2579"/>
-<polygon fill="#000000" stroke="#000000" points="557.869,-43.758 567.869,-40.2579 557.869,-36.758 557.869,-43.758"/>
-</g>
-<!-- module~bspline_sub_module&#45;&gt;module~bspline_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge8" class="edge"><title>module~bspline_sub_module&#45;&gt;module~bspline_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M378.162,-28.1888C393.177,-24.5548 410.213,-21.0559 426,-19.2579 472.809,-13.927 485.286,-13.155 532,-19.2579 542.451,-20.6232 553.486,-22.9637 563.888,-25.5986"/>
-<polygon fill="#000000" stroke="#000000" points="563.063,-29.0008 573.627,-28.1929 564.865,-22.2367 563.063,-29.0008"/>
-</g>
-<!-- module~bspline_sub_module&#45;&gt;module~bspline_oo_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge1" class="edge"><title>module~bspline_sub_module&#45;&gt;module~bspline_oo_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M389.879,-40.2579C398.37,-40.2579 407.193,-40.2579 415.831,-40.2579"/>
-<polygon fill="#000000" stroke="#000000" points="415.855,-43.758 425.855,-40.2579 415.855,-36.758 415.855,-43.758"/>
-</g>
-<!-- iso_fortran_env -->
-<g id="program~~bspline_oo_test~~UsesGraph_node6" class="node"><title>iso_fortran_env</title>
-<g id="a_program~~bspline_oo_test~~UsesGraph_node6"><a xlink:href="https://software.intel.com/en-us/node/511041" xlink:title="iso_fortran_env">
-<polygon fill="#337ab7" stroke="#337ab7" points="87.5,-32.2579 0.5,-32.2579 0.5,-8.25791 87.5,-8.25791 87.5,-32.2579"/>
-<text text-anchor="middle" x="44" y="-17.8579" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">iso_fortran_env</text>
+<!-- module~bspline_oo_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_node6" class="node"><title>module~bspline_oo_module</title>
+<g id="a_program~~bspline_oo_test~~UsesGraph_node6"><a xlink:href=".././module/bspline_oo_module.html" xlink:title="bspline_oo_module">
+<polygon fill="#337ab7" stroke="#337ab7" points="532,-64 426,-64 426,-40 532,-40 532,-64"/>
+<text text-anchor="middle" x="479" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_oo_module</text>
 </a>
 </g>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~bspline_kinds_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge9" class="edge"><title>iso_fortran_env&#45;&gt;module~bspline_kinds_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M87.5967,-26.4764C95.9289,-27.6928 104.861,-28.9967 113.786,-30.2997"/>
-<polygon fill="#000000" stroke="#000000" points="113.428,-33.7844 123.828,-31.7657 114.439,-26.8578 113.428,-33.7844"/>
+<!-- module~bspline_module&#45;&gt;module~bspline_oo_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge6" class="edge"><title>module~bspline_module&#45;&gt;module~bspline_oo_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M567.743,-38.6042C559.601,-39.8472 550.938,-41.1697 542.349,-42.4811"/>
+<polygon fill="#000000" stroke="#000000" points="541.691,-39.0409 532.334,-44.0101 542.747,-45.9607 541.691,-39.0409"/>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~bspline_oo_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge3" class="edge"><title>iso_fortran_env&#45;&gt;module~bspline_oo_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M87.6529,-10.9098C114.571,-5.78804 150.152,-0.436583 182,-0.257908"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M184,-0.257908C275.943,0.257908 299.276,-4.32694 390,-19.2579 400.798,-21.035 412.236,-23.4002 423.167,-25.9019"/>
-<polygon fill="#000000" stroke="#000000" points="422.494,-29.339 433.03,-28.2247 424.099,-22.5254 422.494,-29.339"/>
+<!-- module~bspline_sub_module&#45;&gt;module~bspline_kinds_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge8" class="edge"><title>module~bspline_sub_module&#45;&gt;module~bspline_kinds_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M304.395,-79.9268C295.708,-75.8792 286.277,-71.0898 278,-66 260.733,-55.3825 259.373,-48.4428 242,-38 236.217,-34.5241 229.889,-31.2255 223.604,-28.2177"/>
+<polygon fill="#000000" stroke="#000000" points="225.046,-25.0283 214.498,-24.0323 222.123,-31.3886 225.046,-25.0283"/>
 </g>
-<!-- iso_fortran_env&#45;&gt;module~bspline_sub_module -->
-<g id="program~~bspline_oo_test~~UsesGraph_edge5" class="edge"><title>iso_fortran_env&#45;&gt;module~bspline_sub_module</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M184,-0.257908C223.223,-0.037858 266.33,-13.1593 296.042,-24.4302"/>
-<polygon fill="#000000" stroke="#000000" points="294.992,-27.7775 305.58,-28.1596 297.541,-21.2582 294.992,-27.7775"/>
+<!-- module~bspline_sub_module&#45;&gt;iso_fortran_env -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge7" class="edge"><title>module~bspline_sub_module&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M297.988,-79.9336C268.113,-70.2864 223.798,-57.4986 184,-52"/>
+</g>
+<!-- module~bspline_oo_module&#45;&gt;module~bspline_kinds_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge10" class="edge"><title>module~bspline_oo_module&#45;&gt;module~bspline_kinds_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M425.983,-53.6435C398.838,-54.0854 365.099,-53.9846 335,-52"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M333,-52C295.302,-49.5143 253.911,-37.624 224.342,-27.4475"/>
+<polygon fill="#000000" stroke="#000000" points="225.384,-24.104 214.789,-24.0781 223.056,-30.7053 225.384,-24.104"/>
+</g>
+<!-- module~bspline_oo_module&#45;&gt;iso_fortran_env -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge9" class="edge"><title>module~bspline_oo_module&#45;&gt;iso_fortran_env</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M333,-52C266.921,-47.643 249.599,-61.0634 184,-52"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M182,-52C154.167,-48.1545 123.187,-43.6508 97.7379,-39.8918"/>
+<polygon fill="#000000" stroke="#000000" points="97.9614,-36.3868 87.5566,-38.3842 96.936,-43.3113 97.9614,-36.3868"/>
+</g>
+<!-- module~bspline_oo_module&#45;&gt;module~bspline_sub_module -->
+<g id="program~~bspline_oo_test~~UsesGraph_edge11" class="edge"><title>module~bspline_oo_module&#45;&gt;module~bspline_sub_module</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M435.095,-64.0013C420.383,-68.1165 403.738,-72.7727 388.304,-77.0899"/>
+<polygon fill="#000000" stroke="#000000" points="387.056,-73.8044 378.369,-79.8689 388.942,-80.5456 387.056,-73.8044"/>
 </g>
 </g>
 </svg>
-</div>
-                <script>var panprogrambspline_oo_testUsesGraph = svgPanZoom('#programbspline_oo_testUsesGraph', {
-                    zoomEnabled: true,
-                    controlIconsEnabled: true,
-                    fit: true,
-                    center: true,});
-                    </script>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
+</div><script>var panprogrambspline_oo_testUsesGraph = svgPanZoom('#programbspline_oo_testUsesGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
     <p>Nodes of different colours represent the following: </p>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -545,24 +516,26 @@
 </svg>
 
     
-    <p>Solid arrows point from a parent (sub)module to the submodule which is
-    descended from it. Dashed arrows point from a module being used to the
-    module or program unit using it.
+    <p>Solid arrows point from a submodule to the (sub)module which it is
+    descended from. Dashed arrows point from a module or program unit to 
+    modules which it uses.
     </p>
-    
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+    </div></div></div></div>
+      </li>
+      
+      </ul>
+    </div>
     
 
-    <br><br>
     <p>Units test for 1d-6d tensor product b-spline interpolation (object-oriented version).</p>
     
-     <h3>Calls</h3>
-     
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <br>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Calls</h3>
+      </div>
+      <div class="panel-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
@@ -578,61 +551,58 @@
 <polygon fill="none" stroke="black" points="88,-150 7.10543e-15,-150 7.10543e-15,-126 88,-126 88,-150"/>
 <text text-anchor="middle" x="44" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50">bspline_oo_test</text>
 </g>
-<!-- proc~f2 -->
-<g id="program~~bspline_oo_test~~CallsGraph_node2" class="node"><title>proc~f2</title>
-<g id="a_program~~bspline_oo_test~~CallsGraph_node2"><a xlink:href="../proc/f2.html" xlink:title="f2">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-276 153,-276 153,-252 207,-252 207,-276"/>
-<text text-anchor="middle" x="180" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f2</text>
-</a>
-</g>
-</g>
-<!-- program~bspline_oo_test&#45;&gt;proc~f2 -->
-<g id="program~~bspline_oo_test~~CallsGraph_edge1" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f2</title>
-<path fill="none" stroke="#000000" d="M51.1401,-150.141C62.6277,-171.721 89.3706,-216.933 124,-243 129.706,-247.295 136.395,-250.81 143.104,-253.651"/>
-<polygon fill="#000000" stroke="#000000" points="142.247,-257.069 152.838,-257.343 144.729,-250.524 142.247,-257.069"/>
-</g>
-<!-- proc~f4 -->
-<g id="program~~bspline_oo_test~~CallsGraph_node3" class="node"><title>proc~f4</title>
-<g id="a_program~~bspline_oo_test~~CallsGraph_node3"><a xlink:href="../proc/f4.html" xlink:title="f4">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-234 153,-234 153,-210 207,-210 207,-234"/>
-<text text-anchor="middle" x="180" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f4</text>
-</a>
-</g>
-</g>
-<!-- program~bspline_oo_test&#45;&gt;proc~f4 -->
-<g id="program~~bspline_oo_test~~CallsGraph_edge2" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f4</title>
-<path fill="none" stroke="#000000" d="M57.5153,-150.033C72.3838,-163.819 98.4091,-186.383 124,-201 130.023,-204.44 136.717,-207.532 143.304,-210.219"/>
-<polygon fill="#000000" stroke="#000000" points="142.196,-213.542 152.786,-213.858 144.704,-207.007 142.196,-213.542"/>
-</g>
-<!-- proc~f5 -->
-<g id="program~~bspline_oo_test~~CallsGraph_node4" class="node"><title>proc~f5</title>
-<g id="a_program~~bspline_oo_test~~CallsGraph_node4"><a xlink:href="../proc/f5.html" xlink:title="f5">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-192 153,-192 153,-168 207,-168 207,-192"/>
-<text text-anchor="middle" x="180" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f5</text>
-</a>
-</g>
-</g>
-<!-- program~bspline_oo_test&#45;&gt;proc~f5 -->
-<g id="program~~bspline_oo_test~~CallsGraph_edge3" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f5</title>
-<path fill="none" stroke="#000000" d="M83.399,-150.036C102.192,-155.926 124.681,-162.975 143.124,-168.755"/>
-<polygon fill="#000000" stroke="#000000" points="142.316,-172.17 152.905,-171.821 144.41,-165.49 142.316,-172.17"/>
-</g>
 <!-- proc~f1~2 -->
-<g id="program~~bspline_oo_test~~CallsGraph_node5" class="node"><title>proc~f1~2</title>
-<g id="a_program~~bspline_oo_test~~CallsGraph_node5"><a xlink:href="../proc/f1%7E2.html" xlink:title="f1">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-150 153,-150 153,-126 207,-126 207,-150"/>
-<text text-anchor="middle" x="180" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f1</text>
+<g id="program~~bspline_oo_test~~CallsGraph_node2" class="node"><title>proc~f1~2</title>
+<g id="a_program~~bspline_oo_test~~CallsGraph_node2"><a xlink:href=".././proc/f1%7E2.html" xlink:title="f1">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-276 153,-276 153,-252 207,-252 207,-276"/>
+<text text-anchor="middle" x="180" y="-261.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f1</text>
 </a>
 </g>
 </g>
 <!-- program~bspline_oo_test&#45;&gt;proc~f1~2 -->
-<g id="program~~bspline_oo_test~~CallsGraph_edge4" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f1~2</title>
-<path fill="none" stroke="#000000" d="M88.136,-138C105.75,-138 125.895,-138 142.733,-138"/>
-<polygon fill="#000000" stroke="#000000" points="142.738,-141.5 152.738,-138 142.738,-134.5 142.738,-141.5"/>
+<g id="program~~bspline_oo_test~~CallsGraph_edge1" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f1~2</title>
+<path fill="none" stroke="#000000" d="M51.1401,-150.141C62.6277,-171.721 89.3706,-216.933 124,-243 129.706,-247.295 136.395,-250.81 143.104,-253.651"/>
+<polygon fill="#000000" stroke="#000000" points="142.247,-257.069 152.838,-257.343 144.729,-250.524 142.247,-257.069"/>
+</g>
+<!-- proc~f3 -->
+<g id="program~~bspline_oo_test~~CallsGraph_node3" class="node"><title>proc~f3</title>
+<g id="a_program~~bspline_oo_test~~CallsGraph_node3"><a xlink:href=".././proc/f3.html" xlink:title="f3">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-234 153,-234 153,-210 207,-210 207,-234"/>
+<text text-anchor="middle" x="180" y="-219.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f3</text>
+</a>
+</g>
+</g>
+<!-- program~bspline_oo_test&#45;&gt;proc~f3 -->
+<g id="program~~bspline_oo_test~~CallsGraph_edge2" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f3</title>
+<path fill="none" stroke="#000000" d="M57.5153,-150.033C72.3838,-163.819 98.4091,-186.383 124,-201 130.023,-204.44 136.717,-207.532 143.304,-210.219"/>
+<polygon fill="#000000" stroke="#000000" points="142.196,-213.542 152.786,-213.858 144.704,-207.007 142.196,-213.542"/>
+</g>
+<!-- proc~f2 -->
+<g id="program~~bspline_oo_test~~CallsGraph_node4" class="node"><title>proc~f2</title>
+<g id="a_program~~bspline_oo_test~~CallsGraph_node4"><a xlink:href=".././proc/f2.html" xlink:title="f2">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-192 153,-192 153,-168 207,-168 207,-192"/>
+<text text-anchor="middle" x="180" y="-177.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f2</text>
+</a>
+</g>
+</g>
+<!-- program~bspline_oo_test&#45;&gt;proc~f2 -->
+<g id="program~~bspline_oo_test~~CallsGraph_edge3" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f2</title>
+<path fill="none" stroke="#000000" d="M83.399,-150.036C102.192,-155.926 124.681,-162.975 143.124,-168.755"/>
+<polygon fill="#000000" stroke="#000000" points="142.316,-172.17 152.905,-171.821 144.41,-165.49 142.316,-172.17"/>
+</g>
+<!-- get_status_message -->
+<g id="program~~bspline_oo_test~~CallsGraph_node5" class="node"><title>get_status_message</title>
+<polygon fill="#777777" stroke="#777777" points="236,-150 124,-150 124,-126 236,-126 236,-150"/>
+<text text-anchor="middle" x="180" y="-135.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_status_message</text>
+</g>
+<!-- program~bspline_oo_test&#45;&gt;get_status_message -->
+<g id="program~~bspline_oo_test~~CallsGraph_edge4" class="edge"><title>program~bspline_oo_test&#45;&gt;get_status_message</title>
+<path fill="none" stroke="#000000" d="M88.136,-138C96.2747,-138 104.954,-138 113.597,-138"/>
+<polygon fill="#000000" stroke="#000000" points="113.693,-141.5 123.693,-138 113.693,-134.5 113.693,-141.5"/>
 </g>
 <!-- proc~f6 -->
 <g id="program~~bspline_oo_test~~CallsGraph_node6" class="node"><title>proc~f6</title>
-<g id="a_program~~bspline_oo_test~~CallsGraph_node6"><a xlink:href="../proc/f6.html" xlink:title="f6">
+<g id="a_program~~bspline_oo_test~~CallsGraph_node6"><a xlink:href=".././proc/f6.html" xlink:title="f6">
 <polygon fill="#d94e8f" stroke="#d94e8f" points="207,-108 153,-108 153,-84 207,-84 207,-108"/>
 <text text-anchor="middle" x="180" y="-93.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f6</text>
 </a>
@@ -643,42 +613,35 @@
 <path fill="none" stroke="#000000" d="M83.399,-125.964C102.192,-120.074 124.681,-113.025 143.124,-107.245"/>
 <polygon fill="#000000" stroke="#000000" points="144.41,-110.51 152.905,-104.179 142.316,-103.83 144.41,-110.51"/>
 </g>
-<!-- get_status_message -->
-<g id="program~~bspline_oo_test~~CallsGraph_node7" class="node"><title>get_status_message</title>
-<polygon fill="#777777" stroke="#777777" points="236,-66 124,-66 124,-42 236,-42 236,-66"/>
-<text text-anchor="middle" x="180" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">get_status_message</text>
-</g>
-<!-- program~bspline_oo_test&#45;&gt;get_status_message -->
-<g id="program~~bspline_oo_test~~CallsGraph_edge6" class="edge"><title>program~bspline_oo_test&#45;&gt;get_status_message</title>
-<path fill="none" stroke="#000000" d="M57.5153,-125.967C72.3838,-112.181 98.4091,-89.6172 124,-75 127.02,-73.2748 130.21,-71.6372 133.47,-70.0944"/>
-<polygon fill="#000000" stroke="#000000" points="135.02,-73.236 142.762,-66.0032 132.199,-66.8294 135.02,-73.236"/>
-</g>
-<!-- proc~f3 -->
-<g id="program~~bspline_oo_test~~CallsGraph_node8" class="node"><title>proc~f3</title>
-<g id="a_program~~bspline_oo_test~~CallsGraph_node8"><a xlink:href="../proc/f3.html" xlink:title="f3">
-<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-24 153,-24 153,-0 207,-0 207,-24"/>
-<text text-anchor="middle" x="180" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f3</text>
+<!-- proc~f5 -->
+<g id="program~~bspline_oo_test~~CallsGraph_node7" class="node"><title>proc~f5</title>
+<g id="a_program~~bspline_oo_test~~CallsGraph_node7"><a xlink:href=".././proc/f5.html" xlink:title="f5">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-66 153,-66 153,-42 207,-42 207,-66"/>
+<text text-anchor="middle" x="180" y="-51.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f5</text>
 </a>
 </g>
 </g>
-<!-- program~bspline_oo_test&#45;&gt;proc~f3 -->
-<g id="program~~bspline_oo_test~~CallsGraph_edge7" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f3</title>
+<!-- program~bspline_oo_test&#45;&gt;proc~f5 -->
+<g id="program~~bspline_oo_test~~CallsGraph_edge6" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f5</title>
+<path fill="none" stroke="#000000" d="M57.5153,-125.967C72.3838,-112.181 98.4091,-89.6172 124,-75 130.023,-71.5599 136.717,-68.468 143.304,-65.7815"/>
+<polygon fill="#000000" stroke="#000000" points="144.704,-68.9929 152.786,-62.142 142.196,-62.4577 144.704,-68.9929"/>
+</g>
+<!-- proc~f4 -->
+<g id="program~~bspline_oo_test~~CallsGraph_node8" class="node"><title>proc~f4</title>
+<g id="a_program~~bspline_oo_test~~CallsGraph_node8"><a xlink:href=".././proc/f4.html" xlink:title="f4">
+<polygon fill="#d94e8f" stroke="#d94e8f" points="207,-24 153,-24 153,-0 207,-0 207,-24"/>
+<text text-anchor="middle" x="180" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">f4</text>
+</a>
+</g>
+</g>
+<!-- program~bspline_oo_test&#45;&gt;proc~f4 -->
+<g id="program~~bspline_oo_test~~CallsGraph_edge7" class="edge"><title>program~bspline_oo_test&#45;&gt;proc~f4</title>
 <path fill="none" stroke="#000000" d="M51.1401,-125.859C62.6277,-104.279 89.3706,-59.067 124,-33 129.706,-28.7049 136.395,-25.1899 143.104,-22.3492"/>
 <polygon fill="#000000" stroke="#000000" points="144.729,-25.4763 152.838,-18.6574 142.247,-18.9312 144.729,-25.4763"/>
 </g>
 </g>
 </svg>
-</div>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
     <p>Nodes of different colours represent the following: </p>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -730,17 +693,17 @@
     This could include the module procedures in a generic interface or the
     implementation in a submodule of an interface in a parent module.
     </p>
-    
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+    </div></div></div></div>
+      </div>
+    </div>
      
     <br>
 
      <section class="visible-xs visible-sm hidden-md">
        
+<h3>Contents</h3>
+ 
+
 
 
 <div class="panel panel-primary">
@@ -860,6 +823,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#funcs-1">Functions</a></h3></div>
   <div id="funcs-1" class="panel-collapse collapse">
@@ -889,12 +853,14 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
     <a class="list-group-item" href="../program/bspline_oo_test.html#src">bspline_oo_test</a>
   </div>
 </div>
+
 
 
      </section>
@@ -1626,7 +1592,7 @@
 function <a href='../proc/f1%7E2.html'>f1</a>(x)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1694,7 +1660,7 @@ function <a href='../proc/f1%7E2.html'>f1</a>(x)
 function <a href='../proc/f2.html'>f2</a>(x, y)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1777,7 +1743,7 @@ function <a href='../proc/f2.html'>f2</a>(x, y)
 function <a href='../proc/f3.html'>f3</a>(x, y, z)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1875,7 +1841,7 @@ function <a href='../proc/f3.html'>f3</a>(x, y, z)
 function <a href='../proc/f4.html'>f4</a>(x, y, z, q)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -1988,7 +1954,7 @@ function <a href='../proc/f4.html'>f4</a>(x, y, z, q)
 function <a href='../proc/f5.html'>f5</a>(x, y, z, q, r)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2116,7 +2082,7 @@ function <a href='../proc/f5.html'>f5</a>(x, y, z, q, r)
 function <a href='../proc/f6.html'>f6</a>(x, y, z, q, r, s)
     
     
-	 
+   
 </h3></div>
   <div class="panel-body">
        
@@ -2480,46 +2446,14 @@ function <a href='../proc/f6.html'>f6</a>(x, y, z, q, r, s)
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allprogs-1">All Programs</a></h3></div>
-  <div id="allprogs-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../program/bspline_extrap_test.html">bspline_extrap_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_integrate_test.html">bspline_integrate_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_oo_test.html">bspline_oo_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_regridding_test.html">bspline_regridding_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_speed_test.html">bspline_speed_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_speed_test_oo.html">bspline_speed_test_oo</a>
-      
-      <a class="list-group-item" href="../program/bspline_test.html">bspline_test</a>
-      
-      <a class="list-group-item" href="../program/bspline_test_2.html">bspline_test_2</a>
-      
-      <a class="list-group-item" href="../program/knot_tests.html">knot_tests</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -2550,12 +2484,17 @@ function <a href='../proc/f6.html'>f6</a>(x, y, z, q, r, s)
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

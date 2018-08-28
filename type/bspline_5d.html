@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
+   
+   <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
     
     <meta name="author" content="Jacob Williams" >
     <link rel="icon" href="../favicon.png">
@@ -17,6 +17,9 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +29,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-				
+        
+        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-								
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -133,19 +133,23 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title="<p>18.8% of total for derived types.</p>Including implementation: 334 statements, 19.3% of total for derived types.">36 statements</a>
+    data-placement="bottom" data-html="true"
+    title="<p>18.8% of total for derived types.</p>Including implementation: 334 statements, 19.3% of total for derived types.">36 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/bspline_oo_module.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
   
+    
      <li><a href='../sourcefile/bspline_oo_module.f90.html'>bspline_oo_module.f90</a></li>
-  
+    
      <li><a href='../module/bspline_oo_module.html'>bspline_oo_module</a></li>
+    
   
      <li class="active">bspline_5d</li>
   </ol>
@@ -165,6 +169,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -191,6 +198,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#fins-0">Finalization Procedures</a></h3></div>
   <div id="fins-0" class="panel-collapse collapse">
@@ -201,6 +209,7 @@
     </div>
   </div>
 </div>
+
 
 
 <div class="panel panel-primary">
@@ -228,6 +237,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -236,42 +246,22 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-0">All Derived Types</a></h3></div>
-  <div id="alltypes-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/bspline_1d.html">bspline_1d</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html">bspline_2d</a>
-      
-      <a class="list-group-item" href="../type/bspline_3d.html">bspline_3d</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html">bspline_4d</a>
-      
-      <a class="list-group-item" href="../type/bspline_5d.html">bspline_5d</a>
-      
-      <a class="list-group-item" href="../type/bspline_6d.html">bspline_6d</a>
-      
-      <a class="list-group-item" href="../type/bspline_class.html">bspline_class</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     
     <div class="col-md-9" id='text'>
       <h2>type, public, extends(<a href='../type/bspline_class.html'>bspline_class</a>) :: bspline_5d</h2>
+    <p>Class for 5d b-spline interpolation.</p>
+    <br>
     
-    
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">Inherits</h3>
+      </div>
+      <div class="panel-body">
+    <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
@@ -289,30 +279,20 @@
 </g>
 <!-- type~bspline_class -->
 <g id="type~~bspline_5d~~InheritsGraph_node2" class="node"><title>type~bspline_class</title>
-<g id="a_type~~bspline_5d~~InheritsGraph_node2"><a xlink:href="../type/bspline_class.html" xlink:title="bspline_class">
+<g id="a_type~~bspline_5d~~InheritsGraph_node2"><a xlink:href=".././type/bspline_class.html" xlink:title="bspline_class">
 <polygon fill="#5cb85c" stroke="#5cb85c" points="76,-24 0,-24 0,-0 76,-0 76,-24"/>
 <text text-anchor="middle" x="38" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_class</text>
 </a>
 </g>
 </g>
-<!-- type~bspline_class&#45;&gt;type~bspline_5d -->
-<g id="type~~bspline_5d~~InheritsGraph_edge1" class="edge"><title>type~bspline_class&#45;&gt;type~bspline_5d</title>
-<path fill="none" stroke="#000000" d="M76.2526,-12C84.54,-12 93.3721,-12 101.807,-12"/>
-<polygon fill="#000000" stroke="#000000" points="101.836,-15.5001 111.836,-12 101.836,-8.5001 101.836,-15.5001"/>
+<!-- type~bspline_5d&#45;&gt;type~bspline_class -->
+<g id="type~~bspline_5d~~InheritsGraph_edge1" class="edge"><title>type~bspline_5d&#45;&gt;type~bspline_class</title>
+<path fill="none" stroke="#000000" d="M111.797,-12C103.712,-12 94.824,-12 86.1202,-12"/>
+<polygon fill="#000000" stroke="#000000" points="86.0464,-8.5001 76.0464,-12 86.0463,-15.5001 86.0464,-8.5001"/>
 </g>
 </g>
 </svg>
-</div>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
+</div><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
     <p>Nodes of different colours represent the following: </p>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -339,25 +319,23 @@
 </svg>
 
     
-    <p>Solid arrows point from one derived type to another which extends
-    (inherits from) it. Dashed arrows point from a derived type to another
-    type containing it as a components, with a label listing the name(s) of
+    <p>Solid arrows point from a derived type to the parent type which it
+    extends. Dashed arrows point from a derived type to the other
+    types it contains as a components, with a label listing the name(s) of
     said component(s).
     </p>
+    </div></div></div></div>
+      </div>
+    </div>
     
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-    <br><br>
     
-    <p>Class for 5d b-spline interpolation.</p>
     <br>
-    
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -384,6 +362,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#fins-1">Finalization Procedures</a></h3></div>
   <div id="fins-1" class="panel-collapse collapse">
@@ -394,6 +373,7 @@
     </div>
   </div>
 </div>
+
 
 
 <div class="panel panel-primary">
@@ -421,6 +401,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -429,16 +410,17 @@
 </div>
 
 
+
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
     
     
     
-	 <section>
-	 <h2>Constructor</h2>
-	   
-	   
+   <section>
+   <h2>Constructor</h2>
+     
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="interface-bspline_5d"></span><h3>public interface <a href='../interface/bspline_5d.html'>bspline_5d</a>
     
@@ -460,7 +442,7 @@
 private elemental function bspline_5d_constructor_empty() result(me)
     
     
-	 
+   
 </h3>
     
 
@@ -494,7 +476,7 @@ private elemental function bspline_5d_constructor_empty() result(me)
 private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, ky, kz, kq, kr, extrap) result(me)
     
     
-	 
+   
 </h3>
     
 
@@ -527,7 +509,7 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p><code>(nx)</code> array of \(x\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>x</strong></td><td><p><code>(nx)</code> array of <script type="math/tex">x</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -542,7 +524,7 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>y</strong></td><td><p><code>(ny)</code> array of \(y\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>y</strong></td><td><p><code>(ny)</code> array of <script type="math/tex">y</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -557,7 +539,7 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>z</strong></td><td><p><code>(nz)</code> array of \(z\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>z</strong></td><td><p><code>(nz)</code> array of <script type="math/tex">z</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -572,7 +554,7 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>q</strong></td><td><p><code>(nq)</code> array of \(q\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>q</strong></td><td><p><code>(nq)</code> array of <script type="math/tex">q</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -587,7 +569,7 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>r</strong></td><td><p><code>(nr)</code> array of \(r\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>r</strong></td><td><p><code>(nr)</code> array of <script type="math/tex">r</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -619,8 +601,8 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kx</strong></td><td><p>The order of spline pieces in \(x\)
- ( \( 2 \le k_x &lt; n_x \) )
+  <td><strong>kx</strong></td><td><p>The order of spline pieces in <script type="math/tex">x</script>
+ ( <script type="math/tex"> 2 \le k_x < n_x </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -636,8 +618,8 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ky</strong></td><td><p>The order of spline pieces in \(y\)
- ( \( 2 \le k_y &lt; n_y \) )
+  <td><strong>ky</strong></td><td><p>The order of spline pieces in <script type="math/tex">y</script>
+ ( <script type="math/tex"> 2 \le k_y < n_y </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -653,8 +635,8 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kz</strong></td><td><p>The order of spline pieces in \(z\)
- ( \( 2 \le k_z &lt; n_z \) )
+  <td><strong>kz</strong></td><td><p>The order of spline pieces in <script type="math/tex">z</script>
+ ( <script type="math/tex"> 2 \le k_z < n_z </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -670,8 +652,8 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kq</strong></td><td><p>The order of spline pieces in \(q\)
- ( \( 2 \le k_q &lt; n_q \) )
+  <td><strong>kq</strong></td><td><p>The order of spline pieces in <script type="math/tex">q</script>
+ ( <script type="math/tex"> 2 \le k_q < n_q </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -687,8 +669,8 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kr</strong></td><td><p>The order of spline pieces in \(r\)
- ( \( 2 \le k_r &lt; n_r \) )
+  <td><strong>kr</strong></td><td><p>The order of spline pieces in <script type="math/tex">r</script>
+ ( <script type="math/tex"> 2 \le k_r < n_r </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -734,7 +716,7 @@ private pure function bspline_5d_constructor_auto_knots(x, y, z, q, r, fcn, kx, 
 private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, kx, ky, kz, kq, kr, tx, ty, tz, tq, tr, extrap) result(me)
     
     
-	 
+   
 </h3>
     
 
@@ -767,7 +749,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p><code>(nx)</code> array of \(x\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>x</strong></td><td><p><code>(nx)</code> array of <script type="math/tex">x</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -782,7 +764,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>y</strong></td><td><p><code>(ny)</code> array of \(y\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>y</strong></td><td><p><code>(ny)</code> array of <script type="math/tex">y</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -797,7 +779,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>z</strong></td><td><p><code>(nz)</code> array of \(z\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>z</strong></td><td><p><code>(nz)</code> array of <script type="math/tex">z</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -812,7 +794,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>q</strong></td><td><p><code>(nq)</code> array of \(q\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>q</strong></td><td><p><code>(nq)</code> array of <script type="math/tex">q</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -827,7 +809,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>r</strong></td><td><p><code>(nr)</code> array of \(r\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>r</strong></td><td><p><code>(nr)</code> array of <script type="math/tex">r</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -859,8 +841,8 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kx</strong></td><td><p>The order of spline pieces in \(x\)
- ( \( 2 \le k_x &lt; n_x \) )
+  <td><strong>kx</strong></td><td><p>The order of spline pieces in <script type="math/tex">x</script>
+ ( <script type="math/tex"> 2 \le k_x < n_x </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -876,8 +858,8 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ky</strong></td><td><p>The order of spline pieces in \(y\)
- ( \( 2 \le k_y &lt; n_y \) )
+  <td><strong>ky</strong></td><td><p>The order of spline pieces in <script type="math/tex">y</script>
+ ( <script type="math/tex"> 2 \le k_y < n_y </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -893,8 +875,8 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kz</strong></td><td><p>The order of spline pieces in \(z\)
- ( \( 2 \le k_z &lt; n_z \) )
+  <td><strong>kz</strong></td><td><p>The order of spline pieces in <script type="math/tex">z</script>
+ ( <script type="math/tex"> 2 \le k_z < n_z </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -910,8 +892,8 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kq</strong></td><td><p>The order of spline pieces in \(q\)
- ( \( 2 \le k_q &lt; n_q \) )
+  <td><strong>kq</strong></td><td><p>The order of spline pieces in <script type="math/tex">q</script>
+ ( <script type="math/tex"> 2 \le k_q < n_q </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -927,8 +909,8 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kr</strong></td><td><p>The order of spline pieces in \(r\)
- ( \( 2 \le k_r &lt; n_r \) )
+  <td><strong>kr</strong></td><td><p>The order of spline pieces in <script type="math/tex">r</script>
+ ( <script type="math/tex"> 2 \le k_r < n_r </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -944,7 +926,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the \(x\) direction
+  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -961,7 +943,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the \(y\) direction
+  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the <script type="math/tex">y</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -978,7 +960,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tz</strong></td><td><p>The <code>(nz+kz)</code> knots in the \(z\) direction
+  <td><strong>tz</strong></td><td><p>The <code>(nz+kz)</code> knots in the <script type="math/tex">z</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -995,7 +977,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tq</strong></td><td><p>The <code>(nq+kq)</code> knots in the \(q\) direction
+  <td><strong>tq</strong></td><td><p>The <code>(nq+kq)</code> knots in the <script type="math/tex">q</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -1012,7 +994,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tr</strong></td><td><p>The <code>(nr+kr)</code> knots in the \(r\) direction
+  <td><strong>tr</strong></td><td><p>The <code>(nr+kr)</code> knots in the <script type="math/tex">r</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -1056,15 +1038,15 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
   </ul>
 </div>
 
-	   
-	 </section>
-	 <br>
+     
+   </section>
+   <br>
     
     
     
     <section>
     <h2>Finalization Procedures</h2>
-	   
+     
          
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="finalproc-finalize_5d"></span><h3>final :: <strong>finalize_5d</strong> 
@@ -1083,7 +1065,7 @@ private pure function bspline_5d_constructor_specify_knots(x, y, z, q, r, fcn, k
 private pure elemental subroutine finalize_5d(me)
     
     
-	 
+   
 </h3>
     
 
@@ -1139,7 +1121,7 @@ private pure elemental subroutine finalize_5d(me)
     <section>
     <h2>Type-Bound Procedures</h2>
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-status_ok"></span><h3>procedure, public, non_overridable :: <strong>status_ok</strong>  
     
@@ -1156,13 +1138,14 @@ private pure elemental subroutine finalize_5d(me)
     
       <li class="list-group-item">
       
-         
+        
+          
     
     <h3>
 private elemental function status_ok(me) result(ok)
     
     
-	 
+   
 </h3>
     
 
@@ -1171,7 +1154,7 @@ private elemental function status_ok(me) result(ok)
 <p>This routines returns true if the <code>iflag</code> code from the last
   routine called was <code>=0</code>. Maybe of the routines have output <code>iflag</code>
   variables, so they can be checked explicitly, or this routine
-  can be used.</p>
+  can be used.</p><a href="../proc/status_ok.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -1217,6 +1200,7 @@ private elemental function status_ok(me) result(ok)
   
     
 
+        
       
       </li>
     
@@ -1224,7 +1208,7 @@ private elemental function status_ok(me) result(ok)
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-status_message"></span><h3>procedure, public, non_overridable :: <strong>status_message</strong>  => get_bspline_status_message 
     
@@ -1241,19 +1225,20 @@ private elemental function status_ok(me) result(ok)
     
       <li class="list-group-item">
       
-         
+        
+          
     
     <h3>
 private pure function get_bspline_status_message(me, iflag) result(msg)
     
     
-	 
+   
 </h3>
     
 
 
 
-<p>Get the status message from a <a href="../type/bspline_class.html">bspline_class</a> routine call.</p>
+<p>Get the status message from a <a href="../type/bspline_class.html">bspline_class</a> routine call.</p><a href="../proc/get_bspline_status_message.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
     
@@ -1314,6 +1299,7 @@ private pure function get_bspline_status_message(me, iflag) result(msg)
   <p>status message associated with the flag</p>
     
 
+        
       
       </li>
     
@@ -1321,7 +1307,7 @@ private pure function get_bspline_status_message(me, iflag) result(msg)
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-clear_flag"></span><h3>procedure, public, non_overridable :: <strong>clear_flag</strong>  => clear_bspline_flag 
     
@@ -1338,13 +1324,14 @@ private pure function get_bspline_status_message(me, iflag) result(msg)
     
       <li class="list-group-item">
       
-         
+        
+          
     
     <h3>
 private elemental subroutine clear_bspline_flag(me)
     
     
-	 
+   
 </h3>
     
 
@@ -1389,6 +1376,7 @@ private elemental subroutine clear_bspline_flag(me)
     
     
 
+        
       
       </li>
     
@@ -1396,7 +1384,7 @@ private elemental subroutine clear_bspline_flag(me)
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-initialize%7E5"></span><h3>generic, public :: <strong>initialize</strong>  => initialize_5d_auto_knots, initialize_5d_specify_knots 
     
@@ -1413,7 +1401,7 @@ private elemental subroutine clear_bspline_flag(me)
 private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky, kz, kq, kr, iflag, extrap)
     
     
-	 
+   
 </h3>
     
 
@@ -1461,7 +1449,7 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p><code>(nx)</code> array of \(x\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>x</strong></td><td><p><code>(nx)</code> array of <script type="math/tex">x</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1476,7 +1464,7 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>y</strong></td><td><p><code>(ny)</code> array of \(y\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>y</strong></td><td><p><code>(ny)</code> array of <script type="math/tex">y</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1491,7 +1479,7 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>z</strong></td><td><p><code>(nz)</code> array of \(z\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>z</strong></td><td><p><code>(nz)</code> array of <script type="math/tex">z</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1506,7 +1494,7 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>q</strong></td><td><p><code>(nq)</code> array of \(q\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>q</strong></td><td><p><code>(nq)</code> array of <script type="math/tex">q</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1521,7 +1509,7 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>r</strong></td><td><p><code>(nr)</code> array of \(r\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>r</strong></td><td><p><code>(nr)</code> array of <script type="math/tex">r</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1553,8 +1541,8 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kx</strong></td><td><p>The order of spline pieces in \(x\)
- ( \( 2 \le k_x &lt; n_x \) )
+  <td><strong>kx</strong></td><td><p>The order of spline pieces in <script type="math/tex">x</script>
+ ( <script type="math/tex"> 2 \le k_x < n_x </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1570,8 +1558,8 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ky</strong></td><td><p>The order of spline pieces in \(y\)
- ( \( 2 \le k_y &lt; n_y \) )
+  <td><strong>ky</strong></td><td><p>The order of spline pieces in <script type="math/tex">y</script>
+ ( <script type="math/tex"> 2 \le k_y < n_y </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1587,8 +1575,8 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kz</strong></td><td><p>The order of spline pieces in \(z\)
- ( \( 2 \le k_z &lt; n_z \) )
+  <td><strong>kz</strong></td><td><p>The order of spline pieces in <script type="math/tex">z</script>
+ ( <script type="math/tex"> 2 \le k_z < n_z </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1604,8 +1592,8 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kq</strong></td><td><p>The order of spline pieces in \(q\)
- ( \( 2 \le k_q &lt; n_q \) )
+  <td><strong>kq</strong></td><td><p>The order of spline pieces in <script type="math/tex">q</script>
+ ( <script type="math/tex"> 2 \le k_q < n_q </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1621,8 +1609,8 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kr</strong></td><td><p>The order of spline pieces in \(r\)
- ( \( 2 \le k_r &lt; n_r \) )
+  <td><strong>kr</strong></td><td><p>The order of spline pieces in <script type="math/tex">r</script>
+ ( <script type="math/tex"> 2 \le k_r < n_r </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1678,7 +1666,7 @@ private pure subroutine initialize_5d_auto_knots(me, x, y, z, q, r, fcn, kx, ky,
 private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, ky, kz, kq, kr, tx, ty, tz, tq, tr, iflag, extrap)
     
     
-	 
+   
 </h3>
     
 
@@ -1726,7 +1714,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p><code>(nx)</code> array of \(x\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>x</strong></td><td><p><code>(nx)</code> array of <script type="math/tex">x</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1741,7 +1729,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>y</strong></td><td><p><code>(ny)</code> array of \(y\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>y</strong></td><td><p><code>(ny)</code> array of <script type="math/tex">y</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1756,7 +1744,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>z</strong></td><td><p><code>(nz)</code> array of \(z\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>z</strong></td><td><p><code>(nz)</code> array of <script type="math/tex">z</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1771,7 +1759,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>q</strong></td><td><p><code>(nq)</code> array of \(q\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>q</strong></td><td><p><code>(nq)</code> array of <script type="math/tex">q</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1786,7 +1774,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>r</strong></td><td><p><code>(nr)</code> array of \(r\) abcissae. Must be strictly increasing.</p></td>
+  <td><strong>r</strong></td><td><p><code>(nr)</code> array of <script type="math/tex">r</script> abcissae. Must be strictly increasing.</p></td>
   
 </tr>
 
@@ -1818,8 +1806,8 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kx</strong></td><td><p>The order of spline pieces in \(x\)
- ( \( 2 \le k_x &lt; n_x \) )
+  <td><strong>kx</strong></td><td><p>The order of spline pieces in <script type="math/tex">x</script>
+ ( <script type="math/tex"> 2 \le k_x < n_x </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1835,8 +1823,8 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>ky</strong></td><td><p>The order of spline pieces in \(y\)
- ( \( 2 \le k_y &lt; n_y \) )
+  <td><strong>ky</strong></td><td><p>The order of spline pieces in <script type="math/tex">y</script>
+ ( <script type="math/tex"> 2 \le k_y < n_y </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1852,8 +1840,8 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kz</strong></td><td><p>The order of spline pieces in \(z\)
- ( \( 2 \le k_z &lt; n_z \) )
+  <td><strong>kz</strong></td><td><p>The order of spline pieces in <script type="math/tex">z</script>
+ ( <script type="math/tex"> 2 \le k_z < n_z </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1869,8 +1857,8 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kq</strong></td><td><p>The order of spline pieces in \(q\)
- ( \( 2 \le k_q &lt; n_q \) )
+  <td><strong>kq</strong></td><td><p>The order of spline pieces in <script type="math/tex">q</script>
+ ( <script type="math/tex"> 2 \le k_q < n_q </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1886,8 +1874,8 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>kr</strong></td><td><p>The order of spline pieces in \(r\)
- ( \( 2 \le k_r &lt; n_r \) )
+  <td><strong>kr</strong></td><td><p>The order of spline pieces in <script type="math/tex">r</script>
+ ( <script type="math/tex"> 2 \le k_r < n_r </script> )
  (order = polynomial degree + 1)</p></td>
   
 </tr>
@@ -1903,7 +1891,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the \(x\) direction
+  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -1920,7 +1908,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the \(y\) direction
+  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the <script type="math/tex">y</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -1937,7 +1925,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tz</strong></td><td><p>The <code>(nz+kz)</code> knots in the \(z\) direction
+  <td><strong>tz</strong></td><td><p>The <code>(nz+kz)</code> knots in the <script type="math/tex">z</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -1954,7 +1942,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tq</strong></td><td><p>The <code>(nq+kq)</code> knots in the \(q\) direction
+  <td><strong>tq</strong></td><td><p>The <code>(nq+kq)</code> knots in the <script type="math/tex">q</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -1971,7 +1959,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tr</strong></td><td><p>The <code>(nr+kr)</code> knots in the \(r\) direction
+  <td><strong>tr</strong></td><td><p>The <code>(nr+kr)</code> knots in the <script type="math/tex">r</script> direction
  for the spline interpolant.
  Must be non-decreasing.</p></td>
   
@@ -2023,7 +2011,7 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-evaluate%7E5"></span><h3>procedure, public :: <strong>evaluate</strong>  => evaluate_5d 
     
@@ -2033,13 +2021,14 @@ private pure subroutine initialize_5d_specify_knots(me, x, y, z, q, r, fcn, kx, 
     
       <li class="list-group-item">
       
-         
+        
+          
     
     <h3>
 private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, idz, idq, idr, f, iflag)
     
     
-	 
+   
 </h3>
     
 
@@ -2086,7 +2075,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>xval</strong></td><td><p>\(x\) coordinate of evaluation point.</p></td>
+  <td><strong>xval</strong></td><td><p>
+<script type="math/tex">x</script> coordinate of evaluation point.</p></td>
   
 </tr>
 
@@ -2101,7 +2091,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>yval</strong></td><td><p>\(y\) coordinate of evaluation point.</p></td>
+  <td><strong>yval</strong></td><td><p>
+<script type="math/tex">y</script> coordinate of evaluation point.</p></td>
   
 </tr>
 
@@ -2116,7 +2107,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>zval</strong></td><td><p>\(z\) coordinate of evaluation point.</p></td>
+  <td><strong>zval</strong></td><td><p>
+<script type="math/tex">z</script> coordinate of evaluation point.</p></td>
   
 </tr>
 
@@ -2131,7 +2123,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>qval</strong></td><td><p>\(q\) coordinate of evaluation point.</p></td>
+  <td><strong>qval</strong></td><td><p>
+<script type="math/tex">q</script> coordinate of evaluation point.</p></td>
   
 </tr>
 
@@ -2146,7 +2139,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>rval</strong></td><td><p>\(r\) coordinate of evaluation point.</p></td>
+  <td><strong>rval</strong></td><td><p>
+<script type="math/tex">r</script> coordinate of evaluation point.</p></td>
   
 </tr>
 
@@ -2161,7 +2155,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>idx</strong></td><td><p>\(x\) derivative of piecewise polynomial to evaluate.</p></td>
+  <td><strong>idx</strong></td><td><p>
+<script type="math/tex">x</script> derivative of piecewise polynomial to evaluate.</p></td>
   
 </tr>
 
@@ -2176,7 +2171,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>idy</strong></td><td><p>\(y\) derivative of piecewise polynomial to evaluate.</p></td>
+  <td><strong>idy</strong></td><td><p>
+<script type="math/tex">y</script> derivative of piecewise polynomial to evaluate.</p></td>
   
 </tr>
 
@@ -2191,7 +2187,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>idz</strong></td><td><p>\(z\) derivative of piecewise polynomial to evaluate.</p></td>
+  <td><strong>idz</strong></td><td><p>
+<script type="math/tex">z</script> derivative of piecewise polynomial to evaluate.</p></td>
   
 </tr>
 
@@ -2206,7 +2203,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>idq</strong></td><td><p>\(q\) derivative of piecewise polynomial to evaluate.</p></td>
+  <td><strong>idq</strong></td><td><p>
+<script type="math/tex">q</script> derivative of piecewise polynomial to evaluate.</p></td>
   
 </tr>
 
@@ -2221,7 +2219,8 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>idr</strong></td><td><p>\(r\) derivative of piecewise polynomial to evaluate.</p></td>
+  <td><strong>idr</strong></td><td><p>
+<script type="math/tex">r</script> derivative of piecewise polynomial to evaluate.</p></td>
   
 </tr>
 
@@ -2262,6 +2261,7 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
     
     
 
+        
       
       </li>
     
@@ -2269,7 +2269,7 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-destroy%7E6"></span><h3>procedure, public :: <strong>destroy</strong>  => destroy_5d 
     
@@ -2279,13 +2279,14 @@ private pure subroutine evaluate_5d(me, xval, yval, zval, qval, rval, idx, idy, 
     
       <li class="list-group-item">
       
-         
+        
+          
     
     <h3>
 private pure subroutine destroy_5d(me)
     
     
-	 
+   
 </h3>
     
 
@@ -2328,6 +2329,7 @@ private pure subroutine destroy_5d(me)
     
     
 
+        
       
       </li>
     
@@ -2335,7 +2337,7 @@ private pure subroutine destroy_5d(me)
 </div>
 
     
-	   
+     
 <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="boundprocedure-size_of%7E6"></span><h3>procedure, public :: <strong>size_of</strong>  => size_5d 
     
@@ -2345,13 +2347,14 @@ private pure subroutine destroy_5d(me)
     
       <li class="list-group-item">
       
-         
+        
+          
     
     <h3>
 private pure function size_5d(me) result(s)
     
     
-	 
+   
 </h3>
     
 
@@ -2403,6 +2406,7 @@ private pure function size_5d(me) result(s)
   <p>size of the structure in bits</p>
     
 
+        
       
       </li>
     
@@ -2415,7 +2419,7 @@ private pure function size_5d(me) result(s)
     
     
     <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
     <div class="highlight"><pre><span></span>    <span class="k">type</span><span class="p">,</span><span class="k">extends</span><span class="p">(</span><span class="n">bspline_class</span><span class="p">),</span><span class="k">public</span> <span class="kd">::</span> <span class="n">bspline_5d</span>
         <span class="c">!! Class for 5d b-spline interpolation.</span>
         <span class="k">private</span>
@@ -2461,42 +2465,14 @@ private pure function size_5d(me) result(s)
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#alltypes-1">All Derived Types</a></h3></div>
-  <div id="alltypes-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/bspline_1d.html">bspline_1d</a>
-      
-      <a class="list-group-item" href="../type/bspline_2d.html">bspline_2d</a>
-      
-      <a class="list-group-item" href="../type/bspline_3d.html">bspline_3d</a>
-      
-      <a class="list-group-item" href="../type/bspline_4d.html">bspline_4d</a>
-      
-      <a class="list-group-item" href="../type/bspline_5d.html">bspline_5d</a>
-      
-      <a class="list-group-item" href="../type/bspline_6d.html">bspline_6d</a>
-      
-      <a class="list-group-item" href="../type/bspline_class.html">bspline_class</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
 
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -2527,12 +2503,17 @@ private pure function size_5d(me) result(s)
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	 
-	 <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
+   
+   <meta name="description" content="BSPLINE-FORTRAN -- Multidimensional B-Spline Interpolation of Data on a Regular Grid">
     
     <meta name="author" content="Jacob Williams" >
     <link rel="icon" href="../favicon.png">
@@ -17,6 +17,9 @@
     <link href="../css/font-awesome.min.css" rel="stylesheet">
     <link href="../css/local.css" rel="stylesheet">
     
+    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -26,13 +29,6 @@
     
     <script src="../js/jquery-2.1.3.min.js"></script>
     <script src="../js/svg-pan-zoom.min.js"></script>
-
-    
-    <script src="../tipuesearch/tipuesearch_content.js"></script>
-    <link  href="../tipuesearch/tipuesearch.css" rel="stylesheet">
-    <script src="../tipuesearch/tipuesearch_set.js"></script>
-    <script src="../tipuesearch/tipuesearch.js"></script>
-    
 
   </head>
 
@@ -52,35 +48,39 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-				
+        
             <li class="dropdown hidden-xs visible-sm visible-md hidden-lg">
               <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button"
               aria-haspopup="true"
-		 aria-expanded="false">Contents <span class="caret"></span></a>
-	      <ul class="dropdown-menu">
+     aria-expanded="false">Contents <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          
               
             <li><a href="../lists/files.html">Source Files</a></li>
-				
-				
+        
+        
+        
             <li><a href="../lists/modules.html">Modules</a></li>
-				
+        
             
                                 
             <li><a href="../lists/procedures.html">Procedures</a></li>
-				
-				
+        
+        
             <li><a href="../lists/absint.html">Abstract Interfaces</a></li>
-								
+               
             <li><a href="../lists/types.html">Derived Types</a></li>
-				
-				
+        
+        
             <li><a href="../lists/programs.html">Programs</a></li>
-				
+        
             </ul>
             </li>
 
+
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/files.html">Source Files</a></li>
+
 
 
 <li class="visible-xs hidden-sm visible-lg"><a href="../lists/modules.html">Modules</a></li>
@@ -133,15 +133,19 @@
     
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
-	  data-placement="bottom" data-html="true"
-	  title=" 3.7% of total for source files.">182 statements</a>
+    data-placement="bottom" data-html="true"
+    title=" 3.7% of total for source files.">182 statements</a>
      </li> 
+     
      
      
     <li><i class="fa fa-code"></i><a href="../src/test_oo.f90"> Source File</a></li>
      
+     
   </ul>
   <ol class="breadcrumb in-well text-right">
+  
+    
   
      <li class="active">test_oo.f90</li>
   </ol>
@@ -160,6 +164,9 @@
     
 <div id="sidebar">
   
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -191,6 +198,7 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
@@ -199,161 +207,110 @@
 </div>
 
 
-  <hr>
-  
 
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-0">All Source Files</a></h3></div>
-  <div id="allfiles-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/bspline_extrap_test.f90.html">bspline_extrap_test.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_kinds_module.f90.html">bspline_kinds_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_module.f90.html">bspline_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_oo_module.f90.html">bspline_oo_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_sub_module.f90.html">bspline_sub_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_test.f90.html">bspline_test.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_test_2.f90.html">bspline_test_2.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/knot_tests.f90.html">knot_tests.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/speed_test.f90.html">speed_test.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/speed_test_oo.f90.html">speed_test_oo.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_integrate.f90.html">test_integrate.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_oo.f90.html">test_oo.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_regrid.f90.html">test_regrid.f90</a>
-      
-    </div>
-  </div>
 </div>
-
-
-</div>  
 
     </div>
     <div class="col-md-9" id='text'>
+      
+      <br>
     
-    
-    <h3>This File Depends On</h3>
-    
-                <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+  <h3 class="panel-title">This file depends on</h3>
+      </div>
+      <div class="panel-body">
+  <div class="depgraph"><?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Generated by graphviz version 2.36.0 (20140111.2315)
  -->
 <!-- Title: sourcefile~~test_oo.f90~~EfferentGraph Pages: 1 -->
-<svg id="sourcefiletest_oof90EfferentGraph" width="641pt" height="91pt"
- viewBox="0.00 0.00 641.00 91.25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="sourcefile~~test_oo.f90~~EfferentGraph" class="graph" transform="scale(0.897759 0.897759) rotate(0) translate(4 97.6399)">
+<svg id="sourcefiletest_oof90EfferentGraph" width="641pt" height="68pt"
+ viewBox="0.00 0.00 641.00 68.23" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="sourcefile~~test_oo.f90~~EfferentGraph" class="graph" transform="scale(0.897759 0.897759) rotate(0) translate(4 71.9975)">
 <title>sourcefile~~test_oo.f90~~EfferentGraph</title>
-<polygon fill="white" stroke="none" points="-4,4 -4,-97.6399 710,-97.6399 710,4 -4,4"/>
+<polygon fill="white" stroke="none" points="-4,4 -4,-71.9975 710,-71.9975 710,4 -4,4"/>
 <!-- sourcefile~test_oo.f90 -->
 <g id="sourcefile~~test_oo.f90~~EfferentGraph_node1" class="node"><title>sourcefile~test_oo.f90</title>
-<polygon fill="none" stroke="black" points="706,-84 640,-84 640,-60 706,-60 706,-84"/>
-<text text-anchor="middle" x="673" y="-69.6" font-family="Helvetica,sans-Serif" font-size="10.50">test_oo.f90</text>
-</g>
-<!-- sourcefile~bspline_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_node2" class="node"><title>sourcefile~bspline_module.f90</title>
-<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node2"><a xlink:href="../sourcefile/bspline_module.f90.html" xlink:title="bspline_module.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="604,-64 498,-64 498,-40 604,-40 604,-64"/>
-<text text-anchor="middle" x="551" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_module.f90</text>
-</a>
-</g>
-</g>
-<!-- sourcefile~bspline_module.f90&#45;&gt;sourcefile~test_oo.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge7" class="edge"><title>sourcefile~bspline_module.f90&#45;&gt;sourcefile~test_oo.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M604.285,-60.7141C612.811,-62.1352 621.549,-63.5915 629.794,-64.9657"/>
-<polygon fill="#000000" stroke="#000000" points="629.482,-68.4618 639.921,-66.6535 630.633,-61.5571 629.482,-68.4618"/>
+<polygon fill="none" stroke="black" points="706,-57.6435 640,-57.6435 640,-33.6435 706,-33.6435 706,-57.6435"/>
+<text text-anchor="middle" x="673" y="-43.2435" font-family="Helvetica,sans-Serif" font-size="10.50">test_oo.f90</text>
 </g>
 <!-- sourcefile~bspline_kinds_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_node3" class="node"><title>sourcefile~bspline_kinds_module.f90</title>
-<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node3"><a xlink:href="../sourcefile/bspline_kinds_module.f90.html" xlink:title="bspline_kinds_module.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="136,-64 0,-64 0,-40 136,-40 136,-64"/>
-<text text-anchor="middle" x="68" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_kinds_module.f90</text>
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_node2" class="node"><title>sourcefile~bspline_kinds_module.f90</title>
+<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node2"><a xlink:href=".././sourcefile/bspline_kinds_module.f90.html" xlink:title="bspline_kinds_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="136,-57.6435 0,-57.6435 0,-33.6435 136,-33.6435 136,-57.6435"/>
+<text text-anchor="middle" x="68" y="-43.2435" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_kinds_module.f90</text>
 </a>
 </g>
 </g>
-<!-- sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~test_oo.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge8" class="edge"><title>sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~test_oo.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M401,-92C482.099,-88.8954 576.58,-80.9318 629.834,-76.0416"/>
-<polygon fill="#000000" stroke="#000000" points="630.285,-79.5149 639.919,-75.1069 629.639,-72.5448 630.285,-79.5149"/>
+<!-- sourcefile~test_oo.f90&#45;&gt;sourcefile~bspline_kinds_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge1" class="edge"><title>sourcefile~test_oo.f90&#45;&gt;sourcefile~bspline_kinds_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M639.89,-48.1768C589.166,-52.1415 487.381,-59.9478 401,-65.6435"/>
 </g>
-<!-- sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~bspline_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge5" class="edge"><title>sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~bspline_module.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M119.436,-64.02C184.03,-78.0517 299.52,-98.5594 399,-92"/>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M401,-92C439.354,-90.5318 481.457,-78.1736 511.094,-67.5773"/>
-<polygon fill="#000000" stroke="#000000" points="512.463,-70.803 520.643,-64.0696 510.05,-64.2322 512.463,-70.803"/>
-</g>
-<!-- sourcefile~bspline_sub_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_node4" class="node"><title>sourcefile~bspline_sub_module.f90</title>
-<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node4"><a xlink:href="../sourcefile/bspline_sub_module.f90.html" xlink:title="bspline_sub_module.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="301.5,-64 172.5,-64 172.5,-40 301.5,-40 301.5,-64"/>
-<text text-anchor="middle" x="237" y="-49.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_sub_module.f90</text>
+<!-- sourcefile~bspline_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_node3" class="node"><title>sourcefile~bspline_module.f90</title>
+<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node3"><a xlink:href=".././sourcefile/bspline_module.f90.html" xlink:title="bspline_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="604,-37.6435 498,-37.6435 498,-13.6435 604,-13.6435 604,-37.6435"/>
+<text text-anchor="middle" x="551" y="-23.2435" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_module.f90</text>
 </a>
 </g>
 </g>
-<!-- sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~bspline_sub_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge1" class="edge"><title>sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~bspline_sub_module.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M136.444,-52C144.967,-52 153.723,-52 162.337,-52"/>
-<polygon fill="#000000" stroke="#000000" points="162.361,-55.5001 172.361,-52 162.361,-48.5001 162.361,-55.5001"/>
+<!-- sourcefile~test_oo.f90&#45;&gt;sourcefile~bspline_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge2" class="edge"><title>sourcefile~test_oo.f90&#45;&gt;sourcefile~bspline_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M639.842,-40.2839C631.872,-38.9556 623.061,-37.487 614.185,-36.0077"/>
+<polygon fill="#000000" stroke="#000000" points="614.618,-32.5316 604.178,-34.3399 613.467,-39.4364 614.618,-32.5316"/>
+</g>
+<!-- sourcefile~bspline_module.f90&#45;&gt;sourcefile~bspline_kinds_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge3" class="edge"><title>sourcefile~bspline_module.f90&#45;&gt;sourcefile~bspline_kinds_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M519.211,-37.7217C489.494,-48.4591 442.96,-62.8768 401,-65.6435"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M399,-65.6435C327.599,-70.3515 309.555,-65.4899 238,-65.6435"/>
 </g>
 <!-- sourcefile~bspline_oo_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_node5" class="node"><title>sourcefile~bspline_oo_module.f90</title>
-<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node5"><a xlink:href="../sourcefile/bspline_oo_module.f90.html" xlink:title="bspline_oo_module.f90">
-<polygon fill="#f0ad4e" stroke="#f0ad4e" points="462,-24 338,-24 338,-0 462,-0 462,-24"/>
-<text text-anchor="middle" x="400" y="-9.6" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_oo_module.f90</text>
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_node4" class="node"><title>sourcefile~bspline_oo_module.f90</title>
+<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node4"><a xlink:href=".././sourcefile/bspline_oo_module.f90.html" xlink:title="bspline_oo_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="462,-37.6435 338,-37.6435 338,-13.6435 462,-13.6435 462,-37.6435"/>
+<text text-anchor="middle" x="400" y="-23.2435" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_oo_module.f90</text>
 </a>
 </g>
 </g>
-<!-- sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~bspline_oo_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge3" class="edge"><title>sourcefile~bspline_kinds_module.f90&#45;&gt;sourcefile~bspline_oo_module.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M121.985,-39.9549C137.989,-36.6533 155.651,-33.3426 172,-31 223.754,-23.5844 282.592,-18.7609 327.396,-15.8298"/>
-<polygon fill="#000000" stroke="#000000" points="327.844,-19.3085 337.6,-15.179 327.398,-12.3227 327.844,-19.3085"/>
+<!-- sourcefile~bspline_module.f90&#45;&gt;sourcefile~bspline_oo_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge5" class="edge"><title>sourcefile~bspline_module.f90&#45;&gt;sourcefile~bspline_oo_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M497.887,-25.6435C489.563,-25.6435 480.828,-25.6435 472.154,-25.6435"/>
+<polygon fill="#000000" stroke="#000000" points="472.027,-22.1436 462.027,-25.6435 472.027,-29.1436 472.027,-22.1436"/>
 </g>
-<!-- sourcefile~bspline_sub_module.f90&#45;&gt;sourcefile~bspline_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge4" class="edge"><title>sourcefile~bspline_sub_module.f90&#45;&gt;sourcefile~bspline_module.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M301.514,-52C355.914,-52 433.798,-52 487.812,-52"/>
-<polygon fill="#000000" stroke="#000000" points="487.945,-55.5001 497.945,-52 487.945,-48.5001 487.945,-55.5001"/>
+<!-- sourcefile~bspline_sub_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_node5" class="node"><title>sourcefile~bspline_sub_module.f90</title>
+<g id="a_sourcefile~~test_oo.f90~~EfferentGraph_node5"><a xlink:href=".././sourcefile/bspline_sub_module.f90.html" xlink:title="bspline_sub_module.f90">
+<polygon fill="#f0ad4e" stroke="#f0ad4e" points="301.5,-37.6435 172.5,-37.6435 172.5,-13.6435 301.5,-13.6435 301.5,-37.6435"/>
+<text text-anchor="middle" x="237" y="-23.2435" font-family="Helvetica,sans-Serif" font-size="10.50" fill="white">bspline_sub_module.f90</text>
+</a>
 </g>
-<!-- sourcefile~bspline_sub_module.f90&#45;&gt;sourcefile~bspline_oo_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge2" class="edge"><title>sourcefile~bspline_sub_module.f90&#45;&gt;sourcefile~bspline_oo_module.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M286.305,-39.9987C303.421,-35.7465 322.86,-30.9167 340.718,-26.4801"/>
-<polygon fill="#000000" stroke="#000000" points="341.59,-29.8699 350.451,-24.0619 339.902,-23.0764 341.59,-29.8699"/>
 </g>
-<!-- sourcefile~bspline_oo_module.f90&#45;&gt;sourcefile~bspline_module.f90 -->
-<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge6" class="edge"><title>sourcefile~bspline_oo_module.f90&#45;&gt;sourcefile~bspline_module.f90</title>
-<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M445.705,-24.0013C461.251,-28.1748 478.87,-32.9046 495.142,-37.273"/>
-<polygon fill="#000000" stroke="#000000" points="494.504,-40.7256 505.069,-39.9381 496.319,-33.9649 494.504,-40.7256"/>
+<!-- sourcefile~bspline_module.f90&#45;&gt;sourcefile~bspline_sub_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge4" class="edge"><title>sourcefile~bspline_module.f90&#45;&gt;sourcefile~bspline_sub_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M508.284,-13.5753C493.766,-9.94137 477.287,-6.44233 462,-4.64354 407.266,1.79674 392.816,1.05006 338,-4.64354 324.014,-6.09619 309.103,-8.66242 295.18,-11.5134"/>
+<polygon fill="#000000" stroke="#000000" points="294.296,-8.12304 285.243,-13.6278 295.753,-14.9697 294.296,-8.12304"/>
+</g>
+<!-- sourcefile~bspline_oo_module.f90&#45;&gt;sourcefile~bspline_kinds_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge6" class="edge"><title>sourcefile~bspline_oo_module.f90&#45;&gt;sourcefile~bspline_kinds_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M368.987,-37.7132C337.059,-49.4531 284.802,-65.5431 238,-65.6435"/>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M236,-65.6435C206.613,-65.7066 174.522,-62.6291 146.394,-58.8706"/>
+<polygon fill="#000000" stroke="#000000" points="146.61,-55.367 136.223,-57.4596 145.648,-62.3006 146.61,-55.367"/>
+</g>
+<!-- sourcefile~bspline_oo_module.f90&#45;&gt;sourcefile~bspline_sub_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge7" class="edge"><title>sourcefile~bspline_oo_module.f90&#45;&gt;sourcefile~bspline_sub_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M337.674,-25.6435C329.179,-25.6435 320.381,-25.6435 311.691,-25.6435"/>
+<polygon fill="#000000" stroke="#000000" points="311.562,-22.1436 301.562,-25.6435 311.562,-29.1436 311.562,-22.1436"/>
+</g>
+<!-- sourcefile~bspline_sub_module.f90&#45;&gt;sourcefile~bspline_kinds_module.f90 -->
+<g id="sourcefile~~test_oo.f90~~EfferentGraph_edge8" class="edge"><title>sourcefile~bspline_sub_module.f90&#45;&gt;sourcefile~bspline_kinds_module.f90</title>
+<path fill="none" stroke="#000000" stroke-dasharray="5,2" d="M172.388,-33.2617C163.842,-34.2853 155,-35.3441 146.25,-36.392"/>
+<polygon fill="#000000" stroke="#000000" points="145.558,-32.9499 136.045,-37.6142 146.39,-39.9002 145.558,-32.9499"/>
 </g>
 </g>
 </svg>
-</div>
-                <script>var pansourcefiletest_oof90EfferentGraph = svgPanZoom('#sourcefiletest_oof90EfferentGraph', {
-                    zoomEnabled: true,
-                    controlIconsEnabled: true,
-                    fit: true,
-                    center: true,});
-                    </script>
-                <div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div>
-                <div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog">
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="-graph-help-label">Graph Key</h4>
-                      </div>
-                      <div class="modal-body">
-                        
+</div><script>var pansourcefiletest_oof90EfferentGraph = svgPanZoom('#sourcefiletest_oof90EfferentGraph', {zoomEnabled: true,controlIconsEnabled: true, fit: true, center: true,}); </script><div><a type="button" class="graph-help" data-toggle="modal" href="#graph-help-text">Help</a></div><div class="modal fade" id="graph-help-text" tabindex="-1" role="dialog"><div class="modal-dialog modal-lg" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button><h4 class="modal-title" id="-graph-help-label">Graph Key</h4></div><div class="modal-body">
     <p>Nodes of different colours represent the following: </p>
     <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
@@ -380,22 +337,22 @@
 </svg>
 
     
-    <p>Solid arrows point from a file to a file which depends upon it. A file 
+    <p>Solid arrows point from a file to a file which it depends on. A file
     is dependent upon another if the latter must be compiled before the former
     can be.
     </p>
-    
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
+    </div></div></div></div>
+      </div>
+    </div>
     
       
       <br>
 
     <section class="visible-xs visible-sm hidden-md">
       
+<h3>Contents</h3>
+ 
+
 
 
 
@@ -427,12 +384,14 @@
 
 
 
+
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
     <a class="list-group-item" href="../sourcefile/test_oo.f90.html#src">test_oo.f90</a>
   </div>
 </div>
+
 
 
     </section>
@@ -659,54 +618,14 @@
     </div>
   </div>
 
-  <section class="visible-xs visible-sm hidden-md">
-    <hr>
-    
-
-<div class="panel panel-default">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#allfiles-1">All Source Files</a></h3></div>
-  <div id="allfiles-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../sourcefile/bspline_extrap_test.f90.html">bspline_extrap_test.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_kinds_module.f90.html">bspline_kinds_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_module.f90.html">bspline_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_oo_module.f90.html">bspline_oo_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_sub_module.f90.html">bspline_sub_module.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_test.f90.html">bspline_test.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/bspline_test_2.f90.html">bspline_test_2.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/knot_tests.f90.html">knot_tests.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/speed_test.f90.html">speed_test.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/speed_test_oo.f90.html">speed_test_oo.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_integrate.f90.html">test_integrate.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_oo.f90.html">test_oo.f90</a>
-      
-      <a class="list-group-item" href="../sourcefile/test_regrid.f90.html">test_regrid.f90</a>
-      
-    </div>
-  </div>
-</div>
-
-
-  </section>
   
     <hr>    
     </div> <!-- /container -->
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 </p></div>
+        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+                                          </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
@@ -737,12 +656,17 @@
       MathJax.Hub.Config({
         TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
-        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js'],
-        'HTML-CSS': { 
-           styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '#000000 ! important'} }
-        }
+        extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']
       });
     </script>
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    
+    <script src="../tipuesearch/tipuesearch_content.js"></script>
+    <script src="../tipuesearch/tipuesearch_set.js"></script>
+    <script src="../tipuesearch/tipuesearch.js"></script>
+    
+    
   </body>
 </html>
