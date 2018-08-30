@@ -409,8 +409,9 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
   <td></td>
   
   <td>dimension(:,:,:,:,:)</td><td>::</td>
-  <td><strong>fcn</strong></td><td><p><code>(nx,ny,nz,nq,nr)</code> matrix of function values to interpolate. <code>fcn(i,j,k,q,r)</code> should
- contain the function value at the point (<code>x(i)</code>,<code>y(j)</code>,<code>z(k)</code>,<code>q(l)</code>,<code>r(m)</code>)</p></td>
+  <td><strong>fcn</strong></td><td><p><code>(nx,ny,nz,nq,nr)</code> matrix of function values to interpolate.
+ <code>fcn(i,j,k,q,r)</code> should contain the function value at the
+ point (<code>x(i)</code>,<code>y(j)</code>,<code>z(k)</code>,<code>q(l)</code>,<code>r(m)</code>)</p></td>
   
 </tr>
 
@@ -529,7 +530,8 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction for the spline interpolant.</p>
+  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction for the spline
+ interpolant.</p>
 <ul>
 <li>If <code>iknot=0</code> these are chosen by <a href="../proc/db5ink.html">db5ink</a>.</li>
 <li>If <code>iknot=1</code> these are specified by the user.</li>
@@ -549,7 +551,8 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the <script type="math/tex">y</script> direction for the spline interpolant.</p>
+  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the <script type="math/tex">y</script> direction for the spline
+ interpolant.</p>
 <ul>
 <li>If <code>iknot=0</code> these are chosen by <a href="../proc/db5ink.html">db5ink</a>.</li>
 <li>If <code>iknot=1</code> these are specified by the user.</li>
@@ -569,7 +572,8 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tz</strong></td><td><p>The <code>(nz+kz)</code> knots in the <script type="math/tex">z</script> direction for the spline interpolant.</p>
+  <td><strong>tz</strong></td><td><p>The <code>(nz+kz)</code> knots in the <script type="math/tex">z</script> direction for the spline
+ interpolant.</p>
 <ul>
 <li>If <code>iknot=0</code> these are chosen by <a href="../proc/db5ink.html">db5ink</a>.</li>
 <li>If <code>iknot=1</code> these are specified by the user.</li>
@@ -589,7 +593,8 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tq</strong></td><td><p>The <code>(nq+kq)</code> knots in the <script type="math/tex">q</script> direction for the spline interpolant.</p>
+  <td><strong>tq</strong></td><td><p>The <code>(nq+kq)</code> knots in the <script type="math/tex">q</script> direction for the spline
+ interpolant.</p>
 <ul>
 <li>If <code>iknot=0</code> these are chosen by <a href="../proc/db5ink.html">db5ink</a>.</li>
 <li>If <code>iknot=1</code> these are specified by the user.</li>
@@ -609,7 +614,8 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tr</strong></td><td><p>The <code>(nr+kr)</code> knots in the <script type="math/tex">r</script> direction for the spline interpolant.</p>
+  <td><strong>tr</strong></td><td><p>The <code>(nr+kr)</code> knots in the <script type="math/tex">r</script> direction for the spline
+ interpolant.</p>
 <ul>
 <li>If <code>iknot=0</code> these are chosen by <a href="../proc/db5ink.html">db5ink</a>.</li>
 <li>If <code>iknot=1</code> these are specified by the user.</li>
@@ -629,7 +635,8 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
   <td></td>
   
   <td>dimension(:,:,:,:,:)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p><code>(nx,ny,nz,nq,nr)</code> matrix of coefficients of the b-spline interpolant.</p></td>
+  <td><strong>bcoef</strong></td><td><p><code>(nx,ny,nz,nq,nr)</code> matrix of coefficients of the b-spline
+ interpolant.</p></td>
   
 </tr>
 
@@ -812,43 +819,50 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">z</span>     <span class="c">!! `(nz)` array of \(z\) abcissae. must be strictly increasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">q</span>     <span class="c">!! `(nq)` array of \(q\) abcissae. must be strictly increasing.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>               <span class="kd">::</span> <span class="n">r</span>     <span class="c">!! `(nr)` array of \(r\) abcissae. must be strictly increasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:,:,:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">fcn</span>   <span class="c">!! `(nx,ny,nz,nq,nr)` matrix of function values to interpolate. `fcn(i,j,k,q,r)` should</span>
-                                                            <span class="c">!! contain the function value at the point (`x(i)`,`y(j)`,`z(k)`,`q(l)`,`r(m)`)</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:,:,:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">fcn</span>   <span class="c">!! `(nx,ny,nz,nq,nr)` matrix of function values to interpolate.</span>
+                                                            <span class="c">!! `fcn(i,j,k,q,r)` should contain the function value at the</span>
+                                                            <span class="c">!! point (`x(i)`,`y(j)`,`z(k)`,`q(l)`,`r(m)`)</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                             <span class="kd">::</span> <span class="n">iknot</span> <span class="c">!! knot sequence flag:</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! * 0 = knot sequence chosen by [[db5ink]].</span>
                                                             <span class="c">!! * 1 = knot sequence chosen by user.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tx</span>    <span class="c">!! The `(nx+kx)` knots in the \(x\) direction for the spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tx</span>    <span class="c">!! The `(nx+kx)` knots in the \(x\) direction for the spline</span>
+                                                            <span class="c">!! interpolant.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! * If `iknot=0` these are chosen by [[db5ink]].</span>
                                                             <span class="c">!! * If `iknot=1` these are specified by the user.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">ty</span>    <span class="c">!! The `(ny+ky)` knots in the \(y\) direction for the spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">ty</span>    <span class="c">!! The `(ny+ky)` knots in the \(y\) direction for the spline</span>
+                                                            <span class="c">!! interpolant.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! * If `iknot=0` these are chosen by [[db5ink]].</span>
                                                             <span class="c">!! * If `iknot=1` these are specified by the user.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tz</span>    <span class="c">!! The `(nz+kz)` knots in the \(z\) direction for the spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tz</span>    <span class="c">!! The `(nz+kz)` knots in the \(z\) direction for the spline</span>
+                                                            <span class="c">!! interpolant.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! * If `iknot=0` these are chosen by [[db5ink]].</span>
                                                             <span class="c">!! * If `iknot=1` these are specified by the user.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tq</span>    <span class="c">!! The `(nq+kq)` knots in the \(q\) direction for the spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tq</span>    <span class="c">!! The `(nq+kq)` knots in the \(q\) direction for the spline</span>
+                                                            <span class="c">!! interpolant.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! * If `iknot=0` these are chosen by [[db5ink]].</span>
                                                             <span class="c">!! * If `iknot=1` these are specified by the user.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tr</span>    <span class="c">!! The `(nr+kr)` knots in the \(r\) direction for the spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>            <span class="kd">::</span> <span class="n">tr</span>    <span class="c">!! The `(nr+kr)` knots in the \(r\) direction for the spline</span>
+                                                            <span class="c">!! interpolant.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! * If `iknot=0` these are chosen by [[db5ink]].</span>
                                                             <span class="c">!! * If `iknot=1` these are specified by the user.</span>
                                                             <span class="c">!!</span>
                                                             <span class="c">!! Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:,:,:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">bcoef</span> <span class="c">!! `(nx,ny,nz,nq,nr)` matrix of coefficients of the b-spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:,:,:,:,:),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>      <span class="kd">::</span> <span class="n">bcoef</span> <span class="c">!! `(nx,ny,nz,nq,nr)` matrix of coefficients of the b-spline</span>
+                                                            <span class="c">!! interpolant.</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                            <span class="kd">::</span> <span class="n">iflag</span> <span class="c">!! *  0 = successful execution.</span>
                                                             <span class="c">!! *  2 = `iknot` out of range.</span>
                                                             <span class="c">!! *  3 = `nx` out of range.</span>
@@ -902,8 +916,7 @@ public pure subroutine db5ink(x, nx, y, ny, z, nz, q, nq, r, nr, fcn, kx, ky, kz
 
     <span class="c">!  check validity of input</span>
 
-    <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span><span class="s1">&#39;db5ink&#39;</span><span class="p">,&amp;</span>
-                        <span class="n">iknot</span><span class="p">,&amp;</span>
+    <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span>  <span class="n">iknot</span><span class="p">,&amp;</span>
                         <span class="n">iflag</span><span class="p">,&amp;</span>
                         <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="o">=</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="o">=</span><span class="n">nq</span><span class="p">,</span><span class="n">nr</span><span class="o">=</span><span class="n">nr</span><span class="p">,&amp;</span>
                         <span class="n">kx</span><span class="o">=</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="o">=</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="o">=</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="o">=</span><span class="n">kq</span><span class="p">,</span><span class="n">kr</span><span class="o">=</span><span class="n">kr</span><span class="p">,&amp;</span>

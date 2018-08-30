@@ -417,7 +417,8 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction for the spline interpolant.</p>
+  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction for the spline
+ interpolant.</p>
 <ul>
 <li>If <code>iknot=0</code> these are chosen by <a href="../proc/db2ink.html">db2ink</a>.</li>
 <li>If <code>iknot=1</code> these are specified by the user.</li>
@@ -437,7 +438,8 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the <script type="math/tex">y</script> direction for the spline interpolant.</p>
+  <td><strong>ty</strong></td><td><p>The <code>(ny+ky)</code> knots in the <script type="math/tex">y</script> direction for the spline
+ interpolant.</p>
 <ul>
 <li>If <code>iknot=0</code> these are chosen by <a href="../proc/db2ink.html">db2ink</a>.</li>
 <li>If <code>iknot=1</code> these are specified by the user.</li>
@@ -591,13 +593,15 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
                                                       <span class="c">!!</span>
                                                       <span class="c">!! * 0 = knot sequence chosen by [[db1ink]].</span>
                                                       <span class="c">!! * 1 = knot sequence chosen by user.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The `(nx+kx)` knots in the \(x\) direction for the spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">tx</span>     <span class="c">!! The `(nx+kx)` knots in the \(x\) direction for the spline</span>
+                                                      <span class="c">!! interpolant.</span>
                                                       <span class="c">!!</span>
                                                       <span class="c">!! * If `iknot=0` these are chosen by [[db2ink]].</span>
                                                       <span class="c">!! * If `iknot=1` these are specified by the user.</span>
                                                       <span class="c">!!</span>
                                                       <span class="c">!! Must be non-decreasing.</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">ty</span>     <span class="c">!! The `(ny+ky)` knots in the \(y\) direction for the spline interpolant.</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(:),</span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span>     <span class="kd">::</span> <span class="n">ty</span>     <span class="c">!! The `(ny+ky)` knots in the \(y\) direction for the spline</span>
+                                                      <span class="c">!! interpolant.</span>
                                                       <span class="c">!!</span>
                                                       <span class="c">!! * If `iknot=0` these are chosen by [[db2ink]].</span>
                                                       <span class="c">!! * If `iknot=1` these are specified by the user.</span>
@@ -629,8 +633,7 @@ public pure subroutine db2ink(x, nx, y, ny, fcn, kx, ky, iknot, tx, ty, bcoef, i
 
     <span class="c">!check validity of inputs</span>
 
-    <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span><span class="s1">&#39;db2ink&#39;</span><span class="p">,&amp;</span>
-                        <span class="n">iknot</span><span class="p">,&amp;</span>
+    <span class="k">call </span><span class="n">check_inputs</span><span class="p">(</span>  <span class="n">iknot</span><span class="p">,&amp;</span>
                         <span class="n">iflag</span><span class="p">,&amp;</span>
                         <span class="n">nx</span><span class="o">=</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="o">=</span><span class="n">ny</span><span class="p">,&amp;</span>
                         <span class="n">kx</span><span class="o">=</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="o">=</span><span class="n">ky</span><span class="p">,&amp;</span>

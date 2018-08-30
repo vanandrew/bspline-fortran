@@ -382,7 +382,8 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>sequence of knots defining the piecewise polynomial
- in the <script type="math/tex">x</script> direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
+ in the <script type="math/tex">x</script> direction. (same as in last call to
+ <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -398,7 +399,8 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
   
   <td>dimension(ny+ky)</td><td>::</td>
   <td><strong>ty</strong></td><td><p>sequence of knots defining the piecewise polynomial
- in the <script type="math/tex">y</script> direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
+ in the <script type="math/tex">y</script> direction. (same as in last call to
+ <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -414,7 +416,8 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
   
   <td>dimension(nz+kz)</td><td>::</td>
   <td><strong>tz</strong></td><td><p>sequence of knots defining the piecewise polynomial
- in the <script type="math/tex">z</script> direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
+ in the <script type="math/tex">z</script> direction. (same as in last call to
+ <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -430,7 +433,8 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
   
   <td>dimension(nq+kq)</td><td>::</td>
   <td><strong>tq</strong></td><td><p>sequence of knots defining the piecewise polynomial
- in the <script type="math/tex">q</script> direction. (same as in last call to <a href="../proc/db4ink.html">db4ink</a>)</p></td>
+ in the <script type="math/tex">q</script> direction. (same as in last call to
+ <a href="../proc/db4ink.html">db4ink</a>)</p></td>
   
 </tr>
 
@@ -851,13 +855,17 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                        <span class="kd">::</span> <span class="n">zval</span>     <span class="c">!! \(z\) coordinate of evaluation point.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>                        <span class="kd">::</span> <span class="n">qval</span>     <span class="c">!! \(q\) coordinate of evaluation point.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="n">kx</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">tx</span>       <span class="c">!! sequence of knots defining the piecewise polynomial</span>
-                                                           <span class="c">!! in the \(x\) direction. (same as in last call to [[db4ink]])</span>
+                                                           <span class="c">!! in the \(x\) direction. (same as in last call to</span>
+                                                           <span class="c">!! [[db4ink]])</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">ny</span><span class="o">+</span><span class="n">ky</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">ty</span>       <span class="c">!! sequence of knots defining the piecewise polynomial</span>
-                                                           <span class="c">!! in the \(y\) direction. (same as in last call to [[db4ink]])</span>
+                                                           <span class="c">!! in the \(y\) direction. (same as in last call to</span>
+                                                           <span class="c">!! [[db4ink]])</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nz</span><span class="o">+</span><span class="n">kz</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">tz</span>       <span class="c">!! sequence of knots defining the piecewise polynomial</span>
-                                                           <span class="c">!! in the \(z\) direction. (same as in last call to [[db4ink]])</span>
+                                                           <span class="c">!! in the \(z\) direction. (same as in last call to</span>
+                                                           <span class="c">!! [[db4ink]])</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nq</span><span class="o">+</span><span class="n">kq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>       <span class="kd">::</span> <span class="n">tq</span>       <span class="c">!! sequence of knots defining the piecewise polynomial</span>
-                                                           <span class="c">!! in the \(q\) direction. (same as in last call to [[db4ink]])</span>
+                                                           <span class="c">!! in the \(q\) direction. (same as in last call to</span>
+                                                           <span class="c">!! [[db4ink]])</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">nz</span><span class="p">,</span><span class="n">nq</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">bcoef</span>    <span class="c">!! the b-spline coefficients computed by [[db4ink]].</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                       <span class="kd">::</span> <span class="n">f</span>        <span class="c">!! interpolated value</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>                        <span class="kd">::</span> <span class="n">iflag</span>    <span class="c">!! status flag:</span>
@@ -892,8 +900,8 @@ public pure subroutine db4val(xval, yval, zval, qval, idx, idy, idz, idq, tx, ty
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">)</span>                <span class="kd">::</span> <span class="n">temp2</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="n">kq</span><span class="p">)</span>                   <span class="kd">::</span> <span class="n">temp3</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="nb">max</span><span class="p">(</span><span class="n">kx</span><span class="p">,</span><span class="n">ky</span><span class="p">,</span><span class="n">kz</span><span class="p">,</span><span class="n">kq</span><span class="p">))</span>   <span class="kd">::</span> <span class="n">work</span>
-    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">leftz</span><span class="p">,</span> <span class="n">leftq</span><span class="p">,</span> <span class="n">mflag</span><span class="p">,&amp;</span>
-                <span class="n">kcoly</span><span class="p">,</span> <span class="n">kcolz</span><span class="p">,</span> <span class="n">kcolq</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">q</span>
+    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">lefty</span><span class="p">,</span> <span class="n">leftz</span><span class="p">,</span> <span class="n">leftq</span><span class="p">,</span> <span class="p">&amp;</span>
+               <span class="n">kcoly</span><span class="p">,</span> <span class="n">kcolz</span><span class="p">,</span> <span class="n">kcolq</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">q</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 
