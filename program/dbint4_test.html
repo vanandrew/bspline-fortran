@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 7.1% of total for programs.">106 statements</a>
+    title=" 7.9% of total for programs.">119 statements</a>
      </li> 
      
      
@@ -238,6 +238,10 @@
       <a class="list-group-item" href="../program/dbint4_test.html#variable-istat%7E4">istat</a>
       
       <a class="list-group-item" href="../program/dbint4_test.html#variable-icase">icase</a>
+      
+      <a class="list-group-item" href="../program/dbint4_test.html#variable-tleft%7E2">tleft</a>
+      
+      <a class="list-group-item" href="../program/dbint4_test.html#variable-tright%7E2">tright</a>
       
       <a class="list-group-item" href="../program/dbint4_test.html#variable-labels">labels</a>
       
@@ -701,6 +705,10 @@
       
       <a class="list-group-item" href="../program/dbint4_test.html#variable-icase">icase</a>
       
+      <a class="list-group-item" href="../program/dbint4_test.html#variable-tleft%7E2">tleft</a>
+      
+      <a class="list-group-item" href="../program/dbint4_test.html#variable-tright%7E2">tright</a>
+      
       <a class="list-group-item" href="../program/dbint4_test.html#variable-labels">labels</a>
       
       <a class="list-group-item" href="../program/dbint4_test.html#variable-linestyles">linestyles</a>
@@ -805,7 +813,7 @@
   
   
   <td>parameter</td><td>::</td>
-  <td><strong>extrap</strong></td><td> =</td><td>.false.</td><td></td>
+  <td><strong>extrap</strong></td><td> =</td><td>.true.</td><td></td>
   
 </tr>
 
@@ -1154,7 +1162,7 @@
   <td><span class="anchor" id="variable-w%7E2"></span>real(kind=wp),</td>
   
   
-  <td>dimension(5,5*(nx+2))</td><td>::</td>
+  <td>dimension(5,nx+2)</td><td>::</td>
   <td><strong>w</strong></td><td></td><td></td><td></td>
   
 </tr>
@@ -1207,11 +1215,39 @@
   
 <tr>
   
+  <td><span class="anchor" id="variable-tleft%7E2"></span>real(kind=wp),</td>
+  
+  
+  <td>dimension(3)</td><td>::</td>
+  <td><strong>tleft</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-tright%7E2"></span>real(kind=wp),</td>
+  
+  
+  <td>dimension(3)</td><td>::</td>
+  <td><strong>tright</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-labels"></span>character(len=*),</td>
   
   
-  <td>parameter, dimension(5)</td><td>::</td>
-  <td><strong>labels</strong></td><td> =</td><td>['not-a-knot [db1ink]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '2nd der=0, kntopt=1 [dbint4] ', '1st der=0, kntopt=1 [dbint4] ', '2nd der=0, kntopt=2 [dbint4] ', '1st der=0, kntopt=2 [dbint4] ']</td><td></td>
+  <td>parameter, dimension(7)</td><td>::</td>
+  <td><strong>labels</strong></td><td> =</td><td>['not-a-knot [db1ink]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', '2nd der=0, kntopt=1 [dbint4] ', '1st der=0, kntopt=1 [dbint4] ', '2nd der=0, kntopt=2 [dbint4] ', '1st der=0, kntopt=2 [dbint4] ', '2nd der=0, kntopt=3 [dbint4] ', '1st der=0, kntopt=3 [dbint4] ']</td><td></td>
   
 </tr>
 
@@ -1224,8 +1260,8 @@
   <td><span class="anchor" id="variable-linestyles"></span>character(len=*),</td>
   
   
-  <td>parameter, dimension(5)</td><td>::</td>
-  <td><strong>linestyles</strong></td><td> =</td><td>['r-', 'g-', 'b-', 'c-', 'm-']</td><td></td>
+  <td>parameter, dimension(7)</td><td>::</td>
+  <td><strong>linestyles</strong></td><td> =</td><td>['r-', 'g-', 'b-', 'c-', 'm-', 'c:', 'm:']</td><td></td>
   
 </tr>
 
@@ -1337,7 +1373,7 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
 <span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">nx</span> <span class="o">=</span> <span class="mi">6</span>     <span class="c">!! number of points in x</span>
     <span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">kx</span> <span class="o">=</span> <span class="mi">4</span>     <span class="c">!! order in x</span>
 
-    <span class="kt">logical</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">extrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+    <span class="kt">logical</span><span class="p">,</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">extrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">rad2deg</span> <span class="o">=</span> <span class="mi">18</span><span class="mf">0.0_wp</span> <span class="o">/</span> <span class="nb">acos</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0_wp</span><span class="p">)</span>  <span class="c">!! deg. to radians conversion factor</span>
 
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
@@ -1348,25 +1384,30 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
     <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tol</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">tru</span><span class="p">,</span><span class="n">err</span><span class="p">,</span><span class="n">errmax</span><span class="p">,</span><span class="n">fbcr</span><span class="p">,</span><span class="n">fbcl</span>
     <span class="kt">logical</span>  <span class="kd">::</span> <span class="n">fail</span>
     <span class="kt">integer</span>  <span class="kd">::</span> <span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">idx</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">ibcl</span><span class="p">,</span><span class="n">ibcr</span><span class="p">,</span><span class="n">kntopt</span>
-    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="o">*</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span> <span class="kd">::</span> <span class="n">w</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="kd">::</span> <span class="n">w</span>
     <span class="k">type</span><span class="p">(</span><span class="n">pyplot</span><span class="p">)</span> <span class="kd">::</span> <span class="n">plt</span>
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">istat</span>
     <span class="kt">integer</span> <span class="kd">::</span> <span class="n">icase</span>
-    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;not-a-knot [db1ink]          &#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="kd">::</span> <span class="n">tleft</span><span class="p">,</span> <span class="n">tright</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;not-a-knot [db1ink]          &#39;</span><span class="p">,</span> <span class="p">&amp;</span>
                                                          <span class="s1">&#39;2nd der=0, kntopt=1 [dbint4] &#39;</span><span class="p">,</span> <span class="p">&amp;</span>
                                                          <span class="s1">&#39;1st der=0, kntopt=1 [dbint4] &#39;</span><span class="p">,</span> <span class="p">&amp;</span>
                                                          <span class="s1">&#39;2nd der=0, kntopt=2 [dbint4] &#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-                                                         <span class="s1">&#39;1st der=0, kntopt=2 [dbint4] &#39;</span><span class="p">]</span>
-    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">linestyles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                         <span class="s1">&#39;1st der=0, kntopt=2 [dbint4] &#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                         <span class="s1">&#39;2nd der=0, kntopt=3 [dbint4] &#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                         <span class="s1">&#39;1st der=0, kntopt=3 [dbint4] &#39;</span><span class="p">]</span>
+    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">dimension</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="k">parameter</span> <span class="kd">::</span> <span class="n">linestyles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
                                                              <span class="s1">&#39;g-&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
                                                              <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
                                                              <span class="s1">&#39;c-&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
-                                                             <span class="s1">&#39;m-&#39;</span> <span class="p">]</span>
+                                                             <span class="s1">&#39;m-&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                             <span class="s1">&#39;c:&#39;</span><span class="p">,</span> <span class="p">&amp;</span>
+                                                             <span class="s1">&#39;m:&#39;</span> <span class="p">]</span>
 
-    <span class="n">fail</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-    <span class="n">tol</span> <span class="o">=</span> <span class="mf">1.0e-14_wp</span>
-    <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">wp</span><span class="p">)</span>  <span class="c">! nx points</span>
+    <span class="n">fail</span>   <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+    <span class="n">tol</span>    <span class="o">=</span> <span class="mf">1.0e-14_wp</span>
+    <span class="n">idx</span>    <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">x</span>      <span class="o">=</span> <span class="kt">real</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="n">wp</span><span class="p">)</span>  <span class="c">! nx points</span>
     <span class="n">fcn_1d</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
     <span class="c">!initialize the plot:</span>
@@ -1377,15 +1418,14 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
 
     <span class="k">if</span> <span class="p">(</span><span class="n">extrap</span><span class="p">)</span> <span class="k">then</span>
         <span class="c">! points to evaluate [with extrapolation]:</span>
-        <span class="n">xval</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="mi">650</span><span class="p">)],</span> <span class="n">wp</span><span class="p">)</span> <span class="c">! 0.9,1.,2.,3.,4.,5.,6.,6.9], wp)</span>
+        <span class="n">xval</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="mi">650</span><span class="p">)],</span> <span class="n">wp</span><span class="p">)</span>
     <span class="k">else</span>
         <span class="c">! points to evaluate [no extrapolation]:</span>
-        <span class="c">!xval = real([1.,1.,2.,3.,4.,5.,6.,6.], wp)</span>
         <span class="n">xval</span> <span class="o">=</span> <span class="kt">real</span><span class="p">([(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">10</span><span class="p">)],</span> <span class="n">wp</span><span class="p">)</span>
     <span class="k">end if</span>
 <span class="k">    allocate</span><span class="p">(</span><span class="n">fval</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">xval</span><span class="p">)))</span>
 
-    <span class="k">do </span><span class="n">icase</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span>
+    <span class="k">do </span><span class="n">icase</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span>
 
         <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;&#39;</span>
         <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;===============================================&#39;</span>
@@ -1396,6 +1436,8 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
         <span class="c">! 3 - use dvint4 - constrain 1st derivative, kntopt = 1</span>
         <span class="c">! 4 - use dbint4 - constrain 2nd derivative, kntopt = 2</span>
         <span class="c">! 5 - use dvint4 - constrain 1st derivative, kntopt = 2</span>
+        <span class="c">! 6 - use dbint4 - constrain 2nd derivative, kntopt = 3</span>
+        <span class="c">! 7 - use dvint4 - constrain 1st derivative, kntopt = 3</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">bcoef</span><span class="p">))</span> <span class="k">deallocate</span><span class="p">(</span><span class="n">bcoef</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">tx</span><span class="p">))</span>    <span class="k">deallocate</span><span class="p">(</span><span class="n">tx</span><span class="p">)</span>
@@ -1413,7 +1455,7 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
             <span class="c">! use the dbint4 routine and specify the endpoint derivatives</span>
             <span class="k">allocate</span><span class="p">(</span><span class="n">bcoef</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="p">))</span>
             <span class="k">allocate</span><span class="p">(</span><span class="n">tx</span><span class="p">(</span><span class="n">nx</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="n">kx</span><span class="p">))</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">icase</span><span class="o">==</span><span class="mi">2</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">icase</span><span class="o">==</span><span class="mi">4</span><span class="p">)</span> <span class="k">then</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">icase</span><span class="o">==</span><span class="mi">2</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">icase</span><span class="o">==</span><span class="mi">4</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">icase</span><span class="o">==</span><span class="mi">6</span><span class="p">)</span> <span class="k">then</span>
                 <span class="c">! constrain 2nd derivative</span>
                 <span class="n">ibcl</span> <span class="o">=</span> <span class="mi">2</span>
                 <span class="n">ibcr</span> <span class="o">=</span> <span class="mi">2</span>
@@ -1424,25 +1466,30 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
             <span class="k">end if</span>
 <span class="k">            </span><span class="n">fbcl</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
             <span class="n">fbcr</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">icase</span><span class="o">==</span><span class="mi">2</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">icase</span><span class="o">==</span><span class="mi">3</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">                </span><span class="n">kntopt</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">else</span>
-<span class="k">                </span><span class="n">kntopt</span> <span class="o">=</span> <span class="mi">2</span>
-            <span class="k">end if</span>
 
-            <span class="c">!</span>
-            <span class="c">! WARNING: kntopt seems to have no effect on</span>
-            <span class="c">!          result for this example. Why???</span>
-            <span class="c">!</span>
+            <span class="k">select case</span> <span class="p">(</span><span class="n">icase</span><span class="p">)</span>
+            <span class="k">case</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+                <span class="n">kntopt</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">case</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+                <span class="n">kntopt</span> <span class="o">=</span> <span class="mi">2</span>
+            <span class="k">case</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
+                <span class="n">kntopt</span> <span class="o">=</span> <span class="mi">3</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+                <span class="c">! WARNING: the knot values seem to make no difference in the result</span>
+                <span class="n">tleft</span>  <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">99</span><span class="mf">9.0_wp</span><span class="p">,</span><span class="o">-</span><span class="mi">99</span><span class="mf">9.0_wp</span><span class="p">,</span><span class="mf">1.0_wp</span><span class="p">]</span>
+                <span class="n">tright</span> <span class="o">=</span> <span class="p">[</span><span class="mf">6.0_wp</span><span class="p">,</span> <span class="mi">99</span><span class="mf">9.0_wp</span><span class="p">,</span> <span class="mi">99</span><span class="mf">9.0_wp</span><span class="p">]</span>
+            <span class="k">end select</span>
+
+            <span class="c">! WARNING: kntopt seems to have no effect on result for this example.</span>
 
             <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;kntopt:  &#39;</span><span class="p">,</span> <span class="n">kntopt</span>
-            <span class="k">call </span><span class="n">dbint4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn_1d</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ibcl</span><span class="p">,</span><span class="n">ibcr</span><span class="p">,</span><span class="n">fbcl</span><span class="p">,</span><span class="n">fbcr</span><span class="p">,</span><span class="n">kntopt</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
+            <span class="k">call </span><span class="n">dbint4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">fcn_1d</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">ibcl</span><span class="p">,</span><span class="n">ibcr</span><span class="p">,</span><span class="n">fbcl</span><span class="p">,</span><span class="n">fbcr</span><span class="p">,</span><span class="n">kntopt</span><span class="p">,</span><span class="n">tleft</span><span class="p">,</span><span class="n">tright</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">iflag</span><span class="p">)</span>
 
-            <span class="c">! write(*,*) &#39;&#39;</span>
-            <span class="c">! write(*,*) &#39;x:  &#39;, x</span>
-            <span class="c">! write(*,*) &#39;&#39;</span>
-            <span class="c">! write(*,*) &#39;tx: &#39;, tx</span>
-            <span class="c">! write(*,*) &#39;&#39;</span>
+            <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;x:  &#39;</span><span class="p">,</span> <span class="n">x</span>
+            <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;tx: &#39;</span><span class="p">,</span> <span class="n">tx</span>
+            <span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span> <span class="s1">&#39;&#39;</span>
 
         <span class="k">end if</span>
 <span class="k">        if</span> <span class="p">(</span><span class="n">iflag</span><span class="o">/=</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
@@ -1460,6 +1507,7 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
         <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
         <span class="n">errmax</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
         <span class="n">err</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span><span class="mf">9.9_wp</span>
+        <span class="n">fval</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
         <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">xval</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">icase</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">                call </span><span class="n">db1val</span><span class="p">(</span><span class="n">xval</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">idx</span><span class="p">,</span><span class="n">tx</span><span class="p">,</span><span class="n">nx</span><span class="p">,</span><span class="n">kx</span><span class="p">,</span><span class="n">bcoef</span><span class="p">,</span><span class="n">val</span><span class="p">,</span><span class="n">iflag</span><span class="p">,</span><span class="n">inbvx</span><span class="p">,</span><span class="n">extrap</span><span class="o">=</span><span class="n">extrap</span><span class="p">)</span>
@@ -1495,7 +1543,7 @@ pure elemental function <a href='../proc/f1%7E5.html'>f1</a>(x)
 
     <span class="k">end do</span>
 
-<span class="k">    call </span><span class="n">plt</span><span class="p">%</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;dbint4_test.png&#39;</span><span class="p">,</span><span class="n">pyfile</span><span class="o">=</span><span class="s1">&#39;dbint4_test.py&#39;</span><span class="p">,</span><span class="n">istat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span>
+<span class="k">    call </span><span class="n">plt</span><span class="p">%</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;dbint4_test.png&#39;</span><span class="p">,</span><span class="n">istat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span>
 
     <span class="k">contains</span>
 
