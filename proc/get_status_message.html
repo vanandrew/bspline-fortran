@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="17.0% of total for procedures.">214 statements</a>
+    title="19.4% of total for procedures.">216 statements</a>
      </li> 
      
      
@@ -391,6 +391,8 @@ public pure function get_status_message(iflag) result(msg)
     <span class="k">case</span><span class="p">(</span><span class="mi">803</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(q) /= size(bcoef,4)&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">804</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= size(bcoef,5)&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">805</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= size(bcoef,6)&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">806</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink_alt: dbint4 can only be used when k=4&#39;</span>
 
     <span class="k">case</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: k does not satisfy k&gt;=1&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">101</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: n does not satisfy n&gt;=k&#39;</span>

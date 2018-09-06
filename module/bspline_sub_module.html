@@ -138,7 +138,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="62.2% of total for modules and submodules.">2327 statements</a>
+    title="63.0% of total for modules and submodules.">2401 statements</a>
      </li> 
      
      
@@ -189,6 +189,12 @@
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_quintic">bspline_order_quintic</a>
       
+      <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_hexic">bspline_order_hexic</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_heptic">bspline_order_heptic</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_octic">bspline_order_octic</a>
+      
     </div>
   </div>
 </div>
@@ -199,6 +205,18 @@
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-0">Interfaces</a></h3></div>
+  <div id="inters-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#interface-db1ink">db1ink</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
@@ -234,8 +252,6 @@
   <div class="list-group">
     <div id="subs-0" class="panel-collapse collapse">
       
-      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1ink">db1ink</a>
-      
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1val">db1val</a>
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1sqad">db1sqad</a>
@@ -261,8 +277,6 @@
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db6ink">db6ink</a>
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db6val">db6val</a>
-      
-      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbint4">dbint4</a>
       
     </div>
   </div>
@@ -315,7 +329,6 @@
 <li>D.E. Amos, "Quadrature subroutines for splines and B-splines",
      Report SAND79-1825, Sandia Laboratories, December 1979.</li>
 </ol>
-<p>for testing</p>
       <br>
     
   
@@ -714,6 +727,12 @@
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_quintic">bspline_order_quintic</a>
       
+      <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_hexic">bspline_order_hexic</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_heptic">bspline_order_heptic</a>
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#variable-bspline_order_octic">bspline_order_octic</a>
+      
     </div>
   </div>
 </div>
@@ -724,6 +743,18 @@
 
 
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#inters-1">Interfaces</a></h3></div>
+  <div id="inters-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/bspline_sub_module.html#interface-db1ink">db1ink</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
@@ -759,8 +790,6 @@
   <div class="list-group">
     <div id="subs-1" class="panel-collapse collapse">
       
-      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1ink">db1ink</a>
-      
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1val">db1val</a>
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db1sqad">db1sqad</a>
@@ -786,8 +815,6 @@
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db6ink">db6ink</a>
       
       <a class="list-group-item" href="../module/bspline_sub_module.html#proc-db6val">db6val</a>
-      
-      <a class="list-group-item" href="../module/bspline_sub_module.html#proc-dbint4">dbint4</a>
       
     </div>
   </div>
@@ -830,7 +857,9 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>bspline_order_quadratic</strong></td><td> =</td><td>3</td><td></td>
+  <td><strong>bspline_order_quadratic</strong></td><td> =</td><td>3</td><td><p>spline order <code>k</code> parameter
+ (for input to the <code>db*ink</code> routines)
+ [order = polynomial degree + 1]</p></td>
   
 </tr>
 
@@ -844,7 +873,9 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>bspline_order_cubic</strong></td><td> =</td><td>4</td><td></td>
+  <td><strong>bspline_order_cubic</strong></td><td> =</td><td>4</td><td><p>spline order <code>k</code> parameter
+ (for input to the <code>db*ink</code> routines)
+ [order = polynomial degree + 1]</p></td>
   
 </tr>
 
@@ -858,7 +889,9 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>bspline_order_quartic</strong></td><td> =</td><td>5</td><td></td>
+  <td><strong>bspline_order_quartic</strong></td><td> =</td><td>5</td><td><p>spline order <code>k</code> parameter
+ (for input to the <code>db*ink</code> routines)
+ [order = polynomial degree + 1]</p></td>
   
 </tr>
 
@@ -872,7 +905,57 @@
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
-  <td><strong>bspline_order_quintic</strong></td><td> =</td><td>6</td><td></td>
+  <td><strong>bspline_order_quintic</strong></td><td> =</td><td>6</td><td><p>spline order <code>k</code> parameter
+ (for input to the <code>db*ink</code> routines)
+ [order = polynomial degree + 1]</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-bspline_order_hexic"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>bspline_order_hexic</strong></td><td> =</td><td>7</td><td><p>spline order <code>k</code> parameter
+ (for input to the <code>db*ink</code> routines)
+ [order = polynomial degree + 1]</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-bspline_order_heptic"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>bspline_order_heptic</strong></td><td> =</td><td>8</td><td><p>spline order <code>k</code> parameter
+ (for input to the <code>db*ink</code> routines)
+ [order = polynomial degree + 1]</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-bspline_order_octic"></span>integer,</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>bspline_order_octic</strong></td><td> =</td><td>9</td><td><p>spline order <code>k</code> parameter
+ (for input to the <code>db*ink</code> routines)
+ [order = polynomial degree + 1]</p></td>
   
 </tr>
 
@@ -885,6 +968,704 @@
     
     
     
+    
+    <section>
+   <h2>Interfaces</h2>
+   
+     
+<div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="interface-db1ink"></span><h3>public interface <a href='../interface/db1ink.html'>db1ink</a>
+    
+  </h3></div>
+  
+  <div class="panel-body">
+    
+    <p>1D initialization routines.</p>
+  </div>
+  
+  <ul class="list-group">
+  
+  
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private pure subroutine db1ink_default(x, nx, fcn, kx, iknot, tx, bcoef, iflag)
+    
+    
+   
+</h3>
+    
+
+
+
+<p>Determines the parameters of a function that interpolates
+  the one-dimensional gridded data
+  <script type="math/tex; mode=display"> [x(i),\mathrm{fcn}(i)] ~\mathrm{for}~ i=1,..,n_x </script>
+  The interpolating function and its derivatives may
+  subsequently be evaluated by the function [[db1val]].</p><a href="../proc/db1ink_default.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td><p><code>(nx)</code> array of <script type="math/tex">x</script> abcissae. Must be strictly increasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td><p>Number of <script type="math/tex">x</script> abcissae</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>fcn</strong></td><td><p><code>(nx)</code> array of function values to interpolate. <code>fcn(i)</code> should
+ contain the function value at the point <code>x(i)</code></p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td><p>The order of spline pieces in <script type="math/tex">x</script>
+ ( <script type="math/tex"> 2 \le k_x < n_x </script> )
+ (order = polynomial degree + 1)</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iknot</strong></td><td><p>knot sequence flag:</p>
+<ul>
+<li>0 = knot sequence chosen by [[db1ink]].</li>
+<li>1 = knot sequence chosen by user.</li>
+</ul></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction
+ for the spline interpolant:</p>
+<ul>
+<li>If <code>iknot=0</code> these are chosen by [[db1ink]].</li>
+<li>If <code>iknot=1</code> these are specified by the user.</li>
+</ul>
+<p>Must be non-decreasing.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p><code>(nx)</code> array of coefficients of the b-spline interpolant.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>status flag:</p>
+<ul>
+<li>0 = successful execution.</li>
+<li>2 = <code>iknot</code> out of range.</li>
+<li>3 = <code>nx</code> out of range.</li>
+<li>4 = <code>kx</code> out of range.</li>
+<li>5 = <code>x</code> not strictly increasing.</li>
+<li>6 = <code>tx</code> not non-decreasing.</li>
+<li>700 = <code>size(x)</code> <script type="math/tex"> \ne </script>
+<code>size(fcn,1)</code>.</li>
+<li>706 = <code>size(x)</code> <script type="math/tex"> \ne </script>
+<code>nx</code>.</li>
+<li>712 = <code>size(tx)</code> <script type="math/tex"> \ne </script>
+<code>nx+kx</code>.</li>
+<li>800 = <code>size(x)</code> <script type="math/tex"> \ne </script>
+<code>size(bcoef,1)</code>.</li>
+</ul></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntopt, tx, bcoef, iflag)
+    
+    
+   
+</h3>
+    
+
+
+
+<p>Alternate version of [[db1ink_default]], where the boundary conditions can be specified.</p><a href="../proc/db1ink_alt.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td><p>X vector of abscissae of length nx, distinct
+ and in increasing order</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td><p>number of data points, nx &gt;= 2</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>fcn</strong></td><td><p>y vector of ordinates of length nx</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td><p>spline order</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ibcl</strong></td><td><p>selection parameter for left boundary condition:</p>
+<ul>
+<li>ibcl = 1 constrain the first derivative at x(1) to fbcl</li>
+<li>ibcl = 2 constrain the second derivative at x(1) to fbcl</li>
+</ul></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ibcr</strong></td><td><p>selection parameter for right boundary condition:</p>
+<ul>
+<li>ibcr = 1 constrain first derivative at x(nx) to fbcr</li>
+<li>ibcr = 2 constrain second derivative at x(nx) to fbcr</li>
+</ul></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fbcl</strong></td><td><p>left boundary values governed by ibcl</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fbcr</strong></td><td><p>right boundary values governed by ibcr</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kntopt</strong></td><td><p>knot selection parameter:</p>
+<ul>
+<li>kntopt = 1 sets knot multiplicity at t(4) and
+   t(nx+3) to 4</li>
+<li>kntopt = 2 sets a symmetric placement of knots
+   about t(4) and t(nx+3)</li>
+</ul></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tx</strong></td><td><p>knot array of length nx+6</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p>b spline coefficient array of length nx+2</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>status flag:</p>
+<ul>
+<li>0: no errors</li>
+<li>806: [[dbint4]] can only be used when k=4</li>
+</ul></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+    <li class="list-group-item">
+    
+    
+    <h3>
+private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tleft, tright, tx, bcoef, iflag)
+    
+    
+   
+</h3>
+    
+
+
+
+<p>Alternate version of [[db1ink_alt]], where the first and
+  last 3 knots are specified by the user.</p><a href="../proc/db1ink_alt_2.html" class="pull-right"><emph>Read more&hellip;</emph></a>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>x</strong></td><td><p>X vector of abscissae of length nx, distinct
+ and in increasing order</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>nx</strong></td><td><p>number of data points, nx &gt;= 2</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>fcn</strong></td><td><p>y vector of ordinates of length nx</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>kx</strong></td><td><p>spline order</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ibcl</strong></td><td><p>selection parameter for left boundary condition:</p>
+<ul>
+<li>ibcl = 1 constrain the first derivative at x(1) to fbcl</li>
+<li>ibcl = 2 constrain the second derivative at x(1) to fbcl</li>
+</ul></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>ibcr</strong></td><td><p>selection parameter for right boundary condition:</p>
+<ul>
+<li>ibcr = 1 constrain first derivative at x(nx) to fbcr</li>
+<li>ibcr = 2 constrain second derivative at x(nx) to fbcr</li>
+</ul></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fbcl</strong></td><td><p>left boundary values governed by ibcl</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>fbcr</strong></td><td><p>right boundary values governed by ibcr</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(3)</td><td>::</td>
+  <td><strong>tleft</strong></td><td><p>t(1:3) in increasing order supplied by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>dimension(3)</td><td>::</td>
+  <td><strong>tright</strong></td><td><p>t(nx+4:nx+6) in increasing order supplied by the user.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>tx</strong></td><td><p>knot array of length nx+6</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(out),</td>
+  <td></td>
+  
+  <td>dimension(:)</td><td>::</td>
+  <td><strong>bcoef</strong></td><td><p>b spline coefficient array of length nx+2</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(out)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>iflag</strong></td><td><p>status flag:</p>
+<ul>
+<li>0: no errors</li>
+<li>806: [[dbint4]] can only be used when k=4</li>
+</ul></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+    </li>
+  
+  
+  </ul>
+</div>
+
+    
+    </section>
+  <br>
     
 
     
@@ -1050,178 +1831,6 @@ public pure function <a href='../proc/get_status_message.html'>get_status_messag
     
     
   <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-db1ink"></span><h3>
-public pure subroutine <a href='../proc/db1ink.html'>db1ink</a>(x, nx, fcn, kx, iknot, tx, bcoef, iflag)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>Determines the parameters of a function that interpolates
-  the one-dimensional gridded data
-  <script type="math/tex; mode=display"> [x(i),\mathrm{fcn}(i)] ~\mathrm{for}~ i=1,..,n_x </script>
-  The interpolating function and its derivatives may
-  subsequently be evaluated by the function <a href="../proc/db1val.html">db1val</a>.</p><a href="../proc/db1ink.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p><code>(nx)</code> array of <script type="math/tex">x</script> abcissae. Must be strictly increasing.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>nx</strong></td><td><p>Number of <script type="math/tex">x</script> abcissae</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>fcn</strong></td><td><p><code>(nx)</code> array of function values to interpolate. <code>fcn(i)</code> should
- contain the function value at the point <code>x(i)</code></p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>kx</strong></td><td><p>The order of spline pieces in <script type="math/tex">x</script>
- ( <script type="math/tex"> 2 \le k_x < n_x </script> )
- (order = polynomial degree + 1)</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iknot</strong></td><td><p>knot sequence flag:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(inout),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>The <code>(nx+kx)</code> knots in the <script type="math/tex">x</script> direction
- for the spline interpolant:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p><code>(nx)</code> array of coefficients of the b-spline interpolant.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td><p>status flag:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-db1val"></span><h3>
 public pure subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, extrap)
     
@@ -1239,7 +1848,7 @@ public pure subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, n
 
 
 <p>Evaluates the tensor product piecewise polynomial
-  interpolant constructed by the routine <a href="../proc/db1ink.html">db1ink</a> or one of its
+  interpolant constructed by the routine <a href="../interface/db1ink.html">db1ink</a> or one of its
   derivatives at the point <code>xval</code>.</p><a href="../proc/db1val.html" class="pull-right"><emph>Read more&hellip;</emph></a>
     
     <h4>Arguments</h4>
@@ -1299,7 +1908,7 @@ public pure subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, n
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>sequence of knots defining the piecewise polynomial
- in the <script type="math/tex">x</script> direction. (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
+ in the <script type="math/tex">x</script> direction. (same as in last call to <a href="../interface/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -1315,7 +1924,7 @@ public pure subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, n
   
   <td></td><td>::</td>
   <td><strong>nx</strong></td><td><p>the number of interpolation points in <script type="math/tex">x</script>.
- (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
+ (same as in last call to <a href="../interface/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -1331,7 +1940,7 @@ public pure subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, n
   
   <td></td><td>::</td>
   <td><strong>kx</strong></td><td><p>order of polynomial pieces in <script type="math/tex">x</script>.
- (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
+ (same as in last call to <a href="../interface/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -1346,7 +1955,7 @@ public pure subroutine <a href='../proc/db1val.html'>db1val</a>(xval, idx, tx, n
   <td></td>
   
   <td>dimension(nx)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by <a href="../proc/db1ink.html">db1ink</a>.</p></td>
+  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by <a href="../interface/db1ink.html">db1ink</a>.</p></td>
   
 </tr>
 
@@ -6359,316 +6968,6 @@ public pure subroutine <a href='../proc/db6val.html'>db6val</a>(xval, yval, zval
   <td></td><td>::</td>
   <td><strong>extrap</strong></td><td><p>if extrapolation is allowed
  (if not present, default is False)</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-dbint4"></span><h3>
-public pure subroutine <a href='../proc/dbint4.html'>dbint4</a>(x, y, ndata, ibcl, ibcr, fbcl, fbcr, kntopt, tleft, tright, t, bcoef, n, k, w, iflag)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-
-
-
-
-
-
-
-<p>DBINT4 computes the B representation (T,BCOEF,N,K) of a
-  cubic spline (K=4) which interpolates data (X(I),Y(I)),
-  I=1,NDATA.  Parameters IBCL, IBCR, FBCL, FBCR allow the
-  specification of the spline first or second derivative at
-  both X(1) and X(NDATA).  When this data is not specified
-  by the problem, it is common practice to use a natural
-  spline by setting second derivatives at X(1) and X(NDATA)
-  to zero (IBCL=IBCR=2,FBCL=FBCR=0.0).  The spline is defined
-  on T(4) &lt;= X &lt;= T(N+1) with (ordered) interior knots at
-  X(I) values where N=NDATA+2.  The knots T(1),T(2),T(3) lie to
-  the left of T(4)=X(1) and the knots T(N+2), T(N+3), T(N+4)
-  lie to the right of T(N+1)=X(NDATA) in increasing order.  If
-  no extrapolation outside (X(1),X(NDATA)) is anticipated, the
-  knots T(1)=T(2)=T(3)=T(4)=X(1) and T(N+2)=T(N+3)=T(N+4)=
-  T(N+1)=X(NDATA) can be specified by KNTOPT=1.  KNTOPT=2
-  selects a knot placement for T(1), T(2), T(3) to make the
-  first 7 knots symmetric about T(4)=X(1) and similarly for
-  T(N+2), T(N+3), T(N+4) about T(N+1)=X(NDATA).  KNTOPT=3
-  allows the user to make his own selection, in increasing
-  order, for T(1), T(2), T(3) to the left of X(1) and T(N+2),
-  T(N+3), T(N+4) to the right of X(NDATA).
-  In any case, the interpolation on T(4) &lt;= X &lt;= T(N+1)
-  by using function DBVALU is unique for given boundary
-  conditions.</p><a href="../proc/dbint4.html" class="pull-right"><emph>Read more&hellip;</emph></a>
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p>X vector of abscissae of length NDATA, distinct
- and in increasing order</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>y</strong></td><td><p>y vector of ordinates of length ndata</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>ndata</strong></td><td><p>number of data points, ndata &gt;= 2</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>ibcl</strong></td><td><p>selection parameter for left boundary condition:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>ibcr</strong></td><td><p>selection parameter for right boundary condition:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>fbcl</strong></td><td><p>left boundary values governed by ibcl</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>fbcr</strong></td><td><p>right boundary values governed by ibcr</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>kntopt</strong></td><td><p>knot selection parameter:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(3)</td><td>::</td>
-  <td><strong>tleft</strong></td><td><p>when kntopt = 3: t(1:3) in increasing
- order to be supplied by the user.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(in),</td>
-  <td></td>
-  
-  <td>dimension(3)</td><td>::</td>
-  <td><strong>tright</strong></td><td><p>when kntopt = 3: t(n+2:n+4) in increasing
- order to be supplied by the user.</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>t</strong></td><td><p>knot array of length n+4</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(out),</td>
-  <td></td>
-  
-  <td>dimension(:)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>b spline coefficient array of length n</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>n</strong></td><td><p>number of coefficients, n=ndata+2</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>k</strong></td><td><p>order of spline, k=4</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>real(kind=wp),</td>
-  <td>intent(inout),</td>
-  <td></td>
-  
-  <td>dimension(5,ndata+2)</td><td>::</td>
-  <td><strong>w</strong></td><td><p>work array</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iflag</strong></td><td><p>status flag:</p><a href="None" class="pull-right"><emph>Read more&hellip;</emph></a></td>
   
 </tr>
 
