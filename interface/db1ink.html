@@ -505,7 +505,8 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p>X vector of abscissae of length nx, distinct
+  <td><strong>x</strong></td><td><p>
+<script type="math/tex">x</script> vector of abscissae of length <code>nx</code>, distinct
  and in increasing order</p></td>
   
 </tr>
@@ -521,7 +522,8 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>nx</strong></td><td><p>number of data points, nx &gt;= 2</p></td>
+  <td><strong>nx</strong></td><td><p>number of data points, <script type="math/tex"> n_x \ge 2 </script>
+</p></td>
   
 </tr>
 
@@ -536,7 +538,8 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>fcn</strong></td><td><p>y vector of ordinates of length nx</p></td>
+  <td><strong>fcn</strong></td><td><p>
+<script type="math/tex">y</script> vector of ordinates of length <code>nx</code></p></td>
   
 </tr>
 
@@ -568,8 +571,8 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td><td>::</td>
   <td><strong>ibcl</strong></td><td><p>selection parameter for left boundary condition:</p>
 <ul>
-<li>ibcl = 1 constrain the first derivative at x(1) to fbcl</li>
-<li>ibcl = 2 constrain the second derivative at x(1) to fbcl</li>
+<li><code>ibcl = 1</code> constrain the first derivative at <code>x(1)</code> to <code>fbcl</code></li>
+<li><code>ibcl = 2</code> constrain the second derivative at <code>x(1)</code> to <code>fbcl</code></li>
 </ul></td>
   
 </tr>
@@ -587,8 +590,8 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td><td>::</td>
   <td><strong>ibcr</strong></td><td><p>selection parameter for right boundary condition:</p>
 <ul>
-<li>ibcr = 1 constrain first derivative at x(nx) to fbcr</li>
-<li>ibcr = 2 constrain second derivative at x(nx) to fbcr</li>
+<li><code>ibcr = 1</code> constrain first derivative at <code>x(nx)</code> to <code>fbcr</code></li>
+<li><code>ibcr = 2</code> constrain second derivative at <code>x(nx)</code> to <code>fbcr</code></li>
 </ul></td>
   
 </tr>
@@ -604,7 +607,7 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>fbcl</strong></td><td><p>left boundary values governed by ibcl</p></td>
+  <td><strong>fbcl</strong></td><td><p>left boundary values governed by <code>ibcl</code></p></td>
   
 </tr>
 
@@ -619,7 +622,7 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>fbcr</strong></td><td><p>right boundary values governed by ibcr</p></td>
+  <td><strong>fbcr</strong></td><td><p>right boundary values governed by <code>ibcr</code></p></td>
   
 </tr>
 
@@ -636,10 +639,10 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td><td>::</td>
   <td><strong>kntopt</strong></td><td><p>knot selection parameter:</p>
 <ul>
-<li>kntopt = 1 sets knot multiplicity at t(4) and
-   t(nx+3) to 4</li>
-<li>kntopt = 2 sets a symmetric placement of knots
-   about t(4) and t(nx+3)</li>
+<li><code>kntopt = 1</code> sets knot multiplicity at <code>t(4)</code> and
+   <code>t(nx+3)</code> to 4</li>
+<li><code>kntopt = 2</code> sets a symmetric placement of knots
+   about <code>t(4)</code> and <code>t(nx+3)</code></li>
 </ul></td>
   
 </tr>
@@ -655,7 +658,7 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>knot array of length nx+6</p></td>
+  <td><strong>tx</strong></td><td><p>knot array of length <code>nx+6</code></p></td>
   
 </tr>
 
@@ -670,7 +673,7 @@ private pure subroutine db1ink_alt(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, kntop
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>b spline coefficient array of length nx+2</p></td>
+  <td><strong>bcoef</strong></td><td><p>b spline coefficient array of length <code>nx+2</code></p></td>
   
 </tr>
 
@@ -745,7 +748,8 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>x</strong></td><td><p>X vector of abscissae of length nx, distinct
+  <td><strong>x</strong></td><td><p>
+<script type="math/tex">x</script> vector of abscissae of length <code>nx</code>, distinct
  and in increasing order</p></td>
   
 </tr>
@@ -761,7 +765,8 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>nx</strong></td><td><p>number of data points, nx &gt;= 2</p></td>
+  <td><strong>nx</strong></td><td><p>number of data points, <script type="math/tex"> n_x \ge 2 </script>
+</p></td>
   
 </tr>
 
@@ -776,7 +781,8 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>fcn</strong></td><td><p>y vector of ordinates of length nx</p></td>
+  <td><strong>fcn</strong></td><td><p>
+<script type="math/tex">y</script> vector of ordinates of length <code>nx</code></p></td>
   
 </tr>
 
@@ -808,8 +814,8 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td><td>::</td>
   <td><strong>ibcl</strong></td><td><p>selection parameter for left boundary condition:</p>
 <ul>
-<li>ibcl = 1 constrain the first derivative at x(1) to fbcl</li>
-<li>ibcl = 2 constrain the second derivative at x(1) to fbcl</li>
+<li><code>ibcl = 1</code> constrain the first derivative at <code>x(1)</code> to <code>fbcl</code></li>
+<li><code>ibcl = 2</code> constrain the second derivative at <code>x(1)</code> to <code>fbcl</code></li>
 </ul></td>
   
 </tr>
@@ -827,8 +833,8 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td><td>::</td>
   <td><strong>ibcr</strong></td><td><p>selection parameter for right boundary condition:</p>
 <ul>
-<li>ibcr = 1 constrain first derivative at x(nx) to fbcr</li>
-<li>ibcr = 2 constrain second derivative at x(nx) to fbcr</li>
+<li><code>ibcr = 1</code> constrain first derivative at <code>x(nx)</code> to <code>fbcr</code></li>
+<li><code>ibcr = 2</code> constrain second derivative at <code>x(nx)</code> to <code>fbcr</code></li>
 </ul></td>
   
 </tr>
@@ -844,7 +850,7 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>fbcl</strong></td><td><p>left boundary values governed by ibcl</p></td>
+  <td><strong>fbcl</strong></td><td><p>left boundary values governed by <code>ibcl</code></p></td>
   
 </tr>
 
@@ -859,7 +865,7 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>fbcr</strong></td><td><p>right boundary values governed by ibcr</p></td>
+  <td><strong>fbcr</strong></td><td><p>right boundary values governed by <code>ibcr</code></p></td>
   
 </tr>
 
@@ -874,7 +880,7 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td>dimension(3)</td><td>::</td>
-  <td><strong>tleft</strong></td><td><p>t(1:3) in increasing order supplied by the user.</p></td>
+  <td><strong>tleft</strong></td><td><p><code>t(1:3)</code> in increasing order supplied by the user.</p></td>
   
 </tr>
 
@@ -889,7 +895,7 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td>dimension(3)</td><td>::</td>
-  <td><strong>tright</strong></td><td><p>t(nx+4:nx+6) in increasing order supplied by the user.</p></td>
+  <td><strong>tright</strong></td><td><p><code>t(nx+4:nx+6)</code> in increasing order supplied by the user.</p></td>
   
 </tr>
 
@@ -904,7 +910,7 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>tx</strong></td><td><p>knot array of length nx+6</p></td>
+  <td><strong>tx</strong></td><td><p>knot array of length <code>nx+6</code></p></td>
   
 </tr>
 
@@ -919,7 +925,7 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
   <td></td>
   
   <td>dimension(:)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>b spline coefficient array of length nx+2</p></td>
+  <td><strong>bcoef</strong></td><td><p>b spline coefficient array of length <code>nx+2</code></p></td>
   
 </tr>
 
@@ -964,7 +970,7 @@ private pure subroutine db1ink_alt_2(x, nx, fcn, kx, ibcl, ibcr, fbcl, fbcr, tle
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2018 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2019 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
