@@ -218,7 +218,7 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
 
     
     <p>Evaluates the tensor product piecewise polynomial
-  interpolant constructed by the routine <a href="../interface/db1ink.html">db1ink</a> or one of its
+  interpolant constructed by the routine <a href="../proc/db1ink.html">db1ink</a> or one of its
   derivatives at the point <code>xval</code>.</p>
 <p>To evaluate the interpolant itself, set <code>idx=0</code>,
   to evaluate the first partial with respect to <code>x</code>, set <code>idx=1</code>, and so on.</p>
@@ -227,7 +227,7 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
 </pre></div>
 
 
-<p>if the knots <code>tx</code> were chosen by <a href="../interface/db1ink.html">db1ink</a>, then this is equivalent to:</p>
+<p>if the knots <code>tx</code> were chosen by <a href="../proc/db1ink.html">db1ink</a>, then this is equivalent to:</p>
 <div class="codehilite"><pre><span></span>   <span class="n">xval</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">xval</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span><span class="o">+</span><span class="n">epsx</span>
 </pre></div>
 
@@ -238,7 +238,7 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
 
 
 <p>The input quantities <code>tx</code>, <code>nx</code>, <code>kx</code>, and <code>bcoef</code> should be
-  unchanged since the last call of <a href="../interface/db1ink.html">db1ink</a>.</p>
+  unchanged since the last call of <a href="../proc/db1ink.html">db1ink</a>.</p>
 <h3>History</h3>
 <ul>
 <li>Jacob Williams, 10/30/2015 : Created 1D routine.</li>
@@ -295,13 +295,13 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
   
 <tr>
   
-  <td><span class="anchor" id="variable-tx"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-tx%7E2"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
   <td>dimension(nx+kx)</td><td>::</td>
   <td><strong>tx</strong></td><td><p>sequence of knots defining the piecewise polynomial
- in the <script type="math/tex">x</script> direction. (same as in last call to <a href="../interface/db1ink.html">db1ink</a>)</p></td>
+ in the <script type="math/tex">x</script> direction. (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -311,13 +311,13 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
   
 <tr>
   
-  <td><span class="anchor" id="variable-nx"></span>integer,</td>
+  <td><span class="anchor" id="variable-nx%7E2"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
   <td><strong>nx</strong></td><td><p>the number of interpolation points in <script type="math/tex">x</script>.
- (same as in last call to <a href="../interface/db1ink.html">db1ink</a>)</p></td>
+ (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -327,13 +327,13 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
   
 <tr>
   
-  <td><span class="anchor" id="variable-kx"></span>integer,</td>
+  <td><span class="anchor" id="variable-kx%7E2"></span>integer,</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
   <td><strong>kx</strong></td><td><p>order of polynomial pieces in <script type="math/tex">x</script>.
- (same as in last call to <a href="../interface/db1ink.html">db1ink</a>)</p></td>
+ (same as in last call to <a href="../proc/db1ink.html">db1ink</a>)</p></td>
   
 </tr>
 
@@ -343,12 +343,12 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
   
 <tr>
   
-  <td><span class="anchor" id="variable-bcoef"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-bcoef%7E2"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td></td>
   
   <td>dimension(nx)</td><td>::</td>
-  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by <a href="../interface/db1ink.html">db1ink</a>.</p></td>
+  <td><strong>bcoef</strong></td><td><p>the b-spline coefficients computed by <a href="../proc/db1ink.html">db1ink</a>.</p></td>
   
 </tr>
 
@@ -373,7 +373,7 @@ public pure subroutine db1val(xval, idx, tx, nx, kx, bcoef, f, iflag, inbvx, ext
   
 <tr>
   
-  <td><span class="anchor" id="variable-iflag%7E2"></span>integer,</td>
+  <td><span class="anchor" id="variable-iflag%7E3"></span>integer,</td>
   <td>intent(out)</td>
   <td></td>
   
