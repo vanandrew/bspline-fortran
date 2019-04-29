@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="17.6% of total for procedures.">194 statements</a>
+    title="19.4% of total for procedures.">216 statements</a>
      </li> 
      
      
@@ -392,6 +392,8 @@ public pure function get_status_message(iflag) result(msg)
     <span class="k">case</span><span class="p">(</span><span class="mi">804</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(r) /= size(bcoef,5)&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">805</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink: size(s) /= size(bcoef,6)&#39;</span>
 
+    <span class="k">case</span><span class="p">(</span><span class="mi">806</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in db*ink_alt: dbint4 can only be used when k=4&#39;</span>
+
     <span class="k">case</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: k does not satisfy k&gt;=1&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">101</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: n does not satisfy n&gt;=k&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">102</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbintk: x(i) does not satisfy x(i)&lt;x(i+1) for some i&#39;</span>
@@ -440,6 +442,18 @@ public pure function get_status_message(iflag) result(msg)
 
     <span class="k">case</span><span class="p">(</span><span class="mi">1101</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Warning in dbsgq8: a and b are too nearly equal to allow normal integration.&#39;</span>
     <span class="k">case</span><span class="p">(</span><span class="mi">1102</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbsgq8: ans is probably insufficiently accurate.&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">2001</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbint4: ndata is less than 2&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">2002</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbint4: x values are not distinct or not ordered&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">2003</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbint4: ibcl is not 1 or 2&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">2004</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbint4: ibcr is not 1 or 2&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">2005</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbint4: kntopt is not 1, 2, or 3&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">2006</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbint4: knot input through tleft, tright is not ordered properly&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">2007</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbint4: the system of equations is singular&#39;</span>
+
+    <span class="k">case</span><span class="p">(</span><span class="mi">3001</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvd: k does not satisfy k&gt;=1&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">3002</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvd: nderiv does not satisfy 1&lt;=nderiv&lt;=k&#39;</span>
+    <span class="k">case</span><span class="p">(</span><span class="mi">3003</span><span class="p">);</span> <span class="n">msg</span><span class="o">=</span><span class="s1">&#39;Error in dbspvd: ldvnik does not satisfy ldvnik&gt;=k&#39;</span>
 
     <span class="k">case </span><span class="n">default</span>
         <span class="k">write</span><span class="p">(</span><span class="n">istr</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(I10)&#39;</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">istat</span><span class="p">)</span> <span class="n">iflag</span>
