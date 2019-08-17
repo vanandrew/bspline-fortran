@@ -606,37 +606,37 @@
     integer,intent(in)                       :: kz    !! the order of spline pieces in \(z\)
                                                       !! ( \( 2 \le k_z < n_z \) )
                                                       !! (order = polynomial degree + 1)
-    real(wp),dimension(:),intent(in)         :: x     !! `(nx)` array of \(x\) abcissae. must be strictly increasing.
-    real(wp),dimension(:),intent(in)         :: y     !! `(ny)` array of \(y\) abcissae. must be strictly increasing.
-    real(wp),dimension(:),intent(in)         :: z     !! `(nz)` array of \(z\) abcissae. must be strictly increasing.
-    real(wp),dimension(:,:,:),intent(in)     :: fcn   !! `(nx,ny,nz)` matrix of function values to interpolate. `fcn(i,j,k)` should
+    real(wp),dimension(nx),intent(in)        :: x     !! `(nx)` array of \(x\) abcissae. must be strictly increasing.
+    real(wp),dimension(ny),intent(in)        :: y     !! `(ny)` array of \(y\) abcissae. must be strictly increasing.
+    real(wp),dimension(nz),intent(in)        :: z     !! `(nz)` array of \(z\) abcissae. must be strictly increasing.
+    real(wp),dimension(nx,ny,nz),intent(in)  :: fcn   !! `(nx,ny,nz)` matrix of function values to interpolate. `fcn(i,j,k)` should
                                                       !! contain the function value at the point (`x(i)`,`y(j)`,`z(k)`)
     integer,intent(in)                       :: iknot !! knot sequence flag:
                                                       !!
                                                       !! * 0 = knot sequence chosen by [[db3ink]].
                                                       !! * 1 = knot sequence chosen by user.
-    real(wp),dimension(:),intent(inout)      :: tx    !! The `(nx+kx)` knots in the \(x\) direction for the spline
+    real(wp),dimension(nx+kx),intent(inout)  :: tx    !! The `(nx+kx)` knots in the \(x\) direction for the spline
                                                       !! interpolant.
                                                       !!
                                                       !! * If `iknot=0` these are chosen by [[db3ink]].
                                                       !! * If `iknot=1` these are specified by the user.
                                                       !!
                                                       !! Must be non-decreasing.
-    real(wp),dimension(:),intent(inout)      :: ty    !! The `(ny+ky)` knots in the \(y\) direction for the spline
+    real(wp),dimension(ny+ky),intent(inout)  :: ty    !! The `(ny+ky)` knots in the \(y\) direction for the spline
                                                       !! interpolant.
                                                       !!
                                                       !! * If `iknot=0` these are chosen by [[db3ink]].
                                                       !! * If `iknot=1` these are specified by the user.
                                                       !!
                                                       !! Must be non-decreasing.
-    real(wp),dimension(:),intent(inout)      :: tz    !! The `(nz+kz)` knots in the \(z\) direction for the spline
+    real(wp),dimension(nz+kz),intent(inout)  :: tz    !! The `(nz+kz)` knots in the \(z\) direction for the spline
                                                       !! interpolant.
                                                       !!
                                                       !! * If `iknot=0` these are chosen by [[db3ink]].
                                                       !! * If `iknot=1` these are specified by the user.
                                                       !!
                                                       !! Must be non-decreasing.
-    real(wp),dimension(:,:,:),intent(out)    :: bcoef !! `(nx,ny,nz)` matrix of coefficients of the b-spline interpolant.
+    real(wp),dimension(nx,ny,nz),intent(out) :: bcoef !! `(nx,ny,nz)` matrix of coefficients of the b-spline interpolant.
     integer,intent(out)                      :: iflag !! *  0 = successful execution.
                                                       !! *  2 = `iknot` out of range.
                                                       !! *  3 = `nx` out of range.
