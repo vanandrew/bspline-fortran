@@ -9,10 +9,10 @@
 !### Notes
 !   None
 
-    subroutine db3interp(x,y,z,idx,idy,idz,&
-                                    tx,ty,tz,&
+    pure subroutine db3interp(x,y,z,idx,idy,idz,&
+                                    tx,ty,tz,ntx,nty,ntz,&
                                     nx,ny,nz,kx,ky,kz,bcoef,f,iflag,&
-                                    inbvx,inbvy,inbvz,iloy,iloz,extrap,a)
+                                    inbvx,inbvy,inbvz,iloy,iloz,extrap,a,gs,gt)
     use bspline_module
     use bspline_kinds_module, only: wp
 
@@ -21,6 +21,9 @@
     integer,intent(in)                      :: idx      !! \(x\) derivative of piecewise polynomial to evaluate.
     integer,intent(in)                      :: idy      !! \(y\) derivative of piecewise polynomial to evaluate.
     integer,intent(in)                      :: idz      !! \(z\) derivative of piecewise polynomial to evaluate.
+    integer,intent(in)                      :: ntx      !! the number of points to interpolate over in \(x\).
+    integer,intent(in)                      :: nty      !! the number of points to interpolate over in \(y\).
+    integer,intent(in)                      :: ntz      !! the number of points to interpolate over in \(z\).
     integer,intent(in)                      :: nx       !! the number of interpolation points in \(x\).
                                                         !! (same as in last call to [[db3ink]])
     integer,intent(in)                      :: ny       !! the number of interpolation points in \(y\).
@@ -44,7 +47,7 @@
                                                         !! in the \(z\) direction. (same as in last call to [[db3ink]])
     real(wp),dimension(nx,ny,nz),intent(in) :: bcoef    !! the b-spline coefficients computed by [[db3ink]].
     real(wp),dimension(4,4),intent(in)      :: a        !! affine matrix to change positions
-    real(wp),dimension(nx,ny,nz),intent(out):: f        !! interpolated values
+    real(wp),dimension(ntx,nty,ntz),intent(out):: f        !! interpolated values
     integer,intent(out)                     :: iflag    !! status flag:
                                                         !!
                                                         !! * \( = 0 \)   : no errors
@@ -66,19 +69,20 @@
                                                         !! and must not be changed by the user.
     logical,intent(in),optional             :: extrap   !! if extrapolation is allowed
                                                         !! (if not present, default is False)
+    real(wp),dimension(4,4),intent(in)      :: gs       !! changes grid orientation (target)
+    real(wp),dimension(4,4),intent(in)      :: gt       !! changes grid orientation (target)
 
     integer :: i,j,k
 
-    do k=1,nz
-        do j=1,ny
-            do i=1,nx
-                call db3val(x(i)*a(1,1)+y(j)*a(1,2)+z(k)*a(1,3)+a(1,4),&
-                    x(i)*a(2,1)+y(j)*a(2,2)+z(k)*a(2,3)+a(2,4),&
-                    x(i)*a(3,1)+y(j)*a(3,2)+z(k)*a(3,3)+a(3,4),&
+    do k=1,ntz
+        do j=1,nty
+            do i=1,ntx
+                call db3val((x(i)*gt(1,1)*a(1,1)+y(j)*gt(2,2)*a(1,2)+z(k)*gt(3,3)*a(1,3)+a(1,4))*gs(1,1),&
+                    (x(i)*gt(1,1)*a(2,1)+y(j)*gt(2,2)*a(2,2)+z(k)*gt(3,3)*a(2,3)+a(2,4))*gs(2,2),&
+                    (x(i)*gt(1,1)*a(3,1)+y(j)*gt(2,2)*a(3,2)+z(k)*gt(3,3)*a(3,3)+a(3,4))*gs(3,3),&
                     idx,idy,idz,tx,ty,tz,&
                     nx,ny,nz,kx,ky,kz,bcoef,f(i,j,k),iflag,&
                     inbvx,inbvy,inbvz,iloy,iloz,extrap)
-                ! print*,f(i,j,k)
             end do
         end do
     end do
