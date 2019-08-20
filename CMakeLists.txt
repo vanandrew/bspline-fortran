@@ -11,4 +11,5 @@ project (bspline-fortran NONE)
 enable_language (Fortran)
 
 file(GLOB SOURCES src/*.f90)
-add_library(${PROJECT_NAME} ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
+target_compile_options(${PROJECT_NAME} PRIVATE -O3)
