@@ -47,7 +47,7 @@
                                                         !! in the \(z\) direction. (same as in last call to [[db3ink]])
     real(wp),dimension(nx,ny,nz),intent(in) :: bcoef    !! the b-spline coefficients computed by [[db3ink]].
     real(wp),dimension(4,4),intent(in)      :: a        !! affine matrix to change positions
-    real(wp),dimension(ntx,nty,ntz),intent(out):: f        !! interpolated values
+    real(wp),dimension(ntx,nty,ntz),intent(out):: f     !! interpolated values
     integer,intent(out)                     :: iflag    !! status flag:
                                                         !!
                                                         !! * \( = 0 \)   : no errors
@@ -71,11 +71,20 @@
                                                         !! (if not present, default is False)
     real(wp),dimension(4,4),intent(in)      :: gs       !! changes grid orientation (target)
     real(wp),dimension(4,4),intent(in)      :: gt       !! changes grid orientation (target)
-
     integer :: i,j,k
+    integer, save :: tflag,ivx,ivy,ivz,ily,ilz
+    real(wp), save :: iv
+    !$omp threadprivate(iv,tflag,ivx,ivy,ivz,ily,ilz)
 
-    !$ call OMP_set_num_threads(4)
-    !$omp parallel do
+    !! Initialize values of the changing parameters for threads
+    ivx = inbvx
+    ivy = inbvy
+    ivz = inbvz
+    ily = iloy
+    ilz = iloz
+
+    !$omp parallel copyin(ivx,ivy,ivz,ily,ilz)
+    !$omp do
     do k=1,ntz
         do j=1,nty
             do i=1,ntx
@@ -83,11 +92,13 @@
                     (x(i)*gt(1,1)*a(2,1)+y(j)*gt(2,2)*a(2,2)+z(k)*gt(3,3)*a(2,3)+a(2,4))*gs(2,2),&
                     (x(i)*gt(1,1)*a(3,1)+y(j)*gt(2,2)*a(3,2)+z(k)*gt(3,3)*a(3,3)+a(3,4))*gs(3,3),&
                     idx,idy,idz,tx,ty,tz,&
-                    nx,ny,nz,kx,ky,kz,bcoef,f(i,j,k),iflag,&
-                    inbvx,inbvy,inbvz,iloy,iloz,extrap)
+                    nx,ny,nz,kx,ky,kz,bcoef,iv,tflag,&
+                    ivx,ivy,ivz,ily,ilz,extrap)
+                f(i,j,k) = iv
             end do
         end do
     end do
-    !$omp end parallel do
- 
+    !$omp end do
+    !$omp end parallel
+
     end subroutine db3interp

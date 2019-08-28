@@ -15,4 +15,4 @@ add_library(${PROJECT_NAME} STATIC
     src/bspline_kinds_module.f90
     src/bspline_module.f90
     src/bspline_sub_module.f90)
-target_compile_options(${PROJECT_NAME} PRIVATE -fopenmp -ftree-vectorize -O3)
+target_compile_options(${PROJECT_NAME} PRIVATE -fopenmp -ftree-vectorize -O3 -fPIC)
