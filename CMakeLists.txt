@@ -10,6 +10,9 @@ set(PROJECT_URL "https://github.com/jacobwilliams/bspline-fortran")
 project (bspline-fortran NONE)
 enable_language (Fortran)
 
-file(GLOB SOURCES src/*.f90)
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
-target_compile_options(${PROJECT_NAME} PRIVATE -O3 -march=native)
+add_library(${PROJECT_NAME} STATIC
+    src/bspline_interp.f90
+    src/bspline_kinds_module.f90
+    src/bspline_module.f90
+    src/bspline_sub_module.f90)
+target_compile_options(${PROJECT_NAME} PRIVATE -fopenmp -ftree-vectorize -O3 -march=native)

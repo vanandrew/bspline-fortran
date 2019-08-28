@@ -10,7 +10,7 @@
     module bspline_module
 
     use bspline_kinds_module, only: bspline_wp => wp
-    use bspline_oo_module
+    ! use bspline_oo_module
     use bspline_sub_module
 
     implicit none

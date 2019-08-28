@@ -9,7 +9,7 @@
 !### Notes
 !   None
 
-    pure subroutine db3interp(x,y,z,idx,idy,idz,&
+    subroutine db3interp(x,y,z,idx,idy,idz,&
                                     tx,ty,tz,ntx,nty,ntz,&
                                     nx,ny,nz,kx,ky,kz,bcoef,f,iflag,&
                                     inbvx,inbvy,inbvz,iloy,iloz,extrap,a,gs,gt)
@@ -74,6 +74,8 @@
 
     integer :: i,j,k
 
+    !$ call OMP_set_num_threads(4)
+    !$omp parallel do
     do k=1,ntz
         do j=1,nty
             do i=1,ntx
@@ -86,5 +88,6 @@
             end do
         end do
     end do
+    !$omp end parallel do
  
     end subroutine db3interp
