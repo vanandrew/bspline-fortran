@@ -12,7 +12,7 @@
     subroutine db3interp(x,y,z,idx,idy,idz,&
                                     tx,ty,tz,ntx,nty,ntz,&
                                     nx,ny,nz,kx,ky,kz,bcoef,f,iflag,&
-                                    inbvx,inbvy,inbvz,iloy,iloz,extrap,a,gs,gt)
+                                    inbvx,inbvy,inbvz,iloy,iloz,extrap,a,gs,gt,mask)
     use bspline_module
     use bspline_kinds_module, only: wp
 
@@ -71,6 +71,8 @@
                                                         !! (if not present, default is False)
     real(wp),dimension(4,4),intent(in)      :: gs       !! changes grid orientation (target)
     real(wp),dimension(4,4),intent(in)      :: gt       !! changes grid orientation (target)
+    real(wp),dimension(ntx,nty,ntz),intent(in) :: mask     !! target mask
+
     integer :: i,j,k
     integer, save :: tflag,ivx,ivy,ivz,ily,ilz
     real(wp), save :: iv
@@ -88,12 +90,16 @@
     do k=1,ntz
         do j=1,nty
             do i=1,ntx
-                call db3val((x(i)*gt(1,1)*a(1,1)+y(j)*gt(2,2)*a(1,2)+z(k)*gt(3,3)*a(1,3)+a(1,4))*gs(1,1),&
-                    (x(i)*gt(1,1)*a(2,1)+y(j)*gt(2,2)*a(2,2)+z(k)*gt(3,3)*a(2,3)+a(2,4))*gs(2,2),&
-                    (x(i)*gt(1,1)*a(3,1)+y(j)*gt(2,2)*a(3,2)+z(k)*gt(3,3)*a(3,3)+a(3,4))*gs(3,3),&
-                    idx,idy,idz,tx,ty,tz,&
-                    nx,ny,nz,kx,ky,kz,bcoef,iv,tflag,&
-                    ivx,ivy,ivz,ily,ilz,extrap)
+                if (mask(i,j,k) > 0) then
+                    call db3val((x(i)*gt(1,1)*a(1,1)+y(j)*gt(2,2)*a(1,2)+z(k)*gt(3,3)*a(1,3)+a(1,4))*gs(1,1),&
+                        (x(i)*gt(1,1)*a(2,1)+y(j)*gt(2,2)*a(2,2)+z(k)*gt(3,3)*a(2,3)+a(2,4))*gs(2,2),&
+                        (x(i)*gt(1,1)*a(3,1)+y(j)*gt(2,2)*a(3,2)+z(k)*gt(3,3)*a(3,3)+a(3,4))*gs(3,3),&
+                        idx,idy,idz,tx,ty,tz,&
+                        nx,ny,nz,kx,ky,kz,bcoef,iv,tflag,&
+                        ivx,ivy,ivz,ily,ilz,extrap)
+                else
+                    iv = 0
+                end if
                 f(i,j,k) = iv
             end do
         end do
