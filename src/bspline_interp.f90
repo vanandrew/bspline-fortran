@@ -90,7 +90,7 @@
     do k=1,ntz
         do j=1,nty
             do i=1,ntx
-                if (mask(i,j,k) > 0) then
+                if (mask(i,j,k) > 0.5) then
                     call db3val((x(i)*gt(1,1)*a(1,1)+y(j)*gt(2,2)*a(1,2)+z(k)*gt(3,3)*a(1,3)+a(1,4))*gs(1,1),&
                         (x(i)*gt(1,1)*a(2,1)+y(j)*gt(2,2)*a(2,2)+z(k)*gt(3,3)*a(2,3)+a(2,4))*gs(2,2),&
                         (x(i)*gt(1,1)*a(3,1)+y(j)*gt(2,2)*a(3,2)+z(k)*gt(3,3)*a(3,3)+a(3,4))*gs(3,3),&
